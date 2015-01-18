@@ -4,8 +4,12 @@ import nltk
 from nltk.tokenize import sent_tokenize
 from nltk.tokenize import RegexpTokenizer
 import sys
-
 '''
+@author nitish
+@since 1/17/15
+'''
+'''
+argument 1 : input file, argument 2 : output file
 Tokenizes input document into sentences.
 Tokenizes the sentences and
 	Removes stranded integers
@@ -31,9 +35,11 @@ def fileNames():
 		outFile = sys.argv[2]
 	files = []
 	files.append(inputFile)
-	files.append(outFile)		
+	files.append(outFile)
+
 	return files
 
+# tokenizes and removes punctuations. removes stranded numbers. joins using space.
 def processSentence(sentence):
 	#sentence = sentence.lower()					# Keeping case-sensitive sentences
 	tokenizer = RegexpTokenizer(r'\w+')
@@ -41,16 +47,20 @@ def processSentence(sentence):
 	tokens = [token for token in tokens if not (token.isdigit() or token[0] == '-' and token[1:].isdigit())]
 	return " ".join(tokens)
 
+# Output - join sentences using tab delimiter
+def writeOutput(sentences, fo):
+	outText = ""
+	for sent in sentences:
+		sent = processSentence(sent);
+		outText = outText + sent.encode('utf-8') + "\t"
+	fo.write(outText.strip())
+
 files = fileNames();
 fi = open(files[0], 'r')
 fo = open(files[1], 'w')
 
 inputText = readInputText(fi);
-sentences = sent_tokenize(inputText)
-outText = ""
-for sent in sentences:
-	sent = processSentence(sent);
-	outText = outText + sent.encode('utf-8') + "\n"
-fo.write(outText.strip())
+sentences = sent_tokenize(inputText);
+writeOutput(sentences, fo);
 
 	
