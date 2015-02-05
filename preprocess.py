@@ -18,9 +18,11 @@ Tokenizes the sentences and
 '''
 
 def readInputText(fi):
-	inputText = ""
-	for line in fi:
-		inputText = inputText + line;
+	#inputText = ""
+	inputText = fi.read()
+	#print "Hello"
+	#for line in fi:
+	#	inputText = inputText + line;
 	try:
 		inputText = inputText.decode('utf-8')
 		print "Encoding : utf-8"
@@ -40,19 +42,18 @@ def fileNames():
 	return files
 
 # tokenizes and removes punctuations. removes stranded numbers. joins using space.
-def processSentence(sentence):
+def processText(text):
 	#sentence = sentence.lower()					# Keeping case-sensitive sentences
 	tokenizer = RegexpTokenizer(r'\w+')
-	tokens = tokenizer.tokenize(sentence)
+	tokens = tokenizer.tokenize(text)
 	tokens = [token for token in tokens if not (token.isdigit() or token[0] == '-' and token[1:].isdigit())]
 	return " ".join(tokens)
 
 # Output - join sentences using tab delimiter
-def writeOutput(sentences, fo):
+def writeOutput(intext, fo):
 	outText = ""
-	for sent in sentences:
-		sent = processSentence(sent);
-		outText = outText + sent.encode('utf-8') + "\t"
+	outText = processText(intext);
+	outText = outText.encode('utf-8')
 	fo.write(outText.strip())
 
 files = fileNames();
@@ -60,7 +61,7 @@ fi = open(files[0], 'r')
 fo = open(files[1], 'w')
 
 inputText = readInputText(fi);
-sentences = sent_tokenize(inputText);
-writeOutput(sentences, fo);
+#sentences = sent_tokenize(inputText);
+writeOutput(inputText, fo);
 
 	
