@@ -19,17 +19,7 @@
 #include <pthread.h>
 
 #define MAX_STRING 100
-#define VOCAB_SIZE 10000000
 #define MAX_WORD 20
-
-long long train_words=0, vocab_size=0;
-int debug_mode = 0;
-char train_file[MAX_STRING];
-long long file_size;
-std::map<std::string, int> wordCount;
-std:map<std::string, std::pair<long long, long long>> widc;
-char[VOCAB_SIZE][MAX_WORD] idWord;
-
 
 using namespace std;
 
@@ -38,6 +28,13 @@ struct vocab_word {
   char *word;
   long long id;
 };
+
+
+long long train_words=0, vocab_size=0, vocab_max_size=1000, file_size;
+int debug_mode = 0, min_count = 1;
+char train_file[MAX_STRING];
+struct vocab_word *vocab;
+std::map<std::string, int> wordId;
 
 
 
@@ -63,6 +60,30 @@ struct vocab_word {
   word[a] = 0;
 }*/
 
+int VocabCompare(const void *a, const void *b) {
+    return ((struct vocab_word *)b)->cn - ((struct vocab_word *)a)->cn;
+}
+
+void SortVocab() {
+  int a, size;
+  // Sort the vocabulary and keep </s> at the first position
+  qsort(&vocab[1], vocab_size - 1, sizeof(struct vocab_word), VocabCompare);
+  // Delete the wholw word->id map and recompute Ids.
+  wordId.clear();
+  wordId[vocab[0].word] = 0;
+  size = vocab_size;
+  for(int i=1; i<size; i++){
+  	if(vocab[i].cn <= min_count){
+  		vocab_size--;
+  		free(vocab[i].word);
+  	} else {
+  		vocab[i].id = i;
+  		wordId[vocab[i].word] = i;
+  	}
+  }
+}  
+
+
 void ReadWord(char *word, FILE *fin) {
   int a = 0, ch;
   while (!feof(fin)) {
@@ -80,17 +101,30 @@ void ReadWord(char *word, FILE *fin) {
   word[a] = '\0';
 }
 
-void AddWordToVocab(string word){
-	std::map<std::string, int>::iterator loc = wordCount.find(word);
-	if(loc != wordCount.end()){
-		int cc = loc->second;
-		cc++;
-		wordCount[word] = cc;
+int AddWordToVocab(char* word){
+	unsigned int length = strlen(word)+1;
+	if (length > MAX_STRING) length = MAX_STRING;
+	// Add word to vocab - struct vocab_word
+	vocab[vocab_size].word = (char *)calloc(length, sizeof(char));
+	strcpy(vocab[vocab_size].word, word);
+	vocab[vocab_size].cn = 0;
+	vocab[vocab_size].id = vocab_size;
+	//Add word to wordId - Map
+	wordId[word] = vocab_size;
+
+	vocab_size++;
+	// Reallocate memory if needed
+	if (vocab_size + 2 >= vocab_max_size) {
+	vocab_max_size += 1000;
+	vocab = (struct vocab_word *)realloc(vocab, vocab_max_size * sizeof(struct vocab_word));
 	}
-	else{
-		wordCount[word] = 1;
-		vocab_size++;
-	}
+	return vocab_size - 1;
+}	
+
+int searchVocab(char *word){
+	std::map<std::string, int>::iterator loc = wordId.find(word);
+	if(loc != wordId.end())	return loc->second;
+	else return -1;
 }
 
 /* Read words from file into Map<Word, Count> 
@@ -98,7 +132,7 @@ To prune, iterate through Map<Word, Count> deleting elements and copying only el
 Also keep creating Array[word], where arrayId = wordId
 Total memory - Map<Word, pair(wordId, count)>, Array[word].  
 */
-void readVocabFromFile(){
+void learnVocabFromFile(){
 	char word[MAX_STRING];
 	FILE *fin;
 	long long a, i;
@@ -119,23 +153,35 @@ void readVocabFromFile(){
 	  		printf("%lldK%c", train_words / 10, 13);
 		  	fflush(stdout);
 		}
-		AddWordToVocab(word);
+		i = searchVocab(word);
+    	if (i == -1) {
+      		a = AddWordToVocab(word);
+      		vocab[a].cn = 1;
+    	} else vocab[i].cn++;
 	}
 	//SortVocab();
 	printf("Vocab size: %lld\n", vocab_size);
 	printf("Words in train file: %lld\n", train_words);
 	file_size = ftell(fin);
 	fclose(fin);
+	SortVocab();
 }
 
 void printVocab(){
-	int total_word = 0;
+	string w;
+	if(debug_mode>0){
+		for (int i=0; i<vocab_size; i++)
+			cout<<vocab[i].word<<"->"<<vocab[i].cn<<"->"<<vocab[i].id<<"\n";
+	}
+	cout<<"Vocab Size : "<<vocab_size<<"\n";
+	cout<<"Training Words : "<<train_words<<"\n";
+	/*int total_word = 0;
 	for (std::map<string,int>::iterator it=wordCount.begin(); it!=wordCount.end(); ++it){
 		if(debug_mode>0)	std::cout << it->first << " => " << it->second << '\n';
 		total_word += it->second;
 	}
 	cout<<"Total Words : "<<total_word<<"\n";
-	cout<<"File Size : "<<file_size<<"\n";
+	cout<<"File Size : "<<file_size<<"\n";*/
 }
 
 int ArgPos(char *str, int argc, char **argv) {
@@ -151,13 +197,14 @@ int ArgPos(char *str, int argc, char **argv) {
 }
 
 int main(int argc, char **argv){
-	if(idWord != NULL) cout << "space allocated";
 	int i, pvocab=0;
 	cout<<"nitish"<<"\n";
 	if ((i = ArgPos((char *)"-train", argc, argv)) > 0) strcpy(train_file, argv[i + 1]);
 	if ((i = ArgPos((char *)"-debug", argc, argv)) > 0) debug_mode =  atoi(argv[i + 1]);
-	readVocabFromFile();
-	//printVocab();
+	if ((i = ArgPos((char *)"-min-count", argc, argv)) > 0)  min_count =  atoi(argv[i + 1]);
+	vocab = (struct vocab_word *)calloc(vocab_max_size, sizeof(struct vocab_word));
+	learnVocabFromFile();
+	printVocab();
 	return 0;	
 
 }
