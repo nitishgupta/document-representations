@@ -9,3 +9,6 @@ t:
 
 run:
 	./vocab -train-directory data -debug 0 -min-count 1
+
+debug:
+	./vocab -train-directory data/ -debug 1 -min-count 1

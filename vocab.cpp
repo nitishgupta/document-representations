@@ -1,9 +1,12 @@
-//argument 1 : input file, argument 2 : output file
-//Tokenizes input document into sentences.
-//Tokenizes the sentences and
-//	Removes stranded integers
-//	Removes Punctuations
-//	NOT converting sentences to lower case. KEEPING sentences case sensitive. 	
+// See arguments from main()
+// vocab_size - Size of the vocab. Final number is after removal of words based on min_count
+// num_docs - Number of docs to be used for learning.
+// train_directory - Directoy containing
+//						- docs.txt - file with first line as number of documents and subsequent lines as filenames of docs to be learnt
+//						- docs to be learnt
+// traindocs - is an array of the addresses of the docs to be learnt
+// vocab - array of words in vocab. The array ID acts as int proxy for word.
+// wordId - reverse map from word-> intId for words in vocab.
 
 /*
 @author nitish
@@ -30,8 +33,8 @@ struct vocab_word {
 };
 
 
-long long train_words=0, vocab_size=0, vocab_max_size=1000, file_size;
-int debug_mode = 0, min_count = 1, num_docs=0;
+long long train_words=0, vocab_size=0, vocab_max_size=100;
+int debug_mode = 0, min_count = 1, num_docs;
 char train_file[MAX_STRING];
 char train_directory[MAX_STRING];
 char **traindocs;
@@ -138,33 +141,33 @@ void learnVocabFromFile(){
 	char word[MAX_STRING];
 	FILE *fin;
 	long long a, i;
-	//for (a = 0; a < vocab_hash_size; a++) vocab_hash[a] = -1;
-	fin = fopen(train_file, "rb");
-	if (fin == NULL) {
-		printf("ERROR: training data file not found!\n");
-		exit(1);
-	}
 	vocab_size = 0;
 	AddWordToVocab((char *)"</s>");
-	while (1) {
-		ReadWord(word, fin);
-		if (feof(fin)) break;
-		train_words++;
-		//cout<<train_words;
-		if ((debug_mode > 0) && (train_words % 10 == 0)) {
-	  		printf("%lldK%c", train_words / 10, 13);
-		  	fflush(stdout);
+	for(int nd=0; nd<num_docs; nd++){
+		fin = fopen(traindocs[nd], "rb");
+		if (fin == NULL) {
+			printf("ERROR: training data file not found!\n");
+			exit(1);
 		}
-		i = searchVocab(word);
-    	if (i == -1) {
-      		a = AddWordToVocab(word);
-      		vocab[a].cn = 1;
-    	} else vocab[i].cn++;
+		while (1) {
+			ReadWord(word, fin);
+			if (feof(fin)){ break; }
+			train_words++;
+			//cout<<train_words;
+			if ((debug_mode > 0) && (train_words % 10 == 0)) {
+		  		printf("%lldK%c", train_words / 10, 13);
+			  	fflush(stdout);
+			}
+			i = searchVocab(word);
+	    	if (i == -1) {
+	      		a = AddWordToVocab(word);
+	      		vocab[a].cn = 1;
+	    	} else vocab[i].cn++;
+		}
 	}
 	//SortVocab();
 	printf("Vocab size: %lld\n", vocab_size);
 	printf("Words in train file: %lld\n", train_words);
-	file_size = ftell(fin);
 	fclose(fin);
 	SortVocab();
 }
@@ -214,11 +217,10 @@ void getTrainingFileNames(){
   	traindocs = (char **)calloc(num_docs, sizeof(char*));
   	if(traindocs == NULL){cout<<"ERROR : NOT ENOUGH MEMORY TO ALLOCATE TRAIN DOCS LIST"; exit(1);}
   	if (dfile.is_open()) {
-  		getline(dfile, line);
     	for(int i=0; i<num_docs; i++){
     		getline(dfile, line);
     		string file_address = train_directory;
-    		file_address.append("/").append(line);
+    		file_address.append(line);
     		traindocs[i] = (char *)malloc(file_address.size()+1);
     		std::copy(file_address.begin(), file_address.end(), traindocs[i]);
     		traindocs[i][file_address.size()] = '\0';
@@ -229,22 +231,32 @@ void getTrainingFileNames(){
 }
 
 void print_traindocs(){
+	cout<<"Train Directory : "<<train_directory<<"\n";
 	cout<<"number of docs : "<<num_docs<<"\n";
-	for(int i=0; i<num_docs; i++)
-		cout<<traindocs[i]<<"\n";
+	if(debug_mode>0){
+		for(int i=0; i<num_docs; i++)
+			cout<<traindocs[i]<<"\n";
+	}
 }
 
 int main(int argc, char **argv){
 	int i, pvocab=0;
 	cout<<"VOCAB"<<"\n";
-	if ((i = ArgPos((char *)"-train-directory", argc, argv)) > 0) strcpy(train_directory, argv[i + 1]);
+	if ((i = ArgPos((char *)"-train-directory", argc, argv)) > 0){ 
+		strcpy(train_directory, argv[i + 1]); 
+		if(train_directory[strlen(train_directory)-1]!='/'){
+			train_directory[strlen(train_directory)]='/';
+			train_directory[strlen(train_directory)+1]='\0';
+		}
+	}
 	if ((i = ArgPos((char *)"-debug", argc, argv)) > 0) debug_mode =  atoi(argv[i + 1]);
 	if ((i = ArgPos((char *)"-min-count", argc, argv)) > 0)  min_count =  atoi(argv[i + 1]);
 	vocab = (struct vocab_word *)calloc(vocab_max_size, sizeof(struct vocab_word));
 	getTrainingFileNames();
 	print_traindocs();
-	//learnVocabFromFile();
+	learnVocabFromFile();
 	//printVocab();
+
 	return 0;	
 
 }
