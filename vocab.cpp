@@ -11,13 +11,13 @@
 */
 
 #include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <string.h>
 #include "vector"
 #include "map"
 #include "set"
 #include <pthread.h>
-
 #define MAX_STRING 100
 #define MAX_WORD 20
 
@@ -31,8 +31,10 @@ struct vocab_word {
 
 
 long long train_words=0, vocab_size=0, vocab_max_size=1000, file_size;
-int debug_mode = 0, min_count = 1;
+int debug_mode = 0, min_count = 1, num_docs=0;
 char train_file[MAX_STRING];
+char train_directory[MAX_STRING];
+char **traindocs;
 struct vocab_word *vocab;
 std::map<std::string, int> wordId;
 
@@ -196,15 +198,53 @@ int ArgPos(char *str, int argc, char **argv) {
   return -1;
 }
 
+void getTrainingFileNames(){
+	string docs_file = train_directory, line;
+	docs_file.append("/docs.txt");
+	ifstream dfile (docs_file);
+	if (dfile.is_open()) {
+  		getline(dfile, line);
+  		num_docs = stoi(line, NULL, 10);
+  	}
+  	else{
+  		cout<<"ERROR : FILE WITH DOC NAMES NOT FOUND";
+  		exit(1);
+  	}
+
+  	traindocs = (char **)calloc(num_docs, sizeof(char*));
+  	if(traindocs == NULL){cout<<"ERROR : NOT ENOUGH MEMORY TO ALLOCATE TRAIN DOCS LIST"; exit(1);}
+  	if (dfile.is_open()) {
+  		getline(dfile, line);
+    	for(int i=0; i<num_docs; i++){
+    		getline(dfile, line);
+    		string file_address = train_directory;
+    		file_address.append("/").append(line);
+    		traindocs[i] = (char *)malloc(file_address.size()+1);
+    		std::copy(file_address.begin(), file_address.end(), traindocs[i]);
+    		traindocs[i][file_address.size()] = '\0';
+    		fflush(stdout);
+    	}
+    	dfile.close();
+  	}
+}
+
+void print_traindocs(){
+	cout<<"number of docs : "<<num_docs<<"\n";
+	for(int i=0; i<num_docs; i++)
+		cout<<traindocs[i]<<"\n";
+}
+
 int main(int argc, char **argv){
 	int i, pvocab=0;
-	cout<<"nitish"<<"\n";
-	if ((i = ArgPos((char *)"-train", argc, argv)) > 0) strcpy(train_file, argv[i + 1]);
+	cout<<"VOCAB"<<"\n";
+	if ((i = ArgPos((char *)"-train-directory", argc, argv)) > 0) strcpy(train_directory, argv[i + 1]);
 	if ((i = ArgPos((char *)"-debug", argc, argv)) > 0) debug_mode =  atoi(argv[i + 1]);
 	if ((i = ArgPos((char *)"-min-count", argc, argv)) > 0)  min_count =  atoi(argv[i + 1]);
 	vocab = (struct vocab_word *)calloc(vocab_max_size, sizeof(struct vocab_word));
-	learnVocabFromFile();
-	printVocab();
+	getTrainingFileNames();
+	print_traindocs();
+	//learnVocabFromFile();
+	//printVocab();
 	return 0;	
 
 }

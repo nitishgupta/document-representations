@@ -3,4 +3,9 @@ CC = g++
 CXXFLAGS = -std=c++11
 all: 
 	$(CC) vocab.cpp -o vocab $(CXXFLAGS) 
-	
+
+t:
+	$(CC) test.cpp -o test $(CXXFLAGS)	
+
+run:
+	./vocab -train-directory data -debug 0 -min-count 1
