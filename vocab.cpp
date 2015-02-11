@@ -38,8 +38,12 @@ int debug_mode = 0, min_count = 1, num_docs;
 char train_file[MAX_STRING];
 char train_directory[MAX_STRING];
 char **traindocs;
+char **docs;
 struct vocab_word *vocab;
+
 std::map<std::string, int> wordId;
+std::map<std::string, int> docId;
+
 
 
 
@@ -132,21 +136,31 @@ int searchVocab(char *word){
 	else return -1;
 }
 
+int searchDoc(char *docid){
+	std::map<std::string, int>::iterator loc = docId.find(docid);
+	if(loc != docId.end())	return loc->second;
+	else return -1;	
+}
+
 /* Read words from file into Map<Word, Count> 
 To prune, iterate through Map<Word, Count> deleting elements and copying only elements with count more than threshold to Map<Word, pair(wordId, count)>
 Also keep creating Array[word], where arrayId = wordId
 Total memory - Map<Word, pair(wordId, count)>, Array[word].  
 */
 void learnVocabFromFile(){
-	char word[MAX_STRING];
+	char word[MAX_STRING], docid[MAX_STRING];
 	FILE *fin;
 	long long a, i;
 	vocab_size = 0;
 	AddWordToVocab((char *)"</s>");
 	for(int nd=0; nd<num_docs; nd++){
 		fin = fopen(traindocs[nd], "rb");
-		if (fin == NULL) {
-			printf("ERROR: training data file not found!\n");
+		ReadWord(docid, fin);
+		int d;
+		d = searchDoc(docid);
+		cout<<docid<<" "<<d<<"\n";
+		if (fin == NULL || d == -1) {
+			printf("ERROR: training doc file not found!\n");
 			exit(1);
 		}
 		while (1) {
@@ -202,7 +216,7 @@ int ArgPos(char *str, int argc, char **argv) {
 }
 
 void getTrainingFileNames(){
-	string docs_file = train_directory, line;
+	string docs_file = train_directory, filename, fileid, line;
 	docs_file.append("/docs.txt");
 	ifstream dfile (docs_file);
 	if (dfile.is_open()) {
@@ -215,16 +229,23 @@ void getTrainingFileNames(){
   	}
 
   	traindocs = (char **)calloc(num_docs, sizeof(char*));
+  	docs = (char **)calloc(num_docs, sizeof(char*));
   	if(traindocs == NULL){cout<<"ERROR : NOT ENOUGH MEMORY TO ALLOCATE TRAIN DOCS LIST"; exit(1);}
   	if (dfile.is_open()) {
     	for(int i=0; i<num_docs; i++){
-    		getline(dfile, line);
+    		getline(dfile, filename, ' ');
+    		getline(dfile, fileid);
     		string file_address = train_directory;
-    		file_address.append(line);
+    		file_address.append(filename);
+
     		traindocs[i] = (char *)malloc(file_address.size()+1);
     		std::copy(file_address.begin(), file_address.end(), traindocs[i]);
     		traindocs[i][file_address.size()] = '\0';
-    		fflush(stdout);
+
+    		docs[i] = (char *)malloc(fileid.size()+1);
+    		std::copy(fileid.begin(), fileid.end(), docs[i]);
+    		docs[i][fileid.size()] = '\0';
+    		docId[fileid] = i;
     	}
     	dfile.close();
   	}
@@ -235,7 +256,7 @@ void print_traindocs(){
 	cout<<"number of docs : "<<num_docs<<"\n";
 	if(debug_mode>0){
 		for(int i=0; i<num_docs; i++)
-			cout<<traindocs[i]<<"\n";
+			cout<<traindocs[i]<<"\n"<<docs[i]<<"\n";
 	}
 }
 
@@ -255,7 +276,7 @@ int main(int argc, char **argv){
 	getTrainingFileNames();
 	print_traindocs();
 	learnVocabFromFile();
-	//printVocab();
+	printVocab();
 
 	return 0;	
 
