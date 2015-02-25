@@ -8,7 +8,7 @@ t:
 	$(CC) test.cpp -o test $(CXXFLAGS)	
 
 run:
-	./vocab -train-directory data -debug 0 -min-count 1
+	./vocab -train-directory data -debug 0 -min-count 0
 
 debug:
 	./vocab -train-directory data/ -debug 1 -min-count 1
