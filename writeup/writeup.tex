@@ -1,0 +1,156 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\para}[1]{\noindent#1}
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:} #1}}
+
+\title{Learning Collective Word and Document Embeddings for Document Categorization}
+\author{Nitish Gupta}
+\date{March 2015}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+With the increasing growth of textual information on the Web, it has become important to be able to easily predict the topics present in the documents. Though a number of successful approaches (cite related work to document classification here.) have looked at this problem, these methods are not always best suited for multi-class document classification. Also, most of the methods represent documents using a one-hot bag-of-words kind of a feature or go to the extent of representating the documents with their corresponding tf-idf vectors. Recently, distributed word embeddings learnt using probabilistic neural language model (cite bengio) or various other methods (cite others, specifically mikolov, collobart, ) have shown to learn vector representations (embeddings) for words that capture the semantic similarity between words. Though, such word embeddings are powerful in capturing word-level semantic closeness, it is not clear how embeddings for documents can be learnt that can be used to predict the topics contained in the document.
+
+The aim of this project is to build a system that is able to jointly learn word and document embeddings to aid the task of multi-class document categorization while at the same time ensuring that the word embeddings learnt capture the semantic content of the words.
+
+\section{Methodology}
+The task of multi-class document classification is broken into 2 steps. Firstly, learning meaningful word and document embeddings for all the documents and words contained in them, secondly using the learnt document embeddings to learn category embeddings using the training data which can then be used to predict the categories that a particular document belongs.
+
+Our model, of learning word and document embeddings, is inspired by the Continuous Bag-of-Words model of (cite CBOW Mikolov) in which, given the embeddings of the words in a context, the aim is to predict the middle word in the context. The CBOW model also looks at the words ahead of the word it wants to predict and can do so beause the aim is not to build a language model, but a system that can predict the centre word in a context. In (cite paragraph vector Mikolov), they extend their previous CBOW model to incorporate a separate paragraph/document embedding along with the context words to improve the prediction of the middle word by incorporating knowledge of the document in terms of its embedding. 
+We hypothesize that document embeddings learnt in such manner should be able to catpture the semantic content and different topics present in the document through the different factors of the embeddings and should be able to perform better at the task of multi-class document classification than a model that has no information about the content of the documents or a simple bag-of-words model. Our model, though very similar to (cite paragraph vector Mikolov) has marked differences explained after we introduce our model.
+
+To facilitate the prediction of categories a document belongs to, we keep the document embeddings learnt earlier constant and use them as document features to learn category embeddings using the training data.
+
+\subsection{Model for learning Document and Word Embeddings}
+Given a set of documents, $D$ and a vocabulary of words, $V$ built using the words in the given documents, we aim to represent each document and word with a d-dimensional vector representation (or embedding), for example, represented by $w_{d_{i}}$  for the $i$-th document in the set of documents. 
+The set of all word and document embeddings is contained in the set $W$. 
+
+Our model, given embeddings of words in a context, tries to predict the middle word in the context using the word embeddings and the embedding of the document, the context belongs to. 
+Formally, given embeddings, $($ $w_{t-c}$, $\ldots$, $w_{t-1}$, $w_{t}$, $w_{t+1}$, $\ldots$, $w_{t+c}$$)$, of a sequence of words in a context of size $2c +1$ words and the embedding of the document, $w_{doc}$, the context belongs to, we wish to use the embeddings, $($ $w_{t-c}$, $\ldots$, $w_{t-1}$, $w_{t+1}$, $\ldots$, $w_{t+c}$$)$, of the words surrounding the middle word and the document embeddings, $w_{doc}$, to predict the middle word, i.e., predict the embedding, $w_{t}$, of the middle word.
+
+To estimate the probability of the middle word, given the context and the document, we develop a neural network arhitechture in the following manner,
+
+\begin{enumerate}
+\item The embeddings of the document and the context words are combined to form a hidden layer vector with $h$-hidden nodes. It is done by, concatenating the document embedding and the context word embeddings in order, in the following manner.
+\begin{equation}
+\textbf{x} = (w_{doc}; w_{t-c}; \ldots; w_{t-1}; w_{t}; w_{t+1}; \ldots; w_{t+c})
+\end{equation}
+where, $\textbf{x}$ $\in$ $\mathbb{R}^{(2c+1)d}$, is a vector that is constructed by concatenating the document and the context embeddings.
+The hidden layer vector is constructed by taking a weighted average of the individual elements of the concatenated vector $\textbf{x}$.
+\begin{equation}
+\label{eq:hidden_context}
+h_{c} = H_{c} \textbf{x}
+\end{equation}
+where, $H_{c}$ $\in$ $\mathbb{R}^{h \times (2c+1)d}$ is the matrix of the weights and $h_{c} \in \mathbb{R}^{h}$ is the hidden layer constructed from the document and the context word embeddings.
+
+\item Similarly, a hidden layer vector $h_{t}$ is constructed using the middle word in the context, whose probability of existence is to be estimated. It is done by taking a weighted average of the elements of the middle word embedding, 
+\begin{equation}
+h_{t} = H_{t}w_{t}
+\end{equation}
+where, $h_{t} \in \mathbb{R}^{h}$ is the hidden-layer vector constructed using the middle word in the context, $H_{t} \in \mathbb{R}^{h \times d}$ is the matrix of the weights and $w_{t} \in \mathbb{R}^{d}$ is the embedding of the middle word.
+
+\item Now, the probability of the middle or the $t$-th word in the sequence, given the context and the document embeddings is estimated as follows, 
+\begin{equation}
+\label{eq:p_t_wt}
+P\left[t=w_{t} | \textbf{x}\right] = g(h_{c}, h_{t}) = \sigma(h_{t}\cdot h_{c}) 
+\end{equation}
+where $\sigma(s) = \frac{1}{1+e^{-s}}$ is the usual logistic sigmoid.
+
+\end{enumerate}
+
+Now, to estimate the parameters of the model, i.e. the word and document embeddings and the weights of the neural network, we can maximize the likelihood of observing the training data. Before that, let us look at the calculation of the hidden layers in more detail.
+
+The hidden layer corresponding to the context window given in Eq.~\ref{eq:hidden_context} can be further simplified by discociating the weights for the different context locations and the document embedding in the following manner,
+\begin{equation}
+\label{eq:h_context_broken}
+h_{c} = H_{c} \textbf{x} = H_{doc}w_{doc} + H_{w_{t-c}}w_{t-c} + \ldots + H_{w_{t-1}}w_{t-1} + H_{w_{t+1}}w_{t+1} + \ldots + H_{w_{t+c}}w_{t+c}
+\end{equation}
+where, $H_{doc}$, $H_{w_{t-k}}$ $\in \mathbb{R}^{h \times d}$. 
+Now, $h_{t}\cdot h_{c}$ can be written as,
+\begin{equation}
+h_{t}\cdot h_{c} =  w_{t}^{T}H_{t}^{T}(H_{doc}w_{doc} + H_{w_{t-c}}w_{t-c} + \ldots + H_{w_{t-1}}w_{t-1} + H_{w_{t+1}}w_{t+1} + \ldots + H_{w_{t+c}}w_{t+c})
+\end{equation}
+\begin{equation}
+\label{eq:dot_product}
+h_{t}\cdot h_{c} =  w_{t}^{T}(H'_{doc}w_{doc} + H'_{w_{t-c}}w_{t-c} + \ldots + H'_{w_{t-1}}w_{t-1} + H'_{w_{t+1}}w_{t+1} + \ldots + H'_{w_{t+c}}w_{t+c})
+\end{equation}
+where, $H'_{doc}$, $H'_{w_{t-k}}$ $\in \mathbb{R}^{d \times d}$ are the new consolidated weights of the neural network.
+Hence, now the parameters of our model are the document and word embeddings, $W$ and the new weights given in Eq.~\ref{eq:dot_product}. The set of the parameters is denoted as, 
+\begin{equation}
+\label{eq:parameters}
+\Theta = (W, H'_{doc}, H'_{w_{t-c}}, \ldots, H'_{w_{t-1}}, H'_{w_{t+1}}, \ldots, H'_{w_{t+c}})
+\end{equation}
+From Eq.~\ref{eq:p_t_wt}, we see that, the estimate of probobability of the $t$-th word to be $w_{t}$ is given by,
+\begin{equation}
+\label{eq:prob}
+P_{\Theta}\left[I_{t=w_{t}}\right] =  \sigma(h_{t}\cdot h_{c})^{I_{t=w_{t}}}(1 - \sigma(h_{t}\cdot h_{c}))^{(1 - I_{t=w_{t}})}
+\end{equation}
+where $I_{t=w_{t}} = 1$ if the $t$-th word $= w_{t}$, else $I_{t=w_{t}}=0$.
+
+\subsection{Learning the Parameters}
+The training data, $\mathcal{T}$ is composed of $M$ training instances, each of which consists of a $2c+1$-length sequence of words forming a context and the document it belongs to. For example, $t = \{w^{(m)}_{doc}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t}, \ldots, w^{(m)}_{t+c}\}$ represents the $m^{th}$ training instance. 
+For each of the training instances we can estimate the probability of the middle or the $t$-th word given the context and the document using Eq.~\ref{eq:prob}. To estimate the parameters $\Theta$, we maximize the log likelihood of the training data. 
+\begin{align}
+\label{eq:arg_max}
+\hat{\Theta} &=  \argmax_{\Theta}~l(\mathcal{T},\Theta)\\
+\label{eq:logl}
+l(\mathcal{T},\Theta)&= \sum_{m=1}^{M} \log P_{\Theta}\left[I_{t^{(m)}=w^{(m)}_{t}} \right]
+\end{align}
+where,
+\begin{equation}
+\label{eq:log_prob}
+\log P_{\Theta}\left[I_{t^{(m)}=w^{(m)}_{t}} \right] = I_{t^{(m)}=w^{(m)}_{t}}\log \sigma(h^{(m)}_{t}\cdot h^{(m)}_{c}) + (1 - I_{t^{(m)}=w^{(m)}_{t}})(1 - \log \sigma(h^{(m)}_{t}\cdot h^{(m)}_{c}))
+\end{equation}  
+To maximize the log likelihood, we will use Stochastic Gradient Ascent updates as derived below.
+The derivative of the log probability estimate in Eq.~\ref{eq:log_prob} w.r.t. to a paramter $\theta \in \Theta$ is given by, 
+\begin{align}
+\frac{\partial \log P_{\Theta}\left[I_{t^{(m)}=w^{(m)}_{t}} \right]}{\partial \theta} &= \left[ (I_{t^{(m)}=w^{(m)}_{t}})\frac{1}{ \sigma(s)} - (1 - I_{t^{(m)}=w^{(m)}_{t}})\frac{1}{(1 - \sigma(s))}\right] \frac{\partial \sigma(s)}{\partial \theta} \\
+&= \left[ (I_{t^{(m)}=w^{(m)}_{t}})\frac{1}{ \sigma(s)} - (1 - I_{t^{(m)}=w^{(m)}_{t}})\frac{1}{(1 - \sigma(s))}\right] \left[\sigma(s)(1-\sigma(s))\right]\frac{\partial s}{\partial \theta} \\
+&= \left[ (I_{t^{(m)}=w^{(m)}_{t}}) - \sigma(s)\right] \frac{\partial s}{\partial \theta}
+\end{align}
+where $s = h^{(m)}_{t}\cdot h^{(m)}_{c}$ is given in Eq.~\ref{eq:dot_product}. Therefore
+\begin{equation}
+\label{eq:derivative_general}
+\frac{\partial \log P_{\Theta}\left[I_{t^{(m)}=w^{(m)}_{t}} \right]}{\partial \theta} = \left[ (I_{t^{(m)}=w^{(m)}_{t}}) - \sigma(h^{(m)}_{t}\cdot h^{(m)}_{c})\right] \frac{\partial (h^{(m)}_{t}\cdot h^{(m)}_{c})}{\partial \theta}
+\end{equation}
+Now,
+\begin{align}
+\label{eq:der_wt}
+\frac{\partial (h^{(m)}_{t}\cdot h^{(m)}_{c})}{\partial w^{(m)}_{t}} &= \left[ H'_{doc}w^{(m)}_{doc} + H'_{w_{t-c}}w^{(m)}_{t-c} \ldots +  H'_{w_{t+c}}w^{(m)}_{t+c} \right] \\
+\label{eq:der_wk}
+\frac{\partial (h^{(m)}_{t}\cdot h^{(m)}_{c})}{\partial w^{(m)}_{t-k}} &= H'_{w_{t-k}}w^{(m)}_{t} \\
+\label{eq:der_H}
+\frac{\partial (h^{(m)}_{t}\cdot h^{(m)}_{c})}{\partial H'_{k}} &= w^{(m)}_{t} (w^{(m)}_{k})^{T}
+\end{align}
+
+The update to be made to a parameter $\theta \in \Theta$ on observing a training instance $m$ on the $i+1$-th iteration is,
+\begin{equation}
+\label{eq:update}
+\theta^{(i+1)} \leftarrow \theta^{(i)} + \gamma \left[\frac{\partial \log P_{\Theta}\left[I_{t^{(m)}=w^{(m)}_{t}} \right]}{\partial \theta^{(i)}} \right]
+\end{equation} 
+where gradients of different kinds of $\theta$ are given in Eq.~\ref{eq:der_wt}, ~\ref{eq:der_wk} and~\ref{eq:der_H} representing gradient of the middle word embedding, gradient of the embedding of a word in context or document embedding and gradient of the weights repectively.
+
+\subsection{Differences with Paragraph Vector Model of Mikolov}
+The paragraph vector model (PV-DM) (cite mikolov para) is very similar to our model, though it contains several differences in the way their model is formulated. 
+
+The PV-DM also maximizies the average log probability of predicting the middle word given the sequence and the document it belongs to. They estimate the probability via a multiclass classifier, such as softmax.
+\begin{equation}
+p(w_{t} | w_{para}, w_{t-k}, \ldots, w_{t+k}) = \frac{e^{y_{w_{t}}}}{\sum_{i=1}^{|V|} e^{y_{i}}}
+\end{equation}
+Where each of $y_{i}$ is un-normalized log probability of each output word $i$, computed as 
+\begin{equation}
+y = b + Uh(w_{para}, w_{t-k}, \ldots, w_{t+k}; W)
+\end{equation}
+where $U,b$ are the softmax parameters and $h$ is constructed by average of context word vectors.
+
+The differences between our model and PV-DM is that, the hidden layer in PV-DM is constructed by averaging the context word vectors because of which it loses syntactic information and reduces to a model similar to a bag-of-words. Our model on the other hand consists of separate weight matrices for each of the context locations while constructing the hidden layer to encode the syntactic information in the hidden layer which we expect to help in learning more complex and representative document and word vectors. 
+Also, the weight matrix $U$ in PV-DM contains rows equal to the number of words in the vocabulary and needs to re-sized and re-trained(? is re-training necessary ?) every time a new word is added to the vocabulary.
+\end{document}
+
