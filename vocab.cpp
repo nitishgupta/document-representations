@@ -17,14 +17,23 @@
 #include <fstream>
 #include <stdio.h>
 #include <string.h>
+#include <pthread.h>
+#include <math.h>
 #include "vector"
 #include "map"
 #include "set"
 #include <pthread.h>
+
+#include "util.hpp"
+
+
 #define MAX_STRING 100
 #define MAX_WORD 20
+#define MAX_SENTENCE_LENGTH 1000
 
 using namespace std;
+
+typedef float real;                    // Precision of float numbers
 
 struct vocab_word {
   long long cn;
@@ -34,18 +43,42 @@ struct vocab_word {
 
 
 long long train_words=0, vocab_size=0, vocab_max_size=100;
-int debug_mode = 0, min_count = 1, num_docs;
+int debug_mode = 0, min_count = 1, num_docs, embed_size=2, window=2, num_threads = 1;
+real alpha = 0.025, starting_alpha, sample = 1e-3;
+
 char train_file[MAX_STRING];
 char train_directory[MAX_STRING];
 char **traindocs;
 char **docs;
 struct vocab_word *vocab;
+real *word_e, *doc_e, *nn_weight;
 
 std::map<std::string, int> wordId;
 std::map<std::string, int> docId;
 
 
 
+// Reads a word and returns its index in the vocabulary
+
+
+string getWordFromIndex(int index){
+	if(index < vocab_size && index >= 0)
+		return vocab[index].word;
+	else
+		return "-1";
+}
+
+int searchVocab(char *word){
+	std::map<std::string, int>::iterator loc = wordId.find(word);
+	if(loc != wordId.end())	return loc->second;
+	else return -1;
+}
+
+int searchDoc(char *docid){
+	std::map<std::string, int>::iterator loc = docId.find(docid);
+	if(loc != docId.end())	return loc->second;
+	else return -1;	
+}
 
 /*void ReadWord(char *word, FILE *fin) {
   int a = 0, ch;
@@ -110,6 +143,13 @@ void ReadWord(char *word, FILE *fin) {
   word[a] = '\0';
 }
 
+int ReadWordIndex(FILE *fin) {
+  char word[MAX_STRING];
+  ReadWord(word, fin);
+  if (feof(fin)) return -1;
+  return searchVocab(word);
+}
+
 int AddWordToVocab(char* word){
 	unsigned int length = strlen(word)+1;
 	if (length > MAX_STRING) length = MAX_STRING;
@@ -130,17 +170,7 @@ int AddWordToVocab(char* word){
 	return vocab_size - 1;
 }	
 
-int searchVocab(char *word){
-	std::map<std::string, int>::iterator loc = wordId.find(word);
-	if(loc != wordId.end())	return loc->second;
-	else return -1;
-}
 
-int searchDoc(char *docid){
-	std::map<std::string, int>::iterator loc = docId.find(docid);
-	if(loc != docId.end())	return loc->second;
-	else return -1;	
-}
 
 /* Read words from file into Map<Word, Count> 
 To prune, iterate through Map<Word, Count> deleting elements and copying only elements with count more than threshold to Map<Word, pair(wordId, count)>
@@ -166,7 +196,9 @@ void learnVocabFromFile(){
 		while (1) {
 			ReadWord(word, fin);
 			if (feof(fin)){ break; }
+			if(strlen(word) <= 1)	continue;
 			train_words++;
+
 			//cout<<train_words;
 			if ((debug_mode > 0) && (train_words % 10 == 0)) {
 		  		printf("%lldK%c", train_words / 10, 13);
@@ -228,8 +260,8 @@ void getTrainingFileNames(){
   		exit(1);
   	}
 
-  	traindocs = (char **)calloc(num_docs, sizeof(char*));
-  	docs = (char **)calloc(num_docs, sizeof(char*));
+  	traindocs = (char **)calloc(num_docs, sizeof(char*));	// Contains the full address to train docs. Eg. docs/kafka.txt
+  	docs = (char **)calloc(num_docs, sizeof(char*));		// Contains the full address to train docs. Eg. docs/kafka.txt
   	if(traindocs == NULL){cout<<"ERROR : NOT ENOUGH MEMORY TO ALLOCATE TRAIN DOCS LIST"; exit(1);}
   	if (dfile.is_open()) {
     	for(int i=0; i<num_docs; i++){
@@ -260,9 +292,138 @@ void print_traindocs(){
 	}
 }
 
+void InitNet(){
+	long long a,b;
+	unsigned long long next_random = 1;
+	// Allocating required memory for the word and doc embedding vectors
+	a = posix_memalign((void **)&word_e, 128, (long long)vocab_size * embed_size * sizeof(real));
+	if (word_e == NULL) {printf("Word Embeddings Memory allocation failed\n"); exit(1);}
+	a = posix_memalign((void **)&doc_e, 128, (long long)num_docs * embed_size * sizeof(real));
+	if (doc_e == NULL) {printf("Document Embedding Memory allocation failed\n"); exit(1);}
+	
+	// Initializing Word and Document Embeddings to small random numbers in range [-1/d, 1/d]
+	for (a = 0; a < vocab_size; a++) for (b = 0; b < embed_size; b++) {
+    	next_random = next_random * (unsigned long long)25214903917 + 11;
+    	word_e[a * embed_size + b] = (((next_random & 0xFFFF) / (real)65536) - 0.5) / embed_size;
+ 	}
+ 	for (a = 0; a < num_docs; a++) for (b = 0; b < embed_size; b++) {
+    	next_random = next_random * (unsigned long long)25214903917 + 11;
+    	doc_e[a * embed_size + b] = (((next_random & 0xFFFF) / (real)65536) - 0.5) / embed_size;
+ 	}
+
+ 	// Allocating space for (2*window_size + 1) weight matrices, each of size d*d (embed-size * embed_size)
+ 	a = posix_memalign((void **)&nn_weight, 128, (long long)((2*window + 1)* embed_size * embed_size) * sizeof(real));
+ 	if (nn_weight == NULL) {printf("Weight Matrices Memory allocation failed\n"); exit(1);}
+	
+	// Initializing Neural Network Weights to small random numbers in range [-1/d*d, 1/d*d]
+	for (a = 0; a < (2*window + 1); a++) {
+		for (b = 0; b < embed_size*embed_size; b++) {
+    		next_random = next_random * (unsigned long long)25214903917 + 11;
+    		nn_weight[(a * (embed_size*embed_size)) + b] = (((next_random & 0xFFFF) / (real)65536) - 0.5) / (embed_size*embed_size);
+ 		}
+ 	}
+
+}
+
+void printWeights(){
+	for(int a=0; a<(2*window + 1); a++){
+		cout<<a<<"\n";
+		for(int i=0; i<embed_size; i++){
+			for(int j=0; j<embed_size; j++){
+				cout<<nn_weight[a*embed_size*embed_size + i*embed_size + j]<<" ";
+			}
+			cout<<"\n";
+		}
+		cout<<"\n\n\n";
+	}
+}
+
+
+void *TrainModelThread(void *id){
+
+	int sen[MAX_SENTENCE_LENGTH + 1], sentence_length = 0, word, sentence_position = 0;
+	unsigned long long next_random = (long long)id;			// Change to id of the process
+
+	int startdoc = ((long)id * num_docs)/num_threads;	// Setting start-doc index for this particular thread
+	int enddoc = startdoc + (num_docs/num_threads);		// Setting end-doc index for this particular thread
+	if((long)id == num_threads-1)						// Giving the last thread extra docs 
+		enddoc = num_docs;
+	for(int nd=startdoc; nd<enddoc; nd++){
+		sentence_length=0; sentence_position=0; word = 0;
+		cout<<"\nThread "<<long(id)<<" "<<traindocs[nd]<<"\n";
+		FILE *fin = fopen(traindocs[nd], "rb");			// Read the doc for learning
+		while(1){				
+			// If Sentence_Length = 0, a new sentence needs to be read, that will be processed before proceeding in the document.
+			if (sentence_length == 0) {	
+				while (1) {
+			        word = ReadWordIndex(fin);
+			        if (feof(fin)) break;
+			        if (word == -1) continue;
+			        //word_count++;
+			        if (word == 0) break;
+			        // The subsampling randomly discards frequent words while keeping the ranking same
+			        if (sample > 0) {
+			           real ran = (sqrt(vocab[word].cn / (sample * train_words)) + 1) * (sample * train_words) / vocab[word].cn;
+			           next_random = next_random * (unsigned long long)25214903917 + 11;
+			           if (ran < (next_random & 0xFFFF) / (real)65536)	continue;
+			        }
+			        sen[sentence_length] = word;
+			        sentence_length++;
+			        if (sentence_length >= MAX_SENTENCE_LENGTH) break;
+		      	}
+		      	sentence_position = window;		// sentence_position = window if we want to only start with words that have proper negative and positive window.
+		    }
+
+		    // Process this sentence, i.e. extract all contexts and update.
+			int *context = (int *) calloc(2*window + 1, sizeof(int));
+			context[0] =  nd;	// First in context is doc_id 
+			for(int i=1; i<=window; i++){
+			 	context[i] = sen[sentence_position - window + i - 1];
+			 	context[window + i] = sen[sentence_position + i];
+			}
+
+
+		    // if((long) id  == 0)
+		    //   		for(int i=0; i<sentence_length; i++)
+		    //   			cout<<getWordFromIndex(sen[i])<<" ";
+		    // cout<<"\n";
+		    /*	Processing code ends here */
+
+		    
+			sentence_position++;
+			if (sentence_position >= sentence_length - window)  {		// >= sentence_length-window if we want to end early on a word with relevant positive side context. 
+				// if((long) id  == 0)
+		  //     		for(int i=0; i<sentence_length; i++)
+		  //     			cout<<getWordFromIndex(sen[i])<<" ";
+		  //  		cout<<"\n";
+	  			sentence_length = 0;
+	  			if(feof(fin))	break;				// If sentence is finished, check is file is also finished. If yes, move on to next doc.
+	  			else 			continue;			// Else, continue to learn new sentences from the same doc.	
+			}
+		}		
+	}
+
+	pthread_exit(NULL);
+}
+
+void TrainModel(){
+	long a,b,c,d;
+	
+	getTrainingFileNames();
+	print_traindocs();
+	learnVocabFromFile();
+	printVocab();
+
+	pthread_t *pt = (pthread_t *)malloc(num_threads * sizeof(pthread_t));
+	InitNet();
+
+	for (a = 0; a < num_threads; a++) pthread_create(&pt[a], NULL, TrainModelThread, (void *)a);
+  	for (a = 0; a < num_threads; a++) pthread_join(pt[a], NULL);
+}
+
 int main(int argc, char **argv){
 	int i, pvocab=0;
-	cout<<"VOCAB"<<"\n";
+	cout<<"Word and Document Embeddings"<<"\n";
 	if ((i = ArgPos((char *)"-train-directory", argc, argv)) > 0){ 
 		strcpy(train_directory, argv[i + 1]); 
 		if(train_directory[strlen(train_directory)-1]!='/'){
@@ -272,12 +433,23 @@ int main(int argc, char **argv){
 	}
 	if ((i = ArgPos((char *)"-debug", argc, argv)) > 0) debug_mode =  atoi(argv[i + 1]);
 	if ((i = ArgPos((char *)"-min-count", argc, argv)) > 0)  min_count =  atoi(argv[i + 1]);
+	if ((i = ArgPos((char *)"-embed-size", argc, argv)) > 0)  embed_size =  atoi(argv[i + 1]);
+	if ((i = ArgPos((char *)"-window-size", argc, argv)) > 0)  window =  atoi(argv[i + 1]);
+	if ((i = ArgPos((char *)"-nthreads", argc, argv)) > 0)  num_threads =  atoi(argv[i + 1]);
+	if ((i = ArgPos((char *)"-sample", argc, argv)) > 0) sample = atof(argv[i + 1]);
 	vocab = (struct vocab_word *)calloc(vocab_max_size, sizeof(struct vocab_word));
-	getTrainingFileNames();
-	print_traindocs();
-	learnVocabFromFile();
-	printVocab();
+	TrainModel();
+	printWeights();
+	cout<<"\n"<<add_num(5,6)<<"\n";
 
+	real * r = weightMatrix_vector(word_e, doc_e, nn_weight, 1, 0, embed_size);	
+	cout<<"<s> embedding\n";
+	for(int i =0; i<embed_size; i++)
+		cout<<word_e[0*embed_size + i]<<"\t";
+	cout<<"\n";
+	for(int i =0; i<embed_size; i++)
+		cout<<r[i]<<"\t";
+	cout<<"\n";
 	return 0;	
 
 }

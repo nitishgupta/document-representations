@@ -8,36 +8,15 @@ using namespace std;
 #define MAX_FILE 50
 #define MAX_STRING 50
 
-void ReadWord(char *word, FILE *fin) {
-  int a = 0, ch;
-  while (!feof(fin)) {
-    ch = fgetc(fin);
-    if ((ch == 13) || (ch == ' ') || (ch == '\t') || (ch == '\n')) {
-      if (a==0)
-      		continue;
-      else 
-        break; 
-    }
-    word[a] = ch;
-    a++;
-    if (a >= MAX_STRING - 1) a--;   // Truncate too long words
-  }
-  word[a] = '\0';
-}
+typedef float real;
 
 int main(int argc, char* argv[]){
-	/*int imin = std::numeric_limits<unsigned int>::min(); // minimum value
-	int imax = std::numeric_limits<unsigned int>::max();*/
-	FILE *fin;
-	fin = fopen("data/docs.txt", "r");
-	char docId[MAX_FILE];
-	ReadWord(docId, fin);
-	cout<<docId<<" ";
-	ReadWord(docId, fin);
-	cout<<docId<<" ";
-	char a = fgetc(fin);
-	cout<<a<<" "<<(char)fgetc(fin)<<"\n";
+  unsigned long long next_random = 10;
+  for(int i=0; i<100; i++){
+	  next_random = next_random * (unsigned long long)25214903917 + 11;
+    cout<<(((next_random & 0xFFFF) / (real)65536) - 0.5)/100<<"\t"<<next_random<<"\n";
 
+  }
 	
 }
 

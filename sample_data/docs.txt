@@ -1,4 +1,7 @@
-3
+6
 kafka.txt kafka
 metallica.txt metallica
 turing.txt turing
+kafka_cp.txt kafka_cp
+metallica_cp.txt metallica_cp
+turing_cp.txt turing_cp
