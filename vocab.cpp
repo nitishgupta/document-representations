@@ -382,11 +382,19 @@ void *TrainModelThread(void *id){
 			 	context[window + i] = sen[sentence_position + i];
 			}
 
+			/* Calculate h_c and h_t
+			for(int i=0; i<2*window+1; i++){
+				h_c += nnweight[context]*context_word[context]
+			}
+			
+			h_t = word + context_position;
 
-		    // if((long) id  == 0)
-		    //   		for(int i=0; i<sentence_length; i++)
-		    //   			cout<<getWordFromIndex(sen[i])<<" ";
-		    // cout<<"\n";
+			*/
+
+			// Estimated Probability = dotProd(h_c, h_t)
+
+			// Updates for contexts, word_t and word_c's
+
 		    /*	Processing code ends here */
 
 		    
@@ -421,6 +429,13 @@ void TrainModel(){
   	for (a = 0; a < num_threads; a++) pthread_join(pt[a], NULL);
 }
 
+void printVec(real *vec){
+	cout<<"\n";
+	for(int i=0; i<embed_size; i++)
+		cout<<vec[i]<<"\t";
+	cout<<"\n";
+}
+
 int main(int argc, char **argv){
 	int i, pvocab=0;
 	cout<<"Word and Document Embeddings"<<"\n";
@@ -439,17 +454,16 @@ int main(int argc, char **argv){
 	if ((i = ArgPos((char *)"-sample", argc, argv)) > 0) sample = atof(argv[i + 1]);
 	vocab = (struct vocab_word *)calloc(vocab_max_size, sizeof(struct vocab_word));
 	TrainModel();
-	printWeights();
-	cout<<"\n"<<add_num(5,6)<<"\n";
+	//printWeights();
 
-	real * r = weightMatrix_vector(word_e, doc_e, nn_weight, 1, 0, embed_size);	
-	cout<<"<s> embedding\n";
-	for(int i =0; i<embed_size; i++)
-		cout<<word_e[0*embed_size + i]<<"\t";
-	cout<<"\n";
-	for(int i =0; i<embed_size; i++)
-		cout<<r[i]<<"\t";
-	cout<<"\n";
+	printVec(word_e + 5);
+	printVec(word_e + 10);
+
+	printVec(addVec(word_e+5, word_e+10, embed_size));
+	printVec(weighted_addVec(word_e+5, word_e+10, 10, embed_size));
+
+	cout<<dotProd(word_e + 5, word_e + 10, embed_size) <<"\n";
+
 	return 0;	
 
 }

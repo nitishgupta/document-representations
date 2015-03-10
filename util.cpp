@@ -1,46 +1,71 @@
 #include <stdio.h>
 #include <iostream>
-
+#include <math.h>
 #include "util.hpp"
 
 typedef float real;
+using namespace std;
 
 int add_num(int a, int b){
 	return a + b;
 }
 
-real* weightMatrix_vector(real* word_e, real *doc_e, real * nn_weight,  int context_position, int wd_id, int embed_size){
+real sigmoid(real s){
+	return 1/(1 + exp(-s));
+}
+
+real* MatVec(real *word_e, real *doc_e, real * nn_weight,  int context_position, int wd_id, int embed_size){
 	real *r = (real *) calloc(embed_size, sizeof(real));
-	if(context_position == 0){	// Weight Matrix * Document Vector
-		for(int i=0; i<embed_size; i++){
+	if(context_position == 0)	// Weight Matrix * Document Vector
+		for(int i=0; i<embed_size; i++)
 			for(int j=0; j<embed_size; j++){
 				r[i] += nn_weight[i*embed_size + j] * doc_e[wd_id*embed_size + j];
-			}
-		}	
 	}
-
 	else{
-
-		for(int i=0; i<embed_size; i++){
-			for(int j = 0; j < embed_size; j++){
-				std::cout<<nn_weight[embed_size*embed_size*context_position + i*embed_size + j] << "\t";
-			}
-			std::cout<<"\n";
-		}
-
 		for(int i=0; i<embed_size; i++)
-			std::cout<<word_e[wd_id*embed_size + i]<<" ";
-		std::cout<"\n";
-
-
-		std::cout<<"\nWORD\n";
-		for(int i=0; i<embed_size; i++){
-			for(int j=0; j<embed_size; j++){
+			for(int j=0; j<embed_size; j++)
 				r[i] += nn_weight[embed_size*embed_size*context_position + i*embed_size + j] * word_e[wd_id*embed_size + j];
-			}
-		}	
 	}
+	return r;
+}
+
+real* vecvecT(real *word_e, real *doc_e, int w1, int e_id1, int w2, int e_id2, int embed_size){
+	real *r = (real *) calloc(embed_size*embed_size, sizeof(real));
+	real *v1, *v2;
+	if(w1 == 0)	v1 = doc_e + (e_id1*embed_size);
+	else		v1 = word_e + (e_id1*embed_size);
+
+	if(w2 == 0)	v2 = doc_e + (e_id2*embed_size);
+	else		v2 = word_e + (e_id2*embed_size);
+
+	for(int i=0; i<embed_size; i++)
+		for(int j=0; j<embed_size; j++)
+			r[i*embed_size + j] = v1[i]*v2[j];
+
+	return r;	
+}
+
+real *addVec(real *v1, real *v2, int embed_size){
+	real *r = (real *) calloc(embed_size, sizeof(real));
+	for(int i=0; i<embed_size; i++)
+		r[i] = v1[i] + v2[i];
 
 	return r;
-	
+}
+
+// r = v1 + weight*v2
+real *weighted_addVec(real *v1, real *v2, real weight, int embed_size){
+	real *r = (real *) calloc(embed_size, sizeof(real));
+	for(int i=0; i<embed_size; i++)
+		r[i] = v1[i] + weight*v2[i];
+
+	return r;
+}
+
+real dotProd(real *v1, real *v2, int embed_size){
+	real r = 0;
+	for(int i=0; i<embed_size; i++)
+		r += v1[i]*v2[i];
+
+	return r;
 }
