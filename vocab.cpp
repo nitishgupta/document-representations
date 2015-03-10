@@ -43,8 +43,8 @@ struct vocab_word {
 
 
 long long train_words=0, vocab_size=0, vocab_max_size=100;
-int debug_mode = 0, min_count = 1, num_docs, embed_size=2, window=2, num_threads = 1;
-real alpha = 0.025, starting_alpha, sample = 1e-3;
+int debug_mode = 0, min_count = 1, num_docs, embed_size=2, window=5, num_threads = 1;
+real learning_rate = 0.025, starting_alpha, sample = 1e-3;
 
 char train_file[MAX_STRING];
 char train_directory[MAX_STRING];
@@ -338,6 +338,60 @@ void printWeights(){
 	}
 }
 
+void update(int center_word, int *context){
+	/* Calculate h_c and h_t */
+	real *h_c, *vec, *matvec, *matrix;			// Corresponds to hidden vector found using doc and context, Sum(H'*w_t-k). 
+	real *w_t = word_e + center_word;		// Corresponds to the embedding of the middle word.
+	
+	// Calculate h_c
+	for(int i=0; i<2*window+1; i++){
+		matrix = nn_weight + embed_size*embed_size*i;
+		if(i == 0){
+			vec = doc_e + embed_size * context[i];
+			h_c = MatVec(matrix, vec, embed_size);
+		} else {
+			vec = word_e + embed_size * context[i];
+			matvec = MatVec(matrix, vec, embed_size);
+			addToVec(h_c, matvec, 1, embed_size);
+		}
+		// free(vec);
+		// free(matrix);
+		// free(matvec);
+	}
+
+	real s = dotProd(w_t, h_c, embed_size);
+	real estimated_prob = sigmoid(s);
+
+	// Update for w_t
+	addToVec(w_t, h_c, learning_rate*(1 - estimated_prob), embed_size);
+
+	//Update W_t-k's i.e. context doc and word embeddings
+	for(int i=0; i<2*window+1; i++){
+		matrix = nn_weight + embed_size*embed_size*i;
+		if(i == 0){
+			vec = doc_e + embed_size * context[i];
+			matvec = MatVec(matrix, w_t, embed_size);
+			addToVec(vec, matvec, learning_rate*(1 - estimated_prob), embed_size);
+		} else {
+			vec = word_e + embed_size * context[i];
+			matvec = MatVec(matrix, w_t, embed_size);
+			addToVec(vec, matvec, learning_rate*(1 - estimated_prob), embed_size);
+		}
+	}	
+
+	// Updates for contexts, word_t and word_c's
+	for(int i=0; i<2*window+1; i++){
+		matrix = nn_weight + embed_size*embed_size*i;
+		if(i == 0){
+			vec = doc_e + embed_size * context[i];
+			vecvecT_addToMat(w_t, vec, matrix, learning_rate*(1 - estimated_prob), embed_size);
+		} else {
+			vec = word_e + embed_size * context[i];
+			vecvecT_addToMat(w_t, vec, matrix, learning_rate*(1 - estimated_prob), embed_size);
+		}
+	}
+}
+
 
 void *TrainModelThread(void *id){
 
@@ -381,24 +435,10 @@ void *TrainModelThread(void *id){
 			 	context[i] = sen[sentence_position - window + i - 1];
 			 	context[window + i] = sen[sentence_position + i];
 			}
-
-			/* Calculate h_c and h_t
-			for(int i=0; i<2*window+1; i++){
-				h_c += nnweight[context]*context_word[context]
-			}
 			
-			h_t = word + context_position;
-
-			*/
-
-			// Estimated Probability = dotProd(h_c, h_t)
-
-			// Updates for contexts, word_t and word_c's
-
-		    /*	Processing code ends here */
-
-		    
+			update(sen[sentence_position], context);
 			sentence_position++;
+
 			if (sentence_position >= sentence_length - window)  {		// >= sentence_length-window if we want to end early on a word with relevant positive side context. 
 				// if((long) id  == 0)
 		  //     		for(int i=0; i<sentence_length; i++)
@@ -412,6 +452,23 @@ void *TrainModelThread(void *id){
 	}
 
 	pthread_exit(NULL);
+}
+void printVec(real *vec){
+	cout<<"\n";
+	for(int i=0; i<embed_size; i++)
+		cout<<vec[i]<<"\t";
+	cout<<"\n";
+}
+
+void printMat(real *mat){
+	cout<<"\n";
+	for(int i=0; i<embed_size; i++){
+		for(int j=0; j<embed_size; j++){
+			cout<<mat[i*embed_size + j]<<"\t";
+		}
+		cout<<"\n";
+	}
+	cout<<"\n";
 }
 
 void TrainModel(){
@@ -427,14 +484,11 @@ void TrainModel(){
 
 	for (a = 0; a < num_threads; a++) pthread_create(&pt[a], NULL, TrainModelThread, (void *)a);
   	for (a = 0; a < num_threads; a++) pthread_join(pt[a], NULL);
+
+
 }
 
-void printVec(real *vec){
-	cout<<"\n";
-	for(int i=0; i<embed_size; i++)
-		cout<<vec[i]<<"\t";
-	cout<<"\n";
-}
+
 
 int main(int argc, char **argv){
 	int i, pvocab=0;
@@ -456,13 +510,6 @@ int main(int argc, char **argv){
 	TrainModel();
 	//printWeights();
 
-	printVec(word_e + 5);
-	printVec(word_e + 10);
-
-	printVec(addVec(word_e+5, word_e+10, embed_size));
-	printVec(weighted_addVec(word_e+5, word_e+10, 10, embed_size));
-
-	cout<<dotProd(word_e + 5, word_e + 10, embed_size) <<"\n";
 
 	return 0;	
 
