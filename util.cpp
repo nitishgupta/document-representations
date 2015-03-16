@@ -40,6 +40,15 @@ real* MatVec(real *matrix, real *vector, int embed_size){
 	return r;
 }
 
+void MatVec(real *matrix, real *vector, real *r, int embed_size){
+	for(int i=0; i<embed_size; i++){
+		r[i] = 0;	
+		for(int j=0; j<embed_size; j++){
+			r[i] += matrix[i*embed_size + j] * vector[j];
+		}
+	}
+}
+
 real* vecvecT(real *word_e, real *doc_e, int w1, int e_id1, int w2, int e_id2, int embed_size){
 	real *r = (real *) calloc(embed_size*embed_size, sizeof(real));
 	real *v1, *v2;

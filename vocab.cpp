@@ -27,7 +27,7 @@
 #include "util.hpp"
 
 
-#define MAX_STRING 100
+#define MAX_STRING 200
 #define MAX_WORD 20
 #define MAX_SENTENCE_LENGTH 1000
 
@@ -42,25 +42,60 @@ struct vocab_word {
 };
 
 
-long long train_words=0, vocab_size=0, vocab_max_size=100;
-int debug_mode = 0, min_count = 1, num_docs, embed_size=2, window=5, num_threads = 1;
-real learning_rate = 0.025, starting_alpha, sample = 1e-3;
+long long train_words=0, vocab_size=0, vocab_max_size=100, words_processed = 0, perc = 0;
+int debug_mode = 0, min_count = 1, num_docs, embed_size=200, window=5, num_threads = 1, negative = 15;
+int updateWeights = 0, Epoch = 1;
+real learning_rate = 0.0025, starting_alpha, sample = 1e-3;
+clock_t start;
+//char word_outfile[MAX_STRING]; = "output/embeddings/words.dat";
+//char doc_outfile[MAX_STRING] = "output/embeddings/docs.dat";
 
-char train_file[MAX_STRING];
-char train_directory[MAX_STRING];
-char **traindocs;
-char **docs;
+char train_file[MAX_STRING], train_directory[MAX_STRING], output_directory[MAX_STRING],  **traindocs, **docs, word_outfile[MAX_STRING], doc_outfile[MAX_STRING];
 struct vocab_word *vocab;
 real *word_e, *doc_e, *nn_weight;
 
 std::map<std::string, int> wordId;
 std::map<std::string, int> docId;
 
+const int table_size = 1e8;
+int *table;
 
+void printVec(real *vec){
+	for(int i=0; i<embed_size; i++)
+		cout<<vec[i]<<"\t";
+	cout<<"\n";
+}
+
+void printMat(real *mat){
+	cout<<"\n";
+	for(int i=0; i<embed_size; i++){
+		for(int j=0; j<embed_size; j++){
+			cout<<mat[i*embed_size + j]<<"\t";
+		}
+		cout<<"\n";
+	}
+	cout<<"\n";
+}
+
+void InitUnigramTable() {
+  int a, i;
+  double train_words_pow = 0;
+  double d1, power = 0.75;
+  table = (int *)malloc(table_size * sizeof(int));
+  for (a = 0; a < vocab_size; a++) train_words_pow += pow(vocab[a].cn, power);
+  i = 0;
+  d1 = pow(vocab[i].cn, power) / train_words_pow;
+  for (a = 0; a < table_size; a++) {
+    table[a] = i;
+    if (a / (double)table_size > d1) {
+      i++;
+      d1 += pow(vocab[i].cn, power) / train_words_pow;
+    }
+    if (i >= vocab_size) i = vocab_size - 1;
+  }
+}
 
 // Reads a word and returns its index in the vocabulary
-
-
 string getWordFromIndex(int index){
 	if(index < vocab_size && index >= 0)
 		return vocab[index].word;
@@ -175,8 +210,7 @@ int AddWordToVocab(char* word){
 /* Read words from file into Map<Word, Count> 
 To prune, iterate through Map<Word, Count> deleting elements and copying only elements with count more than threshold to Map<Word, pair(wordId, count)>
 Also keep creating Array[word], where arrayId = wordId
-Total memory - Map<Word, pair(wordId, count)>, Array[word].  
-*/
+Total memory - Map<Word, pair(wordId, count)>, Array[word].  */
 void learnVocabFromFile(){
 	char word[MAX_STRING], docid[MAX_STRING];
 	FILE *fin;
@@ -184,15 +218,20 @@ void learnVocabFromFile(){
 	vocab_size = 0;
 	AddWordToVocab((char *)"</s>");
 	for(int nd=0; nd<num_docs; nd++){
+		cout<<traindocs[nd];
 		fin = fopen(traindocs[nd], "rb");
-		ReadWord(docid, fin);
+		if (fin == NULL) {
+			printf("ERROR: training doc file not found!\n");
+			exit(1);
+		}
+		/*ReadWord(docid, fin);
 		int d;
 		d = searchDoc(docid);
 		cout<<docid<<" "<<d<<"\n";
 		if (fin == NULL || d == -1) {
 			printf("ERROR: training doc file not found!\n");
 			exit(1);
-		}
+		}*/
 		while (1) {
 			ReadWord(word, fin);
 			if (feof(fin)){ break; }
@@ -285,7 +324,7 @@ void getTrainingFileNames(){
 
 void print_traindocs(){
 	cout<<"Train Directory : "<<train_directory<<"\n";
-	cout<<"number of docs : "<<num_docs<<"\n";
+	cout<<"number of docs : "<<num_docs<<"\n"; 
 	if(debug_mode>0){
 		for(int i=0; i<num_docs; i++)
 			cout<<traindocs[i]<<"\n"<<docs[i]<<"\n";
@@ -293,7 +332,7 @@ void print_traindocs(){
 }
 
 void InitNet(){
-	long long a,b;
+	long long a,b,i,j;
 	unsigned long long next_random = 1;
 	// Allocating required memory for the word and doc embedding vectors
 	a = posix_memalign((void **)&word_e, 128, (long long)vocab_size * embed_size * sizeof(real));
@@ -316,10 +355,19 @@ void InitNet(){
  	if (nn_weight == NULL) {printf("Weight Matrices Memory allocation failed\n"); exit(1);}
 	
 	// Initializing Neural Network Weights to small random numbers in range [-1/d*d, 1/d*d]
-	for (a = 0; a < (2*window + 1); a++) {
-		for (b = 0; b < embed_size*embed_size; b++) {
-    		next_random = next_random * (unsigned long long)25214903917 + 11;
-    		nn_weight[(a * (embed_size*embed_size)) + b] = (((next_random & 0xFFFF) / (real)65536) - 0.5) / (embed_size*embed_size);
+	// for (a = 0; a < (2*window + 1); a++) {
+	// 	for (b = 0; b < embed_size*embed_size; b++) {
+ //    		next_random = next_random * (unsigned long long)25214903917 + 11;
+ //    		nn_weight[(a * (embed_size*embed_size)) + b] = (((next_random & 0xFFFF) / (real)65536) - 0.5) / (embed_size*embed_size);
+ // 		}
+ // 	}
+	// Initializing Neural Network Weights to small random numbers in range [-1/d*d, 1/d*d]
+ 	for (a = 0; a < (2*window + 1); a++) {
+		for (i = 0; i < embed_size; i++) {
+			for (j = 0; j < embed_size; j++) {
+				if(i == j) nn_weight[(a * (embed_size*embed_size)) + i*embed_size + j] = 1.0;
+				else       nn_weight[(a * (embed_size*embed_size)) + i*embed_size + j] = 0.0;
+ 			}
  		}
  	}
 
@@ -338,58 +386,74 @@ void printWeights(){
 	}
 }
 
-void update(int center_word, int *context){
+void getnanword(int word, real *vec){
+	for(int i =0; i<embed_size; i++){
+		if(vec[i] > 1e+05){
+			cout<<getWordFromIndex(word)<<"\n";
+			return;			
+		}
+	}
+}
+
+void update(int center_word, int *context, int label){
 	/* Calculate h_c and h_t */
 	real *h_c, *vec, *matvec, *matrix;			// Corresponds to hidden vector found using doc and context, Sum(H'*w_t-k). 
 	real *w_t = word_e + center_word;		// Corresponds to the embedding of the middle word.
 	
+	h_c = (real *)calloc(embed_size, sizeof(real));
+	matvec = (real *)calloc(embed_size, sizeof(real));
 	// Calculate h_c
 	for(int i=0; i<2*window+1; i++){
 		matrix = nn_weight + embed_size*embed_size*i;
 		if(i == 0){
 			vec = doc_e + embed_size * context[i];
-			h_c = MatVec(matrix, vec, embed_size);
+			//h_c = MatVec(matrix, vec, embed_size);
+			MatVec(matrix, vec, h_c, embed_size);
 		} else {
 			vec = word_e + embed_size * context[i];
-			matvec = MatVec(matrix, vec, embed_size);
+			//matvec = MatVec(matrix, vec, embed_size);
+			MatVec(matrix, vec, matvec, embed_size);
 			addToVec(h_c, matvec, 1, embed_size);
 		}
-		// free(vec);
-		// free(matrix);
-		// free(matvec);
 	}
 
 	real s = dotProd(w_t, h_c, embed_size);
 	real estimated_prob = sigmoid(s);
 
 	// Update for w_t
-	addToVec(w_t, h_c, learning_rate*(1 - estimated_prob), embed_size);
+	addToVec(w_t, h_c, learning_rate*(label - estimated_prob), embed_size);
 
-	//Update W_t-k's i.e. context doc and word embeddings
+	//Update w_t-k's i.e. context doc and word embeddings
 	for(int i=0; i<2*window+1; i++){
 		matrix = nn_weight + embed_size*embed_size*i;
 		if(i == 0){
-			vec = doc_e + embed_size * context[i];
-			matvec = MatVec(matrix, w_t, embed_size);
-			addToVec(vec, matvec, learning_rate*(1 - estimated_prob), embed_size);
+			vec = doc_e + embed_size * context[0];
+			//matvec = MatVec(matrix, w_t, embed_size);
+			MatVec(matrix, w_t, matvec, embed_size);
+			addToVec(vec, matvec, learning_rate*(label - estimated_prob), embed_size);
 		} else {
 			vec = word_e + embed_size * context[i];
-			matvec = MatVec(matrix, w_t, embed_size);
-			addToVec(vec, matvec, learning_rate*(1 - estimated_prob), embed_size);
+			//matvec = MatVec(matrix, w_t, embed_size);
+			MatVec(matrix, w_t, matvec, embed_size);
+			addToVec(vec, matvec, learning_rate*(label - estimated_prob), embed_size);
 		}
 	}	
 
-	// Updates for contexts, word_t and word_c's
+	// Updates for context matrices
+	if(updateWeights > 0){
 	for(int i=0; i<2*window+1; i++){
 		matrix = nn_weight + embed_size*embed_size*i;
 		if(i == 0){
 			vec = doc_e + embed_size * context[i];
-			vecvecT_addToMat(w_t, vec, matrix, learning_rate*(1 - estimated_prob), embed_size);
+			vecvecT_addToMat(w_t, vec, matrix, learning_rate*(label - estimated_prob), embed_size);
 		} else {
 			vec = word_e + embed_size * context[i];
-			vecvecT_addToMat(w_t, vec, matrix, learning_rate*(1 - estimated_prob), embed_size);
+			vecvecT_addToMat(w_t, vec, matrix, learning_rate*(label - estimated_prob), embed_size);
 		}
-	}
+	}}
+
+	free(h_c);
+	free(matvec);
 }
 
 
@@ -397,6 +461,7 @@ void *TrainModelThread(void *id){
 
 	int sen[MAX_SENTENCE_LENGTH + 1], sentence_length = 0, word, sentence_position = 0;
 	unsigned long long next_random = (long long)id;			// Change to id of the process
+	int center_word, label = 1;
 
 	int startdoc = ((long)id * num_docs)/num_threads;	// Setting start-doc index for this particular thread
 	int enddoc = startdoc + (num_docs/num_threads);		// Setting end-doc index for this particular thread
@@ -404,7 +469,8 @@ void *TrainModelThread(void *id){
 		enddoc = num_docs;
 	for(int nd=startdoc; nd<enddoc; nd++){
 		sentence_length=0; sentence_position=0; word = 0;
-		cout<<"\nThread "<<long(id)<<" "<<traindocs[nd]<<"\n";
+		cout<<"\nThread "<<long(id)<<" "<<docs[nd]<<"\n";
+
 		FILE *fin = fopen(traindocs[nd], "rb");			// Read the doc for learning
 		while(1){				
 			// If Sentence_Length = 0, a new sentence needs to be read, that will be processed before proceeding in the document.
@@ -427,7 +493,7 @@ void *TrainModelThread(void *id){
 		      	}
 		      	sentence_position = window;		// sentence_position = window if we want to only start with words that have proper negative and positive window.
 		    }
-
+		    
 		    // Process this sentence, i.e. extract all contexts and update.
 			int *context = (int *) calloc(2*window + 1, sizeof(int));
 			context[0] =  nd;	// First in context is doc_id 
@@ -435,15 +501,34 @@ void *TrainModelThread(void *id){
 			 	context[i] = sen[sentence_position - window + i - 1];
 			 	context[window + i] = sen[sentence_position + i];
 			}
-			
-			update(sen[sentence_position], context);
+			word = sen[sentence_position];
+			// Updates - Learning embeddings and NN Weights
+			for(int i=0; i<negative + 1; i++){
+				if(i == 0){			// Positive Sampling
+					center_word = word;
+					label = 1;
+				} else {
+					next_random = next_random * (unsigned long long)25214903917 + 11;
+		            center_word = table[(next_random >> 16) % table_size];
+		            if (center_word == 0) center_word = next_random % (vocab_size - 1) + 1;
+		            if (center_word == word) continue;
+		            label = 0;
+				}
+				update(center_word, context, label);
+			}
 			sentence_position++;
+			words_processed++;
 
+			if(words_processed % (train_words/100) == 0){
+				perc++;
+				cout<<"\n"<<perc<<" % train words complete\n";
+			}
+			if(words_processed % 2000 == 0){
+				cout <<"2000 more done! \n";
+			}
+			free(context);	
 			if (sentence_position >= sentence_length - window)  {		// >= sentence_length-window if we want to end early on a word with relevant positive side context. 
-				// if((long) id  == 0)
-		  //     		for(int i=0; i<sentence_length; i++)
-		  //     			cout<<getWordFromIndex(sen[i])<<" ";
-		  //  		cout<<"\n";
+	  			cout<<"Sentence Done!";
 	  			sentence_length = 0;
 	  			if(feof(fin))	break;				// If sentence is finished, check is file is also finished. If yes, move on to next doc.
 	  			else 			continue;			// Else, continue to learn new sentences from the same doc.	
@@ -453,22 +538,38 @@ void *TrainModelThread(void *id){
 
 	pthread_exit(NULL);
 }
-void printVec(real *vec){
-	cout<<"\n";
-	for(int i=0; i<embed_size; i++)
-		cout<<vec[i]<<"\t";
-	cout<<"\n";
-}
 
-void printMat(real *mat){
-	cout<<"\n";
-	for(int i=0; i<embed_size; i++){
-		for(int j=0; j<embed_size; j++){
-			cout<<mat[i*embed_size + j]<<"\t";
+void writeEmbeddings(){
+	long a,b,c,d;
+	FILE *word_fo, *doc_fo;
+	
+	strncpy(word_outfile, output_directory, MAX_STRING); strcat(word_outfile, "embeddings/word.dat");
+  	strncpy(doc_outfile, output_directory, MAX_STRING); strcat(doc_outfile, "embeddings/doc.dat");
+  	word_fo = fopen(word_outfile, "wb");
+  	doc_fo = fopen(doc_outfile, "wb");
+    // Save the word and doc vectors
+    fprintf(word_fo, "%lld\t%d\n", vocab_size, embed_size);
+    fprintf(doc_fo, "%d\t%d\n", num_docs, embed_size);
+    for (a = 0; a < vocab_size; a++) {
+		if(a < num_docs){	
+			fprintf(word_fo, "%s", vocab[a].word);		// Print word
+			fprintf(doc_fo, "%s", docs[a]);		// Print Doc
+			for (b = 0; b < embed_size; b++){ 
+				fprintf(word_fo, "\t%lf", word_e[a * embed_size + b]);
+				fprintf(doc_fo, "\t%lf", doc_e[a * embed_size + b]);
+			}	
+			fprintf(word_fo, "\n");
+			fprintf(doc_fo, "\n");			
+		} else {
+			fprintf(word_fo, "%s ", vocab[a].word);		// Print word
+			for (b = 0; b < embed_size; b++){ 
+				fprintf(word_fo, "\t%lf ", word_e[a * embed_size + b]);
+			}	
+			fprintf(word_fo, "\n");
 		}
-		cout<<"\n";
-	}
-	cout<<"\n";
+    }
+    fclose(word_fo);
+    fclose(doc_fo);
 }
 
 void TrainModel(){
@@ -481,11 +582,18 @@ void TrainModel(){
 
 	pthread_t *pt = (pthread_t *)malloc(num_threads * sizeof(pthread_t));
 	InitNet();
+	
+	InitUnigramTable();
 
-	for (a = 0; a < num_threads; a++) pthread_create(&pt[a], NULL, TrainModelThread, (void *)a);
-  	for (a = 0; a < num_threads; a++) pthread_join(pt[a], NULL);
+	for(int epoch = 0; epoch < Epoch; epoch++){
+		for (a = 0; a < num_threads; a++) pthread_create(&pt[a], NULL, TrainModelThread, (void *)a);
+	  	for (a = 0; a < num_threads; a++) pthread_join(pt[a], NULL);
+	}
 
+  	
+  	writeEmbeddings();	
 
+  	
 }
 
 
@@ -500,17 +608,22 @@ int main(int argc, char **argv){
 			train_directory[strlen(train_directory)+1]='\0';
 		}
 	}
+	if ((i = ArgPos((char *)"-output-directory", argc, argv)) > 0){ 
+		strcpy(output_directory, argv[i + 1]); 
+		if(output_directory[strlen(output_directory)-1]!='/'){
+			output_directory[strlen(output_directory)]='/';
+			output_directory[strlen(output_directory)+1]='\0';
+		}
+	}
 	if ((i = ArgPos((char *)"-debug", argc, argv)) > 0) debug_mode =  atoi(argv[i + 1]);
 	if ((i = ArgPos((char *)"-min-count", argc, argv)) > 0)  min_count =  atoi(argv[i + 1]);
 	if ((i = ArgPos((char *)"-embed-size", argc, argv)) > 0)  embed_size =  atoi(argv[i + 1]);
 	if ((i = ArgPos((char *)"-window-size", argc, argv)) > 0)  window =  atoi(argv[i + 1]);
 	if ((i = ArgPos((char *)"-nthreads", argc, argv)) > 0)  num_threads =  atoi(argv[i + 1]);
 	if ((i = ArgPos((char *)"-sample", argc, argv)) > 0) sample = atof(argv[i + 1]);
+	if ((i = ArgPos((char *)"-negative-samples", argc, argv)) > 0) negative = atoi(argv[i + 1]);
 	vocab = (struct vocab_word *)calloc(vocab_max_size, sizeof(struct vocab_word));
 	TrainModel();
-	//printWeights();
-
-
 	return 0;	
 
 }
