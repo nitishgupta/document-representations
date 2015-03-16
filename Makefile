@@ -8,7 +8,7 @@ all:
 	$(CC) -c util.cpp -o util.o $(CXXFLAGS)
 	$(CC) vocab.o util.o -o vocab $(CXXFLAGS)
 	rm vocab.o util.o
-	gcc distance.c -o distance $(CFLAGS)
+
 t:
 	$(CC) test.cpp -o test $(CXXFLAGS)	
 
