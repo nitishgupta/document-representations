@@ -42,7 +42,7 @@ struct vocab_word {
 };
 
 
-long long train_words=0, vocab_size=0, vocab_max_size=100, words_processed = 0, perc = 0;
+long long train_words=0, vocab_size=0, vocab_max_size=100, words_processed = 0, perc = 0, docs_processed = 0;
 int debug_mode = 0, min_count = 1, num_docs, embed_size=200, window=5, num_threads = 1, negative = 15;
 int updateWeights = 0, Epoch = 1;
 real learning_rate = 0.0025, starting_alpha, sample = 1e-3;
@@ -218,11 +218,12 @@ void learnVocabFromFile(){
 	vocab_size = 0;
 	AddWordToVocab((char *)"</s>");
 	for(int nd=0; nd<num_docs; nd++){
-		cout<<traindocs[nd];
 		fin = fopen(traindocs[nd], "rb");
 		if (fin == NULL) {
+			cout<<traindocs[nd]<<"\n";
 			printf("ERROR: training doc file not found!\n");
-			exit(1);
+			continue;
+			//exit(1);
 		}
 		/*ReadWord(docid, fin);
 		int d;
@@ -249,11 +250,11 @@ void learnVocabFromFile(){
 	      		vocab[a].cn = 1;
 	    	} else vocab[i].cn++;
 		}
+		fclose(fin);
 	}
 	//SortVocab();
 	printf("Vocab size: %lld\n", vocab_size);
 	printf("Words in train file: %lld\n", train_words);
-	fclose(fin);
 	SortVocab();
 }
 
@@ -304,7 +305,7 @@ void getTrainingFileNames(){
   	if(traindocs == NULL){cout<<"ERROR : NOT ENOUGH MEMORY TO ALLOCATE TRAIN DOCS LIST"; exit(1);}
   	if (dfile.is_open()) {
     	for(int i=0; i<num_docs; i++){
-    		getline(dfile, filename, ' ');
+    		getline(dfile, filename, '\t');
     		getline(dfile, fileid);
     		string file_address = train_directory;
     		file_address.append(filename);
@@ -325,10 +326,10 @@ void getTrainingFileNames(){
 void print_traindocs(){
 	cout<<"Train Directory : "<<train_directory<<"\n";
 	cout<<"number of docs : "<<num_docs<<"\n"; 
-	if(debug_mode>0){
-		for(int i=0; i<num_docs; i++)
-			cout<<traindocs[i]<<"\n"<<docs[i]<<"\n";
-	}
+	// if(debug_mode>0){
+	// 	for(int i=0; i<num_docs; i++)
+	// 		cout<<traindocs[i]<<"\n"<<docs[i]<<"\n";
+	// }
 }
 
 void InitNet(){
@@ -354,22 +355,28 @@ void InitNet(){
  	a = posix_memalign((void **)&nn_weight, 128, (long long)((2*window + 1)* embed_size * embed_size) * sizeof(real));
  	if (nn_weight == NULL) {printf("Weight Matrices Memory allocation failed\n"); exit(1);}
 	
-	// Initializing Neural Network Weights to small random numbers in range [-1/d*d, 1/d*d]
-	// for (a = 0; a < (2*window + 1); a++) {
-	// 	for (b = 0; b < embed_size*embed_size; b++) {
- //    		next_random = next_random * (unsigned long long)25214903917 + 11;
- //    		nn_weight[(a * (embed_size*embed_size)) + b] = (((next_random & 0xFFFF) / (real)65536) - 0.5) / (embed_size*embed_size);
- // 		}
- // 	}
-	// Initializing Neural Network Weights to small random numbers in range [-1/d*d, 1/d*d]
- 	for (a = 0; a < (2*window + 1); a++) {
-		for (i = 0; i < embed_size; i++) {
-			for (j = 0; j < embed_size; j++) {
-				if(i == j) nn_weight[(a * (embed_size*embed_size)) + i*embed_size + j] = 1.0;
-				else       nn_weight[(a * (embed_size*embed_size)) + i*embed_size + j] = 0.0;
- 			}
- 		}
- 	}
+	if(updateWeights > 0){
+		//Initializing Neural Network Weights to small random numbers in range [-1/d*d, 1/d*d]
+		cout<<"Using Weight Matrices\n";
+		for (a = 0; a < (2*window + 1); a++) {
+			for (b = 0; b < embed_size*embed_size; b++) {
+	    		next_random = next_random * (unsigned long long)25214903917 + 11;
+	    		nn_weight[(a * (embed_size*embed_size)) + b] = (((next_random & 0xFFFF) / (real)65536) - 0.5) / (embed_size*embed_size);
+	 		}
+	 	}
+	}
+ 	else{
+		// Initializing Neural Network Weights to Identity Matrices
+		cout<<"Using Identity Weight Matrices without update\n";
+	 	for (a = 0; a < (2*window + 1); a++) {
+			for (i = 0; i < embed_size; i++) {
+				for (j = 0; j < embed_size; j++) {
+					if(i == j) nn_weight[(a * (embed_size*embed_size)) + i*embed_size + j] = 1.0;
+					else       nn_weight[(a * (embed_size*embed_size)) + i*embed_size + j] = 0.0;
+	 			}
+	 		}
+	 	}
+	}
 
 }
 
@@ -469,7 +476,7 @@ void *TrainModelThread(void *id){
 		enddoc = num_docs;
 	for(int nd=startdoc; nd<enddoc; nd++){
 		sentence_length=0; sentence_position=0; word = 0;
-		cout<<"\nThread "<<long(id)<<" "<<docs[nd]<<"\n";
+		//cout<<"\nThread "<<long(id)<<" "<<docs[nd]<<"\n";
 
 		FILE *fin = fopen(traindocs[nd], "rb");			// Read the doc for learning
 		while(1){				
@@ -519,21 +526,25 @@ void *TrainModelThread(void *id){
 			sentence_position++;
 			words_processed++;
 
-			if(words_processed % (train_words/100) == 0){
-				perc++;
-				cout<<"\n"<<perc<<" % train words complete\n";
-			}
-			if(words_processed % 2000 == 0){
-				cout <<"2000 more done! \n";
-			}
+			// if(words_processed % (train_words/100) == 0){
+			// 	perc++;
+			// 	cout<<"\n"<<perc<<" % train words complete\n";
+			// }
+			// if(words_processed % 2000 == 0){
+			// 	cout <<"2000 more done! \n";
+			// }
 			free(context);	
 			if (sentence_position >= sentence_length - window)  {		// >= sentence_length-window if we want to end early on a word with relevant positive side context. 
-	  			cout<<"Sentence Done!";
+	  			//cout<<"Sentence Done!";
 	  			sentence_length = 0;
 	  			if(feof(fin))	break;				// If sentence is finished, check is file is also finished. If yes, move on to next doc.
 	  			else 			continue;			// Else, continue to learn new sentences from the same doc.	
 			}
-		}		
+		}
+		fclose(fin);
+		docs_processed++;
+		if(docs_processed % 10 == 0)
+			cout<<"Docs Processed : "<<docs_processed<<" thread : "<<(long)id<<"\n";
 	}
 
 	pthread_exit(NULL);
@@ -576,8 +587,12 @@ void TrainModel(){
 	long a,b,c,d;
 	
 	getTrainingFileNames();
+	//cout<<"asdfasdfasdf \n\n";
 	print_traindocs();
+	
+	fflush(stdout);
 	learnVocabFromFile();
+	printf("Vocab Learnt\n");
 	printVocab();
 
 	pthread_t *pt = (pthread_t *)malloc(num_threads * sizeof(pthread_t));
@@ -589,18 +604,14 @@ void TrainModel(){
 		for (a = 0; a < num_threads; a++) pthread_create(&pt[a], NULL, TrainModelThread, (void *)a);
 	  	for (a = 0; a < num_threads; a++) pthread_join(pt[a], NULL);
 	}
-
-  	
   	writeEmbeddings();	
-
-  	
 }
 
 
 
 int main(int argc, char **argv){
 	int i, pvocab=0;
-	cout<<"Word and Document Embeddings"<<"\n";
+	cout<<"Word and Document Embeddings - Nitish"<<"\n";
 	if ((i = ArgPos((char *)"-train-directory", argc, argv)) > 0){ 
 		strcpy(train_directory, argv[i + 1]); 
 		if(train_directory[strlen(train_directory)-1]!='/'){
@@ -622,6 +633,8 @@ int main(int argc, char **argv){
 	if ((i = ArgPos((char *)"-nthreads", argc, argv)) > 0)  num_threads =  atoi(argv[i + 1]);
 	if ((i = ArgPos((char *)"-sample", argc, argv)) > 0) sample = atof(argv[i + 1]);
 	if ((i = ArgPos((char *)"-negative-samples", argc, argv)) > 0) negative = atoi(argv[i + 1]);
+	if ((i = ArgPos((char *)"-non-unit-weight", argc, argv)) > 0) updateWeights = atoi(argv[i + 1]);
+
 	vocab = (struct vocab_word *)calloc(vocab_max_size, sizeof(struct vocab_word));
 	TrainModel();
 	return 0;	
