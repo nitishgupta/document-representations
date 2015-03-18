@@ -57,6 +57,6 @@ size = getWordSize(lines)[1]
 wordVec = wordVec(lines, words, size);
 
 print size
-print closestWords(sys.argv[2], wordVec, 5)
+print closestWords(sys.argv[2], wordVec, 20)
 
 
