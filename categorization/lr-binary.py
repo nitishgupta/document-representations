@@ -75,7 +75,7 @@ def getPRF(in_data, phi_d, phi_c):
 def update(e1, e2, truth, lr, reg_con):
 	pre_sigm = np.dot(phi_docs[e1], phi_cats[e2])
 	sigm = 1 / (1 + np.exp(-pre_sigm))
-	phi_docs[e1] = phi_docs[e1] + lr*( (truth - sigm)*phi_cats[e2] - reg_con*phi_docs[e1] )
+	#phi_docs[e1] = phi_docs[e1] + lr*( (truth - sigm)*phi_cats[e2] - reg_con*phi_docs[e1] )
 	phi_cats[e2] = phi_cats[e2] + lr*( (truth - sigm)*phi_docs[e1] - reg_con*phi_cats[e2] )
 	return sigm
 
@@ -100,18 +100,41 @@ def mf_train(lr, lamb, epoch, neg):
 			print "Epoch : ", i, ", ",
 			p, r, f1, acc = getPRF(vdata, phi_docs, phi_cats)
 			if(f1 >= best_f1):
-				phi_docs_best = np.copy(phi_docs)
 				phi_cats_best = np.copy(phi_cats)
+				phi_docs_best = np.copy(phi_docs)
 				best_epoch = i
 				best_f1 = f1
 	print "Best Epoch : ", best_epoch			
 	print "Test : ",
-	p_t, r_t, f1_t, acc = getPRF(testdata, phi_docs_best, phi_cats_best)		
+	p_t, r_t, f1_t, acc_t = getPRF(testdata, phi_docs_best, phi_cats_best)		
+	
+	return phi_docs_best, phi_cats_best			
+
+
+def write_predictions(phi_best_docs, phi_best_cats, prediction_filename):
+	out_val_file = open(prediction_filename + "-val.dat", 'w')
+	out_test_file = open(prediction_filename + "-test.dat", 'w')
+
+	for d in vdata:
+		predict_pre_sigm_activation = np.dot(phi_best_docs[d[0]], phi_best_cats[d[1]])
+		sigm = 1 / (1 + np.exp(-predict_pre_sigm_activation))
+		truth = d[2]
+		out_val_file.write(str(sigm) + "\t" + str(truth) + "\n")
+
+	for d in testdata:
+		predict_pre_sigm_activation = np.dot(phi_best_docs[d[0]], phi_best_cats[d[1]])
+		sigm = 1 / (1 + np.exp(-predict_pre_sigm_activation))
+		truth = d[2]
+		out_test_file.write(str(sigm) + "\t" + str(truth) + "\n")	
+
 
 if __name__=="__main__":
 	rng.seed(10)
 	np.random.seed(10)
 	datafilename = sys.argv[1]
+	phi_docs_file = sys.argv[2]
+	prediction_out_file = sys.argv[3]
+	
 	K = 100
 	train_perc = 0.8
 	val_perc = 0.1
@@ -120,13 +143,14 @@ if __name__=="__main__":
 	reg_con = 0.01
 	epoch = 600
 	negative_training = 1
-
+	
 	docs, cats, catC, data = readDocData.read(datafilename);
 	num_e1 = len(docs.keys())
 	num_e2 = len(cats.keys())
 	print "d : ", num_e1, " c : ", num_e2
-	phi_docs = a = np.random.normal(loc=0.0, scale=0.01, size=(num_e1,K))
-	phi_cats = a = np.random.normal(loc=0.0, scale=0.01, size=(num_e2,K))
+	
+	phi_docs, K = readDocData.read_Phi_Docs(phi_docs_file, docs)
+	phi_cats = np.random.normal(loc=0.0, scale=0.01, size=(num_e2, K))
 
 	#docs, cats, data = readDoc_Cat_Data.readAmazon(datafilename);
 
@@ -143,5 +167,6 @@ if __name__=="__main__":
 	getDataStats(testdata)
 	
 
-	mf_train(lr= learning_rate, lamb= reg_con, epoch= epoch, neg = negative_training)
+	phi_best_docs, phi_best_cats = mf_train(lr= learning_rate, lamb= reg_con, epoch= epoch, neg = negative_training)
+	write_predictions(phi_best_docs, phi_best_cats, prediction_out_file)
 	

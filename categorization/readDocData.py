@@ -5,35 +5,75 @@
 from collections import defaultdict
 import sys
 from sys import stdout
+import operator
+import numpy as np
 
 def read(filename):
 	data_points_read = 0
 	docs_read = 0
 	cats_read = 0
-	fi = open(filename, "r")
-	docs = defaultdict()
-	cats = defaultdict()
+	fi = open(filename, 'r')
+	docs = {}
+	cats = {}
+	catCount = defaultdict(int)
 	data = []
 	for line in fi:
 		a = line.split("\t", 1)
 		if(len(a) > 1):
 			doc = a[0].strip()
-			if doc not in docs.keys():
+			try:
+				val = docs[doc]
+			except KeyError:
 				docs[doc] = docs_read
-				docs_read = docs_read + 1
+				docs_read += 1
+
 			categories = a[1].split("\t")
 			for c in categories:
-				if c not in cats.keys():
+				c = c.strip()
+				try:
+					val = cats[c]
+				except KeyError:
 					cats[c] = cats_read
-					cats_read = cats_read + 1
+					cats_read += 1
+				catCount[cats[c]] += 1
+				#catCount[c] += 1
 				data_points_read = data_points_read + 1
-				data.append([docs[doc], cats[c]])
+				data.append([docs[doc], cats[c], 1])
 
 		if(docs_read % 1000 == 0):
-			#print docs_read
 			sys.stdout.write(str(docs_read) + ", ")
 	print "\nDocs : ", docs_read, "Categories : ", cats_read, "Data Points : ", len(data) 
-	return docs, cats, data		
+	return docs, cats, catCount, data
+
+
+def read_Phi_Docs(filename, docs):
+	fi = open(filename, 'r')
+	line = fi.readline()
+	print line
+	num_docs = int(line.split("\t")[0].strip())
+	print "Num Docs with Embeddings : ", num_docs, " in Doc Category Data : ", len(docs.keys())
+	K = int(line.split("\t")[1].strip())
+	if(num_docs != len(docs.keys())):
+		print "WARNING : Docs in input is not equal to num of docs with embeddings";
+	phi_docs = 	np.zeros(shape=(len(docs.keys()), K))
+	for line in fi:
+		a = line.split("\t", 1)
+		if(len(a) > 1):
+			doc_name = a[0].strip()
+			try:
+				doc_id = docs[doc_name]
+				phi_d = a[1].split("\t")
+				if(len(phi_d) != K):
+					print "Error in K"
+					sys.exit()
+				else:
+					phi_docs[doc_id] = np.array(phi_d)	
+			except KeyError:
+				print "Doc : ", doc_name, " not found"
+				sys.exit()	
+
+	print "K : ", K			
+	return phi_docs, K			
 
 
 def readYelp(filename):
@@ -41,8 +81,8 @@ def readYelp(filename):
 	buss_read = 0
 	atts_read = 0
 	fi = open(filename, "r")
-	buss = defaultdict()
-	atts = defaultdict()
+	buss = {}
+	atts = {}
 	data = []
 	bus_id = ""
 	att = ""
@@ -55,13 +95,17 @@ def readYelp(filename):
 				#buss_read = buss_read + 1
 			else:
 				att = a[0].strip()
-				if att not in atts.keys():
+				try:
+					val = atts[att]
+				except KeyError:
 					atts[att] = atts_read
-					atts_read = atts_read + 1
+					atts_read += 1
 
-				if bus_id not in buss.keys():
+				try:
+					val = buss[bus_id]
+				except KeyError:
 					buss[bus_id] = buss_read
-					buss_read = buss_read + 1	
+					buss_read += 1		
 				
 				truth = int(a[1].strip())
 				data.append( [buss[bus_id], atts[att], truth] )
@@ -111,14 +155,13 @@ def readAmazon(filename):
 	
 
 if __name__=="__main__":
-	filename = sys.argv[1]
-	if(sys.argv[2] == "yelp"):
-		print "ok"
-		buss, atts, data = readAmazon(filename);
-		print len(buss.keys()), len(atts.keys())
-		print data[27000:27900]
-		
-				
+	input_file = sys.argv[1]
+	file_d_embeddings = sys.argv[2]
+	
+	docs, cats, catC, data = read(input_file);
+	phi_d, K = read_Phi_Docs(file_d_embeddings, docs)
+	#print max(catC.iteritems(), key=operator.itemgetter(1))[0]
+
 
 
 
