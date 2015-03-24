@@ -615,6 +615,7 @@ void TrainModel(){
 	InitUnigramTable();
 
 	for(int epoch = 0; epoch < Epoch; epoch++){
+		cout<<"\n EPOCH : "<<epoch<<"\n\n";
 		for (a = 0; a < num_threads; a++) pthread_create(&pt[a], NULL, TrainModelThread, (void *)a);
 	  	for (a = 0; a < num_threads; a++) pthread_join(pt[a], NULL);
 	}
@@ -648,6 +649,7 @@ int main(int argc, char **argv){
 	if ((i = ArgPos((char *)"-sample", argc, argv)) > 0) sample = atof(argv[i + 1]);
 	if ((i = ArgPos((char *)"-negative-samples", argc, argv)) > 0) negative = atoi(argv[i + 1]);
 	if ((i = ArgPos((char *)"-non-unit-weight", argc, argv)) > 0) updateWeights = atoi(argv[i + 1]);
+	if ((i = ArgPos((char *)"-epoch", argc, argv)) > 0) Epoch = atoi(argv[i + 1]);
 
 	vocab = (struct vocab_word *)calloc(vocab_max_size, sizeof(struct vocab_word));
 	TrainModel();
