@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  7 MAR 2015 21:45
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  23 MAR 2015 22:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -420,7 +420,13 @@ Overfull \hbox (56.07986pt too wide) in paragraph at lines 117--117
 [] 
  []
 
-[4] [5] (output/writeup.aux) ) 
+[4] [5]
+Overfull \hbox (1.8884pt too wide) in paragraph at lines 166--167
+[]\OT1/cmr/bx/n/10 Trivial Ma-trix Fac-tor-iza-tion \OT1/cmr/m/n/10 : Here we t
+riv-ially fac-tor-ize the document-
+ []
+
+[6] [7] (output/writeup.aux) ) 
 Here is how much of TeX's memory you used:
  1454 strings out of 493304
  16123 string characters out of 6139871
@@ -444,10 +450,10 @@ blic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbol
 s/msbm10.pfb>
-Output written on output/writeup.pdf (5 pages, 162419 bytes).
+Output written on output/writeup.pdf (7 pages, 174554 bytes).
 PDF statistics:
- 80 PDF objects out of 1000 (max. 8388607)
- 57 compressed objects within 1 object stream
+ 88 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

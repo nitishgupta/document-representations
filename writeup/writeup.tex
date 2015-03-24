@@ -152,5 +152,43 @@ where $U,b$ are the softmax parameters and $h$ is constructed by average of cont
 
 The differences between our model and PV-DM is that, the hidden layer in PV-DM is constructed by averaging the context word vectors because of which it loses syntactic information and reduces to a model similar to a bag-of-words. Our model on the other hand consists of separate weight matrices for each of the context locations while constructing the hidden layer to encode the syntactic information in the hidden layer which we expect to help in learning more complex and representative document and word vectors. 
 Also, the weight matrix $U$ in PV-DM contains rows equal to the number of words in the vocabulary and needs to re-sized and re-trained(? is re-training necessary ?) every time a new word is added to the vocabulary.
+
+\section{Experimentation}
+Our experimentation involves learning document embeddings using the technique we described and then using them to learn category embeddings to perform multi-class document-classification.
+
+Apart from held-out evaluations we would also present cold-start evaluation where no information about the categories of the documents in the test set is available and we evaluate the performance of our method on categorizing such documents.
+
+The other, even more challenging task is to learn the embeddings of the new documents only given fixed embeddings of the words and no other documents.
+
+\subsection{Baselines}
+There are a bunch of baselines that we will compare our method to. 
+\begin{enumerate}
+\item \textbf{Trivial Matrix Factorization} : Here we trivially factorize the document-category matrix using the probabilistic matrix factorization formulation shown above. We expect this method to perform well on the held-out evaluation task but it faces challenge of learning document embeddings in the cold-start evaluation.
+
+\item \textbf{Effect of using Doc Embeddings as Pretrained Vectors} : Use the doc embeddings learnt from our method as doc embeddings initialization for matrix factorization
+
+\item \textbf{Bag-of-words} : In this method we would represent our documents with sparse feature vectors that are the size of the vocabulary and the features can only take two possible values, 0 or 1 representing the absence or presence of the particular word in the document. The values 0/1 can also be substituted by tf-idf values.
+
+\item \textbf{Word-Vector Average} : In this method, during learning we would only use the context word embeddings to predict the middle word and hence learn word embeddings. Using these embeddings we will represent the document as the average of the word vectors for the words that are present in the document.
+
+\end{enumerate}
+
+\subsection{Models for Document Embeddings Learning}
+Compare various variations of our model on their efficiency of categorizing documents coorectly and also compare the space and time complexity requirements of the different models. The different models being, 
+\begin{enumerate}
+\item \textbf{Averaging Context Words} : In this model we would only take an average of the word vectors and the document embedding to find the embedding of the hidden layer corresponding to the context. This corresponds to the weight matrices, $H$ in our model to be identity matrices that would not be updated during training.
+
+\item \textbf{Weighted Average Conteext Words} : In this model, to find the hidden vector for the context we would take a weighted average of the word and document vectors. This corresponds to the weight matrices, $H$ in our model to be diagonal matrices whose diagnols would be updated only.
+
+\item \textbf{Weighted Transformation Average} : In this model, the weight matrices, $H$ would be initialized to some random quantity and will be updated during the learning phase. One variation to this model is to initialize the weight matrices to be identity and then update them during learning.
+
+\end{enumerate}
+
+\subsection{Hyperparameter Tuning}
+
+
+
+
+
 \end{document}
 
