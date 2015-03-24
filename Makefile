@@ -4,10 +4,15 @@ CXXFLAGS = -lm -pthread -std=c++11
 CFLAGS = -lm -pthread
 all: 
 #	$(CC) vocab.cpp -o vocab $(CXXFLAGS) 
-	$(CC) -c vocab.cpp -o vocab.o $(CXXFLAGS)
+	$(CC) -c vocab-matrix.cpp -o vocab-matrix.o $(CXXFLAGS)
 	$(CC) -c util.cpp -o util.o $(CXXFLAGS)
-	$(CC) vocab.o util.o -o vocab $(CXXFLAGS)
-	rm vocab.o util.o
+	$(CC) vocab-matrix.o util.o -o vocab-matrix $(CXXFLAGS)
+	rm vocab-matrix.o util.o
+
+	$(CC) -c vocab-weight.cpp -o vocab-weight.o $(CXXFLAGS)
+	$(CC) -c util.cpp -o util.o $(CXXFLAGS)
+	$(CC) vocab-weight.o util.o -o vocab-weight $(CXXFLAGS)
+	rm vocab-weight.o util.o
 
 t:
 	$(CC) test.cpp -o test $(CXXFLAGS)	

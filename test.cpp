@@ -12,41 +12,11 @@ typedef float real;
 
 
 int main(int argc, char* argv[]){
-	char file_name[max_size], st[100][max_size];
-	char out[10000];
-	strcpy(file_name, argv[1]);
-	string line;
-	ifstream myfile;
-	myfile.open(file_name);
-	int w, s;
-	getline (myfile,line, '\t'); w = stoi(line); 
-	getline (myfile,line, '\t'); s = stoi(line); 
-	cout<<line<<"\n\n\n";
-	if (myfile.is_open()){
-		//for(int j = 0; j<w; j++){
-		while ( getline (myfile,line, '\t') ){
-			//getline (myfile,line, '\t');
-			cout<<"word : "<<line<<" : ";
-			for(int i =0; i<s; i++){
-				getline (myfile,line, '\t');
-				cout<<line<<" ";
-			}
-			// if(line!=" " || line!="\n"){
-   //   			cout << line;
-   //   			strcat(out, line.c_str());
-   //   		}
-    	}
-    	myfile.close();
-  	}
+	unsigned long long next_random = 1;		
 
-  	cout<<out;
-
-	// char *words = (char *)malloc(1000 * sizeof(char));
-	// char word[100];
-	// string a = "nitish";
-	// for(int i = 0; i<10; i++)
-	// 	strcat(words + i*10, "nitish\n");
-	// cout<<words+11<<"\n";
-	
+	next_random = next_random * (unsigned long long)25214903917 + 11;
+	for(int i = 0; i < 20; i++)
+		cout<< (((next_random & 0xFFFF) / (real)65536) - 0.5) / (100)<<"\n";
+	return 0;
 }
 
