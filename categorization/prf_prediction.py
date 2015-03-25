@@ -41,12 +41,14 @@ if __name__ == "__main__":
 
 	threshold = 0.1
 	while (threshold < 1.0):
+		print "Threshold : ", threshold
+
 		PRF1 = getPRF(val_input_filename, threshold)
-		print "Validation"
-		print "Threshold : ", threshold, " P : ", PRF1[0], " R : ", PRF1[1], " F1 : ", PRF1[2]
+		print "Validation P : ", PRF1[0], " R : ", PRF1[1], " F1 : ", PRF1[2]
+
 		PRF1 = getPRF(test_input_filename, threshold)
-		print "Test"
-		print "Threshold : ", threshold, " P : ", PRF1[0], " R : ", PRF1[1], " F1 : ", PRF1[2]
+		print "Test P : ", PRF1[0], " R : ", PRF1[1], " F1 : ", PRF1[2]
+		print "\n"
 
 		threshold += 0.1
 

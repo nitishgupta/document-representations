@@ -125,23 +125,52 @@ def write_predictions(phi_best_docs, phi_best_cats, prediction_filename):
 		predict_pre_sigm_activation = np.dot(phi_best_docs[d[0]], phi_best_cats[d[1]])
 		sigm = 1 / (1 + np.exp(-predict_pre_sigm_activation))
 		truth = d[2]
-		out_test_file.write(str(sigm) + "\t" + str(truth) + "\n")	
+		out_test_file.write(str(sigm) + "\t" + str(truth) + "\n")
+
+def write_cat_embeddings(phi_c, cats, K, out_file_path):
+	fo = open(out_file_path, 'w')
+	num_cats = len(cats.keys())
+	fo.write(str(num_cats) + "\t" + str(K) + "\n")
+
+	for cat in cats.keys():
+		cat_id = cats[cat]
+		fo.write(cat)
+		for i in range(0, K):
+			fo.write("\t" + str(phi_c[cat_id][i]))
+		fo.write("\n")	
+	fo.close()			
+
+
+
 
 
 if __name__=="__main__":
 	rng.seed(10)
 	np.random.seed(10)
-	datafilename = sys.argv[1]
-	phi_docs_file = sys.argv[2]
-	prediction_out_file = sys.argv[3]
-	
+	if(len(sys.argv) == 4):
+		datafilename = sys.argv[1]
+		phi_docs_file = sys.argv[2]
+		prediction_out_file = sys.argv[3]
+	else:
+		datafilename = sys.argv[1]
+		dataset_output_directory = sys.argv[2]
+		if(dataset_output_directory[-1] != "/"):
+			dataset_output_directory += "/"
+
+		model = sys.argv[3]
+		evaluation = sys.argv[4]
+
+		phi_docs_file = dataset_output_directory+model+"/embeddings/doc.dat"
+		prediction_out_file = dataset_output_directory+model+"/prediction/"+evaluation+"/"+ model
+		cat_embed_outfile = dataset_output_directory+model+"/embeddings/"+"category.dat"
+
 	K = 100
 	train_perc = 0.8
 	val_perc = 0.1
 	negative_data = 2
 	learning_rate = 0.01
 	reg_con = 0.01
-	epoch = 600
+	epoch = 6
 	negative_training = 1
 	
 	docs, cats, catC, data = readDocData.read(datafilename);
@@ -169,4 +198,5 @@ if __name__=="__main__":
 
 	phi_best_docs, phi_best_cats = mf_train(lr= learning_rate, lamb= reg_con, epoch= epoch, neg = negative_training)
 	write_predictions(phi_best_docs, phi_best_cats, prediction_out_file)
+	write_cat_embeddings(phi_best_cats, cats, K, cat_embed_outfile)
 	

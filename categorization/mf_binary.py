@@ -106,12 +106,33 @@ def mf_train(lr, lamb, epoch, neg):
 				best_f1 = f1
 	print "Best Epoch : ", best_epoch			
 	print "Test : ",
-	p_t, r_t, f1_t, acc = getPRF(testdata, phi_docs_best, phi_cats_best)		
+	p_t, r_t, f1_t, acc = getPRF(testdata, phi_docs_best, phi_cats_best)
+	return phi_docs_best, phi_cats_best		
+
+def write_predictions(phi_best_docs, phi_best_cats, prediction_filename):
+	out_val_file = open(prediction_filename + "-val.dat", 'w')
+	out_test_file = open(prediction_filename + "-test.dat", 'w')
+
+	for d in vdata:
+		predict_pre_sigm_activation = np.dot(phi_best_docs[d[0]], phi_best_cats[d[1]])
+		sigm = 1 / (1 + np.exp(-predict_pre_sigm_activation))
+		truth = d[2]
+		out_val_file.write(str(sigm) + "\t" + str(truth) + "\n")
+
+	for d in testdata:
+		predict_pre_sigm_activation = np.dot(phi_best_docs[d[0]], phi_best_cats[d[1]])
+		sigm = 1 / (1 + np.exp(-predict_pre_sigm_activation))
+		truth = d[2]
+		out_test_file.write(str(sigm) + "\t" + str(truth) + "\n")	
+
 
 if __name__=="__main__":
 	rng.seed(10)
 	np.random.seed(10)
+
 	datafilename = sys.argv[1]
+	prediction_out_file = sys.argv[2]
+
 	K = 100
 	train_perc = 0.8
 	val_perc = 0.1
@@ -143,5 +164,6 @@ if __name__=="__main__":
 	getDataStats(testdata)
 	
 
-	mf_train(lr= learning_rate, lamb= reg_con, epoch= epoch, neg = negative_training)
+	phi_docs_best, phi_cats_best = mf_train(lr= learning_rate, lamb= reg_con, epoch= epoch, neg = negative_training)
+	write_predictions(phi_docs_best, phi_cats_best, prediction_out_file)
 	
