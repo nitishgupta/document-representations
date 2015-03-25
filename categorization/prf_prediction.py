@@ -39,7 +39,7 @@ if __name__ == "__main__":
 	val_input_filename = sys.argv[1]
 	test_input_filename = sys.argv[2]
 
-	threshold = 0.1
+	threshold = 0.0
 	while (threshold < 1.0):
 		print "Threshold : ", threshold
 

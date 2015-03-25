@@ -75,6 +75,44 @@ def read_Phi_Docs(filename, docs):
 	print "K : ", K			
 	return phi_docs, K			
 
+def readWordsAndEmbeddings(word_embedding_inputfile):
+	words = {}
+	words_count = 0
+	fi = open(word_embedding_inputfile, 'r')
+	details = fi.readline()
+	
+	num_words = int(details.split("\t")[0].strip())
+	K = int(details.split("\t")[1].strip())
+
+	phi_words = np.zeros(shape=(num_words, K))
+
+	for line in fi:
+		a = line.split("\t", 1)
+		if(len(a) > 1):
+			word = a[0].strip()
+			try:
+				word_id = words[word]
+				phi_word = a[1].split("\t")
+				if(len(phi_word) != K):
+					print "Error in K"
+					sys.exit()
+				else:
+					phi_words[word_id] = np.array(phi_word)
+			except:
+				words[word] = words_count
+				phi_word = a[1].split("\t")
+				if(len(phi_word) != K):
+					print "Error in K"
+					sys.exit()
+				else:
+					phi_words[words_count] = np.array(phi_word)
+				words_count += 1
+	
+
+	fi.close()
+	return words, phi_words, K			
+					
+
 
 def readYelp(filename):
 	data_points_read = 0
@@ -156,10 +194,14 @@ def readAmazon(filename):
 
 if __name__=="__main__":
 	input_file = sys.argv[1]
-	file_d_embeddings = sys.argv[2]
+	#file_d_embeddings = sys.argv[2]
 	
-	docs, cats, catC, data = read(input_file);
-	phi_d, K = read_Phi_Docs(file_d_embeddings, docs)
+	words, phi_words = readWordsAndEmbeddings(input_file)
+	print len(words.keys()), words["Biology"]
+
+
+	# docs, cats, catC, data = read(input_file);
+	# phi_d, K = read_Phi_Docs(file_d_embeddings, docs)
 	#print max(catC.iteritems(), key=operator.itemgetter(1))[0]
 
 
