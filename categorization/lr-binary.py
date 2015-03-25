@@ -170,7 +170,7 @@ if __name__=="__main__":
 	negative_data = 2
 	learning_rate = 0.01
 	reg_con = 0.01
-	epoch = 6
+	epoch = 600
 	negative_training = 1
 	
 	docs, cats, catC, data = readDocData.read(datafilename);
