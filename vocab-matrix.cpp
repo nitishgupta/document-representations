@@ -43,7 +43,7 @@ struct vocab_word {
 
 
 long long train_words=0, vocab_size=0, vocab_max_size=100, words_processed = 0, perc = 0, docs_processed = 0;
-int debug_mode = 0, min_count = 1, num_docs, embed_size=200, window=5, num_threads = 1, negative = 15;
+int debug_mode = 0, min_count = 1, num_docs, embed_size=100, window=3, num_threads = 1, negative = 10;
 int identityWeights = 1, Epoch = 1;
 real learning_rate = 0.0025, starting_alpha, sample = -1;
 clock_t start;
@@ -352,10 +352,10 @@ void InitNet(){
  	}
 
  	// Allocating space for (2*window_size + 1) weight matrices, each of size d*d (embed-size * embed_size)
- 	a = posix_memalign((void **)&nn_weight, 128, (long long)((2*window + 1)* embed_size * embed_size) * sizeof(real));
+	a = posix_memalign((void **)&nn_weight, 128, (long long)((2*window + 1)* embed_size * embed_size) * sizeof(real));
  	if (nn_weight == NULL) {printf("Weight Matrices Memory allocation failed\n"); exit(1);}
-	
-	if(identityWeights <= 0){
+
+ 	if(identityWeights <= 0){
 		//Initializing Neural Network Weights to small random numbers in range [-1/d*d, 1/d*d]
 		cout<<"Using Complete Weight Matrices\n";
 		for (a = 0; a < (2*window + 1); a++) {
@@ -377,7 +377,6 @@ void InitNet(){
 	 		}
 	 	}
 	}
-
 }
 
 void printWeights(){
@@ -610,6 +609,7 @@ void TrainModel(){
 
 	pthread_t *pt = (pthread_t *)malloc(num_threads * sizeof(pthread_t));
 	InitNet();
+
 	
 	InitUnigramTable();
 

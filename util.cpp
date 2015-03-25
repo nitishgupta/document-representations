@@ -49,6 +49,12 @@ void MatVec(real *matrix, real *vector, real *r, int embed_size){
 	}
 }
 
+void scalarVec(real *vec, real scalar, real *r, int embed_size){
+	for(int i=0; i<embed_size; i++){
+		r[i] = scalar*vec[i];
+	}
+}
+
 real* vecvecT(real *word_e, real *doc_e, int w1, int e_id1, int w2, int e_id2, int embed_size){
 	real *r = (real *) calloc(embed_size*embed_size, sizeof(real));
 	real *v1, *v2;
@@ -79,6 +85,13 @@ real *addVec(real *v1, real *v2, int embed_size){
 	return r;
 }
 
+// r = weight*v1 + *v2
+// void weighted_addVec(real *v1, real weight, real *v2, real *r, int embed_size){
+// 	for(int i=0; i<embed_size; i++){
+// 		r[i] = v2[i] + weight*v1[i]
+// 	}
+// }
+
 // r = v1 + weight*v2
 real *weighted_addVec(real *v1, real *v2, real weight, int embed_size){
 	real *r = (real *) calloc(embed_size, sizeof(real));
@@ -101,3 +114,4 @@ real dotProd(real *v1, real *v2, int embed_size){
 
 	return r;
 }
+
