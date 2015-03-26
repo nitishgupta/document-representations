@@ -3,7 +3,9 @@ import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 import scipy.sparse 
+from sparsesvd import sparsesvd
 import itertools
+from sets import Set
 
 
 def writeEmbeddings(phi_docs_nonsparse, doc_names, out_filename):
@@ -28,7 +30,7 @@ def writeEmbeddings(phi_docs_nonsparse, doc_names, out_filename):
 
 def writeEmbeddings_SVD(phi_doc_svd, doc_names, K, out_filename):
 	fo = open(out_filename, 'w')
-	num_docs = phi_doc_svd.shape[0]
+	num_docs = phi_doc_svd.shape[1]
 	embed_size = K
 	print "Num Docs : ", num_docs, " Embed Size : ", embed_size
 	fo.write(str(num_docs) + "\t" + str(embed_size) + "\n")
@@ -37,17 +39,15 @@ def writeEmbeddings_SVD(phi_doc_svd, doc_names, K, out_filename):
 	for doc in doc_names:
 		fo.write(doc)
 		for k in range(0, embed_size):
-			fo.write("\t" + str(phi_doc_svd[doc_id, k]))
+			fo.write("\t" + str(phi_doc_svd[k,doc_id]))
 		doc_id += 1
 		fo.write("\n")
 	if(doc_id != num_docs):
+		print num_docs, doc_id
 		print "Some Error"
 		sys.exit()
 
 	fo.close()
-
-
-			
 
 
 def doc_addrs(docs_input_file):
@@ -55,10 +55,15 @@ def doc_addrs(docs_input_file):
 	num_docs = fi.readline().strip()
 	doc_addresses = []
 	doc_names = []
+	doc_names_set = Set([])
 	for line in fi:
 		doc_addr, doc_name = doc_addr_and_name(line, docs_input_directory)
-		doc_addresses.append(doc_addr)
-		doc_names.append(doc_name)
+		if doc_name in doc_names_set:
+			pass
+		else:
+			doc_names_set.add(doc_name)
+			doc_addresses.append(doc_addr)
+			doc_names.append(doc_name)
 
 	return doc_addresses, doc_names	
 
@@ -101,17 +106,15 @@ if __name__=="__main__":
 	
 	vectorizer = TfidfVectorizer(input='filename', analyzer='word', lowercase='False', stop_words='english')
 	phi_docs = vectorizer.fit_transform(doc_addresses)	
-
-	max_num_docs = phi_docs.shape[0] - 1
-	Max_vocab_size = phi_docs.shape[1] - 1
-
-	phi_docs_nonsparse = phi_docs.todense()
+	print "Sparse term-document computed"
 
 	if(sys.argv[3]):
 		print "Doc-Term matrix computed, starting to perform SVD."
-		doc_embed, s, term_embed = np.linalg.svd(phi_docs_nonsparse, full_matrices=False)
+		phi_docs = phi_docs.tocsc()
+		#doc_embed, s, term_embed = np.linalg.svd(phi_docs_nonsparse, full_matrices=False)
+		doc_embed, s, term_embed = sparsesvd(phi_docs, int(sys.argv[3]))
 		print "SVD Performed"
-		print np.dot(doc_embed[100], doc_embed[200])
-		#writeEmbeddings_SVD(doc_embed, doc_names, int(sys.argv[3]), output_file)
+		print doc_embed.shape
+		writeEmbeddings_SVD(doc_embed, doc_names, int(sys.argv[3]), output_file)
 	else:
 		writeEmbeddings(phi_docs_nonsparse, doc_names, output_file)
