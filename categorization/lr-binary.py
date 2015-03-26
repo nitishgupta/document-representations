@@ -172,6 +172,9 @@ if __name__=="__main__":
 	reg_con = 0.01
 	epoch = 600
 	negative_training = 1
+
+	if(sys.argv[5]):
+		epoch = int(sys.argv[5])
 	
 	docs, cats, catC, data = readDocData.read(datafilename);
 	num_e1 = len(docs.keys())
