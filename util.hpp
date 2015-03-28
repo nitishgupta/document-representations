@@ -24,3 +24,5 @@ void MatVec(real *matrix, real *vector, real *r, int embed_size);
 void vecvecT_addToMat(real* v1, real *v2, real *mat, real weight, int embed_size);
 
 void scalarVec(real *vec, real scalar, real *r, int embed_size);
+
+void updateVec(real *v1, real *grad, real grad_weight, real learning_rate, real reg_con, int embed_size);

@@ -45,7 +45,7 @@ struct vocab_word {
 long long train_words=0, vocab_size=0, vocab_max_size=100, words_processed = 0, perc = 0, docs_processed = 0;
 int debug_mode = 0, min_count = 1, num_docs, embed_size=200, window=3, num_threads = 1, negative = 10;
 int updateWeights = 1, Epoch = 1;
-real learning_rate = 0.0025, starting_alpha, sample = -1, lambda = 0.01;
+real learning_rate = 0.0025, starting_alpha, sample = -1, lambda = 0.1;
 clock_t start;
 //char word_outfile[MAX_STRING]; = "output/embeddings/words.dat";
 //char doc_outfile[MAX_STRING] = "output/embeddings/docs.dat";
@@ -411,17 +411,20 @@ void update(int center_word, int *context, int label){
 	real estimated_prob = sigmoid(s);
 
 	// Update for w_t
-	addToVec(w_t, h_c, learning_rate*(label - estimated_prob), embed_size);
+	updateVec(w_t, h_c, (label-estimated_prob), learning_rate, lambda, embed_size);
+	//addToVec(w_t, h_c, learning_rate*(label - estimated_prob), embed_size);
 
 	//Update w_t-k's i.e. context doc and word embeddings
 	for(int i=0; i<2*window+1; i++){
 		weight = nn_weight[i];
 		if(i == 0){
 			vec = doc_e + embed_size * context[0];
-			addToVec(vec, w_t, weight*learning_rate*(label - estimated_prob), embed_size);
+			updateVec(vec, w_t, weight*(label-estimated_prob), learning_rate, lambda, embed_size);
+			//addToVec(vec, w_t, weight*learning_rate*(label - estimated_prob), embed_size);
 		} else {
 			vec = word_e + embed_size * context[i];
-			addToVec(vec, w_t, weight*learning_rate*(label - estimated_prob), embed_size);
+			updateVec(vec, w_t, weight*(label-estimated_prob), learning_rate, lambda, embed_size);
+			//addToVec(vec, w_t, weight*learning_rate*(label - estimated_prob), embed_size);
 		}
 	}	
 
@@ -534,37 +537,27 @@ void *TrainModelThread(void *id){
 void writeEmbeddings(){
 	long a,b,c,d;
 	FILE *word_fo, *doc_fo, *doc_w_fo;
-	real *wdoc;
 
 	strncpy(word_outfile, output_directory, MAX_STRING); strcat(word_outfile, "embeddings/word.dat");
   	strncpy(doc_outfile, output_directory, MAX_STRING); strcat(doc_outfile, "embeddings/doc.dat");
-  	strncpy(doc_w_outfile, output_directory, MAX_STRING); strcat(doc_w_outfile, "embeddings/doc_weighted.dat");
   	word_fo = fopen(word_outfile, "wb");
   	doc_fo = fopen(doc_outfile, "wb");
-  	doc_w_fo = fopen(doc_w_outfile, "wb");
 
     // Save the word and doc vectors
     fprintf(word_fo, "%lld\t%d\n", vocab_size, embed_size);
     fprintf(doc_fo, "%d\t%d\n", num_docs, embed_size);
-    fprintf(doc_w_fo, "%d\t%d\n", num_docs, embed_size);
 
     for (a = 0; a < vocab_size; a++) {
 		if(a < num_docs){	
 			fprintf(word_fo, "%s", vocab[a].word);		// Print word
 			fprintf(doc_fo, "%s", docs[a]);		// Print Doc
-			fprintf(doc_w_fo, "%s", docs[a]);		// Print Doc
-			wdoc = (real *)calloc(embed_size, sizeof(embed_size));
-			MatVec(nn_weight, doc_e + a*embed_size, wdoc, embed_size);
 
 			for (b = 0; b < embed_size; b++){ 
 				fprintf(word_fo, "\t%lf", word_e[a * embed_size + b]);
 				fprintf(doc_fo, "\t%lf", doc_e[a * embed_size + b]);
-				fprintf(doc_w_fo, "\t%lf", wdoc[b]);
 			}
-			free(wdoc);	
 			fprintf(word_fo, "\n");
 			fprintf(doc_fo, "\n");
-			fprintf(doc_w_fo, "\n");			
 		} else {
 			fprintf(word_fo, "%s ", vocab[a].word);		// Print word
 			for (b = 0; b < embed_size; b++){ 
@@ -575,7 +568,6 @@ void writeEmbeddings(){
     }
     fclose(word_fo);
     fclose(doc_fo);
-    fclose(doc_w_fo);
 }
 
 void TrainModel(){

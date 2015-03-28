@@ -71,6 +71,13 @@ real* vecvecT(real *word_e, real *doc_e, int w1, int e_id1, int w2, int e_id2, i
 	return r;	
 }
 
+void updateVec(real *v1, real *grad, real grad_weight, real learning_rate, real reg_con, int embed_size){
+	for(int i=0; i<embed_size; i++){
+		v1[i] += learning_rate * (grad[i]*grad_weight - reg_con*v1[i]);
+	}
+}
+
+
 void addToVec(real *v1, real *v2, real weight, int embed_size){
 	for(int i=0; i<embed_size; i++){
 		v1[i] += weight * v2[i];
