@@ -3,12 +3,13 @@ from os import walk
 import os.path
 import prf_prediction
 
-models = ["PMF", "wordvec-avg", "weight-noupdate-epoch1", "weight-noupdate-epoch5", "weight-noupdate-epoch10", "weight-noupdate-epoch15", "weight-noupdate-epoch20", "weight-update-epoch1", 
+models = ["PMF", "wordvec-avg", "bow-tfidf", "weight-noupdate-epoch1", "weight-noupdate-epoch5", "weight-noupdate-epoch10", "weight-noupdate-epoch15", "weight-noupdate-epoch20", "weight-update-epoch1", 
 			"weight-update-epoch5", "weight-update-epoch10", "weight-update-epoch15", "weight-update-epoch20", "lsi-tfidf-100", "lsi-tfidf-200"]
 
 threshold = 0.5
 
-evaluation = "held-out"
+
+evaluation = sys.argv[2]
 
 dataset_output_directory  = sys.argv[1]
 if dataset_output_directory[-1] != "/":

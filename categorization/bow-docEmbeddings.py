@@ -108,7 +108,7 @@ if __name__=="__main__":
 	phi_docs = vectorizer.fit_transform(doc_addresses)	
 	print "Sparse term-document computed"
 
-	if(sys.argv[3]):
+	if(len(sys.argv) == 4):
 		print "Doc-Term matrix computed, starting to perform SVD."
 		phi_docs = phi_docs.tocsc()
 		#doc_embed, s, term_embed = np.linalg.svd(phi_docs_nonsparse, full_matrices=False)
@@ -117,4 +117,5 @@ if __name__=="__main__":
 		print doc_embed.shape
 		writeEmbeddings_SVD(doc_embed, doc_names, int(sys.argv[3]), output_file)
 	else:
+		phi_docs_nonsparse = phi_docs.todense()
 		writeEmbeddings(phi_docs_nonsparse, doc_names, output_file)

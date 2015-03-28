@@ -6,6 +6,7 @@ import numpy as np
 from sklearn.metrics import precision_recall_fscore_support as prf
 from sklearn.metrics import accuracy_score
 from random import shuffle
+from sets import Set
 import sys
 import random as rng
 from copy import deepcopy
@@ -30,6 +31,45 @@ def split_TrainValTest(trainperc, valperc):
 	vdata = data[trlen:trlen+vallen]
 	testdata = data[trlen+vallen:-1]
 	return trdata, vdata, testdata
+
+def split_TrainValTest_ColdStart(trainperc_docs, valperc, num_e1):
+	shuffle(data)
+	num_e1_test = int((1 - trainperc_docs + valperc)*num_e1)
+	docs_test = rng.sample(range(0,num_e1), num_e1_test)
+	size_val = int(len(data)*valperc)
+	trdata = []
+	vdata = []
+	testdata = []
+	for d in data:
+		if(d[0] in docs_test):
+			testdata.append(d)
+		else:
+			if(len(vdata) < size_val):
+				vdata.append(d)
+			else:
+				trdata.append(d)
+
+	return trdata, vdata, testdata			
+			
+
+def coldstart_sanity(trdata, vdata, testdata):
+	test_docs = Set([])
+	for d in testdata:
+		test_docs.add(d[0])
+	for d in trdata:
+		if(d[0] in test_docs):
+			print "Error in Cold Start Split", d[0], " found in training"
+			sys.exit()
+
+	for d in vdata:
+		if(d[0] in test_docs):
+			print "Error in Cold Start Split", d[0], " found in validation"
+			sys.exit()
+
+	print "Cold Start Split FINE!"		
+
+
+
 
 # Add negative data using corrupt second entity. Therefore for every [e1, e2, truth], samples [e1, e2*, anti-truth] are added
 def addNegativeData(in_data, num_e2, negative = 1):
@@ -72,33 +112,63 @@ def getPRF(in_data, phi_d, phi_c):
 	print "P : ", p, " R : ", r, " F1 : ", f1, " Acc = ", a
 	return p, r, f1, a
 
-def update(e1, e2, truth, lr, reg_con):
-	pre_sigm = np.dot(phi_docs[e1], phi_cats[e2])
-	sigm = 1 / (1 + np.exp(-pre_sigm))
-	#phi_docs[e1] = phi_docs[e1] + lr*( (truth - sigm)*phi_cats[e2] - reg_con*phi_docs[e1] )
-	phi_cats[e2] = phi_cats[e2] + lr*( (truth - sigm)*phi_docs[e1] - reg_con*phi_cats[e2] )
-	return sigm
-
 def predict(e1, e2, phi_d, phi_c):
 	pre_sigm = np.dot(phi_d[e1], phi_c[e2])
 	sigm = 1 / (1 + np.exp(-pre_sigm))
 	return sigm > 0.5
 
-def mf_train(lr, lamb, epoch, neg):
+def getPRF_bias(in_data, phi_d, phi_c, bias_c):
+	prediction = []			
+	true = []
+	for d in in_data:
+		prediction.append(predict_bias(d[0], d[1], phi_d, phi_c, bias_c))
+		true.append(d[2])
+
+	PRF = prf(true, prediction, average = 'micro');	
+	acc = accuracy_score(true, prediction)
+	p = round(PRF[0]*100, 1);
+	r = round(PRF[1]*100, 1);
+	f1 = round(PRF[2]*100, 1);
+	a = round(acc*100, 1);
+	print "P : ", p, " R : ", r, " F1 : ", f1, " Acc = ", a
+	return p, r, f1, a	
+
+def predict_bias(e1, e2, phi_d, phi_c, bias_c):
+	pre_sigm = np.dot(phi_d[e1], phi_c[e2]) + bias_c[e2]
+	sigm = 1 / (1 + np.exp(-pre_sigm))
+	return sigm > 0.5
+
+
+def update(e1, e2, truth, b, lr, reg_con):
+	pre_sigm = np.dot(phi_docs[e1], phi_cats[e2])
+	if(b):
+		pre_sigm += bias_cats[e2]
+	sigm = 1 / (1 + np.exp(-pre_sigm))
+	#phi_docs[e1] = phi_docs[e1] + lr*( (truth - sigm)*phi_cats[e2] - reg_con*phi_docs[e1] )
+	phi_cats[e2] = phi_cats[e2] + lr*( (truth - sigm)*phi_docs[e1] - reg_con*phi_cats[e2] )
+	if(b):
+		bias_cats[e2] = bias_cats[e2] + lr*(truth - sigm - reg_con*bias_cats[e2])
+
+	return sigm
+
+def mf_train(b, lr, lamb, epoch, neg):
 	best_f1 = 0.0
 	best_epoch = 0;
 	for i in range(0, epoch):
 		shuffle(trdata)
 		for d in trdata:
-			update(d[0], d[1], d[2], lr, lamb)		## Positive Sample e1, e2
+			update(d[0], d[1], d[2], b, lr, lamb)		## Positive Sample e1, e2
 			for n in range(0, neg):
 				neg_cat = np.random.randint(low=0, high=num_e2)
 				neg_cat = int(neg_cat)
-				update(d[0], neg_cat, 0, lr, lamb)
+				update(d[0], neg_cat, 0, b, lr, lamb)
 
 		if(i % 5 == 0):
 			print "Epoch : ", i, ", ",
-			p, r, f1, acc = getPRF(vdata, phi_docs, phi_cats)
+			if(b):
+				p, r, f1, acc = getPRF_bias(vdata, phi_docs, phi_cats, bias_cats)
+			else:
+				p, r, f1, acc = getPRF(vdata, phi_docs, phi_cats)	
 			if(f1 >= best_f1):
 				phi_cats_best = np.copy(phi_cats)
 				phi_docs_best = np.copy(phi_docs)
@@ -106,7 +176,10 @@ def mf_train(lr, lamb, epoch, neg):
 				best_f1 = f1
 	print "Best Epoch : ", best_epoch			
 	print "Test : ",
-	p_t, r_t, f1_t, acc_t = getPRF(testdata, phi_docs_best, phi_cats_best)		
+	if(b):
+		p_t, r_t, f1_t, acc_t = getPRF_bias(testdata, phi_docs_best, phi_cats_best, bias_cats)		
+	else:	
+		p_t, r_t, f1_t, acc_t = getPRF(testdata, phi_docs_best, phi_cats_best)		
 	
 	return phi_docs_best, phi_cats_best			
 
@@ -172,9 +245,14 @@ if __name__=="__main__":
 	reg_con = 0.01
 	epoch = 600
 	negative_training = 1
+	bias = 0
 
-	if(sys.argv[5]):
-		epoch = int(sys.argv[5])
+	if(len(sys.argv) == 6):
+		if(sys.argv[5] == "bias"):
+			print "Using bias"
+			bias = 1
+		else:	
+			epoch = int(sys.argv[5])
 	
 	docs, cats, catC, data = readDocData.read(datafilename);
 	num_e1 = len(docs.keys())
@@ -183,14 +261,22 @@ if __name__=="__main__":
 	
 	phi_docs, K = readDocData.read_Phi_Docs(phi_docs_file, docs)
 	phi_cats = np.random.normal(loc=0.0, scale=0.01, size=(num_e2, K))
+	bias_cats = np.zeros(shape=num_e2)
 
 	#docs, cats, data = readDoc_Cat_Data.readAmazon(datafilename);
 
-	trdata, vdata, testdata = split_TrainValTest(train_perc, val_perc);
+	if(evaluation != "cold-start"):
+		trdata, vdata, testdata = split_TrainValTest(train_perc, val_perc);
+	
+	else:	
+		trdata, vdata, testdata = split_TrainValTest_ColdStart(train_perc, val_perc, num_e1);
+		coldstart_sanity(trdata, vdata, testdata)
+	
 	print len(data), len(trdata), len(vdata), len(testdata)
+	
+
 	testdata = addNegativeData(testdata, num_e2, negative = negative_data)
 	vdata = addNegativeData(vdata, num_e2, negative = negative_data)
-
 
 	print len(data), len(trdata), len(vdata), len(testdata)
 
@@ -199,7 +285,8 @@ if __name__=="__main__":
 	getDataStats(testdata)
 	
 
-	phi_best_docs, phi_best_cats = mf_train(lr= learning_rate, lamb= reg_con, epoch= epoch, neg = negative_training)
+	phi_best_docs, phi_best_cats = mf_train(b= bias, lr= learning_rate, lamb= reg_con, epoch= epoch, neg = negative_training)
 	write_predictions(phi_best_docs, phi_best_cats, prediction_out_file)
-	write_cat_embeddings(phi_best_cats, cats, K, cat_embed_outfile)
+	if(evaluation != "cold-start"):	
+		write_cat_embeddings(phi_best_cats, cats, K, cat_embed_outfile)
 	

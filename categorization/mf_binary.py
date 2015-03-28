@@ -7,6 +7,7 @@ from sklearn.metrics import precision_recall_fscore_support as prf
 from sklearn.metrics import accuracy_score
 from random import shuffle
 import sys
+from sets import Set
 import random as rng
 from copy import deepcopy
 import readDocData
@@ -30,6 +31,44 @@ def split_TrainValTest(trainperc, valperc):
 	vdata = data[trlen:trlen+vallen]
 	testdata = data[trlen+vallen:-1]
 	return trdata, vdata, testdata
+
+def split_TrainValTest_ColdStart(trainperc_docs, valperc, num_e1):
+	shuffle(data)
+	num_e1_test = int((1 - trainperc_docs + valperc)*num_e1)
+	docs_test = rng.sample(range(0,num_e1), num_e1_test)
+	size_val = int(len(data)*valperc)
+	trdata = []
+	vdata = []
+	testdata = []
+	for d in data:
+		if(d[0] in docs_test):
+			testdata.append(d)
+		else:
+			if(len(vdata) < size_val):
+				vdata.append(d)
+			else:
+				trdata.append(d)
+
+	return trdata, vdata, testdata			
+			
+
+def coldstart_sanity(trdata, vdata, testdata):
+	test_docs = Set([])
+	for d in testdata:
+		test_docs.add(d[0])
+	for d in trdata:
+		if(d[0] in test_docs):
+			print "Error in Cold Start Split", d[0], " found in training"
+			sys.exit()
+
+	for d in vdata:
+		if(d[0] in test_docs):
+			print "Error in Cold Start Split", d[0], " found in validation"
+			sys.exit()
+
+	print "Cold Start Split FINE!"		
+
+
 
 # Add negative data using corrupt second entity. Therefore for every [e1, e2, truth], samples [e1, e2*, anti-truth] are added
 def addNegativeData(in_data, num_e2, negative = 1):
@@ -125,13 +164,39 @@ def write_predictions(phi_best_docs, phi_best_cats, prediction_filename):
 		truth = d[2]
 		out_test_file.write(str(sigm) + "\t" + str(truth) + "\n")	
 
+def write_cat_embeddings(phi_c, cats, K, out_file_path):
+	fo = open(out_file_path, 'w')
+	num_cats = len(cats.keys())
+	fo.write(str(num_cats) + "\t" + str(K) + "\n")
+
+	for cat in cats.keys():
+		cat_id = cats[cat]
+		fo.write(cat)
+		for i in range(0, K):
+			fo.write("\t" + str(phi_c[cat_id][i]))
+		fo.write("\n")	
+	fo.close()
 
 if __name__=="__main__":
 	rng.seed(10)
 	np.random.seed(10)
 
-	datafilename = sys.argv[1]
-	prediction_out_file = sys.argv[2]
+	if(len(sys.argv) == 4):
+		datafilename = sys.argv[1]
+		phi_docs_file = sys.argv[2]
+		prediction_out_file = sys.argv[3]
+	else:
+		datafilename = sys.argv[1]
+		dataset_output_directory = sys.argv[2]
+		if(dataset_output_directory[-1] != "/"):
+			dataset_output_directory += "/"
+
+		model = sys.argv[3]
+		evaluation = sys.argv[4]
+
+		phi_docs_file = dataset_output_directory+model+"/embeddings/doc.dat"
+		prediction_out_file = dataset_output_directory+model+"/prediction/"+evaluation+"/"+ model
+		cat_embed_outfile = dataset_output_directory+model+"/embeddings/"+"category.dat"
 
 	K = 100
 	train_perc = 0.8
@@ -151,11 +216,17 @@ if __name__=="__main__":
 
 	#docs, cats, data = readDoc_Cat_Data.readAmazon(datafilename);
 
-	trdata, vdata, testdata = split_TrainValTest(train_perc, val_perc);
+	if(evaluation != "cold-start"):
+		trdata, vdata, testdata = split_TrainValTest(train_perc, val_perc);
+	
+	else:	
+		trdata, vdata, testdata = split_TrainValTest_ColdStart(train_perc, val_perc, num_e1);
+		coldstart_sanity(trdata, vdata, testdata)
+	
 	print len(data), len(trdata), len(vdata), len(testdata)
+
 	testdata = addNegativeData(testdata, num_e2, negative = negative_data)
 	vdata = addNegativeData(vdata, num_e2, negative = negative_data)
-
 
 	print len(data), len(trdata), len(vdata), len(testdata)
 
@@ -166,4 +237,6 @@ if __name__=="__main__":
 
 	phi_docs_best, phi_cats_best = mf_train(lr= learning_rate, lamb= reg_con, epoch= epoch, neg = negative_training)
 	write_predictions(phi_docs_best, phi_cats_best, prediction_out_file)
+	if(evaluation != "cold-start"):
+		write_cat_embeddings(phi_cats_best, cats, K, cat_embed_outfile)
 	
