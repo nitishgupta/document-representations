@@ -390,7 +390,9 @@ void getnanword(int word, real *vec){
 void update(int center_word, int *context, int label){
 	/* Calculate h_c and h_t */
 	real *h_c, *vec, *matvec, weight;			// Corresponds to hidden vector found using doc and context, Sum(H'*w_t-k). 
-	real *w_t = word_e + center_word;		// Corresponds to the embedding of the middle word.
+	real *w_t = word_e + embed_size * center_word;		// Corresponds to the embedding of the middle word.
+	//real *w_t = word_e + center_word;		// Corresponds to the embedding of the middle word.
+
 	
 	h_c = (real *)calloc(embed_size, sizeof(real));
 	// Calculate h_c
@@ -411,7 +413,7 @@ void update(int center_word, int *context, int label){
 	real estimated_prob = sigmoid(s);
 
 	// Update for w_t
-	updateVec(w_t, h_c, (label-estimated_prob), learning_rate, lambda, embed_size);
+	updateVec(w_t, h_c, (label-estimated_prob), learning_rate, 0, embed_size);
 	//addToVec(w_t, h_c, learning_rate*(label - estimated_prob), embed_size);
 
 	//Update w_t-k's i.e. context doc and word embeddings
@@ -419,11 +421,11 @@ void update(int center_word, int *context, int label){
 		weight = nn_weight[i];
 		if(i == 0){
 			vec = doc_e + embed_size * context[0];
-			updateVec(vec, w_t, weight*(label-estimated_prob), learning_rate, lambda, embed_size);
+			updateVec(vec, w_t, weight*(label-estimated_prob), learning_rate, 0, embed_size);
 			//addToVec(vec, w_t, weight*learning_rate*(label - estimated_prob), embed_size);
 		} else {
 			vec = word_e + embed_size * context[i];
-			updateVec(vec, w_t, weight*(label-estimated_prob), learning_rate, lambda, embed_size);
+			updateVec(vec, w_t, weight*(label-estimated_prob), learning_rate, 0, embed_size);
 			//addToVec(vec, w_t, weight*learning_rate*(label - estimated_prob), embed_size);
 		}
 	}	
@@ -625,6 +627,7 @@ int main(int argc, char **argv){
 	if ((i = ArgPos((char *)"-negative-samples", argc, argv)) > 0) negative = atoi(argv[i + 1]);
 	if ((i = ArgPos((char *)"-update-weights", argc, argv)) > 0) updateWeights = atoi(argv[i + 1]);
 	if ((i = ArgPos((char *)"-epoch", argc, argv)) > 0) Epoch = atoi(argv[i + 1]);
+	if ((i = ArgPos((char *)"-lr", argc, argv)) > 0) learning_rate = atof(argv[i + 1]);
 
 	vocab = (struct vocab_word *)calloc(vocab_max_size, sizeof(struct vocab_word));
 	TrainModel();
