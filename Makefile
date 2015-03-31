@@ -25,3 +25,12 @@ sample:
 
 debug:
 	./vocab -train-directory data/ -debug 1 -min-count 1
+
+epoch-test:
+	./vocab-weight -train-directory $(TD) -output-directory $(OD)/weight-update-epoch10 -debug 0 -min-count 5 -epoch 10 -embed-size 100 -nthreads 30 -window-size 2 -negative-samples 10 -update-weights 1
+	./vocab-weight -train-directory $(TD) -output-directory $(OD)/weight-update-epoch20 -debug 0 -min-count 5 -epoch 20 -embed-size 100 -nthreads 30 -window-size 2 -negative-samples 10 -update-weights 1
+	./vocab-weight -train-directory $(TD) -output-directory $(OD)/weight-update-epoch50 -debug 0 -min-count 5 -epoch 50 -embed-size 100 -nthreads 30 -window-size 2 -negative-samples 10 -update-weights 1
+	./vocab-weight -train-directory $(TD) -output-directory $(OD)/weight-update-epoch80 -debug 0 -min-count 5 -epoch 80 -embed-size 100 -nthreads 30 -window-size 2 -negative-samples 10 -update-weights 1
+	./vocab-weight -train-directory $(TD) -output-directory $(OD)/weight-update-epoch100 -debug 0 -min-count 5 -epoch 100 -embed-size 100 -nthreads 30 -window-size 2 -negative-samples 10 -update-weights 1
+	./vocab-weight -train-directory $(TD) -output-directory $(OD)/weight-update-epoch120 -debug 0 -min-count 5 -epoch 120 -embed-size 100 -nthreads 30 -window-size 2 -negative-samples 10 -update-weights 1
+	./vocab-weight -train-directory $(TD) -output-directory $(OD)/weight-update-epoch150 -debug 0 -min-count 5 -epoch 150 -embed-size 100 -nthreads 30 -window-size 2 -negative-samples 10 -update-weights 1

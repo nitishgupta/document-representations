@@ -144,6 +144,7 @@ def update(e1, e2, truth, b, lr, reg_con):
 	if(b):
 		pre_sigm += bias_cats[e2]
 	sigm = 1 / (1 + np.exp(-pre_sigm))
+	
 	#phi_docs[e1] = phi_docs[e1] + lr*( (truth - sigm)*phi_cats[e2] - reg_con*phi_docs[e1] )
 	phi_cats[e2] = phi_cats[e2] + lr*( (truth - sigm)*phi_docs[e1] - reg_con*phi_cats[e2] )
 	if(b):
@@ -218,7 +219,7 @@ def write_cat_embeddings(phi_c, cats, K, out_file_path):
 
 
 if __name__=="__main__":
-	rng.seed(10)
+	rng.seed(20)
 	np.random.seed(10)
 	if(len(sys.argv) == 4):
 		datafilename = sys.argv[1]

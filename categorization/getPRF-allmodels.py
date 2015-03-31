@@ -3,8 +3,7 @@ from os import walk
 import os.path
 import prf_prediction
 
-models = ["PMF", "wordvec-avg", "bow-tfidf", "weight-noupdate-epoch1", "weight-noupdate-epoch5", "weight-noupdate-epoch10", "weight-noupdate-epoch15", "weight-noupdate-epoch20", "weight-update-epoch1", 
-			"weight-update-epoch5", "weight-update-epoch10", "weight-update-epoch15", "weight-update-epoch20", "lsi-tfidf-100", "lsi-tfidf-200"]
+models = ["PMF", "wordvec-avg", "bow-tfidf", "weight-update-epoch10", "weight-update-epoch20", "weight-update-epoch50", "weight-update-epoch80", "weight-update-epoch100", "weight-update-epoch120", "weight-update-epoch150", "lsi-tfidf-100", "lsi-tfidf-200"]
 
 threshold = 0.5
 
