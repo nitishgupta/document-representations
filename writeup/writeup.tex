@@ -178,13 +178,33 @@ Compare various variations of our model on their efficiency of categorizing docu
 \begin{enumerate}
 \item \textbf{Averaging Context Words} : In this model we would only take an average of the word vectors and the document embedding to find the embedding of the hidden layer corresponding to the context. This corresponds to the weight matrices, $H$ in our model to be identity matrices that would not be updated during training.
 
-\item \textbf{Weighted Average Conteext Words} : In this model, to find the hidden vector for the context we would take a weighted average of the word and document vectors. This corresponds to the weight matrices, $H$ in our model to be diagonal matrices whose diagnols would be updated only.
+\item \textbf{Weighted Average Context Words} : In this model, to find the hidden vector for the context we take a weighted average of the context word and document vectors. This corresponds to the weight matrices, $H$ in our model to be, diagonal matrices whose diagnols entries would only be updated and remain the same always. This is also equivalent to having a scalar weight instead of matrices.
 
 \item \textbf{Weighted Transformation Average} : In this model, the weight matrices, $H$ would be initialized to some random quantity and will be updated during the learning phase. One variation to this model is to initialize the weight matrices to be identity and then update them during learning.
 
 \end{enumerate}
 
 \subsection{Hyperparameter Tuning}
+Our method, for both, learning document embeddings and multi-label document classification contain many hyperparameters that need to be tuned for optimum performance. The hyperparameters that need to be tuned for each model are,
+
+\begin{itemize}
+\item \textbf{Learning Document Embeddings} : 
+
+\begin{enumerate}
+\item \textbf{Epoch} : The number of passes that the document embeddings learning algorithm makes over the training data is an important parameter that needs to be tuned for precise document and word embeddings to be learnt.
+
+\item \textbf{Embedding Size} : The number of dimensions that the documents and words need to be embedded to, is a crucial parameter, since embedding into a lower dimension space may lead to loss of informationa and embedding in a high dimensional space mein introduce redundancy.
+
+\item \textbf{Negative Samples} : Our method's training relies on negative sampling corrupt center words in contexts, the number of which per correct context needs to be tuned.
+
+\item \textbf{Window-size} : The optimum window size of the context that is considered needs to be empirically found.
+
+\item \textbf{Sub-sampling frequent words} : One intuition to learn efficient and more meaningful embeddings is to not consider words in contexts that occur very frequently. This usually includes stop-words or words that occur frequently in a domain. Such words are considered to not contribute to the semantic content of the document and hence can be neglected. 
+
+\item \textbf{Learning Rate and Regularization Constant} : The learning rate and regularization constant used needs to be tuned.
+\end{enumerate}
+
+\end{itemize}
 
 
 
