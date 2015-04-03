@@ -40,9 +40,18 @@ real* MatVec(real *matrix, real *vector, int embed_size){
 	return r;
 }
 
+
 void MatVec(real *matrix, real *vector, real *r, int embed_size){
 	for(int i=0; i<embed_size; i++){
 		r[i] = 0;	
+		for(int j=0; j<embed_size; j++){
+			r[i] += matrix[i*embed_size + j] * vector[j];
+		}
+	}
+}
+
+void AddMatVecToVec(real *matrix, real *vector, real *r, int embed_size){
+	for(int i=0; i<embed_size; i++){
 		for(int j=0; j<embed_size; j++){
 			r[i] += matrix[i*embed_size + j] * vector[j];
 		}
@@ -108,10 +117,10 @@ real *weighted_addVec(real *v1, real *v2, real weight, int embed_size){
 	return r;
 }
 
-void vecvecT_addToMat(real* v1, real *v2, real *mat, real weight, int embed_size){
+void vecvecT_updateMat(real* v1, real *v2, real *mat, real grad_weight, real learning_rate, real reg_con, int embed_size){
 	for(int i=0; i<embed_size; i++)
 		for(int j=0; j<embed_size; j++)
-			mat[embed_size*i + j] += weight*v1[i]*v2[j];
+			mat[embed_size*i + j] += learning_rate*(grad_weight*v1[i]*v2[j] - reg_con*mat[embed_size*i + j]);
 }
 
 real dotProd(real *v1, real *v2, int embed_size){

@@ -45,7 +45,7 @@ struct vocab_word {
 long long train_words=0, vocab_size=0, vocab_max_size=100, words_processed = 0, perc = 0, docs_processed = 0;
 int debug_mode = 0, min_count = 1, num_docs, embed_size=100, window=3, num_threads = 1, negative = 10;
 int identityWeights = 1, Epoch = 1;
-real learning_rate = 0.0025, starting_alpha, sample = -1;
+real learning_rate = 0.0025, starting_alpha, sample = -1, lambda = 0.1;
 clock_t start;
 //char word_outfile[MAX_STRING]; = "output/embeddings/words.dat";
 //char doc_outfile[MAX_STRING] = "output/embeddings/docs.dat";
@@ -404,7 +404,7 @@ void getnanword(int word, real *vec){
 void update(int center_word, int *context, int label){
 	/* Calculate h_c and h_t */
 	real *h_c, *vec, *matvec, *matrix;			// Corresponds to hidden vector found using doc and context, Sum(H'*w_t-k). 
-	real *w_t = word_e + center_word;		// Corresponds to the embedding of the middle word.
+	real *w_t = word_e + embed_size*center_word;		// Corresponds to the embedding of the middle word.
 	
 	h_c = (real *)calloc(embed_size, sizeof(real));
 	matvec = (real *)calloc(embed_size, sizeof(real));
@@ -418,8 +418,9 @@ void update(int center_word, int *context, int label){
 		} else {
 			vec = word_e + embed_size * context[i];
 			//matvec = MatVec(matrix, vec, embed_size);
-			MatVec(matrix, vec, matvec, embed_size);
-			addToVec(h_c, matvec, 1, embed_size);
+			AddMatVecToVec(matrix, vec, h_c, embed_size);
+			//MatVec(matrix, vec, matvec, embed_size);
+			//addToVec(h_c, matvec, 1, embed_size);
 		}
 	}
 
@@ -427,7 +428,8 @@ void update(int center_word, int *context, int label){
 	real estimated_prob = sigmoid(s);
 
 	// Update for w_t
-	addToVec(w_t, h_c, learning_rate*(label - estimated_prob), embed_size);
+	updateVec(w_t, h_c, (label-estimated_prob), learning_rate, 0, embed_size);
+	//addToVec(w_t, h_c, learning_rate*(label - estimated_prob), embed_size);
 
 	//Update w_t-k's i.e. context doc and word embeddings
 	for(int i=0; i<2*window+1; i++){
@@ -436,12 +438,14 @@ void update(int center_word, int *context, int label){
 			vec = doc_e + embed_size * context[0];
 			//matvec = MatVec(matrix, w_t, embed_size);
 			MatVec(matrix, w_t, matvec, embed_size);
-			addToVec(vec, matvec, learning_rate*(label - estimated_prob), embed_size);
+			updateVec(vec, matvec, (label-estimated_prob), learning_rate, 0, embed_size);
+			//addToVec(vec, matvec, learning_rate*(label - estimated_prob), embed_size);
 		} else {
 			vec = word_e + embed_size * context[i];
 			//matvec = MatVec(matrix, w_t, embed_size);
 			MatVec(matrix, w_t, matvec, embed_size);
-			addToVec(vec, matvec, learning_rate*(label - estimated_prob), embed_size);
+			updateVec(vec, matvec, (label-estimated_prob), learning_rate, 0, embed_size);
+			//addToVec(vec, matvec, learning_rate*(label - estimated_prob), embed_size);
 		}
 	}	
 
@@ -450,10 +454,10 @@ void update(int center_word, int *context, int label){
 		matrix = nn_weight + embed_size*embed_size*i;
 		if(i == 0){
 			vec = doc_e + embed_size * context[i];
-			vecvecT_addToMat(w_t, vec, matrix, learning_rate*(label - estimated_prob), embed_size);
+			vecvecT_updateMat(w_t, vec, matrix, (label - estimated_prob), learning_rate, lambda, embed_size);
 		} else {
 			vec = word_e + embed_size * context[i];
-			vecvecT_addToMat(w_t, vec, matrix, learning_rate*(label - estimated_prob), embed_size);
+			vecvecT_updateMat(w_t, vec, matrix, (label - estimated_prob), learning_rate, lambda, embed_size);
 		}
 	}
 
