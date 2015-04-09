@@ -1,0 +1,21 @@
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale = 0.6]{SVMScaledSupervised6.pdf}
+\caption{Improvement in performance of Top 3 Supervised Systems in Senseval-3 using Connected Component Clustering Vs Random Clustering at the same granularity with C = 0.6}
+\label{fig:wsdImprovementSupervised0.6}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{minipage}{0.45\textwidth}
+\centering
+\includegraphics[scale = 0.4]{SVMScaledSupervised6.pdf}
+\caption{first figure}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\centering
+\includegraphics[scale = 0.4]{SVMScaledSupervised8.pdf}
+\caption{second figure}
+\end{minipage}
+\end{figure}

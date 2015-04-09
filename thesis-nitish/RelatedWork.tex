@@ -1,0 +1,57 @@
+\chapter{Related Work}
+\label{chapter:relatedwork}
+The task of text classification, i.e. classification of documents into a fixed number of predefined categories has been long studied in-depth for many years now. This multi-class classification problem has further evolved into a multi-label text classification task where each document can belong to multiple, exactly one or no category at all. 
+
+Supervised machine learning techniques that learn classifiers to perform this category assignment task can be broken down into two main components, namely, text representation and learning algorithm. 
+Text representation involves converting the documents, that are usually strings of characters, into numerical vectors that are suitable inputs to the learning algorithm while the learning algorithm uses pairs of labeled input text representations and the categories it is belongs in, to learn a model so as to classify new documents into categories.
+
+\section{Text Representation}
+Any text-based classification system requires the documents to be represented in an appropriate manner dictacted by the task being performed \citep{lewis1992text}. Moreover, \citep{quinlan1983learning} showed that the accuracy of the classification task depends as much on the document representation as on the learning algorithm being employed. Different from the data mining task, which deals with structureed documents, text classification deals with unstructured documents that need to be appropriately transformed into numerical vectors, i.e. the need for text representation. In this section we introduce the most effective and widely-used techniques to represent documents for text classification.
+
+\subsection{Bag of Words}
+It is found in information retrieval research that word stems work well as representations units for documents and that their ordering in a document is of minor importance for many tasks. This is attributed by the fact that the most widely-used used model to represent documents for the classification task is the \emph{Vector Space Model (VSM)} \citep{salton1973specification}. 
+
+In the Vector Space Model, a document $d$ is represented as a vector in the term/word space, $d$ $=$ $(w_{1}, w_{2}, \ldots, w_{|V|})$ where $|V|$ is the size of the vocabulary. Each of the $w_{i} \in \left[0,1\right]$, represents the weightage of the term $i$ in the document $d$. This is called the \emph{bag-of-words} model as it ignores word ordering and each document is reduced to a bag of words that it contains or not. 
+
+An important requirement of such a representation is that, the terms that help in defining the semantic content of the document and play an important role in classification be given higher weightage than the others. Over the years, there has been much research in the information retrieval field on term weighting schemes. The most important term-weighting techniques are described below : 
+\begin{enumerate}
+\item{\textbf{One Hot Representation} : }This is the most trivial representation, where each document is represented by a vector that is size of the vocabulary. Each element in the vector is either a $0$ or a $1$ to denote the absence or presence of a specific term in the document.
+
+\item{\textbf{Term Frequency (tf))} : }The term frequency representation weighs the terms present in the document relative to their occurence frequency in the document. Hence a document $d$ is represented as, $d$ $=$ $(w_{1}, w_{2}, \ldots, w_{|V|})$, where, $w_{k}$ is the number of times the term $k$ appears in the document $d$. 
+% \begin{equation}
+% w_{i} = \frac{N_{i,d}}{N_{d}}
+% \end{equation}
+% where, $N_{i,d}$ is the number of times, term $i$ occurs in document $d$ and $N_{d}$ is the total number of terms in the document. The document can also be represented only by the counts of terms, but normalization is done to reduce the effect of document length.
+\item{\textbf{Inverse Document Frequency (idf)} : }Though using \emph{tf} as a term weighting scheme is a good starting point, it faces a challenge when high frequency terms are not concentrated in a few particular documents but are prevalent in the whole collection. Those terms then stop being characteristic of the semantic content of a few documents and need not be given high weightage. To overcome this problem, \cite{salton1988term} suggested a new term weighting called the inverse document frequency (idf). The \emph{idf} weight of a term varies inversely with the number of documents $n$ it belongs to in a collection of total $N$ documents. A typical \emph{idf} vector can be computed as 
+\begin{equation}
+w_{k} = \log \frac{N}{n}
+\end{equation}
+\item{\textbf{Term Frequency Inverse Document Frequency (tf-idf)} : }Given the above two term weighing schemes, it is clear that an important term in a document should have high \emph{tf} but a low overall collection frequency (\emph{idf}). This suggests that a reasonable measure for term importance may be then obtained by the \emph{tf} and the \emph{idf} (\emph{tf}$\times$\emph{idf}). As we will see in the results section, the \emph{tf-idf} weighed bag-of-words document representation gives one of the best accuracies in the multi-label text classification task.
+\end{enumerate}
+A common feature in the bag-of-words document representation is the \emph{normalization factor}\citep{salton1988term} introduced to reduce the effect of varying document lengths and give equal weightage to documents of all lengths when learning the classifier for text categorization. \todo{Do we put how normalization is done?}
+Another feature added to the bag-of-words representation is the removal of stop-words (short function words that do not add to the semantic content of the document) and words that occur infrequently to make the document vector more meaningful.
+
+\subsection{Dimensionality Reduction / Feature Selection}
+The bag-of-words representation scheme has several drawbacks but the most important drawback it suffers from is that document vectors are very sparse and high dimensional. Typical vocabulary sizes of a moderate-sized document collection ranges from tens to hundereds of thousands of terms which is prohibitively high for many learning algorithms. 
+To overcome this issue of high-dimensional bag-of-words document representations, automatic feature selection is performed that removes uninformative terms according to corpus statistics and constructs new orthogonal features by combining several lower level features (terms/words). Several techniques used in practice are discussed below, 
+\begin{enumerate}
+\item{\textbf{Information Gain} : }Information Gain is widely used as a term-goodness criterion in the field of machine learning, mainly in decision trees \citep{quinlan1986induction} and also in text classification \citep{lewis1994comparison}, \citep{moulinier1996text}. It is a feature space pruning technique that measures the number of bits of information obtained(entropy) for category prediction by knowing the presence or absence of a term in a document. For terms where the information gain was below some predefined threshold are not considered in the document vector representation.  The information gain of a term $t$ is defined as
+\begin{equation}
+G(t) = -\sum_{i=1}^{|C|} P(c_{i})\log P(c_{i}) + P(t)\sum_{i=1}^{|C|} P(c_{i}|t)\log P(c_{i}|t) + P(~t)\sum_{i=1}^{|C|} P(c_{i}|~t)\log P(c_{i}|~t)
+\end{equation}
+
+\item{\textbf{Mutual Information} : }Similar to the Information Gain scheme, Mutual Information estimates the information shared between a term and a category and prunes terms that are below a specific threshold. The mutual information between a term $t$ and a category $c$ is estimated in the following fashion, 
+\begin{equation}
+I(t,c) = \log \frac{P(t \wedge c)}{P(t) \times P(c)}
+\end{equation}
+To measure the goodness of a term in global feature selection, the category specific scores of a term are combined using, 
+\begin{equation}
+I_{avg}(t) = \sum_{i=1}^{|C|} P(c_{i})I(t,c_{i})
+\end{equation}
+
+\item{\textbf{$\chi^{2}$ Statistic} : }The $\chi^{2}$ statistic measures the lack of independence a term $t$ and a category $c$ and can be compared to the $\chi^{2}$ distribution with one degree of freedom. The term-goodness factor is calculated for each term-category pair and is averaged as above. The major difference between Mutual Information and $\chi^{2}$ statistic is that the later is a normalized value and the goodness factors across terms are comparable for the same category.
+
+\item{\textbf{Latent Semantic Indexing (LSI)} : }
+
+
+\end{enumerate}

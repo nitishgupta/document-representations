@@ -1,0 +1,123 @@
+\contentsline {chapter}{Abstract}{i}{figure.caption.1}
+\contentsline {chapter}{List of Tables}{x}{chapter*.6}
+\contentsline {chapter}{List of Figures}{xi}{chapter*.7}
+\contentsline {chapter}{List of Algorithms}{xiii}{chapter*.8}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.9}
+\contentsline {section}{\numberline {1.1}Motivation}{2}{section.10}
+\contentsline {subsection}{\numberline {1.1.1}Different granularity requirements of different tasks}{2}{subsection.11}
+\contentsline {subsection}{\numberline {1.1.2}Saturation in Fine-Grained WSD}{2}{subsection.12}
+\contentsline {section}{\numberline {1.2}WordNet}{3}{section.15}
+\contentsline {section}{\numberline {1.3}Problem Statement}{5}{section.18}
+\contentsline {section}{\numberline {1.4}Related Work}{6}{section.21}
+\contentsline {paragraph}{}{6}{section*.22}
+\contentsline {paragraph}{}{6}{section*.23}
+\contentsline {subsection}{\numberline {1.4.1}Merging senses based on ontology structure}{6}{subsection.24}
+\contentsline {paragraph}{}{7}{section*.30}
+\contentsline {subsection}{\numberline {1.4.2}Clustering based on Word Sense similarity estimated from External Corpora}{7}{subsection.31}
+\contentsline {paragraph}{}{7}{section*.32}
+\contentsline {paragraph}{}{8}{section*.34}
+\contentsline {subsection}{\numberline {1.4.3}Exploiting Disagreements: between WSD Systems or between Human Annotators}{8}{subsection.35}
+\contentsline {paragraph}{}{9}{section*.37}
+\contentsline {subsection}{\numberline {1.4.4}Using translational equivalences of word senses}{9}{subsection.38}
+\contentsline {subsection}{\numberline {1.4.5}Mapping to coarser sense inventories}{9}{subsection.40}
+\contentsline {subsection}{\numberline {1.4.6}Clustering senses using supervision}{10}{subsection.41}
+\contentsline {section}{\numberline {1.5}Discussion}{10}{section.42}
+\contentsline {subsection}{\numberline {1.5.1}Dropping Infrequent WordNet Synsets}{10}{subsection.43}
+\contentsline {subsection}{\numberline {1.5.2}Clustering Synsets Vs Clustering Senses}{12}{subsection.47}
+\contentsline {section}{\numberline {1.6}Evolution of Evaluation Frameworks}{12}{section.49}
+\contentsline {section}{\numberline {1.7}Broad Overview of our Approach}{14}{section.50}
+\contentsline {section}{\numberline {1.8}Organization of Thesis}{14}{section.51}
+\contentsline {chapter}{\numberline {2}Related Work}{15}{chapter.52}
+\contentsline {section}{\numberline {2.1}Text Representation}{15}{section.53}
+\contentsline {subsection}{\numberline {2.1.1}Bag of Words}{16}{subsection.54}
+\contentsline {subsection}{\numberline {2.1.2}Dimensionality Reduction / Feature Selection}{18}{subsection.60}
+\contentsline {chapter}{\numberline {3}Supervised Synset Similarity}{21}{chapter.68}
+\contentsline {section}{\numberline {3.1}Motivation}{21}{section.69}
+\contentsline {section}{\numberline {3.2}Algorithm Outline}{21}{section.70}
+\contentsline {section}{\numberline {3.3}Gold standard sense clustering data}{22}{section.71}
+\contentsline {subsection}{\numberline {3.3.1}Senseval-2 Dataset}{22}{subsection.72}
+\contentsline {paragraph}{Structure of dataset}{22}{section*.73}
+\contentsline {paragraph}{Binary Classification Data Generation}{23}{section*.74}
+\contentsline {paragraph}{Statistics}{23}{section*.76}
+\contentsline {paragraph}{Quality of Dataset}{24}{section*.78}
+\contentsline {subsection}{\numberline {3.3.2}OntoNotes Dataset}{24}{subsection.79}
+\contentsline {paragraph}{Structure of Dataset}{24}{section*.82}
+\contentsline {paragraph}{Binary Classification Data Generation}{24}{section*.83}
+\contentsline {paragraph}{Statistics}{25}{section*.90}
+\contentsline {paragraph}{Binary Classification Dataset}{26}{section*.96}
+\contentsline {paragraph}{Quality of Dataset}{26}{section*.98}
+\contentsline {section}{\numberline {3.4}Feature Engineering}{27}{section.100}
+\contentsline {subsection}{\numberline {3.4.1}WordNet based Features}{28}{subsection.101}
+\contentsline {subsubsection}{\numberline {3.4.1.1}Similarity Measures}{28}{subsubsection.102}
+\contentsline {subsubsection}{\numberline {3.4.1.2}Features}{30}{subsubsection.116}
+\contentsline {subsection}{\numberline {3.4.2}Features derived from other Corpora}{31}{subsection.126}
+\contentsline {subsubsection}{\numberline {3.4.2.1}eXtended WordNet Domains}{31}{subsubsection.127}
+\contentsline {subsubsection}{\numberline {3.4.2.2}BabelNet}{31}{subsubsection.128}
+\contentsline {subsubsection}{\numberline {3.4.2.3}SentiWordNet}{32}{subsubsection.129}
+\contentsline {subsubsection}{\numberline {3.4.2.4}Mapping of WordNet to Oxford English Dictionary(OED)}{32}{subsubsection.130}
+\contentsline {section}{\numberline {3.5}Classifier and Training}{32}{section.132}
+\contentsline {subsection}{\numberline {3.5.1}Support Vector Machines}{32}{subsection.133}
+\contentsline {subsection}{\numberline {3.5.2}Feature Normalization}{34}{subsection.135}
+\contentsline {subsubsection}{\numberline {3.5.2.1}Feature Scaling}{34}{subsubsection.136}
+\contentsline {subsubsection}{\numberline {3.5.2.2}Feature Standardization}{34}{subsubsection.138}
+\contentsline {section}{\numberline {3.6}Implementation}{35}{section.140}
+\contentsline {section}{\numberline {3.7}Experimental Setup and Evaluation}{35}{section.145}
+\contentsline {subsection}{\numberline {3.7.1}Train and Test datasets}{35}{subsection.146}
+\contentsline {subsection}{\numberline {3.7.2}Effect of class distribution in learning}{36}{subsection.150}
+\contentsline {subsection}{\numberline {3.7.3}Effect of normalization schemes and kernels}{36}{subsection.151}
+\contentsline {subsection}{\numberline {3.7.4}Feature Analysis}{38}{subsection.154}
+\contentsline {subsubsection}{\numberline {3.7.4.1}Information Gain and Gain Ratio Study}{38}{subsubsection.155}
+\contentsline {paragraph}{Information Gain}{38}{section*.156}
+\contentsline {paragraph}{Gain Ratio}{39}{section*.160}
+\contentsline {paragraph}{Evaluation}{39}{section*.163}
+\contentsline {subsubsection}{\numberline {3.7.4.2}Feature Ablation Study}{40}{subsubsection.165}
+\contentsline {subsubsection}{\numberline {3.7.4.3}Observations}{41}{subsubsection.167}
+\contentsline {paragraph}{WordNet Similarity Features}{41}{section*.168}
+\contentsline {paragraph}{WordNet Based Features}{41}{section*.169}
+\contentsline {paragraph}{BabelNet Features}{42}{section*.170}
+\contentsline {paragraph}{Domain Similarity Features}{42}{section*.172}
+\contentsline {paragraph}{Oxford English Dictionary Mapping}{42}{section*.173}
+\contentsline {paragraph}{SentiWordNet Features}{42}{section*.174}
+\contentsline {section}{\numberline {3.8}Discussion}{43}{section.175}
+\contentsline {subsection}{\numberline {3.8.1}Inconsistent Predictions}{43}{subsection.176}
+\contentsline {subsection}{\numberline {3.8.2}Coverage of the SVM}{43}{subsection.177}
+\contentsline {subsection}{\numberline {3.8.3}Insufficient Data for Learning}{43}{subsection.178}
+\contentsline {section}{\numberline {3.9}Conclusions and Future Work}{44}{section.179}
+\contentsline {chapter}{\numberline {4}Semi-Supervised Synset Similarity}{45}{chapter.182}
+\contentsline {section}{\numberline {4.1}Motivation}{45}{section.183}
+\contentsline {section}{\numberline {4.2}SimRank}{45}{section.184}
+\contentsline {subsection}{\numberline {4.2.1}Introduction}{45}{subsection.185}
+\contentsline {subsection}{\numberline {4.2.2}Solution and its Properties}{46}{subsection.189}
+\contentsline {subsection}{\numberline {4.2.3}Random Surfer Pair Model}{47}{subsection.198}
+\contentsline {section}{\numberline {4.3}Personalized Weighted SimRank}{48}{section.200}
+\contentsline {subsection}{\numberline {4.3.1}Weighted SimRank}{48}{subsection.201}
+\contentsline {subsection}{\numberline {4.3.2}Personalizing SimRank}{48}{subsection.205}
+\contentsline {subsection}{\numberline {4.3.3}Solution of Personalized SimRank}{49}{subsection.207}
+\contentsline {section}{\numberline {4.4}Personalized SimRank for Learning Synset Similarity}{50}{section.209}
+\contentsline {subsection}{\numberline {4.4.1}Algorithm Outline}{50}{subsection.210}
+\contentsline {subsection}{\numberline {4.4.2}Estimating Posterior Probabilities from SVM Scores}{50}{subsection.211}
+\contentsline {subsection}{\numberline {4.4.3}Importance of Parameter $C$ }{51}{subsection.215}
+\contentsline {section}{\numberline {4.5}Coarsening WordNet}{52}{section.220}
+\contentsline {section}{\numberline {4.6}Experimental Setup and Evaluation}{53}{section.223}
+\contentsline {subsection}{\numberline {4.6.1}Estimating Posterior Probabilities from SVM Scores}{53}{subsection.224}
+\contentsline {subsection}{\numberline {4.6.2}Semi-Supervised Similarity Learning}{54}{subsection.225}
+\contentsline {subsection}{\numberline {4.6.3}Coarsening WordNet}{54}{subsection.227}
+\contentsline {section}{\numberline {4.7}Conclusions and Future Work}{56}{section.238}
+\contentsline {subsection}{\numberline {4.7.1}Conclusions}{56}{subsection.239}
+\contentsline {subsection}{\numberline {4.7.2}Future Work}{59}{subsection.240}
+\contentsline {subsubsection}{\numberline {4.7.2.1}Differentiating WordNet relations}{59}{subsubsection.241}
+\contentsline {subsubsection}{\numberline {4.7.2.2}Speeding up the implementation}{59}{subsubsection.242}
+\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{61}{chapter.243}
+\contentsline {section}{\numberline {5.1}Future Work}{62}{section.244}
+\contentsline {subsection}{\numberline {5.1.1}Correcting Inconsistencies}{62}{subsection.245}
+\contentsline {subsection}{\numberline {5.1.2}Graph based similarity estimation}{62}{subsection.246}
+\contentsline {subsection}{\numberline {5.1.3}Graded Evaluation of WSD Task}{62}{subsection.247}
+\contentsline {chapter}{Appendices}{67}{section*.249}
+\contentsline {chapter}{\numberline {A}Lexicographer Files}{67}{appendix.250}
+\contentsline {chapter}{\numberline {B}Results for SVM Experiments}{71}{appendix.253}
+\contentsline {chapter}{\numberline {C}Weighted SimRank}{75}{appendix.260}
+\contentsline {section}{\numberline {C.1}Random Surfer-Pairs Model}{75}{section.261}
+\contentsline {section}{\numberline {C.2}Equivalence}{75}{section.263}
+\contentsline {chapter}{\numberline {D}Personalized SimRank Properties}{77}{appendix.266}
+\contentsline {chapter}{\numberline {E}Probabilistic Outputs for SVM}{81}{appendix.271}
+\contentsline {chapter}{Bibliography}{85}{appendix.271}

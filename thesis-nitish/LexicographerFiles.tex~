@@ -1,0 +1,76 @@
+\chapter{Lexicographer Files}
+\label{appendix:lexicographerFiles}
+The names of the lexicographer files and their corresponding file numbers are listed below along with a brief description each file's contents.
+\begin{center}
+\begin{longtable}{|l|c|p{7cm}|}
+\hline
+File Number & Name & Contents \\ \hline
+00 & adj.all & all adjective clusters \\ \hline
+01 & adj.pert & relational adjectives (pertainyms) \\ \hline
+02 & adv.all & all adverbs\\ \hline
+03 & noun.Tops & unique beginner for nouns\\ \hline
+04 & noun.act & nouns denoting acts or actions\\ \hline
+05 & noun.animal & nouns denoting animals\\ \hline
+06 & noun.artifact & nouns denoting man-made objects\\ \hline
+07 & noun.attribute & nouns denoting attributes of people and objects\\ \hline
+08 & noun.body & nouns denoting body parts\\ \hline
+09 & noun.cognition & nouns denoting cognitive processes and contents\\ \hline
+10 & noun.communication & nouns denoting communicative processes and contents\\ \hline
+11 & noun.event & nouns denoting natural events\\ \hline
+12 & noun.feeling & nouns denoting feelings and emotions\\ \hline
+13 & noun.food & nouns denoting foods and drinks\\ \hline
+14 & noun.group & nouns denoting groupings of people or objects\\ \hline
+15 & noun.location & nouns denoting spatial position\\ \hline
+16 & noun.motive & nouns denoting goals\\ \hline
+17 & noun.object & nouns denoting natural objects (not man-made)\\ \hline
+18 & noun.person & nouns denoting people\\ \hline
+19 & noun.phenomenon & nouns denoting natural phenomena\\ \hline
+20 & noun.plant & nouns denoting plants\\ \hline
+21 & noun.possession & nouns denoting possession and transfer of possession\\ \hline
+22 & noun.process & nouns denoting natural processes\\ \hline
+23 & noun.quantity & nouns denoting quantities and units of measure\\ \hline
+24 & noun.relation & nouns denoting relations between people or things or ideas\\ \hline
+25 & noun.shape	nouns & denoting two and three dimensional shapes\\ \hline
+26 & noun.state	nouns & denoting stable states of affairs\\ \hline
+27 & noun.substance & nouns denoting substances\\ \hline
+28 & noun.time & nouns denoting time and temporal relations\\ \hline
+29 & verb.body & verbs of grooming, dressing and bodily care\\ \hline
+30 & verb.change & verbs of size, temperature change, intensifying, etc.\\ \hline
+31 & verb.cognition & verbs of thinking, judging, analyzing, doubting\\ \hline
+32 & verb.communication & verbs of telling, asking, ordering, singing\\ \hline
+33 & verb.competition & verbs of fighting, athletic activities\\ \hline
+34 & verb.consumption & verbs of eating and drinking\\ \hline
+35 & verb.contact & verbs of touching, hitting, tying, digging\\ \hline
+36 & verb.creation & verbs of sewing, baking, painting, performing\\ \hline
+37 & verb.emotion & verbs of feeling\\ \hline
+38 & verb.motion & verbs of walking, flying, swimming\\ \hline
+39 & verb.perception & verbs of seeing, hearing, feeling\\ \hline
+40 & verb.possession & verbs of buying, selling, owning\\ \hline
+41 & verb.social & verbs of political and social activities and events\\ \hline
+42 & verb.stative & verbs of being, having, spatial relations\\ \hline
+43 & verb.weather & verbs of raining, snowing, thawing, thundering\\ \hline
+44 & adj.ppl & participial adjectives\\ \hline
+\caption{Lexicographer Files and Description} % needs to go inside longtable environment
+\label{tab:lexicographerFiles}
+\end{longtable}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

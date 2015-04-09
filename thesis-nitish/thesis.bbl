@@ -1,0 +1,51 @@
+\begin{thebibliography}{7}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Lewis(1992)]{lewis1992text}
+David~D Lewis.
+\newblock Text representation for intelligent text retrieval: a
+  classification-oriented view.
+\newblock \emph{Text-based intelligent systems: current research and practice
+  in information extraction and retrieval}, pages 179--197, 1992.
+
+\bibitem[Lewis and Ringuette(1994)]{lewis1994comparison}
+David~D Lewis and Marc Ringuette.
+\newblock A comparison of two learning algorithms for text categorization.
+\newblock In \emph{Third annual symposium on document analysis and information
+  retrieval}, volume~33, pages 81--93, 1994.
+
+\bibitem[Moulinier et~al.(1996)Moulinier, Raskinis, and
+  Ganascia]{moulinier1996text}
+Isabelle Moulinier, Gailius Raskinis, and J~Ganascia.
+\newblock Text categorization: a symbolic approach.
+\newblock In \emph{proceedings of the fifth annual symposium on document
+  analysis and information retrieval}, pages 87--99, 1996.
+
+\bibitem[Quinlan(1983)]{quinlan1983learning}
+J~Ross Quinlan.
+\newblock Learning efficient classification procedures and their application to
+  chess end games.
+\newblock In \emph{Machine learning}, pages 463--482. Springer, 1983.
+
+\bibitem[Quinlan(1986)]{quinlan1986induction}
+J.~Ross Quinlan.
+\newblock Induction of decision trees.
+\newblock \emph{Machine learning}, 1\penalty0 (1):\penalty0 81--106, 1986.
+
+\bibitem[Salton and Buckley(1988)]{salton1988term}
+Gerard Salton and Christopher Buckley.
+\newblock Term-weighting approaches in automatic text retrieval.
+\newblock \emph{Information processing \& management}, 24\penalty0
+  (5):\penalty0 513--523, 1988.
+
+\bibitem[Salton and Yang(1973)]{salton1973specification}
+Gerard Salton and Chung-Shu Yang.
+\newblock On the specification of term values in automatic indexing.
+\newblock \emph{Journal of documentation}, 29\penalty0 (4):\penalty0 351--372,
+  1973.
+
+\end{thebibliography}

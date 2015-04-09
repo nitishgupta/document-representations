@@ -1,0 +1,178 @@
+\documentclass[12pt,a4paper,openright]{book}
+
+\usepackage[left=3.5cm,top=2.5cm,right=2.5cm,bottom=2.5cm]{geometry} %margins
+\usepackage{amsthm} % theorem environment
+\usepackage{amsmath} % math
+\usepackage{amssymb} % symbols
+\usepackage{graphics} % for including figures
+\usepackage{graphicx} % for including figures
+\usepackage{setspace} % for doublespacing singlespacing etc.
+\usepackage{datetime} % to write the date in the desired format
+\usepackage[title, titletoc]{appendix}
+\usepackage{subfigure}
+\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage{longtable}
+\usepackage{bm}
+\usepackage{verbatim}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{framed}
+\usepackage{multirow}
+\usepackage[square, comma, sort&compress]{natbib}
+\usepackage{hyperref}
+\usepackage{fixltx2e}
+\usepackage{url}
+\usepackage{pdfpages}
+\usepackage{subcaption}
+%\usepackage{hyperref}
+%\usepackage{afterpage}
+\usepackage{fancyhdr}
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+\graphicspath{{img/}}
+
+\pagestyle{myheadings} 
+
+%\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{-40pt}
+\setlength{\LTcapwidth}{\textwidth}
+% % % % % % % % % % % % % % % % %
+
+%all this for generating title and certificate
+\newdateformat{monthyear}{\monthname[\THEMONTH], \THEYEAR}
+\def\title{Merging Word Senses}
+\def\subtitle{}
+\def\author{Sumit Bhagwani}
+\def\rollno{Y8127515}
+\def\degree{B.Tech. - M.Tech. (Dual Degree)}
+\def\department{Department of Computer Science and Engineering}
+\def\shortdepartment{CSE}
+\def\institute{Indian Institute of Technology Kanpur}
+\def\shortinstitute{I.I.T. Kanpur}
+\def\longinstitute{Indian Institute of Technology, Kanpur}
+\def\advisor{Prof. Harish Karnick}
+\def\advisordepartment{Department of Computer Science and Engineering}
+\def\instituteaddress{Kanpur-208016}
+
+% % % % % % % % % % % % % % % % % 
+
+\hypersetup{
+	bookmarks=true,
+	bookmarksopen=true,
+	bookmarksopenlevel=0,
+	bookmarksnumbered=true,
+	hypertexnames=false,
+	colorlinks=true,
+	linkcolor={black},
+	citecolor={black},
+	urlcolor={black},
+	breaklinks=true,
+	pdfauthor={\author},
+	pdftitle={\title}
+}
+
+
+\begin{document}
+	\frontmatter
+	\thispagestyle{empty}
+	\include{title}
+	
+	\newpage
+	\thispagestyle{empty}
+	\mbox{}
+
+	
+	\thispagestyle{empty}
+ 	%\include{certificate} % not to be used.
+        \includepdf{sumitbCertificate.pdf}
+	%\pagestyle{myheadings} % not be used I think
+	\pagenumbering{roman} 
+	\pagestyle{plain}
+	
+	\newpage
+	\thispagestyle{empty}
+	\mbox{}
+
+	\setcounter{page}{1} 
+	%\setcounter{page}{2}
+	\addcontentsline{toc}{chapter}{Abstract}
+	
+	\onehalfspace
+	\include{abstract}
+	
+	\newpage
+	\thispagestyle{empty}
+	\mbox{}
+
+	\setcounter{page}{2} 
+	\include{Dedication}
+	
+	\newpage
+	\thispagestyle{empty}
+	\mbox{}
+
+	\setcounter{page}{3} 
+	\include{acknowledgement}
+
+	\newpage
+	\thispagestyle{empty}
+	\mbox{}
+
+	\setcounter{page}{4} 
+	
+        \setcounter{secnumdepth}{3}
+	\doublespacing
+	\setcounter{tocdepth}{3}
+	\tableofcontents
+	
+	\listoftables
+	\addcontentsline{toc}{chapter}{List of Tables}
+	
+	\listoffigures
+	\addcontentsline{toc}{chapter}{List of Figures}
+	
+	\listofalgorithms
+	\addcontentsline{toc}{chapter}{List of Algorithms} 
+		
+	\newpage
+	\thispagestyle{empty}
+	\mbox{}
+ 
+	\mainmatter
+	\doublespacing
+	\pagenumbering{arabic}
+	\pagestyle{myheadings}
+	
+	%\pagestyle{fancy}
+	%\fancyhead[LO,RE]{}
+	
+	%\include{Introduction}
+	%\input{Background}
+	\include{Intro-Background}
+	\input{Supervised}
+	\input{SimRank}                
+        \input{Conclusion}
+        \appendix
+        \appendixpage
+        \addappheadtotoc
+        \input{LexicographerFiles}
+        \input{SupervisedResults}
+        \input{WeightedSimRank}
+        \input{PersonalizedSimRankProperties}
+        \input{Platt}                
+	\backmatter
+	\singlespacing
+	\addcontentsline{toc}{chapter}{Bibliography}
+	%\bibliographystyle{unsrt}
+%       \bibliographystyle{alpha}
+	\bibliographystyle{plainnat}
+	\bibliography{references}
+
+\end{document}

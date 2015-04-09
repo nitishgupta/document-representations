@@ -1,0 +1,10 @@
+@MASTERSTHESIS{mastersthesis-full,
+   author = "Sumit Bhagwani",
+   title = "Mastering Thesis Writing",
+   school = "Indian Institute",
+   type = "Master's project",
+   address = "English Department",
+   month = jun # "-" # aug,
+   year = 1988,
+   note = "This is a full MASTERSTHESIS entry",
+}

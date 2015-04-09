@@ -1,0 +1,33 @@
+\chapter{Conclusions and Future Work}
+\label{chapter:conclusion}
+
+We presented a classifier for automatic synset merging using a rich collection of features derived from the information encoded in WordNet and other lexical resources mapped to WordNet available in the public domain. We show the effectiveness of the features used in classification and observe that the features relating the synset to the domain it belongs, obtained from eXtended WordNet Domains project \citep{Gonzalez:XWND} provide a useful cue for sense merging. Since the classifier was learnt only on synset pairs sharing at least one word, we sought out to estimate synset similarity for other pairs.
+
+To learn similarity between synset pairs not sharing a word, we proposed a variant of SimRank \citep{Jeh02simrank}: Personalized Weighted SimRank. With this model, we coarsened senses by partitioning the synsets using Connected Components. We study the clusters obtained by varying the decay parameter and report a maximum performance improvement of 5.78\% on supervised systems and 7.18\% on an unsupervised system.
+
+The synset similarity measure proposed can be extended for other POS as well. The generic nature of the similarity gives us the flexibility of using other clustering algorithms for experimentation.
+
+\section{Future Work}
+\subsection{Correcting Inconsistencies}
+We discussed in section \ref{section:SVMInconsistentPredictions} the problem of inconsistent judgements by a classifier, Support Vector Machines in our case. Since this issue can arise with any classifier, we need to focus on correcting such mistakes either automatically or semi-automatically. An automatic attempt can make use of the WordNet ontology to decide what to do in case of such inconsistencies.
+
+A semi-supervised approach to correct inconsistencies can be used in which we ask annotators to label such pairs. Appending these annotations obtained to the training dataset, we relearn our classifiers hoping that now they will be able to learn decision boundaries in a better manner. The idea is closely related to Active Learning frameworks.
+
+The inconsistencies also question whether the data from which we learn the model is sufficient or not. The dearth of manually sense tagged resources, be it sense annotated texts or binary/graded sense similarity judgements, is already acknowledged by the NLP community. This is a major barrier for a knowledge-intensive task like WSD and is referred as  the \textit{knowledge acquisition bottleneck}. 
+
+\begin{comment}
+\subsection{Modifying Feature Space - Correlated Features}
+Many features used in learning the Support Vector Machine are possibly correlated for eg. the $L1$ distance, $L2$  distance and the cosine similarity between the domain belongingness vectors of the two synsets. We can use techniques like Principal Component Analysis to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables. One can also try to use systems like Deep Belief Networks \citep{hinton2006DBN} to get combinations of features which can be more differentiating than the original set of features.
+\end{comment}
+
+\subsection{Graph based similarity estimation}
+We proposed a simple variant of SimRank \citep{Jeh02simrank} to estimate similarity between synsets. We show that the clustering obtained using the similarity metric obtained indeed performs well. This encourages us to study more about Graph based similarity learning methods as they enable us to employ available wide-coverage knowledge bases.
+
+\subsection{Graded Evaluation of WSD Task}
+Word Sense Disambiguation is the task of selecting the apt sense for a word among its listed senses. The evaluation frameworks used in literature use a binary scoring i.e. if the sense marked as answer by the system matches the sense annotated by humans, then it receives full credit otherwise it receives no credit. The problem with this scoring is that it penalizes all the wrong answers equally. 
+
+Consider the noun senses of the word \textit{fish}(refer example \ref{example:fish}). We think that a WSD system mistagging the astrology sense of the word \textit{fish} with its food sense should be penalized more than a system confusing between its two astrology related senses. So, we propose that the scoring should be graded instead of binary. Let $L$ be the list of senses of the word, $CS$ be the correct sense and $Sim$ be a similarity estimator between senses. For eg. the score given to the assigned sense $AS \in L$ can be
+\begin{equation}
+\label{eq:proposedFramework}
+score(AS,CS,L) = {Sim(AS,CS)}
+\end{equation}
