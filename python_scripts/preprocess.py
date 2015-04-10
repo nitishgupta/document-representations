@@ -44,10 +44,18 @@ def fileNames():
 # tokenizes and removes punctuations. removes stranded numbers. joins using space.
 def processText(text):
 	#sentence = sentence.lower()					# Keeping case-sensitive sentences
-	tokenizer = RegexpTokenizer(r'\w+')
+	tokenizer = RegexpTokenizer('\w+|\d.+')
 	tokens = tokenizer.tokenize(text)
-	tokens = [token for token in tokens if not (token.isdigit() or token[0] == '-' and token[1:].isdigit())]
-	return " ".join(tokens)
+	tokens_processed = []
+	for token in tokens:
+		if (token.isdigit() or (token[0] == '-' and token[1:].isdigit())):
+			tokens_processed.append("number")
+		else:
+			tokens_processed.append(token)
+
+	#tokens = [token for token in tokens if not (token.isdigit() or token[0] == '-' and token[1:].isdigit())]
+	#return " ".join(tokens)
+	return " ".join(tokens_processed)
 
 # Output - join sentences using tab delimiter
 def writeOutput(intext, fo):
