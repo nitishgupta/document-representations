@@ -2,98 +2,10 @@
 \BOOKMARK [0][-]{chapter*.6}{List of Tables}{}% 2
 \BOOKMARK [0][-]{chapter*.7}{List of Figures}{}% 3
 \BOOKMARK [0][-]{chapter*.8}{List of Algorithms}{}% 4
-\BOOKMARK [0][-]{chapter.9}{1 Introduction}{}% 5
-\BOOKMARK [1][-]{section.10}{1.1 Motivation}{chapter.9}% 6
-\BOOKMARK [2][-]{subsection.11}{1.1.1 Different granularity requirements of different tasks}{section.10}% 7
-\BOOKMARK [2][-]{subsection.12}{1.1.2 Saturation in Fine-Grained WSD}{section.10}% 8
-\BOOKMARK [1][-]{section.15}{1.2 WordNet}{chapter.9}% 9
-\BOOKMARK [1][-]{section.18}{1.3 Problem Statement}{chapter.9}% 10
-\BOOKMARK [1][-]{section.21}{1.4 Related Work}{chapter.9}% 11
-\BOOKMARK [2][-]{subsection.24}{1.4.1 Merging senses based on ontology structure}{section.21}% 12
-\BOOKMARK [2][-]{subsection.31}{1.4.2 Clustering based on Word Sense similarity estimated from External Corpora}{section.21}% 13
-\BOOKMARK [2][-]{subsection.35}{1.4.3 Exploiting Disagreements: between WSD Systems or between Human Annotators}{section.21}% 14
-\BOOKMARK [2][-]{subsection.38}{1.4.4 Using translational equivalences of word senses}{section.21}% 15
-\BOOKMARK [2][-]{subsection.40}{1.4.5 Mapping to coarser sense inventories}{section.21}% 16
-\BOOKMARK [2][-]{subsection.41}{1.4.6 Clustering senses using supervision}{section.21}% 17
-\BOOKMARK [1][-]{section.42}{1.5 Discussion}{chapter.9}% 18
-\BOOKMARK [2][-]{subsection.43}{1.5.1 Dropping Infrequent WordNet Synsets}{section.42}% 19
-\BOOKMARK [2][-]{subsection.47}{1.5.2 Clustering Synsets Vs Clustering Senses}{section.42}% 20
-\BOOKMARK [1][-]{section.49}{1.6 Evolution of Evaluation Frameworks}{chapter.9}% 21
-\BOOKMARK [1][-]{section.50}{1.7 Broad Overview of our Approach}{chapter.9}% 22
-\BOOKMARK [1][-]{section.51}{1.8 Organization of Thesis}{chapter.9}% 23
-\BOOKMARK [0][-]{chapter.52}{2 Related Work}{}% 24
-\BOOKMARK [1][-]{section.53}{2.1 Text Representation}{chapter.52}% 25
-\BOOKMARK [2][-]{subsection.54}{2.1.1 Bag of Words}{section.53}% 26
-\BOOKMARK [2][-]{subsection.60}{2.1.2 Dimensionality Reduction / Feature Selection}{section.53}% 27
-\BOOKMARK [0][-]{chapter.68}{3 Supervised Synset Similarity}{}% 28
-\BOOKMARK [1][-]{section.69}{3.1 Motivation}{chapter.68}% 29
-\BOOKMARK [1][-]{section.70}{3.2 Algorithm Outline}{chapter.68}% 30
-\BOOKMARK [1][-]{section.71}{3.3 Gold standard sense clustering data}{chapter.68}% 31
-\BOOKMARK [2][-]{subsection.72}{3.3.1 Senseval-2 Dataset}{section.71}% 32
-\BOOKMARK [2][-]{subsection.79}{3.3.2 OntoNotes Dataset}{section.71}% 33
-\BOOKMARK [1][-]{section.100}{3.4 Feature Engineering}{chapter.68}% 34
-\BOOKMARK [2][-]{subsection.101}{3.4.1 WordNet based Features}{section.100}% 35
-\BOOKMARK [3][-]{subsubsection.102}{3.4.1.1 Similarity Measures}{subsection.101}% 36
-\BOOKMARK [3][-]{subsubsection.116}{3.4.1.2 Features}{subsection.101}% 37
-\BOOKMARK [2][-]{subsection.126}{3.4.2 Features derived from other Corpora}{section.100}% 38
-\BOOKMARK [3][-]{subsubsection.127}{3.4.2.1 eXtended WordNet Domains}{subsection.126}% 39
-\BOOKMARK [3][-]{subsubsection.128}{3.4.2.2 BabelNet}{subsection.126}% 40
-\BOOKMARK [3][-]{subsubsection.129}{3.4.2.3 SentiWordNet}{subsection.126}% 41
-\BOOKMARK [3][-]{subsubsection.130}{3.4.2.4 Mapping of WordNet to Oxford English Dictionary\(OED\)}{subsection.126}% 42
-\BOOKMARK [1][-]{section.132}{3.5 Classifier and Training}{chapter.68}% 43
-\BOOKMARK [2][-]{subsection.133}{3.5.1 Support Vector Machines}{section.132}% 44
-\BOOKMARK [2][-]{subsection.135}{3.5.2 Feature Normalization}{section.132}% 45
-\BOOKMARK [3][-]{subsubsection.136}{3.5.2.1 Feature Scaling}{subsection.135}% 46
-\BOOKMARK [3][-]{subsubsection.138}{3.5.2.2 Feature Standardization}{subsection.135}% 47
-\BOOKMARK [1][-]{section.140}{3.6 Implementation}{chapter.68}% 48
-\BOOKMARK [1][-]{section.145}{3.7 Experimental Setup and Evaluation}{chapter.68}% 49
-\BOOKMARK [2][-]{subsection.146}{3.7.1 Train and Test datasets}{section.145}% 50
-\BOOKMARK [2][-]{subsection.150}{3.7.2 Effect of class distribution in learning}{section.145}% 51
-\BOOKMARK [2][-]{subsection.151}{3.7.3 Effect of normalization schemes and kernels}{section.145}% 52
-\BOOKMARK [2][-]{subsection.154}{3.7.4 Feature Analysis}{section.145}% 53
-\BOOKMARK [3][-]{subsubsection.155}{3.7.4.1 Information Gain and Gain Ratio Study}{subsection.154}% 54
-\BOOKMARK [3][-]{subsubsection.165}{3.7.4.2 Feature Ablation Study}{subsection.154}% 55
-\BOOKMARK [3][-]{subsubsection.167}{3.7.4.3 Observations}{subsection.154}% 56
-\BOOKMARK [1][-]{section.175}{3.8 Discussion}{chapter.68}% 57
-\BOOKMARK [2][-]{subsection.176}{3.8.1 Inconsistent Predictions}{section.175}% 58
-\BOOKMARK [2][-]{subsection.177}{3.8.2 Coverage of the SVM}{section.175}% 59
-\BOOKMARK [2][-]{subsection.178}{3.8.3 Insufficient Data for Learning}{section.175}% 60
-\BOOKMARK [1][-]{section.179}{3.9 Conclusions and Future Work}{chapter.68}% 61
-\BOOKMARK [0][-]{chapter.182}{4 Semi-Supervised Synset Similarity}{}% 62
-\BOOKMARK [1][-]{section.183}{4.1 Motivation}{chapter.182}% 63
-\BOOKMARK [1][-]{section.184}{4.2 SimRank}{chapter.182}% 64
-\BOOKMARK [2][-]{subsection.185}{4.2.1 Introduction}{section.184}% 65
-\BOOKMARK [2][-]{subsection.189}{4.2.2 Solution and its Properties}{section.184}% 66
-\BOOKMARK [2][-]{subsection.198}{4.2.3 Random Surfer Pair Model}{section.184}% 67
-\BOOKMARK [1][-]{section.200}{4.3 Personalized Weighted SimRank}{chapter.182}% 68
-\BOOKMARK [2][-]{subsection.201}{4.3.1 Weighted SimRank}{section.200}% 69
-\BOOKMARK [2][-]{subsection.205}{4.3.2 Personalizing SimRank}{section.200}% 70
-\BOOKMARK [2][-]{subsection.207}{4.3.3 Solution of Personalized SimRank}{section.200}% 71
-\BOOKMARK [1][-]{section.209}{4.4 Personalized SimRank for Learning Synset Similarity}{chapter.182}% 72
-\BOOKMARK [2][-]{subsection.210}{4.4.1 Algorithm Outline}{section.209}% 73
-\BOOKMARK [2][-]{subsection.211}{4.4.2 Estimating Posterior Probabilities from SVM Scores}{section.209}% 74
-\BOOKMARK [2][-]{subsection.215}{4.4.3 Importance of Parameter TEXT }{section.209}% 75
-\BOOKMARK [1][-]{section.220}{4.5 Coarsening WordNet}{chapter.182}% 76
-\BOOKMARK [1][-]{section.223}{4.6 Experimental Setup and Evaluation}{chapter.182}% 77
-\BOOKMARK [2][-]{subsection.224}{4.6.1 Estimating Posterior Probabilities from SVM Scores}{section.223}% 78
-\BOOKMARK [2][-]{subsection.225}{4.6.2 Semi-Supervised Similarity Learning}{section.223}% 79
-\BOOKMARK [2][-]{subsection.227}{4.6.3 Coarsening WordNet}{section.223}% 80
-\BOOKMARK [1][-]{section.238}{4.7 Conclusions and Future Work}{chapter.182}% 81
-\BOOKMARK [2][-]{subsection.239}{4.7.1 Conclusions}{section.238}% 82
-\BOOKMARK [2][-]{subsection.240}{4.7.2 Future Work}{section.238}% 83
-\BOOKMARK [3][-]{subsubsection.241}{4.7.2.1 Differentiating WordNet relations}{subsection.240}% 84
-\BOOKMARK [3][-]{subsubsection.242}{4.7.2.2 Speeding up the implementation}{subsection.240}% 85
-\BOOKMARK [0][-]{chapter.243}{5 Conclusions and Future Work}{}% 86
-\BOOKMARK [1][-]{section.244}{5.1 Future Work}{chapter.243}% 87
-\BOOKMARK [2][-]{subsection.245}{5.1.1 Correcting Inconsistencies}{section.244}% 88
-\BOOKMARK [2][-]{subsection.246}{5.1.2 Graph based similarity estimation}{section.244}% 89
-\BOOKMARK [2][-]{subsection.247}{5.1.3 Graded Evaluation of WSD Task}{section.244}% 90
-\BOOKMARK [0][-]{section*.249}{Appendices}{}% 91
-\BOOKMARK [0][-]{appendix.250}{A Lexicographer Files}{}% 92
-\BOOKMARK [0][-]{appendix.253}{B Results for SVM Experiments}{}% 93
-\BOOKMARK [0][-]{appendix.260}{C Weighted SimRank}{}% 94
-\BOOKMARK [1][-]{section.261}{C.1 Random Surfer-Pairs Model}{appendix.260}% 95
-\BOOKMARK [1][-]{section.263}{C.2 Equivalence}{appendix.260}% 96
-\BOOKMARK [0][-]{appendix.266}{D Personalized SimRank Properties}{}% 97
-\BOOKMARK [0][-]{appendix.271}{E Probabilistic Outputs for SVM}{}% 98
-\BOOKMARK [0][-]{appendix.271}{Bibliography}{}% 99
+\BOOKMARK [0][-]{chapter.9}{1 Related Work}{}% 5
+\BOOKMARK [1][-]{section.10}{1.1 Text Representation}{chapter.9}% 6
+\BOOKMARK [2][-]{subsection.11}{1.1.1 Bag of Words}{section.10}% 7
+\BOOKMARK [2][-]{subsection.17}{1.1.2 Dimensionality Reduction / Feature Selection}{section.10}% 8
+\BOOKMARK [1][-]{section.26}{1.2 Learning Algorithms}{chapter.9}% 9
+\BOOKMARK [2][-]{subsection.27}{1.2.1 With Multiple Binary Classifiers}{section.26}% 10
+\BOOKMARK [0][-]{Item.30}{Bibliography}{}% 11

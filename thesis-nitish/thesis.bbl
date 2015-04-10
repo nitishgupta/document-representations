@@ -1,9 +1,65 @@
-\begin{thebibliography}{7}
+\begin{thebibliography}{30}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Cooper et~al.(1994)Cooper, Chen, and Gey]{cooper1994full}
+W~Cooper, Aitao Chen, and F~Gey.
+\newblock Full text retrieval based on probabilistic equations with
+  coefficients fitted by logistic regression.
+\newblock \emph{NIST SPECIAL PUBLICATION SP}, pages 57--57, 1994.
+
+\bibitem[Cortes and Vapnik(1995)]{cortes1995support}
+Corinna Cortes and Vladimir Vapnik.
+\newblock Support-vector networks.
+\newblock \emph{Machine learning}, 20\penalty0 (3):\penalty0 273--297, 1995.
+
+\bibitem[Crammer and Singer(2002)]{crammer2002new}
+Koby Crammer and Yoram Singer.
+\newblock A new family of online algorithms for category ranking.
+\newblock In \emph{Proceedings of the 25th annual international ACM SIGIR
+  conference on Research and development in information retrieval}, pages
+  151--158. ACM, 2002.
+
+\bibitem[Deerwester et~al.(1990)Deerwester, Dumais, Landauer, Furnas, and
+  Harshman]{deerwester1990indexing}
+Scott~C. Deerwester, Susan~T Dumais, Thomas~K. Landauer, George~W. Furnas, and
+  Richard~A. Harshman.
+\newblock Indexing by latent semantic analysis.
+\newblock \emph{JAsIs}, 41\penalty0 (6):\penalty0 391--407, 1990.
+
+\bibitem[Elisseeff and Weston(2001)]{elisseeff2001kernel}
+Andr{\'e} Elisseeff and Jason Weston.
+\newblock A kernel method for multi-labelled classification.
+\newblock In \emph{Advances in neural information processing systems}, pages
+  681--687, 2001.
+
+\bibitem[Fuhr et~al.(1991)Fuhr, Hartmann, Lustig, Schwantner, Tzeras, and
+  Knorz]{fuhr1991air}
+Norbert Fuhr, Stephan Hartmann, Gerhard Lustig, Michael Schwantner, Kostas
+  Tzeras, and Gerhard Knorz.
+\newblock \emph{AIR, X: a rule based multistage indexing system for large
+  subject fields}.
+\newblock Citeseer, 1991.
+
+\bibitem[Ghamrawi and McCallum(2005)]{ghamrawi2005collective}
+Nadia Ghamrawi and Andrew McCallum.
+\newblock Collective multi-label classification.
+\newblock In \emph{Proceedings of the 14th ACM international conference on
+  Information and knowledge management}, pages 195--200. ACM, 2005.
+
+\bibitem[Hosmer and Lemeshow(1989)]{hosmer1989applied}
+David~W Hosmer and Stanley Lemeshow.
+\newblock Applied logistic regression. 1989.
+\newblock \emph{New York: Johns Wiley \& Sons}, 1989.
+
+\bibitem[Joachims(1998)]{joachims1998text}
+Thorsten Joachims.
+\newblock \emph{Text categorization with support vector machines: Learning with
+  many relevant features}.
+\newblock Springer, 1998.
 
 \bibitem[Lewis(1992)]{lewis1992text}
 David~D Lewis.
@@ -18,12 +74,50 @@ David~D Lewis and Marc Ringuette.
 \newblock In \emph{Third annual symposium on document analysis and information
   retrieval}, volume~33, pages 81--93, 1994.
 
+\bibitem[Lewis et~al.(1996)Lewis, Schapire, Callan, and
+  Papka]{lewis1996training}
+David~D Lewis, Robert~E Schapire, James~P Callan, and Ron Papka.
+\newblock Training algorithms for linear text classifiers.
+\newblock In \emph{Proceedings of the 19th annual international ACM SIGIR
+  conference on Research and development in information retrieval}, pages
+  298--306. ACM, 1996.
+
+\bibitem[Liu et~al.(2006)Liu, Jin, and Yang]{liu2006semi}
+Yi~Liu, Rong Jin, and Liu Yang.
+\newblock Semi-supervised multi-label learning by constrained non-negative
+  matrix factorization.
+\newblock In \emph{Proceedings of the national conference on artificial
+  intelligence}, volume~21, page 421. Menlo Park, CA; Cambridge, MA; London;
+  AAAI Press; MIT Press; 1999, 2006.
+
+\bibitem[McCallum(1999)]{mccallum1999multi}
+Andrew McCallum.
+\newblock Multi-label text classification with a mixture model trained by em.
+\newblock 1999.
+
 \bibitem[Moulinier et~al.(1996)Moulinier, Raskinis, and
   Ganascia]{moulinier1996text}
 Isabelle Moulinier, Gailius Raskinis, and J~Ganascia.
 \newblock Text categorization: a symbolic approach.
 \newblock In \emph{proceedings of the fifth annual symposium on document
   analysis and information retrieval}, pages 87--99, 1996.
+
+\bibitem[Ng et~al.(1997)Ng, Goh, and Low]{ng1997feature}
+Hwee~Tou Ng, Wei~Boon Goh, and Kok~Leong Low.
+\newblock Feature selection, perceptron learning, and a usability case study
+  for text categorization.
+\newblock In \emph{ACM SIGIR Forum}, volume~31, pages 67--73. ACM, 1997.
+
+\bibitem[Nigam et~al.(1999)Nigam, Lafferty, and McCallum]{nigam1999using}
+Kamal Nigam, John Lafferty, and Andrew McCallum.
+\newblock Using maximum entropy for text classification.
+\newblock In \emph{IJCAI-99 workshop on machine learning for information
+  filtering}, volume~1, pages 61--67, 1999.
+
+\bibitem[Nigam et~al.(2000)Nigam, McCallum, Thrun, and Mitchell]{nigam2000text}
+Kamal Nigam, Andrew~Kachites McCallum, Sebastian Thrun, and Tom Mitchell.
+\newblock Text classification from labeled and unlabeled documents using em.
+\newblock \emph{Machine learning}, 39\penalty0 (2-3):\penalty0 103--134, 2000.
 
 \bibitem[Quinlan(1983)]{quinlan1983learning}
 J~Ross Quinlan.
@@ -36,6 +130,12 @@ J.~Ross Quinlan.
 \newblock Induction of decision trees.
 \newblock \emph{Machine learning}, 1\penalty0 (1):\penalty0 81--106, 1986.
 
+\bibitem[Rubin et~al.(2012)Rubin, Chambers, Smyth, and
+  Steyvers]{rubin2012statistical}
+Timothy~N Rubin, America Chambers, Padhraic Smyth, and Mark Steyvers.
+\newblock Statistical topic models for multi-label document classification.
+\newblock \emph{Machine Learning}, 88\penalty0 (1-2):\penalty0 157--208, 2012.
+
 \bibitem[Salton and Buckley(1988)]{salton1988term}
 Gerard Salton and Christopher Buckley.
 \newblock Term-weighting approaches in automatic text retrieval.
@@ -47,5 +147,49 @@ Gerard Salton and Chung-Shu Yang.
 \newblock On the specification of term values in automatic indexing.
 \newblock \emph{Journal of documentation}, 29\penalty0 (4):\penalty0 351--372,
   1973.
+
+\bibitem[Tong and Appelbaum(1994)]{tong1994machine}
+Richard~M Tong and Lee~A Appelbaum.
+\newblock Machine learning for knowledge-based document routing (a report on
+  the trec-2 experiment).
+\newblock \emph{NIST SPECIAL PUBLICATION SP}, pages 253--253, 1994.
+
+\bibitem[Ueda and Saito(2002)]{ueda2002parametric}
+Naonori Ueda and Kazumi Saito.
+\newblock Parametric mixture models for multi-labeled text.
+\newblock In \emph{Advances in neural information processing systems}, pages
+  721--728, 2002.
+
+\bibitem[Vapnik(2000)]{vapnik2000nature}
+Vladimir Vapnik.
+\newblock \emph{The nature of statistical learning theory}.
+\newblock Springer Science \& Business Media, 2000.
+
+\bibitem[Wiener et~al.(1995)Wiener, Pedersen, Weigend,
+  et~al.]{wiener1995neural}
+Erik Wiener, Jan~O Pedersen, Andreas~S Weigend, et~al.
+\newblock A neural network approach to topic spotting.
+\newblock In \emph{Proceedings of SDAIR-95, 4th annual symposium on document
+  analysis and information retrieval}, pages 317--332. Citeseer, 1995.
+
+\bibitem[Yang(1994)]{yang1994expert}
+Yiming Yang.
+\newblock Expert network: Effective and efficient learning from human decisions
+  in text categorization and retrieval.
+\newblock In \emph{Proceedings of the 17th annual international ACM SIGIR
+  conference on Research and development in information retrieval}, pages
+  13--22. Springer-Verlag New York, Inc., 1994.
+
+\bibitem[Zhang and Zhou(2005)]{zhang2005k}
+Min-Ling Zhang and Zhi-Hua Zhou.
+\newblock A k-nearest neighbor based algorithm for multi-label classification.
+\newblock In \emph{Granular Computing, 2005 IEEE International Conference on},
+  volume~2, pages 718--721. IEEE, 2005.
+
+\bibitem[Zhang and Zhou(2007)]{zhang2007ml}
+Min-Ling Zhang and Zhi-Hua Zhou.
+\newblock Ml-knn: A lazy learning approach to multi-label learning.
+\newblock \emph{Pattern recognition}, 40\penalty0 (7):\penalty0 2038--2048,
+  2007.
 
 \end{thebibliography}

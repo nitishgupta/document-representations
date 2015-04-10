@@ -5,109 +5,50 @@ A level-1 auxiliary file: title.aux
 A level-1 auxiliary file: abstract.aux
 A level-1 auxiliary file: Dedication.aux
 A level-1 auxiliary file: acknowledgement.aux
-A level-1 auxiliary file: Intro-Background.aux
 The style file: plainnat.bst
 Database file #1: references.bib
-Warning--I didn't find a database entry for "Hovy:2006"
-Warning--I didn't find a database entry for "ide2006making"
-Warning--I didn't find a database entry for "miller1995wordnet"
-Warning--I didn't find a database entry for "fellbaum1998wordnet"
-Warning--I didn't find a database entry for "snow07mergesense"
-Warning--I didn't find a database entry for "Ng:2003"
-Warning--I didn't find a database entry for "buitelaar2000reducing"
-Warning--I didn't find a database entry for "moldovan2000using"
-Warning--I didn't find a database entry for "Senseval2AllWordsTask"
-Warning--I didn't find a database entry for "Senseval2LexicalSampleTask"
-Warning--I didn't find a database entry for "Senseval3AllWordsTask"
-Warning--I didn't find a database entry for "Senseval3LexicalSample"
-Warning--I didn't find a database entry for "Semeval2007WSD"
-Warning--I didn't find a database entry for "Navigli06meaningfulclustering"
-Warning--I didn't find a database entry for "navigli-litkowski:SemEval-2007"
-Warning--I didn't find a database entry for "navigli2009WSDSurvey"
-Warning--I didn't find a database entry for "Dolan:1994"
-Warning--I didn't find a database entry for "peters1998automatic"
-Warning--I didn't find a database entry for "Mihalcea01ez.wordnet:principles"
-Warning--I didn't find a database entry for "WuPalmer:1994"
-Warning--I didn't find a database entry for "LCH:1998"
-Warning--I didn't find a database entry for "Resnik:1995"
-Warning--I didn't find a database entry for "JCN:1997"
-Warning--I didn't find a database entry for "Lin:1998"
-Warning--I didn't find a database entry for "Lesk:1986"
-Warning--I didn't find a database entry for "Banerjee:2002"
-Warning--I didn't find a database entry for "Pereira:93a"
-Warning--I didn't find a database entry for "kolb2008disco"
-Warning--I didn't find a database entry for "agirre2009study"
-Warning--I didn't find a database entry for "agirre2003clustering"
-Warning--I didn't find a database entry for "mccarthy2006relating"
-Warning--I didn't find a database entry for "chklovski2003exploiting"
-Warning--I didn't find a database entry for "Edmonds:2001"
-Warning--I didn't find a database entry for "chugur2002polysemy"
-Warning--I didn't find a database entry for "NavigliPonzetto:12aij"
-Warning--I didn't find a database entry for "palmer2007making"
-Warning--I didn't find a database entry for "palmer2004different"
-Warning--I didn't find a database entry for "levin1993english"
-Warning--I didn't find a database entry for "vapnikSVM:95"
-Warning--I didn't find a database entry for "SemCor"
-Warning--I didn't find a database entry for "Jeh02simrank"
-Warning--I didn't find a database entry for "Gonzalez:XWND"
-Warning--I didn't find a database entry for "Baccianella10sentiwordnet3.0"
-Warning--I didn't find a database entry for "philpot2005omega"
-Warning--I didn't find a database entry for "Resnik:1999:TranslationEquivalences"
-Warning--I didn't find a database entry for "Navigli05SSI"
-Warning--I didn't find a database entry for "VapnikSVMKernel:92"
-Warning--I didn't find a database entry for "NavigliPonzetto:2012acl"
-Warning--I didn't find a database entry for "Joachims98makinglarge-scale"
-Warning--I didn't find a database entry for "wekaSoftware"
-Warning--I didn't find a database entry for "chang2011libsvm"
-Warning--I didn't find a database entry for "morphosemanticLinks"
-Warning--I didn't find a database entry for "LizorkinSimrank"
-Warning--I didn't find a database entry for "Platt99"
-Warning--I didn't find a database entry for "Lin03Note"
-Warning--I didn't find a database entry for "Niculescu-Mizil:2005"
-Warning--I didn't find a database entry for "decadt-EtAl:2004:Senseval-3"
-Warning--I didn't find a database entry for "mihalcea-faruque:2004:Senseval-3"
-Warning--I didn't find a database entry for "yuret:2004:Senseval-3"
-Warning--I didn't find a database entry for "strapparava-gliozzo-giuliano:2004:Senseval-3"
-Warning--I didn't find a database entry for "FogarasSimRank"
-You've used 7 entries,
+Warning--can't use both volume and number fields in liu2006semi
+Warning--empty booktitle in mccallum1999multi
+Warning--can't use both volume and number fields in ng1997feature
+You've used 30 entries,
             2773 wiz_defined-function locations,
-            750 strings with 7959 characters,
-and the built_in function-call counts, 3460 in all, are:
-= -- 335
-> -- 123
-< -- 11
-+ -- 43
-- -- 36
-* -- 238
-:= -- 490
-add.period$ -- 22
-call.type$ -- 7
-change.case$ -- 33
-chr.to.int$ -- 7
-cite$ -- 14
-duplicate$ -- 183
-empty$ -- 319
-format.name$ -- 49
-if$ -- 764
+            779 strings with 10186 characters,
+and the built_in function-call counts, 15558 in all, are:
+= -- 1464
+> -- 732
+< -- 41
++ -- 249
+- -- 219
+* -- 1133
+:= -- 2221
+add.period$ -- 99
+call.type$ -- 30
+change.case$ -- 159
+chr.to.int$ -- 30
+cite$ -- 63
+duplicate$ -- 794
+empty$ -- 1347
+format.name$ -- 273
+if$ -- 3433
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 7
-newline$ -- 43
-num.names$ -- 28
-pop$ -- 71
+missing$ -- 33
+newline$ -- 158
+num.names$ -- 120
+pop$ -- 365
 preamble$ -- 1
-purify$ -- 26
+purify$ -- 132
 quote$ -- 0
-skip$ -- 147
+skip$ -- 638
 stack$ -- 0
-substring$ -- 198
-swap$ -- 42
-text.length$ -- 5
+substring$ -- 733
+swap$ -- 189
+text.length$ -- 22
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 77
-warning$ -- 0
-while$ -- 39
+type$ -- 315
+warning$ -- 3
+while$ -- 155
 width$ -- 0
-write$ -- 100
-(There were 61 warnings)
+write$ -- 405
+(There were 3 warnings)

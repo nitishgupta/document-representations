@@ -6,6 +6,7 @@ Supervised machine learning techniques that learn classifiers to perform this ca
 Text representation involves converting the documents, that are usually strings of characters, into numerical vectors that are suitable inputs to the learning algorithm while the learning algorithm uses pairs of labeled input text representations and the categories it is belongs in, to learn a model so as to classify new documents into categories.
 
 \section{Text Representation}
+\label{sec:textrepr}
 Any text-based classification system requires the documents to be represented in an appropriate manner dictacted by the task being performed \citep{lewis1992text}. Moreover, \citep{quinlan1983learning} showed that the accuracy of the classification task depends as much on the document representation as on the learning algorithm being employed. Different from the data mining task, which deals with structureed documents, text classification deals with unstructured documents that need to be appropriately transformed into numerical vectors, i.e. the need for text representation. In this section we introduce the most effective and widely-used techniques to represent documents for text classification.
 
 \subsection{Bag of Words}
@@ -51,7 +52,33 @@ I_{avg}(t) = \sum_{i=1}^{|C|} P(c_{i})I(t,c_{i})
 
 \item{\textbf{$\chi^{2}$ Statistic} : }The $\chi^{2}$ statistic measures the lack of independence a term $t$ and a category $c$ and can be compared to the $\chi^{2}$ distribution with one degree of freedom. The term-goodness factor is calculated for each term-category pair and is averaged as above. The major difference between Mutual Information and $\chi^{2}$ statistic is that the later is a normalized value and the goodness factors across terms are comparable for the same category.
 
-\item{\textbf{Latent Semantic Indexing (LSI)} : }
+\item{\textbf{Latent Semantic Indexing (LSI)} : } LSI first introduced by \cite{deerwester1990indexing}, is a popular linear algebraic dimensionality reduction technique that uses the term co-occurence statistics to capture the latent semantic structure of the documents and represent them using low-dimensional vectors. It is an efficient technique to deal with synonymy and polysemy. LSI aims to find the best subspace approximation to the original document bag-of-word vector space using Singular Value Decomposition. Given a term-document matrix $X = \left[ x_{1}, x_{2}, \ldots, x_{|D|} \right] \in \mathbb{R}^{|V|}$, its k-rank approximation as found using SVD, can be expressed as, 
+\begin{equation}
+X = T S D^{T}
+\end{equation}
+where, $T \in \mathbb{R}^{|V| \times k}$ and $D \in \mathbb{R}^{|D| \times k}$ are orthonormal matrices called the left and right singular vectors respectively. The matrix $S \in \mathbb{R}^{k \times k}$ is a diagonal matrix of singular values arranged in descending order. The $k$-dimensional rows of the matrix $D$ contain the dimensionality reduced representations of the $|D|$ documents in the collection. The representations obtained using LSI alleviate the issue of data sparsity and high-dimensionality in bag-of-words representations and also helps unfold the latent semantic structure of the documents.
+\end{enumerate}
+
+\section{Learning Algorithms}
+\label{sec:lalgos}
+Multi-label text classification has seen growing number of statistical learning methods being applied to it. Over the years, various larning algorithms like, Regression models (\citep{cooper1994full}, \citep{fuhr1991air}), Conditional Random Field (\citep{ghamrawi2005collective}), Nearest Neighbour techniques (\citep{yang1994expert}, \citep{zhang2005k}, \citep{zhang2007ml}), Bayesian classifier and topic modelling (\citep{lewis1994comparison}, \citep{mccallum1999multi}, \citep{nigam2000text}, \citep{rubin2012statistical}, \citep{nigam1999using}, \citep{ueda2002parametric}), SVM (\citep{joachims1998text}, \citep{elisseeff2001kernel}), Neural Networks (\citep{wiener1995neural}, \citep{ng1997feature}), Decision Trees (\citep{tong1994machine}), Online learning algorithms (\citep{lewis1996training}, \citep{crammer2002new}), Non-negative Matrix Factorization (\citep{liu2006semi}) etc. have been used or developed for Multi-label document categorization.
+
+Earlier learning algorithms reduced the problem of multi-label classification into multiple binary classification problems and independently learned binary classifiers for each category. While these algorithms performed well, their drawback of considering correlation among categories led to the development of algorithms that learn a single classifier and jointly classify each document. 
+
+Multi-label classification problems can be also be classified into classification-based and ranking-based approaches, where the former assigns each test instance a $|L|$-sized label vector of ones and zeros indicating the presence and absence of labels. In the case of a ranking-based approach, the ranking system outputs the list of labels arranged in the increasing order of a ranking score which is then thresholded at an optimum and the top labels are considered appropriate label assigments for test instances.
+
+Below we describe some of the famous learning algorithms for multi-label text classification, 
+
+\subsection{With Multiple Binary Classifiers}
+The most common approach of multi-label text classification, treats each label independently and learns multiple binary classifiers, one for each category and then assigns to a test document all the categories for which the corresponding classfier says \emph{`yes'}. In this section we describe some of the algorithms in the context of multi-label text classification.
+\begin{enumerate}
+\item{\textbf{Logistic Regression (LR)} : }Introduced by \citep{hosmer1989applied}, LR is a probabilistic binary classification regression model, that, for binary text classification learns a category weight vector and estimates the probability of a document belonging to the category using dot-product and the logistic link function. LR can be extended for multi-label document classification by learning multiple category vectors, specifically, one for each category. At test time, one would need to query all category vectors for each document to make the category assignments. In our work, we use logistic regression for multi-label text classification. The details for the model are given in \todo{Future link to description}.
+
+\item{\textbf{Support Vector Machines (SVM)} : } Support Vector Machines (\citep{cortes1995support}, \citep{vapnik2000nature}) based on the \emph{Structural Risk Minimization} principle, are universal learners. In their basic form, SVMs learn linear threshold functions to find linear hyperplanes in the input data space to separate data of the two differnt classes. In the case, where data is not linearly separable, SVMs can be plugged-in with appropriate kernel functions to learn polyniomial classifiers, radial basic fucntions etc. For multi-label text classification, training data is treated separately for each category and maximum margin separating hyperplanes are found for each category independently \citep{joachims1998text}.
+
+\cite{elisseeff2001kernel} study a ranking based variant of SVM, where the positive/negative distance from the separating hyperplane of a specific category is the score assigned to the particular instance for that category. Their formulation then aims to maximize the margin between the score of a category that belongs to the document and a category that does not belong to do the document. This is also called the Rank-SVM.
 
 
+
+\item{\textbf{} : }
 \end{enumerate}
