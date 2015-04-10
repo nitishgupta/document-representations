@@ -11,7 +11,7 @@ if(output_directory[-1] != "/"):
 
 evaluation = sys.argv[2]
 
-models = ['PMF', 'wordvec-avg', 'bow-tfidf', 'lsi-tfidf-100', 'weight-update-epoch150', 'weight-update-epoch150-K50']
+models = ['PMF', 'wordvec-avg', 'bow-tfidf', 'weight-update-epoch150', 'weight-update-epoch150-K50-win4']
 #models = ["PMF"]
 
 
@@ -42,18 +42,25 @@ def plot_prcurve(model, precision, recall, output_file):
 	plt.savefig(output_file)
 	#plt.show()
 
-hans=[]
+fig = plt.figure()
+ax = plt.subplot(111)
 output_file = output_directory+"Test-" + evaluation + "-PRCurve.pdf"
 for model in models:
 	prediction_file = output_directory+model+"/prediction/"+evaluation+"/"+model+"-test.dat"
 	y_true, y_pred = read_prediction_data(prediction_file)
+	print len(y_true), len(y_pred)
 	p, r, thresholds = precision_recall_curve(y_true, y_pred)
+	print len(p), len(r), len(thresholds)
 	#plot_prcurve(model, p, r, output_file)
-	h = plt.plot(r, p, label=str(model))
+	#h = plt.plot(r, p, label=str(model))
+	ax.plot(r, p, label=model)
 	area = auc(r, p)
 	print model, " : ", area
 
-	hans.append(h)
 	
 #plt.legend(hans, loc=1)	
+ax.legend(loc='lower left')
+plt.xlabel('Recall')
+plt.ylabel('Precision')
+plt.xlim([0.0, 1.0])
 plt.savefig(output_file)

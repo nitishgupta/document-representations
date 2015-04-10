@@ -7,6 +7,7 @@ import sys
 from sys import stdout
 import operator
 import numpy as np
+from sets import Set
 
 def read(filename):
 	data_points_read = 0
@@ -44,6 +45,61 @@ def read(filename):
 			sys.stdout.write(str(docs_read) + ", ")
 	print "\nDocs : ", docs_read, "Categories : ", cats_read, "Data Points : ", len(data) 
 	return docs, cats, catCount, data
+
+def read_Reuters(filename, train_id_file, test_id_file):
+	train_id = Set([])
+	test_id = Set([])
+
+	fi = open(train_id_file, 'r')
+	for line in fi:
+		train_id.add(line.strip())
+	fi.close()
+	fi = open(test_id_file, 'r')
+	for line in fi:
+		test_id.add(line.strip())
+	fi.close()
+	
+	print "Train Ids : ", len(train_id), " TEst Ids : ", len(test_id)
+
+	data_points_read = 0
+	docs_read = 0
+	cats_read = 0
+	fi = open(filename, 'r')
+	docs = {}
+	cats = {}
+	catCount = defaultdict(int)
+	tr_v_data = []
+	testdata = []
+	for line in fi:
+		a = line.split("\t", 1)
+		if(len(a) > 1):
+			doc = a[0].strip()
+			try:
+				val = docs[doc]
+			except KeyError:
+				docs[doc] = docs_read
+				docs_read += 1
+
+			categories = a[1].split("\t")
+			for c in categories:
+				c = c.strip()
+				try:
+					val = cats[c]
+				except KeyError:
+					cats[c] = cats_read
+					cats_read += 1
+				catCount[cats[c]] += 1
+				#catCount[c] += 1
+				data_points_read = data_points_read + 1
+				if(doc in train_id):
+					tr_v_data.append([docs[doc], cats[c], 1])
+				elif(doc in test_id):
+					testdata.append([docs[doc], cats[c], 1])
+
+		if(docs_read % 1000 == 0):
+			sys.stdout.write(str(docs_read) + ", ")
+	print "\nDocs : ", docs_read, "Categories : ", cats_read, "Train Data Points : ", len(tr_v_data),  "Test Data Points : ", len(testdata)
+	return docs, cats, catCount, tr_v_data, testdata
 
 
 def read_Phi_Docs(filename, docs):
