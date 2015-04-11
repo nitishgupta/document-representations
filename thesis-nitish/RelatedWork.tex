@@ -78,7 +78,22 @@ The most common approach of multi-label text classification, treats each label i
 
 \cite{elisseeff2001kernel} study a ranking based variant of SVM, where the positive/negative distance from the separating hyperplane of a specific category is the score assigned to the particular instance for that category. Their formulation then aims to maximize the margin between the score of a category that belongs to the document and a category that does not belong to do the document. This is also called the Rank-SVM.
 
+\item{\textbf{Neural Networks (NNet)} : }Classification-baed, Neural Network approaches to multi-label text classification were mainly studied by \cite{wiener1995neural}, developed at Xerox PARC and called NNet.PARC and \cite{ng1997feature}, called CLASSI. Both neural networks are examples of multiple-classifier based approaches where a separate neural network was trained for each category to make binary classifications. While CLASSI used a linear perceptron approach to classify text into categories, NNet.PARC built a three-layered nonlinear neural network that extends logistic regression by modelling higher order term interactions and hence finding non-linear decision boundaries. 
 
-
-\item{\textbf{} : }
+\item{\textbf{Naive Bayes (NB)} : }Naive-bayes as studied in \cite{lewis1992representation} and \cite{lewis1994comparison}, is one of the most effective and simple statistical model for text classification. For multi-label classification, classifiers are learnt so as to estimate $P(C_{j}=1|D)$, i.e., the probability that the document, $D$ belongs to the category $C_{j}$, for each category. This probability is estimated by estimating the probability $P(W_{i}=1|C_{j}=1)$, i.e. probability that a particular word appears in the document when it belongs to a particular category. Though this approach makes the assumption of word independence, experiments show that this fast-learning algorithm can yield excellent results. 
 \end{enumerate}
+Although, approaches to multi-label classification discussed above give competitive accuracies in the task, they suffer from inefficiencies due to the following reasons,
+\begin{itemize}
+
+\item make assumptions of category independence and learn 1-vs-All binary classifiers. It is realized that such assumption would not hold true in most real-life situations. Fine-grained categorization of texts usually involve strongly correlated category classes and information about the presence of one gives information about the presence/absence of many others. For eg. in the sentence, 
+\begin{quote} 
+\centering 
+\emph{Chicago Board of trade grain traders and analysts voiced a lot of interest in how farmers planned to handle their upcoming spring plantings prompting sales of new crop months of corn and oats and purchases in new crop soybeans in the futures markets}
+\end{quote}
+information from words about the presence of categories like \emph{oats}, \emph{corn} etc. can also aid the prediction of the \emph{agriculture} category which can be boosted using joint classification.
+
+\item Apart from inefficiencies induced by ignoring category correlations, learning independent classifiers poses other drawbacks, such as, in case of millions of labels, learning millions of high-dimensional classifiers is a computationally expensive. Secondly, the cost of prediction for each test instance would be high as all the classifiers need to be evaluated to make a single prediction.
+\end{itemize}
+
+\subsection{With Single Joint Classifier}
+To overcome the difficulties in learning multiple binary classifiers, researchers have since developed learning algorithms that jointly classify each document into categories it belongs to. Outputs of such algorithms are $|L|$-size label vector with each element being either of $\{0, 1\}$, indicating the presence/absence of a category. 

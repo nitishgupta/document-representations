@@ -8,4 +8,5 @@
 \contentsline {subsection}{\numberline {1.1.2}Dimensionality Reduction / Feature Selection}{4}{subsection.17}
 \contentsline {section}{\numberline {1.2}Learning Algorithms}{6}{section.26}
 \contentsline {subsection}{\numberline {1.2.1}With Multiple Binary Classifiers}{7}{subsection.27}
-\contentsline {chapter}{Bibliography}{9}{Item.30}
+\contentsline {subsection}{\numberline {1.2.2}With Single Joint Classifier}{9}{subsection.32}
+\contentsline {chapter}{Bibliography}{11}{subsection.32}

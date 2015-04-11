@@ -1,4 +1,4 @@
-\begin{thebibliography}{30}
+\begin{thebibliography}{31}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -61,12 +61,12 @@ Thorsten Joachims.
   many relevant features}.
 \newblock Springer, 1998.
 
-\bibitem[Lewis(1992)]{lewis1992text}
+\bibitem[Lewis(1992{\natexlab{a}})]{lewis1992text}
 David~D Lewis.
 \newblock Text representation for intelligent text retrieval: a
   classification-oriented view.
 \newblock \emph{Text-based intelligent systems: current research and practice
-  in information extraction and retrieval}, pages 179--197, 1992.
+  in information extraction and retrieval}, pages 179--197, 1992{\natexlab{a}}.
 
 \bibitem[Lewis and Ringuette(1994)]{lewis1994comparison}
 David~D Lewis and Marc Ringuette.
@@ -81,6 +81,11 @@ David~D Lewis, Robert~E Schapire, James~P Callan, and Ron Papka.
 \newblock In \emph{Proceedings of the 19th annual international ACM SIGIR
   conference on Research and development in information retrieval}, pages
   298--306. ACM, 1996.
+
+\bibitem[Lewis(1992{\natexlab{b}})]{lewis1992representation}
+David~Dolan Lewis.
+\newblock \emph{Representation and learning in information retrieval}.
+\newblock PhD thesis, University of Massachusetts, 1992{\natexlab{b}}.
 
 \bibitem[Liu et~al.(2006)Liu, Jin, and Yang]{liu2006semi}
 Yi~Liu, Rong Jin, and Liu Yang.

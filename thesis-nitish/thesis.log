@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  10 APR 2015 20:09
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  11 APR 2015 18:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -545,21 +545,7 @@ Package: ltcaption 2013/02/03 v1.3-62 longtable captions (AR)
 )
 Package caption Info: subfigure package is loaded.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
-Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
-
-
-! Package subcaption Error: This package can't be used in cooperation
-(subcaption)                with the subfigure package.
-
-See the subcaption package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.48   \endinput}{}
-                   %
-? 
-) (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 \fancy@headwidth=\skip69
 \f@ncyO@elh=\skip70
 \f@ncyO@erh=\skip71
@@ -689,7 +675,7 @@ Package caption Info: End \AtBeginDocument code.
 \openout2 = `title.aux'.
 
  (./title.tex
-<img/iitkblue.jpg, id=48, 204.765pt x 194.7275pt>
+<img/iitkblue.jpg, id=51, 204.765pt x 194.7275pt>
 File: img/iitkblue.jpg Graphic file (type jpg)
  <use img/iitkblue.jpg>
 Package pdftex.def Info: img/iitkblue.jpg used on input line 41.
@@ -701,7 +687,7 @@ Package pdftex.def Info: img/iitkblue.jpg used on input line 41.
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./img/iitkblue.jpg>])
-<sumitbCertificate.pdf, id=58, 620.3175pt x 891.33pt>
+<sumitbCertificate.pdf, id=61, 620.3175pt x 891.33pt>
 File: sumitbCertificate.pdf Graphic file (type pdf)
 
 <use sumitbCertificate.pdf>
@@ -714,7 +700,7 @@ Package pdftex.def Info: sumitbCertificate.pdf used on input line 97.
  [2
 
 ]
-<sumitbCertificate.pdf, id=65, page=1, 620.3175pt x 891.33pt>
+<sumitbCertificate.pdf, id=68, page=1, 620.3175pt x 891.33pt>
 File: sumitbCertificate.pdf Graphic file (type pdf)
 
 <use sumitbCertificate.pdf, page 1>
@@ -828,32 +814,41 @@ Underfull \vbox (badness 2285) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
-[7]) [8] (./thesis.bbl [9
+[7]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 88.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 88.
+ [8]) [9] [10
 
+]
+(./thesis.bbl [11
 
-] [10])
+] [12])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 183.
- [11]
+ [13]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 183.
- (./thesis.aux (./title.aux)
-(./abstract.aux) (./Dedication.aux) (./acknowledgement.aux))
+ (./thesis.aux (./title.aux) (./abstract.aux)
+(./Dedication.aux) (./acknowledgement.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 183.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 183.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 5B8C99A324AC1D9EEB3CB3BF8597D808;690.
+(rerunfilecheck)             Checksum: 47E986FC6FB40C7664D0B591D0637F61;780.
  )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 110 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 12549 strings out of 493304
- 182544 string characters out of 6139871
- 307856 words of memory out of 5000000
- 15648 multiletter control sequences out of 15000+600000
+ 12569 strings out of 493304
+ 182818 string characters out of 6139871
+ 307754 words of memory out of 5000000
+ 15662 multiletter control sequences out of 15000+600000
  14623 words of font info for 52 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 39i,18n,45p,1026b,584s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,18n,45p,1026b,586s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti1
 0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
@@ -866,10 +861,10 @@ s/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/symbols/msbm10.pfb>
-Output written on thesis.pdf (29 pages, 603384 bytes).
+Output written on thesis.pdf (31 pages, 609262 bytes).
 PDF statistics:
- 385 PDF objects out of 1000 (max. 8388607)
- 332 compressed objects within 4 object streams
- 91 named destinations out of 1000 (max. 500000)
- 114 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 410 PDF objects out of 1000 (max. 8388607)
+ 355 compressed objects within 4 object streams
+ 96 named destinations out of 1000 (max. 500000)
+ 122 words of extra memory for PDF output out of 10000 (max. 10000000)
 
