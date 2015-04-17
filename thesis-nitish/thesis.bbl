@@ -1,9 +1,29 @@
-\begin{thebibliography}{31}
+\begin{thebibliography}{41}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bengio et~al.(2003)Bengio, Ducharme, Vincent, and
+  Janvin]{bengio2003neural}
+Yoshua Bengio, R{\'e}jean Ducharme, Pascal Vincent, and Christian Janvin.
+\newblock A neural probabilistic language model.
+\newblock \emph{The Journal of Machine Learning Research}, 3:\penalty0
+  1137--1155, 2003.
+
+\bibitem[Bottou(2014)]{bottou2014machine}
+L{\'e}on Bottou.
+\newblock From machine learning to machine reasoning.
+\newblock \emph{Machine learning}, 94\penalty0 (2):\penalty0 133--149, 2014.
+
+\bibitem[Collobert et~al.(2011)Collobert, Weston, Bottou, Karlen, Kavukcuoglu,
+  and Kuksa]{collobert2011natural}
+Ronan Collobert, Jason Weston, L{\'e}on Bottou, Michael Karlen, Koray
+  Kavukcuoglu, and Pavel Kuksa.
+\newblock Natural language processing (almost) from scratch.
+\newblock \emph{The Journal of Machine Learning Research}, 12:\penalty0
+  2493--2537, 2011.
 
 \bibitem[Cooper et~al.(1994)Cooper, Chen, and Gey]{cooper1994full}
 W~Cooper, Aitao Chen, and F~Gey.
@@ -61,6 +81,12 @@ Thorsten Joachims.
   many relevant features}.
 \newblock Springer, 1998.
 
+\bibitem[Levy and Goldberg(2014)]{levy2014dependencybased}
+Omer Levy and Yoav Goldberg.
+\newblock Dependencybased word embeddings.
+\newblock \emph{Proceedings of the 52nd Annual Meeting of the Association for
+  Computational Linguistics}, 2:\penalty0 302--308, 2014.
+
 \bibitem[Lewis(1992{\natexlab{a}})]{lewis1992text}
 David~D Lewis.
 \newblock Text representation for intelligent text retrieval: a
@@ -99,6 +125,33 @@ Yi~Liu, Rong Jin, and Liu Yang.
 Andrew McCallum.
 \newblock Multi-label text classification with a mixture model trained by em.
 \newblock 1999.
+
+\bibitem[Mikolov et~al.(2013{\natexlab{a}})Mikolov, Chen, Corrado, and
+  Dean]{mikolov2013efficient}
+Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean.
+\newblock Efficient estimation of word representations in vector space.
+\newblock \emph{arXiv preprint arXiv:1301.3781}, 2013{\natexlab{a}}.
+
+\bibitem[Mikolov et~al.(2013{\natexlab{b}})Mikolov, Sutskever, Chen, Corrado,
+  and Dean]{mikolov2013distributed}
+Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg~S Corrado, and Jeff Dean.
+\newblock Distributed representations of words and phrases and their
+  compositionality.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pages
+  3111--3119, 2013{\natexlab{b}}.
+
+\bibitem[Mnih and Kavukcuoglu(2013)]{mnih2013learning}
+Andriy Mnih and Koray Kavukcuoglu.
+\newblock Learning word embeddings efficiently with noise-contrastive
+  estimation.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pages
+  2265--2273, 2013.
+
+\bibitem[Morin and Bengio(2005)]{morin2005hierarchical}
+Frederic Morin and Yoshua Bengio.
+\newblock Hierarchical probabilistic neural network language model.
+\newblock In \emph{Proceedings of the international workshop on artificial
+  intelligence and statistics}, pages 246--252. Citeseer, 2005.
 
 \bibitem[Moulinier et~al.(1996)Moulinier, Raskinis, and
   Ganascia]{moulinier1996text}
@@ -159,6 +212,14 @@ Richard~M Tong and Lee~A Appelbaum.
   the trec-2 experiment).
 \newblock \emph{NIST SPECIAL PUBLICATION SP}, pages 253--253, 1994.
 
+\bibitem[Turian et~al.(2010)Turian, Ratinov, and Bengio]{turian2010word}
+Joseph Turian, Lev Ratinov, and Yoshua Bengio.
+\newblock Word representations: a simple and general method for semi-supervised
+  learning.
+\newblock In \emph{Proceedings of the 48th annual meeting of the association
+  for computational linguistics}, pages 384--394. Association for Computational
+  Linguistics, 2010.
+
 \bibitem[Ueda and Saito(2002)]{ueda2002parametric}
 Naonori Ueda and Kazumi Saito.
 \newblock Parametric mixture models for multi-labeled text.
@@ -184,6 +245,14 @@ Yiming Yang.
 \newblock In \emph{Proceedings of the 17th annual international ACM SIGIR
   conference on Research and development in information retrieval}, pages
   13--22. Springer-Verlag New York, Inc., 1994.
+
+\bibitem[Yang and Chute(1992)]{yang1992linear}
+Yiming Yang and Christopher~G Chute.
+\newblock A linear least squares fit mapping method for information retrieval
+  from natural language texts.
+\newblock In \emph{Proceedings of the 14th conference on Computational
+  linguistics-Volume 2}, pages 447--453. Association for Computational
+  Linguistics, 1992.
 
 \bibitem[Zhang and Zhou(2005)]{zhang2005k}
 Min-Ling Zhang and Zhi-Hua Zhou.

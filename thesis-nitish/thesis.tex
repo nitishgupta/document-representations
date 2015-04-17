@@ -87,9 +87,9 @@
 	\thispagestyle{empty}
 	\include{title}
 	
-	\newpage
-	\thispagestyle{empty}
-	\mbox{}
+	% \newpage
+	% \thispagestyle{empty}
+	% \mbox{}
 
 	
 	\thispagestyle{empty}
@@ -99,38 +99,39 @@
 	\pagenumbering{roman} 
 	\pagestyle{plain}
 	
-	\newpage
-	\thispagestyle{empty}
-	\mbox{}
+	% \newpage
+	% \thispagestyle{empty}
+	% \mbox{}
 
-	\setcounter{page}{1} 
-	%\setcounter{page}{2}
-	\addcontentsline{toc}{chapter}{Abstract}
 	
+	%\setcounter{page}{2}
+	\setcounter{page}{1} 
+	\addcontentsline{toc}{chapter}{Abstract}
 	\onehalfspace
 	\include{abstract}
 	
-	\newpage
-	\thispagestyle{empty}
-	\mbox{}
+
+	% \newpage
+	% \thispagestyle{empty}
+	% \mbox{}
 
 	\setcounter{page}{2} 
 	\include{Dedication}
 	
-	\newpage
-	\thispagestyle{empty}
-	\mbox{}
+	% \newpage
+	% \thispagestyle{empty}
+	% \mbox{}
 
 	\setcounter{page}{3} 
 	\include{acknowledgement}
 
-	\newpage
-	\thispagestyle{empty}
-	\mbox{}
+	% \newpage
+	% \thispagestyle{empty}
+	% \mbox{}
 
 	\setcounter{page}{4} 
 	
-        \setcounter{secnumdepth}{3}
+    \setcounter{secnumdepth}{3}
 	\doublespacing
 	\setcounter{tocdepth}{3}
 	\tableofcontents
@@ -144,9 +145,9 @@
 	\listofalgorithms
 	\addcontentsline{toc}{chapter}{List of Algorithms} 
 		
-	\newpage
-	\thispagestyle{empty}
-	\mbox{}
+	% \newpage
+	% \thispagestyle{empty}
+	% \mbox{}
  
 	\mainmatter
 	\doublespacing
@@ -160,7 +161,8 @@
 	%\input{Background}
 	
 	%\include{Intro-Background}
-	\input{RelatedWork}
+	\include{RelatedWork}
+	\include{DistributedEmbeddings}
 	%\input{Supervised}
 	%\input{SimRank}                
     %    \input{Conclusion}

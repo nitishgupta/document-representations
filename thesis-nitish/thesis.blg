@@ -5,50 +5,52 @@ A level-1 auxiliary file: title.aux
 A level-1 auxiliary file: abstract.aux
 A level-1 auxiliary file: Dedication.aux
 A level-1 auxiliary file: acknowledgement.aux
+A level-1 auxiliary file: RelatedWork.aux
+A level-1 auxiliary file: DistributedEmbeddings.aux
 The style file: plainnat.bst
 Database file #1: references.bib
 Warning--can't use both volume and number fields in liu2006semi
 Warning--empty booktitle in mccallum1999multi
 Warning--can't use both volume and number fields in ng1997feature
-You've used 31 entries,
+You've used 41 entries,
             2773 wiz_defined-function locations,
-            783 strings with 10306 characters,
-and the built_in function-call counts, 15839 in all, are:
-= -- 1491
-> -- 742
-< -- 42
-+ -- 254
-- -- 222
-* -- 1153
-:= -- 2271
-add.period$ -- 102
-call.type$ -- 31
-change.case$ -- 162
-chr.to.int$ -- 30
-cite$ -- 65
-duplicate$ -- 810
-empty$ -- 1369
-format.name$ -- 277
-if$ -- 3487
-int.to.chr$ -- 2
+            840 strings with 12268 characters,
+and the built_in function-call counts, 21564 in all, are:
+= -- 2033
+> -- 1049
+< -- 52
++ -- 358
+- -- 315
+* -- 1594
+:= -- 3089
+add.period$ -- 135
+call.type$ -- 41
+change.case$ -- 223
+chr.to.int$ -- 39
+cite$ -- 85
+duplicate$ -- 1078
+empty$ -- 1836
+format.name$ -- 388
+if$ -- 4741
+int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 33
-newline$ -- 163
-num.names$ -- 124
-pop$ -- 371
+missing$ -- 43
+newline$ -- 213
+num.names$ -- 164
+pop$ -- 501
 preamble$ -- 1
-purify$ -- 135
+purify$ -- 186
 quote$ -- 0
-skip$ -- 647
+skip$ -- 868
 stack$ -- 0
-substring$ -- 735
-swap$ -- 192
-text.length$ -- 22
+substring$ -- 1043
+swap$ -- 258
+text.length$ -- 27
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 326
+type$ -- 436
 warning$ -- 3
-while$ -- 158
+while$ -- 211
 width$ -- 0
-write$ -- 418
+write$ -- 550
 (There were 3 warnings)

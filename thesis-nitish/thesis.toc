@@ -1,12 +1,18 @@
 \contentsline {chapter}{Abstract}{i}{figure.caption.1}
-\contentsline {chapter}{List of Tables}{vii}{chapter*.6}
-\contentsline {chapter}{List of Figures}{ix}{chapter*.7}
-\contentsline {chapter}{List of Algorithms}{xi}{chapter*.8}
-\contentsline {chapter}{\numberline {1}Related Work}{1}{chapter.9}
-\contentsline {section}{\numberline {1.1}Text Representation}{1}{section.10}
-\contentsline {subsection}{\numberline {1.1.1}Bag of Words}{2}{subsection.11}
-\contentsline {subsection}{\numberline {1.1.2}Dimensionality Reduction / Feature Selection}{4}{subsection.17}
-\contentsline {section}{\numberline {1.2}Learning Algorithms}{6}{section.26}
-\contentsline {subsection}{\numberline {1.2.1}With Multiple Binary Classifiers}{7}{subsection.27}
-\contentsline {subsection}{\numberline {1.2.2}With Single Joint Classifier}{9}{subsection.32}
-\contentsline {chapter}{Bibliography}{11}{subsection.32}
+\contentsline {chapter}{List of Tables}{vii}{chapter*.4}
+\contentsline {chapter}{List of Figures}{ix}{chapter*.5}
+\contentsline {chapter}{List of Algorithms}{xi}{chapter*.6}
+\contentsline {chapter}{\numberline {1}Related Work}{1}{chapter.7}
+\contentsline {section}{\numberline {1.1}Text Representation}{1}{section.8}
+\contentsline {subsection}{\numberline {1.1.1}Bag of Words}{2}{subsection.9}
+\contentsline {subsection}{\numberline {1.1.2}Dimensionality Reduction / Feature Selection}{4}{subsection.15}
+\contentsline {section}{\numberline {1.2}Learning Algorithms}{6}{section.24}
+\contentsline {subsection}{\numberline {1.2.1}With Multiple Binary Classifiers}{7}{subsection.25}
+\contentsline {subsection}{\numberline {1.2.2}With Single Joint Classifier}{9}{subsection.30}
+\contentsline {chapter}{\numberline {2}Distributed Document Embeddings}{13}{chapter.35}
+\contentsline {section}{\numberline {2.1}Motivation}{13}{section.36}
+\contentsline {section}{\numberline {2.2}Background}{14}{section.39}
+\contentsline {subsection}{\numberline {2.2.1}Neural Probabilistic Language Model (NPLM)}{15}{subsection.40}
+\contentsline {subsection}{\numberline {2.2.2}Log-Linear Models : word2vec}{17}{subsection.47}
+\contentsline {section}{\numberline {2.3}Distributed Document Embeddings : Our Approach}{19}{section.54}
+\contentsline {chapter}{Bibliography}{21}{section.54}
