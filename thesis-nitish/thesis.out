@@ -11,8 +11,13 @@
 \BOOKMARK [2][-]{subsection.30}{1.2.2 With Single Joint Classifier}{section.24}% 11
 \BOOKMARK [0][-]{chapter.35}{2 Distributed Document Embeddings}{}% 12
 \BOOKMARK [1][-]{section.36}{2.1 Motivation}{chapter.35}% 13
-\BOOKMARK [1][-]{section.39}{2.2 Background}{chapter.35}% 14
+\BOOKMARK [1][-]{section.39}{2.2 Background on Word Embeddings}{chapter.35}% 14
 \BOOKMARK [2][-]{subsection.40}{2.2.1 Neural Probabilistic Language Model \(NPLM\)}{section.39}% 15
 \BOOKMARK [2][-]{subsection.47}{2.2.2 Log-Linear Models : word2vec}{section.39}% 16
-\BOOKMARK [1][-]{section.54}{2.3 Distributed Document Embeddings : Our Approach}{chapter.35}% 17
-\BOOKMARK [0][-]{section.54}{Bibliography}{}% 18
+\BOOKMARK [3][-]{subsubsection.48}{2.2.2.1 Continuous Bag-of-Words \(CBOW\)}{subsection.47}% 17
+\BOOKMARK [3][-]{subsubsection.53}{2.2.2.2 Continuous Skip-gram}{subsection.47}% 18
+\BOOKMARK [3][-]{subsubsection.56}{2.2.2.3 Dependency-based Word Embeddings}{subsection.47}% 19
+\BOOKMARK [1][-]{section.58}{2.3 Document Embeddings}{chapter.35}% 20
+\BOOKMARK [2][-]{subsection.59}{2.3.1 Learning Document Embeddings : Our Approach}{section.58}% 21
+\BOOKMARK [3][-]{subsubsection.60}{2.3.1.1 Problem Setup}{subsection.59}% 22
+\BOOKMARK [0][-]{subsubsection.60}{Bibliography}{}% 23

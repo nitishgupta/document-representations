@@ -19,7 +19,7 @@ Though these representations have been widely used, one-hot representations have
 
 Due to the problems dicussed above there is a need for more robust, low-dimensional, non-sparse vector representations for words that capture the semantic similarity between them, can be used to model language with continuous distributions and can be used as inputs for various other NLP tasks. 
 
-\section{Background}
+\section{Background on Word Embeddings}
 \label{sec:background_distributed}
 Distributed word representations are dense fixed-sized feature vectors learnt for words in an unsupervised manner from large text corpus that capture the semantic similarity between words. Each word $w_{i}$ in the corpus is represented by a vector, $v_{w_{i}} \in \mathbb{R}^{m}$, where $m$ usually ranges from $50-300$. These dense representations help deal with sparsity and high-dimensionality issues in ont-hot representations and also provide provision for estimating similarities between words; which is as simple as taking the dot-product or calculating the cosine-distance between the vectors. 
 
@@ -62,10 +62,10 @@ The parameters of the model $(b, d, W, U, H)$ and the word vectors $C$ are estim
 
 \subsection{Log-Linear Models : word2vec}
 \label{sec:word2vec}
-Simple log-linear models are proposed in \cite{mikolov2013efficient} as opposed to the non-linear NPLM model to bring down the training time complexity without sacrificing with the quality of the word vectors. The models bring down the complexity of learning vectors by not having a non-linear layer and matrix weighting of the input vectors that are the costliest operations in NPLM. The two models proposed in \cite{mikolov2013efficient} are,
+Simple log-linear models are proposed in \cite{mikolov2013efficient} as opposed to the non-linear NPLM model to bring down the training time complexity without sacrificing with the quality of the word vectors. \todo{Also these models are based on the Distributional Hypothesis} The models bring down the complexity of learning vectors by not having a non-linear layer and matrix weighting of the input vectors that are the costliest operations in NPLM. The two models proposed in \cite{mikolov2013efficient} are Continuous Bag-of-Words and Continuous Skip-Gram model, described below.
 
-\begin{itemize}
-\item{\textbf{Continuous Bag-of-Words (CBOW) model}} : This model is different from the NPLM in that the projection layer is shared for all words; i.e. all words get projected into the same hidden layer vector (their vectors are averaged). This architechture hence neglects the ordering of the words as opposed to NNLM that uses the concatenation of input vectors for the projection layer. The training criteria in this model is to to classify the current (middle) word given its context. It also uses word sequence from the future to aid this task with the relaxation that the aim is not to learn a language model. The model archtitechture is given in Figure~\ref{fig:nn:cbow}.
+\subsubsection{Continuous Bag-of-Words (CBOW)}
+This model is different from the NPLM in that the projection layer is shared for all words; i.e. all words get projected into the same hidden layer vector (their vectors are averaged). This architechture hence neglects the ordering of the words as opposed to NNLM that uses the concatenation of input vectors for the projection layer. The training criteria in this model is to to classify the current (middle) word given its context. It also uses word sequence from the future to aid this task with the relaxation that the aim is not to learn a language model. The model archtitechture is given in Figure~\ref{fig:nn:cbow}.
 \begin{figure}[h!]
     \centering
         \includegraphics[width=0.5\textwidth]{figs/mikolov_cbow.png}
@@ -87,7 +87,8 @@ P(w_{t}|w_{t-k}, \ldots, w_{t+k}) = \frac{e^{y_{w_t}}}{\sum_{i} e^{y_{i}}}
 \end{equation}
 The parameters of the CBOW model, $(b, U)$ and the word vectors ($w_{i}$) are learnt by maximizing the average log probability (Eq.~\ref{eq:cbow:prob}) of the training corpus.
 
-\item{\textbf{Continuous Skip-gram model}} : This model is similar to the CBOW model, but instead of predicting the middle word based on the context, it tries to maximize the classification of a word based on another word in the context. More precisely, given each word, the skip-gram model tries to predict words within a certain range before and after the current word. The model architechture is given in Figure~\ref{fig:nn:skip}
+\subsubsection{Continuous Skip-gram}
+This model is similar to the CBOW model, but instead of predicting the middle word based on the context, it tries to maximize the classification of a word based on another word in the context. More precisely, given each word, the skip-gram model tries to predict words within a certain range before and after the current word. The model architechture is given in Figure~\ref{fig:nn:skip}
 \begin{figure}[h!]
     \centering
         \includegraphics[width=0.4\textwidth]{figs/mikolov_skip.png}
@@ -97,13 +98,50 @@ The parameters of the CBOW model, $(b, U)$ and the word vectors ($w_{i}$) are le
 Formally, given a sequence of words in a context $w_{t-k}, \ldots, w_{t+k}$, the skip-gram model defines $P(w_{t+j}|w_{t})$ using the \emph{softmax}-classifier in the following manner,
 \begin{equation}
 \label{eq:skip:prob}
-P(w_{t+j}|w_{t}) = \frac{\exp{(v_{w_{t}} \cdot v_{w_{t+j}} )} }{\sum_{i} \exp{(v_{w_{t}} \cdot v_{w_{i}})} }
+P(w_{t+j}|w_{t}) = \frac{e^{(v_{w_{t}} \cdot v_{w_{t+j}} )} }{\sum_{i} e^{(v_{w_{t}} \cdot v_{w_{i}})} }
 \end{equation}
 The only parameters of the Skip-gram model are the word vectors ($v_{w_{i}}$) that are learnt by maximizing the average log probability (Eq.~\ref{eq:skip:prob}) of predicting all the context words for all the words in the training corpus.
-\end{itemize}
+
 The CBOW and the Skip-gram models use the \emph{hierarchical softmax} \citep{morin2005hierarchical} instead of the full softmax to speed-up the learning process.
 
-\section{Distributed Document Embeddings : Our Approach}
-\label{sec:ourapproach}
+The quality of the word vectors is tested using the \emph{Semantic-Syntactic Word Relationship test} that evaluates the model performance on retreiving semantically and syntactically similar words to the given test words. The word vectors learnt using the skip-gram model are also shown to encode many linguistic regularities and pattern \citep{mikolov2013linguistic} and show additive compositionality using simple vector arithmetics. For example, the result of the vector calculation $vec(Madrid) - vec(Spain) + vec(France)$ is closest to $vec(Paris)$ than any other word vectors.
+
+\subsubsection{Dependency-based Word Embeddings}
+Instead of using bag-of-words based context as used in \emph{NPLM} and \emph{word2vec}, \cite{levy2014dependencybased} use arbitrary contexts to investigate its effects on the word vectors and the properties they encode. The most important of their techniques is to derive the contexts based on the syntactic relations that the word participates is. For each word $w$ and its modifiers $m_1, \ldots, m_k$ found using the parse tree of the sentence, contexts $(m_{1}, lbl_{1}, \ldots, m_{k}, lbl_{k})$ are extracted, where $lbl$ is the type of the dependency relation between word and the modifier and $lbl^{-1}$ is used to mark the inverse-relation. An example of the contexts extracted for a sentence is given in Figure~\ref{fig:dep:context}.
+\begin{figure}[h!]
+    \centering
+        \includegraphics[width=0.7\textwidth]{figs/dependency_context.png}
+    \caption{Dependency-based context extraction example \todo{Add ref?}}
+    \label{fig:dep:context}
+\end{figure}
+After extracting the contexts, their model uses the neural network architechture and the training objective of the skip-gram model to learn word vectors. On comparision to the vectors learnt from the skip-gram model on the tasks of \emph{topical similarity} and \emph{functional similaritry} estimation, it is found that the vectors learnt from this model perform better on the \emph{functional similarity} task that expects word vectors to encode syntactic relationships better. In the task of \emph{topical similarity} estimation, the vectors from the skip-gram model performed better as they encode semantic similarity between words because of the bag-of-words context used during training.
+
+\section{Document Embeddings}
+\label{sec:document_embeddings}
+In the previous section we saw how distributed word embeddings that encode semantic similarity can be learnt from text. 
+Though these semantic word spaces are very useful for a lot of tasks, their ability to capture the complexity and compositionality of human language is limited. 
+Word embeddings cannot be directly used to represent longer phrases, sentences and documents to express their meaning. 
+Tasks such as word sense disambiguation, sentiment analysis, text categorization etc. all require the text representation to capture the semantic content of the text for better inputs to learning algorithms as compared to a simple bag-of-words model. 
+
+Progress towards learning distributed representations for longer pieces of text, such as phrase-level or sentence-level representations [\cite{mitchell2010composition}, \cite{zanzotto2010estimating}, \cite{yessenalina2011compositional}, \cite{grefenstette2013multi}, \cite{mikolov2013distributed}] that capture semantic compositionality has been promising, but most models do not go beyond simple weighted average of word vectors to represent longer texts. 
+\cite{socher2013recursive} proposes a more sophisticated approach using recursive tensor neural network where the dependency parse-tree of the sentence is used to compose word vectors in a bottom-up approach to represent sentences for sentiment classification of phrases and sentences. 
+Both the techniques have weaknesses for learning document representations. The first approach is analogous to a bag-of-words approach and neglects word order while representing documents whereas the second approach considers syntactic dependencies but cannot go beyond sentences as it relies on parsing.
+
+\subsection{Learning Document Embeddings : Our Approach}
+\todo{sub1 : Problem setup. Learn doc and word embeddings in the same d-dimensional space.}
+\todo{sub2 : Our model. Projection layer. Predicting Probability. Along with NN archi figure. Training objective}
+\todo{sub3 : Negative Constrastive Estimation. New Training objective}
+\todo{Updates for word and document vectors. Give complete algorithm for learning vectors}
+
+Here we present our model on learning universal distributed document representations from a corpus of text documents. 
+Our model is based on the continuous bag-of-words model \citep{mikolov2013efficient} and \citep{le2014distributed} model of learning representations for sentences and paragraphs. 
+In our model, the vector representation for documents aid in the prediction of the words in the context which we hypethesize helps in learning document embeddings that encode the semantic content of the document.
+
+\subsubsection{Problem Setup}
+Given a set of documents, $\setD=\{d_{1}, \ldots, d_{|\setD|}\}$ and a vocabulary of words, $\setW=\{w_{1}, \ldots, w_{|\setW|}\}$ constructed from the set of documents, we wish to embed each document $d_{i} \in$ \setD and each word $w_{i} \in$ \setW onto the same $k$-dimensional space such that words and documents that are semantically similar have similar vector representations.
+
+
+
+
 
 

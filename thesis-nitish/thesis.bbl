@@ -1,4 +1,4 @@
-\begin{thebibliography}{41}
+\begin{thebibliography}{48}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -70,6 +70,14 @@ Nadia Ghamrawi and Andrew McCallum.
 \newblock In \emph{Proceedings of the 14th ACM international conference on
   Information and knowledge management}, pages 195--200. ACM, 2005.
 
+\bibitem[Grefenstette et~al.(2013)Grefenstette, Dinu, Zhang, Sadrzadeh, and
+  Baroni]{grefenstette2013multi}
+Edward Grefenstette, Georgiana Dinu, Yao-Zhong Zhang, Mehrnoosh Sadrzadeh, and
+  Marco Baroni.
+\newblock Multi-step regression learning for compositional distributional
+  semantics.
+\newblock \emph{arXiv preprint arXiv:1301.6939}, 2013.
+
 \bibitem[Hosmer and Lemeshow(1989)]{hosmer1989applied}
 David~W Hosmer and Stanley Lemeshow.
 \newblock Applied logistic regression. 1989.
@@ -80,6 +88,11 @@ Thorsten Joachims.
 \newblock \emph{Text categorization with support vector machines: Learning with
   many relevant features}.
 \newblock Springer, 1998.
+
+\bibitem[Le and Mikolov(2014)]{le2014distributed}
+Quoc~V Le and Tomas Mikolov.
+\newblock Distributed representations of sentences and documents.
+\newblock \emph{arXiv preprint arXiv:1405.4053}, 2014.
 
 \bibitem[Levy and Goldberg(2014)]{levy2014dependencybased}
 Omer Levy and Yoav Goldberg.
@@ -139,6 +152,17 @@ Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg~S Corrado, and Jeff Dean.
   compositionality.
 \newblock In \emph{Advances in Neural Information Processing Systems}, pages
   3111--3119, 2013{\natexlab{b}}.
+
+\bibitem[Mikolov et~al.(2013{\natexlab{c}})Mikolov, Yih, and
+  Zweig]{mikolov2013linguistic}
+Tomas Mikolov, Wen-tau Yih, and Geoffrey Zweig.
+\newblock Linguistic regularities in continuous space word representations.
+\newblock In \emph{HLT-NAACL}, pages 746--751, 2013{\natexlab{c}}.
+
+\bibitem[Mitchell and Lapata(2010)]{mitchell2010composition}
+Jeff Mitchell and Mirella Lapata.
+\newblock Composition in distributional models of semantics.
+\newblock \emph{Cognitive science}, 34\penalty0 (8):\penalty0 1388--1429, 2010.
 
 \bibitem[Mnih and Kavukcuoglu(2013)]{mnih2013learning}
 Andriy Mnih and Koray Kavukcuoglu.
@@ -206,6 +230,15 @@ Gerard Salton and Chung-Shu Yang.
 \newblock \emph{Journal of documentation}, 29\penalty0 (4):\penalty0 351--372,
   1973.
 
+\bibitem[Socher et~al.(2013)Socher, Perelygin, Wu, Chuang, Manning, Ng, and
+  Potts]{socher2013recursive}
+Richard Socher, Alex Perelygin, Jean~Y Wu, Jason Chuang, Christopher~D Manning,
+  Andrew~Y Ng, and Christopher Potts.
+\newblock Recursive deep models for semantic compositionality over a sentiment
+  treebank.
+\newblock In \emph{Proceedings of the conference on empirical methods in
+  natural language processing (EMNLP)}, volume 1631, page 1642. Citeseer, 2013.
+
 \bibitem[Tong and Appelbaum(1994)]{tong1994machine}
 Richard~M Tong and Lee~A Appelbaum.
 \newblock Machine learning for knowledge-based document routing (a report on
@@ -253,6 +286,22 @@ Yiming Yang and Christopher~G Chute.
 \newblock In \emph{Proceedings of the 14th conference on Computational
   linguistics-Volume 2}, pages 447--453. Association for Computational
   Linguistics, 1992.
+
+\bibitem[Yessenalina and Cardie(2011)]{yessenalina2011compositional}
+Ainur Yessenalina and Claire Cardie.
+\newblock Compositional matrix-space models for sentiment analysis.
+\newblock In \emph{Proceedings of the Conference on Empirical Methods in
+  Natural Language Processing}, pages 172--182. Association for Computational
+  Linguistics, 2011.
+
+\bibitem[Zanzotto et~al.(2010)Zanzotto, Korkontzelos, Fallucchi, and
+  Manandhar]{zanzotto2010estimating}
+Fabio~Massimo Zanzotto, Ioannis Korkontzelos, Francesca Fallucchi, and Suresh
+  Manandhar.
+\newblock Estimating linear models for compositional distributional semantics.
+\newblock In \emph{Proceedings of the 23rd International Conference on
+  Computational Linguistics}, pages 1263--1271. Association for Computational
+  Linguistics, 2010.
 
 \bibitem[Zhang and Zhou(2005)]{zhang2005k}
 Min-Ling Zhang and Zhi-Hua Zhou.

@@ -29,8 +29,25 @@ w_{k} = \log \frac{N}{n}
 \end{equation}
 \item{\textbf{Term Frequency Inverse Document Frequency (tf-idf)} : }Given the above two term weighing schemes, it is clear that an important term in a document should have high \emph{tf} but a low overall collection frequency (\emph{idf}). This suggests that a reasonable measure for term importance may be then obtained by the \emph{tf} and the \emph{idf} (\emph{tf}$\times$\emph{idf}). As we will see in the results section, the \emph{tf-idf} weighed bag-of-words document representation gives one of the best accuracies in the multi-label text classification task.
 \end{enumerate}
-A common feature in the bag-of-words document representation is the \emph{normalization factor}\citep{salton1988term} introduced to reduce the effect of varying document lengths and give equal weightage to documents of all lengths when learning the classifier for text categorization. \todo{Do we put how normalization is done?}
-Another feature added to the bag-of-words representation is the removal of stop-words (short function words that do not add to the semantic content of the document) and words that occur infrequently to make the document vector more meaningful.
+% \subsubsection{One Hot Representation}
+% This is the most trivial representation, where each document is represented by a vector that is size of the vocabulary. Each element in the vector is either a $0$ or a $1$ to denote the absence or presence of a specific term in the document.
+
+% \subsubsection{Term Frequency (tf))}
+% The term frequency representation weighs the terms present in the document relative to their occurence frequency in the document. Hence a document $d$ is represented as, $d$ $=$ $(w_{1}, w_{2}, \ldots, w_{|V|})$, where, $w_{k}$ is the number of times the term $k$ appears in the document $d$. 
+% % \begin{equation}
+% % w_{i} = \frac{N_{i,d}}{N_{d}}
+% % \end{equation}
+% % where, $N_{i,d}$ is the number of times, term $i$ occurs in document $d$ and $N_{d}$ is the total number of terms in the document. The document can also be represented only by the counts of terms, but normalization is done to reduce the effect of document length.
+% \subsubsection{Inverse Document Frequency (idf)}
+% Though using \emph{tf} as a term weighting scheme is a good starting point, it faces a challenge when high frequency terms are not concentrated in a few particular documents but are prevalent in the whole collection. Those terms then stop being characteristic of the semantic content of a few documents and need not be given high weightage. To overcome this problem, \cite{salton1988term} suggested a new term weighting called the inverse document frequency (idf). The \emph{idf} weight of a term varies inversely with the number of documents $n$ it belongs to in a collection of total $N$ documents. A typical \emph{idf} vector can be computed as 
+% \begin{equation}
+% w_{k} = \log \frac{N}{n}
+% \end{equation}
+% \subsubsection{Term Frequency Inverse Document Frequency (tf-idf)}
+% Given the above two term weighing schemes, it is clear that an important term in a document should have high \emph{tf} but a low overall collection frequency (\emph{idf}). This suggests that a reasonable measure for term importance may be then obtained by the \emph{tf} and the \emph{idf} (\emph{tf}$\times$\emph{idf}). As we will see in the results section, the \emph{tf-idf} weighed bag-of-words document representation gives one of the best accuracies in the multi-label text classification task.
+
+% A common feature in the bag-of-words document representation is the \emph{normalization factor}\citep{salton1988term} introduced to reduce the effect of varying document lengths and give equal weightage to documents of all lengths when learning the classifier for text categorization. \todo{Do we put how normalization is done?}
+% Another feature added to the bag-of-words representation is the removal of stop-words (short function words that do not add to the semantic content of the document) and words that occur infrequently to make the document vector more meaningful.
 
 \subsection{Dimensionality Reduction / Feature Selection}
 The bag-of-words representation scheme has several drawbacks but the most important drawback it suffers from is that document vectors are very sparse and high dimensional. Typical vocabulary sizes of a moderate-sized document collection ranges from tens to hundereds of thousands of terms which is prohibitively high for many learning algorithms. 
