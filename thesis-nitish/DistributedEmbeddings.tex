@@ -168,7 +168,7 @@ Also note that the word vector representations learned and stored in the matrix 
 %\para{Projection Layer (Context Representation)} : 
 \subsubsection{Projection Layer (Context Representation)}
 We represent the context(words surrounding the middle word to be predicted) and the document together in the same projection layer, denoted by $h_{c} \in \mathbb{R}^{k}$, by taking a weighted sum of the corresponding vector representations. 
-The weights for the context words $\Gamma = \{\wgt{i} | i=\{t-c, \ldots, t-1, t+1, \ldots, t+c\}\}$ are kept universal for different sequences across the corpus as we expect the weights to learn some kind of syntactic quality of the language to better represent the context. Also the weight corresponding to the document vector is kept constant at $1$ as we expected the document to have equal contribution to all sequences. This also gave the best results.
+The weights for the context words $\Lambda = \{\wgt{i} | i=\{t-c, \ldots, t-1, t+1, \ldots, t+c\}\}$ are kept universal for different sequences across the corpus as we expect the weights to learn some kind of syntactic quality of the language to better represent the context. Also the weight corresponding to the document vector is kept constant at $1$ as we expected the document to have equal contribution to all sequences. This also gave the best results.
 We also (unsuccessfully) experimented by taking matrix weights instead of scalar weights($\wgt{i}$) to learn better syntactic qualities of the language. 
 
 \begin{equation}
@@ -197,7 +197,7 @@ p(w_{t} | d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c}) = \frac{e^{
 \subsubsection{Training Objective}
 The training data $\traindata$, is composed of $M$ training sequences each of which consists a $2c+1$ length sequence of words and the document index it belongs to. For example, $t = \{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}\}$ represents the $m^{th}$ training sequence in $\traindata$.  
 
-Given the training data $\traindata$, our objective is to learn an optimum parameter set $\Theta = (\matD, \matW, \Gamma)$ consisting of the document and word vector matrices and the projection layer weights for the context words, by maximizing the average log probability of estimating the middle word correctly in all the training word sequences where the probability of estimating the middle word as $w_{i}$ is given by Eq.~\ref{eq:soft_prob}. Therefore, 
+Given the training data $\traindata$, our objective is to learn an optimum parameter set $\Theta = (\matD, \matW, \Lambda)$ consisting of the document and word vector matrices and the projection layer weights for the context words, by maximizing the average log probability of estimating the middle word correctly in all the training word sequences where the probability of estimating the middle word as $w_{i}$ is given by Eq.~\ref{eq:soft_prob}. Therefore, 
 \begin{equation}
 \label{eq:paramter_argmax}
 \hat{\Theta} =  \argmax_{\Theta}~l(\traindata, \Theta)
@@ -261,7 +261,7 @@ where $Y_{m}$ is the predicted label for the $m$-th training sequence and,
 \end{equation}
 
 \subsubsection{Parameter Estimation}
-To learn the optimum parameters $\Theta = (\matD, \matW, \Gamma)$ we would maximize the log-likelihood of observing the training data given in Eq~\ref{eq:new_argmax} using the Stochastic Gradient Descent(SGD) algorithm described below. 
+To learn the optimum parameters $\Theta = (\matD, \matW, \Lambda)$ we would maximize the log-likelihood of observing the training data given in Eq~\ref{eq:new_argmax} using the Stochastic Gradient Descent(SGD) algorithm described below. 
 
 Firstly, for the SGD algorithm we would need to calculate the gradient of the log probability estimate (Eq~\ref{eq:log_P}) with respect to individual parameters $\theta \in \Theta$. The derivative of the log probability estimate w.r.t. to a paramter $\theta \in \Theta$ is given by,
 \begin{align}
@@ -291,6 +291,67 @@ For any training sequence $m$, there are four types of parameters $\theta$ that 
 \label{eq:partial_wgt_t-k}
 \frac{\partial (\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})}{\partial \wgt{t+j}} = \vecwi{w^{(m)}_{t}} \cdot \vecwi{w^{(m)}_{t+j}}
 \end{equation}
+
+Therefore the derivative of the log-probability estimate w.r.t. the 
+\begin{enumerate}
+\item
+\textbf{Document Vector} : 
+\begin{equation}
+\label{eq:grad_doc}
+\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \vecdi{d^{(m)}_{i}}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* \vecwi{w^{(m)}_{t}}
+\end{equation}
+\item 
+\textbf{Middle Word} : 
+\begin{equation}
+\label{eq:grad_mword}
+\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \vecwi{w^{(m)}_{t}}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* h^{(m)}_{c}
+\end{equation}
+\item 
+\textbf{Context Word} : 
+\begin{equation}
+\label{eq:grad_cword}
+\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \vecwi{w^{(m)}_{t+j}}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* \wgt{t+j}* \vecwi{w^{(m)}_{t}}
+\end{equation}
+\item 
+\textbf{Neural Network Weight} : 
+\begin{equation}
+\label{eq:grad_wgt}
+\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \wgt{t+j}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* (\vecwi{w^{(m)}_{t}} \cdot \vecwi{w^{(m)}_{t+j}})
+\end{equation}
+\end{enumerate}
+According to the SGD algorithm, the update to be made to a parameter $\theta \in \Theta$ on observing a training sequence $m$ is therefore given by,
+\begin{equation}
+\theta^{(i+1)} \leftarrow \theta^{(i)} + \gamma \left[\frac{\partial \log P_{\Theta}(Y_{m} = Y^{(m)})}{\partial \theta^{(i)}} \right]
+\end{equation}
+where $\theta^{(i)}$ denotes the value of the parameter in the $i$-th iteration, $\theta^{i+1}$ is the value after the update and $\gamma$ is the learning rate. 
+The update rules for the document vector, word vectors and the neural network weights are hence given by,
+\begin{enumerate}
+\item 
+\textbf{Document Vector} : 
+\begin{equation}
+\label{eq:update_doc}
+(\vecdi{d^{(m)}_{i}})^{(i+1)} = (\vecdi{d^{(m)}_{i}})^{(i)} + \gamma* \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* \vecwi{w^{(m)}_{t}}
+\end{equation}
+\item 
+\textbf{Middle Word} : 
+\begin{equation}
+\label{eq:update_mword}
+(\vecwi{w^{(m)}_{t}})^{(i+1)} = (\vecwi{w^{(m)}_{t}})^{(i)} + \gamma* \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* h^{(m)}_{c}
+\end{equation}
+\item 
+\textbf{Context Word} : 
+\begin{equation}
+\label{eq:update_cword}
+(\vecwi{w^{(m)}_{t+j}})^{(i+1)} = (\vecwi{w^{(m)}_{t+j}})^{(i)} + \gamma* \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* \wgt{t+j}* \vecwi{w^{(m)}_{t}}
+\end{equation}
+\item 
+\textbf{Neural Network Weight} : 
+\begin{equation}
+\label{eq:update_wgt}
+\wgt{t+j}^{(i+1)} = \wgt{t+j}^{(i)} + \gamma* \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* (\vecwi{w^{(m)}_{t}} \cdot \vecwi{w^{(m)}_{t+j}})
+\end{equation}
+\end{enumerate}
+To learn the vectors $\matD$, $\matW$ and weights $\Lambda$ we initialize them to small random vectors and scalars respectively and using Eqs.~\ref{eq:update_doc}, ~\ref{eq:update_mword}, ~\ref{eq:update_cword} and ~\ref{eq:update_wgt} we iterate through the training data, making the appropriate updates for a fixed number of epochs that is learnt using the development data. For each training sequence we make one update to the document vector, $2c+1$ updates for the word vectors in the sequence and $2c$ updates for the neural network weights, where $c$ is the window length we consider while training.
 
 
 
