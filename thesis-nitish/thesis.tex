@@ -37,13 +37,20 @@
 \newtheorem{definition}{Definition}
 \newtheorem{proposition}{Proposition}
 
+\DeclareMathOperator*{\argmax}{arg\,max}
 \newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:} #1}}
 \newcommand{\setD}{\ensuremath{\mathbf{D}} }
 \newcommand{\setW}{\ensuremath{\mathbf{V}} }
-\newcommand{\vecD}{\ensuremath{D} }
-\newcommand{\vecW}{\ensuremath{V} }
-\newcommand{\vecdi}[1]{\ensuremath{v_{d_{#1}}} }
-\newcommand{\vecwi}[1]{\ensuremath{\ensuremath{v_{w_{#1}}}} }
+\newcommand{\matD}{\ensuremath{\mathrm{D}} }
+\newcommand{\matW}{\ensuremath{\mathrm{W}} }
+\newcommand{\vecdi}[1]{\ensuremath{\mathrm{v}^{D}_{#1}}}
+\newcommand{\vecwi}[1]{\ensuremath{\mathrm{v}^{W}_{#1}}}
+\newcommand{\con}{$(w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c})$}
+\newcommand{\wgt}[1]{\ensuremath{\gamma_{#1}}}
+\newcommand{\traindata}{\ensuremath{\mathcal{T}}}
+
+\newcommand{\para}[1]{\textbf{\noindent{#1}}}
+
 
 \graphicspath{{figs/}}
 

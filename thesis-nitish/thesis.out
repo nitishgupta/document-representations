@@ -18,6 +18,12 @@
 \BOOKMARK [3][-]{subsubsection.53}{2.2.2.2 Continuous Skip-gram}{subsection.47}% 18
 \BOOKMARK [3][-]{subsubsection.56}{2.2.2.3 Dependency-based Word Embeddings}{subsection.47}% 19
 \BOOKMARK [1][-]{section.58}{2.3 Document Embeddings}{chapter.35}% 20
-\BOOKMARK [2][-]{subsection.59}{2.3.1 Learning Document Embeddings : Our Approach}{section.58}% 21
-\BOOKMARK [3][-]{subsubsection.60}{2.3.1.1 Problem Setup}{subsection.59}% 22
-\BOOKMARK [0][-]{subsubsection.60}{Bibliography}{}% 23
+\BOOKMARK [2][-]{subsection.61}{2.3.1 Problem Setup}{section.58}% 21
+\BOOKMARK [2][-]{subsection.62}{2.3.2 Our Model}{section.58}% 22
+\BOOKMARK [3][-]{subsubsection.67}{2.3.2.1 Projection Layer \(Context Representation\)}{subsection.62}% 23
+\BOOKMARK [3][-]{subsubsection.69}{2.3.2.2 Estimating Prediction Probability}{subsection.62}% 24
+\BOOKMARK [3][-]{subsubsection.74}{2.3.2.3 Training Objective}{subsection.62}% 25
+\BOOKMARK [3][-]{subsubsection.78}{2.3.2.4 Noise Contrastive Estimation \(NCE\)}{subsection.62}% 26
+\BOOKMARK [3][-]{subsubsection.82}{2.3.2.5 New Training Objective}{subsection.62}% 27
+\BOOKMARK [3][-]{subsubsection.86}{2.3.2.6 Parameter Estimation}{subsection.62}% 28
+\BOOKMARK [0][-]{equation.94}{Bibliography}{}% 29

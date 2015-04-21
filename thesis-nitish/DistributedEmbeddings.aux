@@ -26,6 +26,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Log-Linear Models : word2vec}{17}{subsection.47}}
 \newlabel{sec:word2vec}{{2.2.2}{17}{Log-Linear Models : word2vec}{subsection.47}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.1}Continuous Bag-of-Words (CBOW)}{17}{subsubsection.48}}
+\newlabel{sec:cbow}{{2.2.2.1}{17}{Continuous Bag-of-Words (CBOW)}{subsubsection.48}{}}
 \newlabel{eq:cbow:prob}{{2.8}{17}{Continuous Bag-of-Words (CBOW)}{equation.52}{}}
 \citation{morin2005hierarchical}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Continuous Bag-of-Words Model (CBOW) \leavevmode {\color  {red}\textbf  {TODO:} Add ref?}\relax }}{18}{figure.caption.49}}
@@ -47,13 +48,42 @@
 \newlabel{fig:dep:context}{{2.4}{20}{Dependency-based context extraction example \todo {Add ref?}\relax }{figure.caption.57}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Document Embeddings}{20}{section.58}}
 \newlabel{sec:document_embeddings}{{2.3}{20}{Document Embeddings}{section.58}{}}
-\citation{mikolov2013efficient}
-\citation{le2014distributed}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Learning Document Embeddings : Our Approach}{21}{subsection.59}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1.1}Problem Setup}{22}{subsubsection.60}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Problem Setup}{21}{subsection.61}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Our Model}{22}{subsection.62}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces GloDETC : Neural Network Archtichture \leavevmode {\color  {red}\textbf  {TODO:} Change figure}\relax }}{23}{figure.caption.66}}
+\newlabel{fig:nn:archi}{{2.5}{23}{GloDETC : Neural Network Archtichture \todo {Change figure}\relax }{figure.caption.66}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2.1}Projection Layer (Context Representation)}{23}{subsubsection.67}}
+\newlabel{eq:hidden_vec}{{2.10}{24}{Projection Layer (Context Representation)}{equation.68}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2.2}Estimating Prediction Probability}{24}{subsubsection.69}}
+\newlabel{eq:nn_score}{{2.11}{24}{Estimating Prediction Probability}{equation.71}{}}
+\newlabel{eq:soft_prob}{{2.12}{24}{Estimating Prediction Probability}{equation.73}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2.3}Training Objective}{24}{subsubsection.74}}
+\citation{morin2005hierarchical}
+\citation{bengio2003quick}
+\citation{bengio2008adaptive}
+\citation{gutmann2012noise}
+\citation{mnih2012fast}
+\citation{mnih2013learning}
+\newlabel{eq:paramter_argmax}{{2.13}{25}{Training Objective}{equation.75}{}}
+\newlabel{eq:training_objective}{{2.14}{25}{Training Objective}{equation.76}{}}
+\newlabel{eq:update_theta}{{2.15}{25}{Training Objective}{equation.77}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2.4}Noise Contrastive Estimation (NCE)}{25}{subsubsection.78}}
+\newlabel{eq:label1}{{2.16}{26}{Noise Contrastive Estimation (NCE)}{equation.79}{}}
+\newlabel{eq:label0}{{2.17}{27}{Noise Contrastive Estimation (NCE)}{equation.80}{}}
+\newlabel{eq:prob_y}{{2.18}{27}{Noise Contrastive Estimation (NCE)}{equation.81}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2.5}New Training Objective}{27}{subsubsection.82}}
+\newlabel{eq:new_argmax}{{2.19}{27}{New Training Objective}{equation.83}{}}
+\newlabel{eq:new_training_objective}{{2.20}{27}{New Training Objective}{equation.84}{}}
+\newlabel{eq:log_P}{{2.21}{27}{New Training Objective}{equation.85}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2.6}Parameter Estimation}{27}{subsubsection.86}}
+\newlabel{eq:partial_theta}{{2.25}{28}{Parameter Estimation}{equation.90}{}}
+\newlabel{eq:partial_doc}{{2.26}{28}{Parameter Estimation}{equation.91}{}}
+\newlabel{eq:partial_w_t}{{2.27}{28}{Parameter Estimation}{equation.92}{}}
+\newlabel{eq:partial_w_t-k}{{2.28}{28}{Parameter Estimation}{equation.93}{}}
+\newlabel{eq:partial_wgt_t-k}{{2.29}{28}{Parameter Estimation}{equation.94}{}}
 \@setckpt{DistributedEmbeddings}{
-\setcounter{page}{23}
-\setcounter{equation}{9}
+\setcounter{page}{29}
+\setcounter{equation}{29}
 \setcounter{enumi}{2}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -63,11 +93,11 @@
 \setcounter{part}{0}
 \setcounter{chapter}{2}
 \setcounter{section}{3}
-\setcounter{subsection}{1}
-\setcounter{subsubsection}{1}
+\setcounter{subsection}{2}
+\setcounter{subsubsection}{6}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{4}
+\setcounter{figure}{5}
 \setcounter{table}{0}
 \setcounter{parentequation}{0}
 \setcounter{@pps}{0}
@@ -90,9 +120,9 @@
 \setcounter{ALG@tmpcounter}{0}
 \setcounter{lstnumber}{1}
 \setcounter{NAT@ctr}{0}
-\setcounter{Item}{17}
+\setcounter{Item}{24}
 \setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{22}
+\setcounter{bookmark@seq@number}{28}
 \setcounter{AM@survey}{0}
 \setcounter{ContinuedFloat}{0}
 \setcounter{example}{0}

@@ -65,6 +65,7 @@ The parameters of the model $(b, d, W, U, H)$ and the word vectors $C$ are estim
 Simple log-linear models are proposed in \cite{mikolov2013efficient} as opposed to the non-linear NPLM model to bring down the training time complexity without sacrificing with the quality of the word vectors. \todo{Also these models are based on the Distributional Hypothesis} The models bring down the complexity of learning vectors by not having a non-linear layer and matrix weighting of the input vectors that are the costliest operations in NPLM. The two models proposed in \cite{mikolov2013efficient} are Continuous Bag-of-Words and Continuous Skip-Gram model, described below.
 
 \subsubsection{Continuous Bag-of-Words (CBOW)}
+\label{sec:cbow}
 This model is different from the NPLM in that the projection layer is shared for all words; i.e. all words get projected into the same hidden layer vector (their vectors are averaged). This architechture hence neglects the ordering of the words as opposed to NNLM that uses the concatenation of input vectors for the projection layer. The training criteria in this model is to to classify the current (middle) word given its context. It also uses word sequence from the future to aid this task with the relaxation that the aim is not to learn a language model. The model archtitechture is given in Figure~\ref{fig:nn:cbow}.
 \begin{figure}[h!]
     \centering
@@ -127,21 +128,169 @@ Progress towards learning distributed representations for longer pieces of text,
 \cite{socher2013recursive} proposes a more sophisticated approach using recursive tensor neural network where the dependency parse-tree of the sentence is used to compose word vectors in a bottom-up approach to represent sentences for sentiment classification of phrases and sentences. 
 Both the techniques have weaknesses for learning document representations. The first approach is analogous to a bag-of-words approach and neglects word order while representing documents whereas the second approach considers syntactic dependencies but cannot go beyond sentences as it relies on parsing.
 
-\subsection{Learning Document Embeddings : Our Approach}
-\todo{sub1 : Problem setup. Learn doc and word embeddings in the same d-dimensional space.}
-\todo{sub2 : Our model. Projection layer. Predicting Probability. Along with NN archi figure. Training objective}
-\todo{sub3 : Negative Constrastive Estimation. New Training objective}
-\todo{Updates for word and document vectors. Give complete algorithm for learning vectors}
+%\subsection{Learning Document Embeddings : Our Approach}
+Below we present our model on learning universal distributed vector representations for documents and words in the corpus such that,
+\begin{enumerate}
+\item The learned vectors encode semantic and topical content of the documents and words.
+\item Semantically similar documents/words have similar vector representations.
+\end{enumerate}
+%Our model is inspired by the work on continuous bag-of-words model \citep{mikolov2013efficient} and \citep{le2014distributed} model of learning representations for sentences and paragraphs. 
+To learn vectors that satisfy $1.$ and $2.$ above, we hypothesize that document representations should be learnt such that they can aid in the prediction of words in a given word sequence from the document. In the sections below we formally introduce the problem and present our model to learn document and word vector representations.
 
-Here we present our model on learning universal distributed document representations from a corpus of text documents. 
-Our model is based on the continuous bag-of-words model \citep{mikolov2013efficient} and \citep{le2014distributed} model of learning representations for sentences and paragraphs. 
-In our model, the vector representation for documents aid in the prediction of the words in the context which we hypethesize helps in learning document embeddings that encode the semantic content of the document.
+\subsection{Problem Setup}
+Given a set of documents, $\setD=\{d_{1}, \ldots, d_{|\setD|}\}$ and a vocabulary of words, $\setW$ constructed using the set of documents, we wish to embed each document $d_{i} \in$ \setD and each word in the vocabulary onto the same $k$-dimensional space such that the learnt vectors encode semantic content of the entities. 
 
-\subsubsection{Problem Setup}
-Given a set of documents, $\setD=\{d_{1}, \ldots, d_{|\setD|}\}$ and a vocabulary of words, $\setW=\{w_{1}, \ldots, w_{|\setW|}\}$ constructed from the set of documents, we wish to embed each document $d_{i} \in$ \setD and each word $w_{i} \in$ \setW onto the same $k$-dimensional space such that words and documents that are semantically similar have similar vector representations.
+For every sequence of words $w_{t-c}, \ldots, w_{t+c}$ in, say document $d_{i}$, we wish to estimate the probability $p(w_{t}|d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c})$ of predicting the middle word in the sequence using the information about the document and the words in the context. 
+We will estimate this probability using the vector representations for documents and words and learn vectors such that the probability of predicting the middle word in the context correctly is maximized.
 
+\subsection{Our Model}
+A document $d_{i} \in \setD$, indexed by `$i$', in our model is represented by a vector $\vecdi{i} \in \mathbb{R}^{k}$, which is also the $i$-th column of the matrix $\matD = \left[\vecdi{1}, \ldots, \vecdi{|\setD|}\right] \in \mathbb{R}^{k \times |\setD|}$. 
+Similarly, a word indexed by `$i$' in the vocabulary $\setW$ is represented by vector $\vecwi{i} \in \mathbb{R}^{k}$, which is also the $i$-th column of the matrix $\matW = \left[\vecwi{1}, \ldots, \vecwi{|\setW|}\right] \in \mathbb{R}^{k \times |\setW|}$.
 
+Given a sequence $(w_{t-c}, \ldots, w_{t+c})$ of $2c+1$ words and the document it occurs in, our training objective is to maximize the probability of correctly predicting the middle word $w_{t}$ using the surrounding context words $(w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c})$, which we now denote as $context$ as a shorthand, and the information about the document in terms of their distributed vector representations. 
+Therefore, our training objective is to maximize the probability $p(w_{t} | d_{i}, context)$ of correctly predicting the middle word using the information about the surrounding words and the document the sequence occurs in. 
 
+To learn distributed word and document representations, we present a neural network model using which we,
+\begin{enumerate}
+\item Represent each word and document in the corpus by a $k$-dimensional distributed representation stored as vectors in the matrices $\matW$ and $\matD$, respectively.
+\item Estimate the probability of predicting the middle word in a sequence, given the document it occurs in, using the vector representation of the document and the words in the context.
+\item Learn the word and document vectors simultaneuously with the parameters of the function to estimate the probability.
+\end{enumerate}
+The architechture for the proposed neural network is given in Fig.~\ref{fig:nn:archi}.
+Also note that the word vector representations learned and stored in the matrix $\matW$ are universal representations and shared across all documents and contexts.
+\begin{figure}[h!]
+    \centering
+        \includegraphics[width=0.9\textwidth]{figs/nn_arch.png}
+    \caption{GloDETC : Neural Network Archtichture \todo{Change figure}}
+    \label{fig:nn:archi}
+\end{figure}
+
+%\para{Projection Layer (Context Representation)} : 
+\subsubsection{Projection Layer (Context Representation)}
+We represent the context(words surrounding the middle word to be predicted) and the document together in the same projection layer, denoted by $h_{c} \in \mathbb{R}^{k}$, by taking a weighted sum of the corresponding vector representations. 
+The weights for the context words $\Gamma = \{\wgt{i} | i=\{t-c, \ldots, t-1, t+1, \ldots, t+c\}\}$ are kept universal for different sequences across the corpus as we expect the weights to learn some kind of syntactic quality of the language to better represent the context. Also the weight corresponding to the document vector is kept constant at $1$ as we expected the document to have equal contribution to all sequences. This also gave the best results.
+We also (unsuccessfully) experimented by taking matrix weights instead of scalar weights($\wgt{i}$) to learn better syntactic qualities of the language. 
+
+\begin{equation}
+\label{eq:hidden_vec}
+h_{c} = \vecdi{i} + \wgt{t-c}\vecwi{t-c} + \ldots + \wgt{t-1}\vecwi{t-1} + \wgt{t+1}\vecwi{t+1} + \wgt{t+c}\vecwi{t+c}
+\end{equation}
+
+%\textbf{Probability Prediction} : 
+\subsubsection{Estimating Prediction Probability}
+We expect in absence of any non-linearity that the projection layer vector should be aligned to the correct middle word of the sequence. Hence we estimate the probability of predicting the word $w_{t}$ as the middle word in the following manner. 
+\begin{enumerate}
+\item An output score $s_{w_{i}} \in \mathbb{R}$ for every $w_{i}$ in the vocabulary is estimated by,
+\begin{equation}
+\label{eq:nn_score}
+s_{w_{i}} = \sigma(\vecwi{w_{i}}\cdot h_{c})
+\end{equation}
+where $\sigma(z) = \frac{1}{1+e^{-z}}$ is the standard sigmoid function. 
+\item After calculating the score for each of the word in the vocabulary, we use the \emph{softmax} classifier to estimate the probability of predicting the actual correct word $w_{t}$ as the middle word in the sequence,
+\begin{equation}
+\label{eq:soft_prob}
+p(w_{t} | d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c}) = \frac{e^{s_{w_{t}}}}{\sum_{i \in \setW} e^{s_{i}}}
+\end{equation}
+\end{enumerate}
+
+%\textbf{Training Objective} : 
+\subsubsection{Training Objective}
+The training data $\traindata$, is composed of $M$ training sequences each of which consists a $2c+1$ length sequence of words and the document index it belongs to. For example, $t = \{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}\}$ represents the $m^{th}$ training sequence in $\traindata$.  
+
+Given the training data $\traindata$, our objective is to learn an optimum parameter set $\Theta = (\matD, \matW, \Gamma)$ consisting of the document and word vector matrices and the projection layer weights for the context words, by maximizing the average log probability of estimating the middle word correctly in all the training word sequences where the probability of estimating the middle word as $w_{i}$ is given by Eq.~\ref{eq:soft_prob}. Therefore, 
+\begin{equation}
+\label{eq:paramter_argmax}
+\hat{\Theta} =  \argmax_{\Theta}~l(\traindata, \Theta)
+\end{equation}
+\begin{equation}
+\label{eq:training_objective}
+l(\traindata, \Theta) = \frac{1}{M}\sum_{m=1}^{M} \log \left[p(w^{(m)}_{t} | d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t-1}, w^{(m)}_{t+1}, \ldots, w^{(m)}_{t+c})\right]
+\end{equation}
+To learn the optimize the above training objective, we can use the Stochastic Gradient Descent(SGD) algorithm to find gradient of the objective function (Eq.~\ref{eq:training_objective}) w.r.t. to the individual parameters $\theta_{i}$ and apply the update rule as follows,
+\begin{equation}
+\label{eq:update_theta}
+\theta^{(x)}_{i} = \theta^{(x-1)}_{i} + \gamma\frac{\partial l(\traindata, \Theta)}{\partial \theta_{i}}
+\end{equation}
+where $x$ is the current iteration number and $\gamma$ is the learning rate. Also note that we add the gradient to $\theta^{(x)}_{i}$ because we wish to maximize the training objective.
+Updating the parameters for sufficient number of iterations should yield the optimum document and word vectors along with the weights for the neural network.
+
+\subsubsection{Noise Contrastive Estimation (NCE)}
+As we see in Eq~\ref{eq:soft_prob}, estimating the probability for each training word sequence requires a sweep through the whole vocabulary of size $|\setW|$ which can be a very expensive computation given that typical vocabulary sizes range from a few tens to a few hundereds of thousand words for large datasets. Approaches to reduce this training time, such as, use of heirachical soft-max \citep{morin2005hierarchical} and use of importance sampling to approximate the likelihood gradient \citep{bengio2003quick}, \citep{bengio2008adaptive} have been proposed. Using heirarchical softmax reduces the training time from linear to logarithmic in vocabulary size but is considerable more involved and finding well-performing trees is not trivial. Also, though importance sampling provides substantial speedups, it suffers from stability problems.
+
+\textbf{Noise Contrastive Estimation (NCE)} \citep{gutmann2012noise} is method for fitting unnormalized probabilities by reducing the problem of \emph{density estimation} to \emph{probabilistic binary classification}. It has also been adapted to NPLM (Sec.~\ref{sec:bengio}) \citep{mnih2012fast} and learning word embeddings \cite{mnih2013learning} and shows significant improvements in training time with no considerable degradation in the quality of word vectors learned.
+
+The basic idea of NCE is to train a logisitic classifier to distinguish between the correct middle word in the given word sequence and corrupt samples from some ``noise'' distribution. Therefore, given a training sequence of the form $t = \{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}\}$, our training objective now is to train a classifier such that it can distinguish between positive training sample $w^{(m)}_{t}$ as positive example and negative training samples $w_{x}$ drawn from a noise distribution $P_{n}(w)$ as negative examples for the middle word given the surrounding words (context) and the document the sequence belongs to.
+
+Our training data $\traindata$ is now converted to a set of labeled sequences of the form 
+%$$t = \left[ \{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}\}, Y^{(m)}=1 \right]^{m=M}_{m=1}$ 
+$ \{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}, Y^{(m)}=1\}^{m=M}_{m=1} $
+where $Y=1$ denotes that the sequence is a positive sample occuring in the corpus. For every positive training sequence $t$ we also have $n$ corrupt training sequences where in each of them only the middle word $w_{t}$ has been replaced by a corrupt word sampled from the noise distribution $P_{n}(w)$ and the value of the label $Y=0$. Therefore, for every positive training example there exists $n$ negative training examples and the total number of training samples now in $\traindata$ is $M + nM$. We now need to train a binary classifier such that, given a sequence of words and the document it belongs to, it can predict correctly whether the sequence is legitimate (correct value of the label indicator $Y$). 
+
+Given a training sequence we estimate the probability that the given sequence is positive using,
+\begin{equation}
+\label{eq:label1}
+P(Y=1|d_{i}, w_{t-c}, \ldots, w_{t+c}, \Theta) = \sigma(\vecwi{w_{t}} \cdot h_{c})
+\end{equation}
+where $h_{c}$ is the projection layer vector calculated using Eq.~\ref{eq:hidden_vec}. Similarly, the probability of estimating that a given sequence is corrupt is given by,
+\begin{equation}
+\label{eq:label0}
+P(Y=0|d_{i}, w_{t-c}, \ldots, w_{t+c}, \Theta) = 1 - \sigma(\vecwi{w_{t}} \cdot h_{c})
+\end{equation}
+From Eq.~\ref{eq:label1} and Eq.~\ref{eq:label0} we get,
+%Therefore, the probability of $Y$ taking the value $0$ or $1$ is,
+\begin{equation}
+\label{eq:prob_y}
+P(Y|d_{i}, w_{t-c}, \ldots, w_{t+c}, \Theta) = [\sigma(\vecwi{w_{t}} \cdot h_{c})]^{Y}[1 - \sigma(\vecwi{w_{t}} \cdot h_{c})]^{1-Y}
+\end{equation}
+As a shorthand notation, we would express the probability estimation in Eq.~\ref{eq:prob_y} as $P_{\Theta}(Y)$.
+
+\subsubsection{New Training Objective}
+Our new training objective involves maximizing the log-likelihood of observing the modified training data $\traindata$ that includes the negative examples sampled from the noise distribution $P_{n}(w)$ along with the original positive training sequences. 	
+\begin{equation}
+\label{eq:new_argmax}
+\hat{\Theta} =  \argmax_{\Theta}~l(\traindata, \Theta)
+\end{equation}
+\begin{equation}
+\label{eq:new_training_objective}
+l(\traindata, \Theta) = \sum_{m=1}^{M + nM} \log P_{\Theta}(Y_{m} = Y^{(m)})
+\end{equation}
+where $Y_{m}$ is the predicted label for the $m$-th training sequence and,
+\begin{equation}
+\label{eq:log_P}
+\log P_{\Theta}(Y_{m} = Y^{(m)}) = Y^{(m)}\log \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c}) + (1 - Y^{(m)})\log (1 - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c}))
+\end{equation}
+
+\subsubsection{Parameter Estimation}
+To learn the optimum parameters $\Theta = (\matD, \matW, \Gamma)$ we would maximize the log-likelihood of observing the training data given in Eq~\ref{eq:new_argmax} using the Stochastic Gradient Descent(SGD) algorithm described below. 
+
+Firstly, for the SGD algorithm we would need to calculate the gradient of the log probability estimate (Eq~\ref{eq:log_P}) with respect to individual parameters $\theta \in \Theta$. The derivative of the log probability estimate w.r.t. to a paramter $\theta \in \Theta$ is given by,
+\begin{align}
+\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \theta} &= \left[ Y^{(m)}\frac{1}{\sigma(d^{(m)})} - (1-Y^{(m)})\frac{1}{(1 - \sigma(d^{(m)}))}\right] \frac{\partial \sigma(d^{(m)})}{\partial \theta} \\
+&= \left[ Y^{(m)}\frac{1}{ \sigma(d^{(m)})} - (1 - Y^{(m)})\frac{1}{(1 - \sigma(d^{(m)}))}\right] \left[\sigma(d^{(m)})(1-\sigma(d^{(m)}))\right]\frac{\partial d^{(m)}}{\partial \theta} \\
+\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \theta} &= \left[ Y^{(m)} - \sigma(d^{(m)})\right] \frac{\partial d^{(m)}}{\partial \theta}
+\end{align}
+where $d^{(m)} = (\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})$ is the dot-product of the projection layer vector with the word vector for the middle word. Therefore,
+\begin{equation}
+\label{eq:partial_theta}
+\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \theta} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right] \frac{\partial (\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})}{\partial \theta}
+\end{equation}
+For any training sequence $m$, there are four types of parameters $\theta$ that need to be updated. Firstly, the document vector for $d^{(m)}_{i}$, the middle word vector for word $w^{(m)}_{t}$, word vectors for context words $w^{(m)}_{t+j}$ and the neural network weights $\wgt{i}$. The derivate $\frac{\partial (\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})}{\partial \theta}$ w.r.t. each of them is given by,
+\begin{equation}
+\label{eq:partial_doc}
+\frac{\partial (\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})}{\partial \vecdi{d^{(m)}_{i}}} = \vecwi{w^{(m)}_{t}}
+\end{equation}
+\begin{equation}
+\label{eq:partial_w_t}
+\frac{\partial (\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})}{\partial \vecwi{w^{(m)}_{t}}} = h^{(m)}_{c}
+\end{equation}
+\begin{equation}
+\label{eq:partial_w_t-k}
+\frac{\partial (\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})}{\partial \vecwi{w^{(m)}_{t+j}}} = \wgt{t+j}* \vecwi{w^{(m)}_{t}}
+\end{equation}
+\begin{equation}
+\label{eq:partial_wgt_t-k}
+\frac{\partial (\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})}{\partial \wgt{t+j}} = \vecwi{w^{(m)}_{t}} \cdot \vecwi{w^{(m)}_{t+j}}
+\end{equation}
 
 
 

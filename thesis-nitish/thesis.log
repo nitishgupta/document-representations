@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  18 APR 2015 19:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  21 APR 2015 21:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -562,31 +562,31 @@ Package caption Info: subfigure package is loaded.
 
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 90.
+(hyperref)                setting the option has no effect on input line 97.
 
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 90.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 90.
-Package hyperref Info: Option `hypertexnames' set `false' on input line 90.
-Package hyperref Info: Option `colorlinks' set `true' on input line 90.
-Package hyperref Info: Option `breaklinks' set `true' on input line 90.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 97.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 97.
+Package hyperref Info: Option `hypertexnames' set `false' on input line 97.
+Package hyperref Info: Option `colorlinks' set `true' on input line 97.
+Package hyperref Info: Option `breaklinks' set `true' on input line 97.
 (./thesis.aux (./title.aux) (./abstract.aux) (./Dedication.aux)
 (./acknowledgement.aux) (./RelatedWork.aux) (./DistributedEmbeddings.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -652,7 +652,7 @@ e
 ))
 \c@lstlisting=\count185
 \AtBeginShipoutBox=\box39
-Package hyperref Info: Link coloring ON on input line 93.
+Package hyperref Info: Link coloring ON on input line 100.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -662,9 +662,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count186
 )
-LaTeX Info: Redefining \ref on input line 93.
-LaTeX Info: Redefining \pageref on input line 93.
-LaTeX Info: Redefining \nameref on input line 93.
+LaTeX Info: Redefining \ref on input line 100.
+LaTeX Info: Redefining \pageref on input line 100.
+LaTeX Info: Redefining \nameref on input line 100.
 
 (./thesis.out) (./thesis.out)
 \@outlinefile=\write3
@@ -675,7 +675,7 @@ Package caption Info: End \AtBeginDocument code.
 \openout2 = `title.aux'.
 
  (./title.tex
-<figs/iitkblue.jpg, id=95, 204.765pt x 194.7275pt>
+<figs/iitkblue.jpg, id=120, 204.765pt x 194.7275pt>
 File: figs/iitkblue.jpg Graphic file (type jpg)
  <use figs/iitkblue.jpg>
 Package pdftex.def Info: figs/iitkblue.jpg used on input line 41.
@@ -687,40 +687,40 @@ Package pdftex.def Info: figs/iitkblue.jpg used on input line 41.
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figs/iitkblue.jpg>])
-<sumitbCertificate.pdf, id=105, 620.3175pt x 891.33pt>
+<sumitbCertificate.pdf, id=130, 620.3175pt x 891.33pt>
 File: sumitbCertificate.pdf Graphic file (type pdf)
 
 <use sumitbCertificate.pdf>
-Package pdftex.def Info: sumitbCertificate.pdf used on input line 105.
+Package pdftex.def Info: sumitbCertificate.pdf used on input line 112.
 (pdftex.def)             Requested size: 620.316pt x 891.32784pt.
 File: sumitbCertificate.pdf Graphic file (type pdf)
  <use sumitbCertificate.pdf>
-Package pdftex.def Info: sumitbCertificate.pdf used on input line 105.
+Package pdftex.def Info: sumitbCertificate.pdf used on input line 112.
 (pdftex.def)             Requested size: 620.316pt x 891.32784pt.
 
-<sumitbCertificate.pdf, id=108, page=1, 620.3175pt x 891.33pt>
+<sumitbCertificate.pdf, id=133, page=1, 620.3175pt x 891.33pt>
 File: sumitbCertificate.pdf Graphic file (type pdf)
 
 <use sumitbCertificate.pdf, page 1>
-Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 105.
+Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 112.
 (pdftex.def)             Requested size: 620.316pt x 891.32784pt.
 File: sumitbCertificate.pdf Graphic file (type pdf)
  <use sumitbCertificate.pdf, page 1>
-Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 105.
+Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 112.
 (pdftex.def)             Requested size: 588.3139pt x 845.34425pt.
 File: sumitbCertificate.pdf Graphic file (type pdf)
 
 <use sumitbCertificate.pdf, page 1>
-Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 105.
+Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 112.
 (pdftex.def)             Requested size: 588.3139pt x 845.34425pt.
 File: sumitbCertificate.pdf Graphic file (type pdf)
  <use sumitbCertificate.pdf, page 1>
-Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 105.
+Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 112.
 (pdftex.def)             Requested size: 588.3139pt x 845.34425pt.
 File: sumitbCertificate.pdf Graphic file (type pdf)
 
 <use sumitbCertificate.pdf, page 1>
-Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 105.
+Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 112.
 (pdftex.def)             Requested size: 588.3139pt x 845.34425pt.
  [2
 
@@ -826,7 +826,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 Chapter 2.
-[13] [14] <figs/bengio_nn.png, id=445, 1062.97125pt x 901.3675pt>
+[13] [14] <figs/bengio_nn.png, id=478, 1062.97125pt x 901.3675pt>
 File: figs/bengio_nn.png Graphic file (type png)
 
 <use figs/bengio_nn.png>
@@ -838,12 +838,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [15]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [16 <./figs/bengio_nn.png>] <figs/mikolov_cbow.png, id=474, 626.34pt x 694.595
+ [16 <./figs/bengio_nn.png>] <figs/mikolov_cbow.png, id=508, 626.34pt x 694.595
 pt>
 File: figs/mikolov_cbow.png Graphic file (type png)
 
 <use figs/mikolov_cbow.png>
-Package pdftex.def Info: figs/mikolov_cbow.png used on input line 71.
+Package pdftex.def Info: figs/mikolov_cbow.png used on input line 72.
 (pdftex.def)             Requested size: 213.39568pt x 236.64671pt.
 
 
@@ -853,56 +853,73 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [17]
-<figs/mikolov_skip.png, id=487, 596.2275pt x 693.59125pt>
+<figs/mikolov_skip.png, id=521, 596.2275pt x 693.59125pt>
 File: figs/mikolov_skip.png Graphic file (type png)
 
 <use figs/mikolov_skip.png>
-Package pdftex.def Info: figs/mikolov_skip.png used on input line 94.
+Package pdftex.def Info: figs/mikolov_skip.png used on input line 95.
 (pdftex.def)             Requested size: 170.71393pt x 198.58572pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [18 <./figs/mikolov_cbow.png>]
-<figs/dependency_context.png, id=505, 1179.40625pt x 781.92125pt>
+<figs/dependency_context.png, id=539, 1179.40625pt x 781.92125pt>
 File: figs/dependency_context.png Graphic file (type png)
 
 <use figs/dependency_context.png>
-Package pdftex.def Info: figs/dependency_context.png used on input line 113.
+Package pdftex.def Info: figs/dependency_context.png used on input line 114.
 (pdftex.def)             Requested size: 298.75264pt x 198.06888pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[19 <./figs/mikolov_skip.png>] [20 <./figs/dependency_context.png>]
+[19 <./figs/mikolov_skip.png>] [20 <./figs/dependency_context.png>] [21]
+[22] <figs/nn_arch.png, id=587, 603.25375pt x 428.60126pt>
+File: figs/nn_arch.png Graphic file (type png)
+
+<use figs/nn_arch.png>
+Package pdftex.def Info: figs/nn_arch.png used on input line 163.
+(pdftex.def)             Requested size: 384.1096pt x 272.89778pt.
+ [23 <./figs/nn_arch.png>] [24]
+Overfull \hbox (14.53462pt too wide) in paragraph at lines 220--221
+\OT1/cmr/m/n/12 (Sec. [][]2.2.1[][]) [[][]Mnih and Teh[][], [][]2012[][]] and l
+earn-ing word em-bed-dings [][]Mnih and Kavukcuoglu[][]
+ []
+
+[25]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [21])
-[22] (./thesis.bbl [23
-
-
-
-] [24] [25])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 193.
  [26]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 193.
+Overfull \hbox (57.18317pt too wide) in paragraph at lines 271--271
+[] 
+ []
+
+[27]) [28] (./thesis.bbl [29
+
+
+
+] [30] [31])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 200.
+ [32]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 200.
  (./thesis.aux (./title.aux)
 (./abstract.aux) (./Dedication.aux) (./acknowledgement.aux) (./RelatedWork.aux)
 (./DistributedEmbeddings.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 193.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 193.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 200.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 200.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 9E34FE1B342103D08516DF36A11CA652;1696.
+(rerunfilecheck)             Checksum: D61FA298B50692B3CA3BA32EF8196581;2205.
  )
 (\end occurred inside a group at level 1)
 
-### semi simple group (level 1) entered at line 118 (\begingroup)
+### semi simple group (level 1) entered at line 125 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 12738 strings out of 493304
- 186242 string characters out of 6139871
- 311136 words of memory out of 5000000
- 15761 multiletter control sequences out of 15000+600000
+ 12828 strings out of 493304
+ 187477 string characters out of 6139871
+ 313461 words of memory out of 5000000
+ 15807 multiletter control sequences out of 15000+600000
  14623 words of font info for 52 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  39i,18n,45p,1038b,616s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -918,13 +935,14 @@ onts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (40 pages, 928234 bytes).
+cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on thesis.pdf (46 pages, 975182 bytes).
 PDF statistics:
- 658 PDF objects out of 1000 (max. 8388607)
- 580 compressed objects within 6 object streams
- 150 named destinations out of 1000 (max. 500000)
- 230 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 782 PDF objects out of 1000 (max. 8388607)
+ 694 compressed objects within 7 object streams
+ 193 named destinations out of 1000 (max. 500000)
+ 283 words of extra memory for PDF output out of 10000 (max. 10000000)
 

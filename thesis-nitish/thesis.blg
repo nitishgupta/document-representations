@@ -12,45 +12,45 @@ Database file #1: references.bib
 Warning--can't use both volume and number fields in liu2006semi
 Warning--empty booktitle in mccallum1999multi
 Warning--can't use both volume and number fields in ng1997feature
-You've used 48 entries,
+You've used 51 entries,
             2773 wiz_defined-function locations,
-            877 strings with 13746 characters,
-and the built_in function-call counts, 25616 in all, are:
-= -- 2406
-> -- 1295
-< -- 60
-+ -- 441
-- -- 390
-* -- 1907
-:= -- 3673
-add.period$ -- 159
-call.type$ -- 48
-change.case$ -- 269
-chr.to.int$ -- 45
-cite$ -- 99
-duplicate$ -- 1270
-empty$ -- 2149
-format.name$ -- 476
-if$ -- 5630
-int.to.chr$ -- 4
+            893 strings with 14295 characters,
+and the built_in function-call counts, 26965 in all, are:
+= -- 2527
+> -- 1366
+< -- 62
++ -- 466
+- -- 411
+* -- 2018
+:= -- 3876
+add.period$ -- 168
+call.type$ -- 51
+change.case$ -- 284
+chr.to.int$ -- 47
+cite$ -- 105
+duplicate$ -- 1334
+empty$ -- 2270
+format.name$ -- 504
+if$ -- 5914
+int.to.chr$ -- 5
 int.to.str$ -- 1
-missing$ -- 50
-newline$ -- 248
-num.names$ -- 192
-pop$ -- 603
+missing$ -- 53
+newline$ -- 263
+num.names$ -- 204
+pop$ -- 633
 preamble$ -- 1
-purify$ -- 225
+purify$ -- 237
 quote$ -- 0
-skip$ -- 1031
+skip$ -- 1075
 stack$ -- 0
-substring$ -- 1200
-swap$ -- 309
+substring$ -- 1256
+swap$ -- 315
 text.length$ -- 32
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 513
+type$ -- 546
 warning$ -- 3
-while$ -- 244
+while$ -- 257
 width$ -- 0
-write$ -- 643
+write$ -- 681
 (There were 3 warnings)

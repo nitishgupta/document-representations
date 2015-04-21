@@ -18,6 +18,12 @@
 \contentsline {subsubsection}{\numberline {2.2.2.2}Continuous Skip-gram}{18}{subsubsection.53}
 \contentsline {subsubsection}{\numberline {2.2.2.3}Dependency-based Word Embeddings}{19}{subsubsection.56}
 \contentsline {section}{\numberline {2.3}Document Embeddings}{20}{section.58}
-\contentsline {subsection}{\numberline {2.3.1}Learning Document Embeddings : Our Approach}{21}{subsection.59}
-\contentsline {subsubsection}{\numberline {2.3.1.1}Problem Setup}{22}{subsubsection.60}
-\contentsline {chapter}{Bibliography}{23}{subsubsection.60}
+\contentsline {subsection}{\numberline {2.3.1}Problem Setup}{21}{subsection.61}
+\contentsline {subsection}{\numberline {2.3.2}Our Model}{22}{subsection.62}
+\contentsline {subsubsection}{\numberline {2.3.2.1}Projection Layer (Context Representation)}{23}{subsubsection.67}
+\contentsline {subsubsection}{\numberline {2.3.2.2}Estimating Prediction Probability}{24}{subsubsection.69}
+\contentsline {subsubsection}{\numberline {2.3.2.3}Training Objective}{24}{subsubsection.74}
+\contentsline {subsubsection}{\numberline {2.3.2.4}Noise Contrastive Estimation (NCE)}{25}{subsubsection.78}
+\contentsline {subsubsection}{\numberline {2.3.2.5}New Training Objective}{27}{subsubsection.82}
+\contentsline {subsubsection}{\numberline {2.3.2.6}Parameter Estimation}{27}{subsubsection.86}
+\contentsline {chapter}{Bibliography}{29}{equation.94}

@@ -1,16 +1,29 @@
-\begin{thebibliography}{48}
+\begin{thebibliography}{51}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Bengio et~al.(2003)Bengio, Ducharme, Vincent, and
+\bibitem[Bengio and Senecal(2008)]{bengio2008adaptive}
+Yoshua Bengio and J-S Senecal.
+\newblock Adaptive importance sampling to accelerate training of a neural
+  probabilistic language model.
+\newblock \emph{Neural Networks, IEEE Transactions on}, 19\penalty0
+  (4):\penalty0 713--722, 2008.
+
+\bibitem[Bengio et~al.(2003{\natexlab{a}})Bengio, Ducharme, Vincent, and
   Janvin]{bengio2003neural}
 Yoshua Bengio, R{\'e}jean Ducharme, Pascal Vincent, and Christian Janvin.
 \newblock A neural probabilistic language model.
 \newblock \emph{The Journal of Machine Learning Research}, 3:\penalty0
-  1137--1155, 2003.
+  1137--1155, 2003{\natexlab{a}}.
+
+\bibitem[Bengio et~al.(2003{\natexlab{b}})Bengio, Sen{\'e}cal,
+  et~al.]{bengio2003quick}
+Yoshua Bengio, Jean-S{\'e}bastien Sen{\'e}cal, et~al.
+\newblock Quick training of probabilistic neural nets by importance sampling.
+\newblock In \emph{AISTATS Conference}, 2003{\natexlab{b}}.
 
 \bibitem[Bottou(2014)]{bottou2014machine}
 L{\'e}on Bottou.
@@ -78,6 +91,13 @@ Edward Grefenstette, Georgiana Dinu, Yao-Zhong Zhang, Mehrnoosh Sadrzadeh, and
   semantics.
 \newblock \emph{arXiv preprint arXiv:1301.6939}, 2013.
 
+\bibitem[Gutmann and Hyv{\"a}rinen(2012)]{gutmann2012noise}
+Michael~U Gutmann and Aapo Hyv{\"a}rinen.
+\newblock Noise-contrastive estimation of unnormalized statistical models, with
+  applications to natural image statistics.
+\newblock \emph{The Journal of Machine Learning Research}, 13\penalty0
+  (1):\penalty0 307--361, 2012.
+
 \bibitem[Hosmer and Lemeshow(1989)]{hosmer1989applied}
 David~W Hosmer and Stanley Lemeshow.
 \newblock Applied logistic regression. 1989.
@@ -88,11 +108,6 @@ Thorsten Joachims.
 \newblock \emph{Text categorization with support vector machines: Learning with
   many relevant features}.
 \newblock Springer, 1998.
-
-\bibitem[Le and Mikolov(2014)]{le2014distributed}
-Quoc~V Le and Tomas Mikolov.
-\newblock Distributed representations of sentences and documents.
-\newblock \emph{arXiv preprint arXiv:1405.4053}, 2014.
 
 \bibitem[Levy and Goldberg(2014)]{levy2014dependencybased}
 Omer Levy and Yoav Goldberg.
@@ -170,6 +185,12 @@ Andriy Mnih and Koray Kavukcuoglu.
   estimation.
 \newblock In \emph{Advances in Neural Information Processing Systems}, pages
   2265--2273, 2013.
+
+\bibitem[Mnih and Teh(2012)]{mnih2012fast}
+Andriy Mnih and Yee~Whye Teh.
+\newblock A fast and simple algorithm for training neural probabilistic
+  language models.
+\newblock \emph{arXiv preprint arXiv:1206.6426}, 2012.
 
 \bibitem[Morin and Bengio(2005)]{morin2005hierarchical}
 Frederic Morin and Yoshua Bengio.
