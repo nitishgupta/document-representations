@@ -261,6 +261,7 @@ where $Y_{m}$ is the predicted label for the $m$-th training sequence and,
 \end{equation}
 
 \subsubsection{Parameter Estimation}
+\label{sec:para_esti_doc}
 To learn the optimum parameters $\Theta = (\matD, \matW, \Lambda)$ we would maximize the log-likelihood of observing the training data given in Eq~\ref{eq:new_argmax} using the Stochastic Gradient Descent(SGD) algorithm described below. 
 
 Firstly, for the SGD algorithm we would need to calculate the gradient of the log probability estimate (Eq~\ref{eq:log_P}) with respect to individual parameters $\theta \in \Theta$. The derivative of the log probability estimate w.r.t. to a paramter $\theta \in \Theta$ is given by,

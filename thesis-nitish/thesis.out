@@ -30,4 +30,7 @@
 \BOOKMARK [0][-]{chapter.117}{3 Multi-Label Text Categorization}{}% 30
 \BOOKMARK [1][-]{section.118}{3.1 Logisitic Regression \(LR\) for Multi-label Document Categorization}{chapter.117}% 31
 \BOOKMARK [2][-]{subsection.119}{3.1.1 Training Data}{section.118}% 32
-\BOOKMARK [0][-]{subsection.119}{Bibliography}{}% 33
+\BOOKMARK [2][-]{subsection.120}{3.1.2 Logistic Regression Model}{section.118}% 33
+\BOOKMARK [3][-]{subsubsection.124}{3.1.2.1 Training Objective}{subsection.120}% 34
+\BOOKMARK [3][-]{subsubsection.131}{3.1.2.2 Parameter Estimation}{subsection.120}% 35
+\BOOKMARK [0][-]{equation.136}{Bibliography}{}% 36

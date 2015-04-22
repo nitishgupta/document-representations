@@ -16,17 +16,89 @@ The probability of the data point to belong in a class is estimated using the \e
 Logisitic Regression, though is a technique to discriminate between two categories can be easily extended to classification between multiple categories which is then reffered to as Multinomial Logisitic Regression. 
 Though we use use multinomial logisitic regression for our task of multi-label text classification, for the sake of brevity we would refer to our algorithm as logisitic regression.\
 
-In the sections below we describe the training data available for the task of multi-label document classification, the logisitic regression model as modified for the task and also its similarity to relational learning.
+In the sections below we describe the training data required for the task of multi-label document classification, the logisitic regression model as modified for the task and also its similarity to relational learning.
 
 \subsection{Training Data}
+\label{sec:trdata_lr}
 The training data $\traindata$ is composed of a set of documents $\setD$, set of categories $\setC$ and data about in what categories do each of the documents belong to. 
 
 \textbf{Document-Category Data} : 
-Each document $d_{i}$ in $\setD$ belongs to atleast one category from $\setC$. To store this relational data between the documents and the categories, we create a database $\db$ in which for every training instance $t$ we store tuples of the form $\{ d^{(t)}_{i}, c^{(t)}_{j}, y^{(t)}\}$ where $y^{(t)} \in \{0, 1\}$ denotes whether the document $d^{(t)}_{i}$ belongs the category $c^{(t)}_{j}$ or not. 
+Each document $d_{i}$ in $\setD$ belongs to atleast one category from $\setC$. To store this relational data between the documents and the categories, we create a database $\db$ in which for the $m$-th training instance we store tuple of the form $\{ d^{(m)}_{i}, c^{(m)}_{j}, y^{(m)}\}^{m=T}_{m=1}$ where $y^{(m)} \in \{0, 1\}$ denotes whether the document $d^{(m)}_{i}$ belongs the category $c^{(m)}_{j}$ or not. 
 
 Mostly the data about document categories is given such that it is known what categories do the documents belong to, without conclusive information about whether a document necessarily does not belong to a particular category. In such cases, if we assume the given data to be complete, then along with positive data examples of the form, $\{ d_{i}, c_{j}, 1\}$, we introduce negative samples, $\{ d_{i}, c_{k}, 0\}$ for every category $c_{k}$ each document $d_{i}$ does not belong to. 
 If the document-category data is viewed as a matrix with documents as rows and categories as columns, then in such case, we would only observe positive examples ($1$) in matrix but at sparse locations. To make the training data complete in such cases, we would fill the matrix with negative examples ($0$) at every empty location.
 
 \textbf{Document Reresentations} : 
 Along with the document-category data, the training data also composes of the document representations in the form of either bag-of-words representations or distributed document embeddings as learnt in Sec.~\ref{sec:document_embeddings}.  Therefore for every document $d_{i} \in \setD$ indexed by $i$, we have a vector representation $\vecdi{i} \in \mathbb{R}^{k}$ of the document.
+
+%\subsection{Multi-label Document Categorization using LR}
+\subsection{Logistic Regression Model}
+For multi-label document categorization we extend the standard logisitic regression (which is a binary classification algorithm) to,
+\begin{enumerate}
+\item Train from multi-labeled document-category data data 
+\item Given a document-category pair $\{d_{i}, c_{j}\}$, estimate the probability of the document $d_{i}$ belonging to the category $c_{j}$.
+\end{enumerate}
+As we explained in Sec.~\ref{sec:document_embeddings}, we learn low-rank distributed vector representation for every document in the corpus. Similarly, for multi-label logisitic regression, we represent each category $c_{i} \in \setC$ using a low-rank embedding $\vecci{c_{i}} \in \mathbb{R}^{k}$ of the same dimensionality as the document embeddings, $k$. Similar to $\matD$, we stack these category embeddings as columns in the matrix $\matC \in \mathbb{R}^{k \times |\setC|}$.
+
+Given a document-category tuple of the form $\{d_{i}, c_{j}\}$, we estimate the probability of the document belonging to the category ($y = 1$) using the logisitic function as,
+\begin{equation}
+\label{eq:prob_dc}
+P(y=1|d_{i}, c_{j}, \matD, \matC) = \sigma(\vecdi{d_{i}}\cdot \vecci{c_{j}})
+\end{equation}
+This model is similar to the standard logisitic regression (LR) as in standard LR for binary classification, we learn a universal weight vector $\mathbf{w}$ that is used to estimate the probability in Eq.~\ref{eq:prob_dc} instead of $\vecci{c_{j}}$. Here, because we have multiple categories, we learn multiple weight vectors (category embeddings) for each category separately and hence perform multiple binary classifications.
+
+\subsubsection{Training Objective}
+\label{sec:tro_lr}
+As explained in Sec.~\ref{sec:trdata_lr}, the training data $\traindata$, is composed of $T$ tuples of the form $\{ d^{(m)}_{i}, c^{(m)}_{j}, y^{(m)}\}$. Our training objective involves learning optimum category embeddings such that for any unobserved document $d_{x} \notin \setD$, we should be able to predict the categories it belongs to.
+
+For the $m$-th training instance $\{ d^{(m)}_{i}, c^{(m)}_{j}, y^{(m)}\}$, we denote the prediction that whether the document $d^{(m)}_{i}$ belongs the category $c^{(m)}_{j}$ by $y_{m}$. Therefore, if we estimate $d^{(m)}_{i}$ belongs $c^{(m)}_{j}$, $y_{m} = 1$ otherwise $y_{m} = 0$. Using Eq.~\ref{eq:prob_dc},
+\begin{equation}
+\label{eq:prob_trm}
+P(y_{m}=1|d^{(m)}_{i}, c^{(m)}_{j}, \matD, \matC) = \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})
+\end{equation}
+We denote the above probability estimate as $P_{\matD, \matC}(y_{m} = 1)$ for brevity. Therefore,
+\begin{equation}
+\label{eq:prob_trm_neg}
+P_{\matD, \matC}(y_{m} = 0) = 1 - \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})
+\end{equation}
+\begin{equation}
+\label{eq:prob_bernouli}
+P_{\matD, \matC}(y_{m}) = \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})^{y_{m}}(1 - \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}}))^{1-y_{m}}
+\end{equation}
+To learn the optimum parameter set $\Theta = (\matC)$ consisting of the set of category embeddings, we would maximize the log-likelihood of observing the training data,
+\begin{equation}
+\label{eq:cembed_argmax}
+\hat{\Theta} =  \argmax_{\Theta}~l(\traindata, \Theta)
+\end{equation}\begin{equation}
+\label{eq:new_to_lr}
+l(\traindata, \Theta) = \sum_{m=1}^{T} \log P_{\matD, \matC}(y_{m} = y^{(m)})
+\end{equation}
+where,
+\begin{equation}
+\label{eq:log_P_lr}
+\log P_{\matD, \matC}(y_{m} = y^{(m)}) = y^{(m)}\log \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}}) + (1 - y^{(m)})\log (1 - \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}}))
+\end{equation}
+
+\subsubsection{Parameter Estimation}
+To learn the optimum parameters $\Theta=(\matC)$ we would maximize the log-likelihood of observing the training data given in Eq~\ref{eq:new_to_lr} using the Stochastic Gradient Descent(SGD) algorithm as described earlier in Sec~\ref{sec:para_esti_doc}. We first need to calculate the gradient of the log probability estimate in Eq.~\ref{log_P_lr} with respect to the category embeddings which is given by,
+\begin{align}
+\frac{\partial \log P_{\matD, \matC}(y_{m}=y^{(m)})} {\partial \vecci{c^{(m)}_{j}}} &= \left[ y^{(m)}\frac{1}{\sigma(s^{(m)})} - (1-y^{(m)})\frac{1}{(1 - \sigma(s^{(m)}))}\right] \frac{\partial \sigma(s^{(m)})}{\partial \vecci{c^{(m)}_{j}}} \\
+&= \left[ y^{(m)}\frac{1}{\sigma(s^{(m)})} - (1-y^{(m)})\frac{1}{(1 - \sigma(s^{(m)}))}\right] \left[\sigma(s^{(m)})(1-\sigma(s^{(m)}))\right]\frac{\partial s^{(m)}}{\partial \vecci{c^{(m)}_{j}}} \\
+\frac{\partial \log P_{\Theta}(y_{m}=y^{(m)})} {\partial \vecci{c^{(m)}_{j}}} &= \left[ y^{(m)} - \sigma(s^{(m)})\right] \frac{\partial s^{(m)}}{\partial \vecci{c^{(m)}_{j}}}
+\end{align}
+where, $s^{(m)} = (\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})$ is the \emph{pre-sigmoid activation}. Therefore,
+\begin{equation}
+\label{eq:grad_c}
+\frac{\partial \log P_{\Theta}(y_{m}=y^{(m)})} {\partial \vecci{c^{(m)}_{j}}} = \left[ y^{(m)} - \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})\right] \frac{\partial (\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})}{\partial \vecci{c^{(m)}_{j}}}
+\end{equation}
+According to the SGD algorithm and Eq.~\ref{eq:update_reg}, the update to be made to the category embedding on observing the $m$-th training instance is given by Eq.~\ref{eq:update_cat}. We also include L2
+regularization for the category embeddings as it helps in avoiding overfitting and restricts the embeddings to blow up in value.
+\begin{equation}
+\label{eq:update_cat}
+(\vecci{c^{(m)}_{j}})^{(i+1)} = (\vecci{c^{(m)}_{j}})^{(i)} + \gamma* \left[ \left[ y^{(m)} - \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})\right] \frac{\partial (\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})}{\partial \vecci{c^{(m)}_{j}}} -\beta(\vecci{c^{(m)}_{j}})^{(i)} \right]
+\end{equation}
+
+
+
+
 
