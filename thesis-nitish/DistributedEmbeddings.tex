@@ -298,60 +298,71 @@ Therefore the derivative of the log-probability estimate w.r.t. the
 \textbf{Document Vector} : 
 \begin{equation}
 \label{eq:grad_doc}
-\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \vecdi{d^{(m)}_{i}}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* \vecwi{w^{(m)}_{t}}
+\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \vecdi{d^{(m)}_{i}}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right] \vecwi{w^{(m)}_{t}}
 \end{equation}
 \item 
 \textbf{Middle Word} : 
 \begin{equation}
 \label{eq:grad_mword}
-\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \vecwi{w^{(m)}_{t}}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* h^{(m)}_{c}
+\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \vecwi{w^{(m)}_{t}}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right] h^{(m)}_{c}
 \end{equation}
 \item 
 \textbf{Context Word} : 
 \begin{equation}
 \label{eq:grad_cword}
-\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \vecwi{w^{(m)}_{t+j}}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* \wgt{t+j}* \vecwi{w^{(m)}_{t}}
+\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \vecwi{w^{(m)}_{t+j}}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right] \wgt{t+j} \vecwi{w^{(m)}_{t}}
 \end{equation}
 \item 
 \textbf{Neural Network Weight} : 
 \begin{equation}
 \label{eq:grad_wgt}
-\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \wgt{t+j}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* (\vecwi{w^{(m)}_{t}} \cdot \vecwi{w^{(m)}_{t+j}})
+\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \wgt{t+j}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right] (\vecwi{w^{(m)}_{t}} \cdot \vecwi{w^{(m)}_{t+j}})
 \end{equation}
 \end{enumerate}
-According to the SGD algorithm, the update to be made to a parameter $\theta \in \Theta$ on observing a training sequence $m$ is therefore given by,
+According to the SGD algorithm, the update to be made to a parameter $\theta \in \Theta$ on observing a training sequence $m$ is therefore given in Eq.~\ref{eq:update_reg}. We also include $L_{2}$ regularization for the parameters as it helps in avoiding overfitting and restricts the  parameters to  blow up in value.
 \begin{equation}
-\theta^{(i+1)} \leftarrow \theta^{(i)} + \gamma \left[\frac{\partial \log P_{\Theta}(Y_{m} = Y^{(m)})}{\partial \theta^{(i)}} \right]
+\label{eq:update_reg}
+\theta^{(i+1)} \leftarrow \theta^{(i)} + \gamma \left[\frac{\partial \log P_{\Theta}(Y_{m} = Y^{(m)})}{\partial \theta^{(i)}} - \beta \theta^{(i)} \right]
 \end{equation}
-where $\theta^{(i)}$ denotes the value of the parameter in the $i$-th iteration, $\theta^{i+1}$ is the value after the update and $\gamma$ is the learning rate. 
+here $\theta^{(i)}$ denotes the value of the parameter in the $i$-th iteration, $\theta^{i+1}$ is the value after the update, $\gamma$ is the learning rate and $\beta$ is the regularization constant.
 The update rules for the document vector, word vectors and the neural network weights are hence given by,
 \begin{enumerate}
 \item 
 \textbf{Document Vector} : 
 \begin{equation}
 \label{eq:update_doc}
-(\vecdi{d^{(m)}_{i}})^{(i+1)} = (\vecdi{d^{(m)}_{i}})^{(i)} + \gamma* \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* \vecwi{w^{(m)}_{t}}
+(\vecdi{d^{(m)}_{i}})^{(i+1)} = (\vecdi{d^{(m)}_{i}})^{(i)} + \gamma \left[ (Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c}))\vecwi{w^{(m)}_{t}} - \beta\vecdi{d^{(m)}_{i}} \right]
 \end{equation}
 \item 
-\textbf{Middle Word} : 
+\textbf{Middle Word Vector} : 
 \begin{equation}
 \label{eq:update_mword}
-(\vecwi{w^{(m)}_{t}})^{(i+1)} = (\vecwi{w^{(m)}_{t}})^{(i)} + \gamma* \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* h^{(m)}_{c}
+(\vecwi{w^{(m)}_{t}})^{(i+1)} = (\vecwi{w^{(m)}_{t}})^{(i)} + \gamma \left[ (Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})) h^{(m)}_{c} - \beta\vecwi{w^{(m)}_{t}} \right]
 \end{equation}
 \item 
-\textbf{Context Word} : 
+\textbf{Context Word Vectors} : 
 \begin{equation}
 \label{eq:update_cword}
-(\vecwi{w^{(m)}_{t+j}})^{(i+1)} = (\vecwi{w^{(m)}_{t+j}})^{(i)} + \gamma* \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* \wgt{t+j}* \vecwi{w^{(m)}_{t}}
+(\vecwi{w^{(m)}_{t+j}})^{(i+1)} = (\vecwi{w^{(m)}_{t+j}})^{(i)} + \gamma \left[(Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c}))\wgt{t+j} \vecwi{w^{(m)}_{t}} - \beta\vecwi{w^{(m)}_{t+j}} \right]
 \end{equation}
 \item 
-\textbf{Neural Network Weight} : 
+\textbf{Neural Network Weights} : 
 \begin{equation}
 \label{eq:update_wgt}
-\wgt{t+j}^{(i+1)} = \wgt{t+j}^{(i)} + \gamma* \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right]* (\vecwi{w^{(m)}_{t}} \cdot \vecwi{w^{(m)}_{t+j}})
+\wgt{t+j}^{(i+1)} = \wgt{t+j}^{(i)} + \gamma* \left[ (Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c}))(\vecwi{w^{(m)}_{t}} \cdot \vecwi{w^{(m)}_{t+j}}) -\beta\wgt{t+j} \right]
 \end{equation}
 \end{enumerate}
 To learn the vectors $\matD$, $\matW$ and weights $\Lambda$ we initialize them to small random vectors and scalars respectively and using Eqs.~\ref{eq:update_doc}, ~\ref{eq:update_mword}, ~\ref{eq:update_cword} and ~\ref{eq:update_wgt} we iterate through the training data, making the appropriate updates for a fixed number of epochs that is learnt using the development data. For each training sequence we make one update to the document vector, $2c+1$ updates for the word vectors in the sequence and $2c$ updates for the neural network weights, where $c$ is the window length we consider while training.
 
+\subsubsection{Hyper-parameters}
+Our model, like any other, has a few hyper-parameters that need to be tuned for learning the optimum document and word vectors and neural network weights. In this section we describe the hyper-parameters in our model.
+\begin{enumerate}
+\item \textbf{Embedding Dimensionality ($k$)} : The most important hyper-parameter in our model is the size of the document and word embdding vectors $k$. The embedding dimensionality needs to be big enough such that the document vectors can encode the different semantic topics across the corpus but shouldn't be very large so that it introduces noise in the vectors.
 
+\item \textbf{Window  Size ($c$)} : The length of the sequence or the window size $c$, that we consider as context surrounding a word plays an important role in the vectors that are learnt. While a smaller window could result in the negligence of important/similar words that surround the middle word, a large window could introduce noise in the context that can detiorate the performance of the model.
+
+\item \textbf{Number of Negative Samples ($n$)} : In NCE, the number of negative samples introduced in the training data per positive example plays an important role in deciding the trade-off between learning better word density distribution with larger $n$ while smaller $n$ leads to lesser training times. Hence, the number of negative samples introduced needs to be tuned using the development data.
+
+\item \textbf{Number of Epochs} : The number of times we need to loop through the training data to learn the vectors needs to be optimized to prevent overfitting with large epochs while at the same time learn high quality representations.
+\end{enumerate}
 

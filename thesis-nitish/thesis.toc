@@ -26,4 +26,5 @@
 \contentsline {subsubsection}{\numberline {2.3.2.4}Noise Contrastive Estimation (NCE)}{25}{subsubsection.78}
 \contentsline {subsubsection}{\numberline {2.3.2.5}New Training Objective}{27}{subsubsection.82}
 \contentsline {subsubsection}{\numberline {2.3.2.6}Parameter Estimation}{27}{subsubsection.86}
-\contentsline {chapter}{Bibliography}{31}{equation.111}
+\contentsline {subsubsection}{\numberline {2.3.2.7}Hyper-parameters}{30}{subsubsection.112}
+\contentsline {chapter}{Bibliography}{33}{Item.116}
