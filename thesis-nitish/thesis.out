@@ -27,4 +27,7 @@
 \BOOKMARK [3][-]{subsubsection.82}{2.3.2.5 New Training Objective}{subsection.62}% 27
 \BOOKMARK [3][-]{subsubsection.86}{2.3.2.6 Parameter Estimation}{subsection.62}% 28
 \BOOKMARK [3][-]{subsubsection.112}{2.3.2.7 Hyper-parameters}{subsection.62}% 29
-\BOOKMARK [0][-]{Item.116}{Bibliography}{}% 30
+\BOOKMARK [0][-]{chapter.117}{3 Multi-Label Text Categorization}{}% 30
+\BOOKMARK [1][-]{section.118}{3.1 Logisitic Regression \(LR\) for Multi-label Document Categorization}{chapter.117}% 31
+\BOOKMARK [2][-]{subsection.119}{3.1.1 Training Data}{section.118}% 32
+\BOOKMARK [0][-]{subsection.119}{Bibliography}{}% 33

@@ -1,0 +1,32 @@
+\chapter{Multi-Label Text Categorization}
+\label{chapter:mltextcat}
+\todo{Introducing multi-label text classification. Multiple algos as in related work. }
+
+\todo{Section on our model. why logisitic regression. We go ahead with logisitic regression. Similar to Matrix factorization. abides by the idea of embddings. helps learn correlations among cats using low-dimensional embeddings.}
+\todo{sub1 : Dataset details. sub2 : model details. training objective updates. }
+\todo{sub3 : Similarity to matrix factorization and relational learning.}
+
+In this chapter we will give an overview of the training data required for the document categorization task and present the multinomial logisitic regression algorithm in context of the multi-label text categorization, discuss its advantages and similarity to matrix factorization and relational learning.
+
+\section{Logisitic Regression (LR) for Multi-label Document Categorization}
+\label{sec:lrtc}
+Introduced by \citep{hosmer1989applied}, Logisitic Regression (LR) is a probabilistic binary classification regression model that, given labeled binary data, performs regression over the data and learns weight vectors to predict whether a given data point belongs to the positive or the negative class. 
+The probability of the data point to belong in a class is estimated using the \emph{logisic (sigmoid) function}, hence the name logisitic regression.
+
+Logisitic Regression, though is a technique to discriminate between two categories can be easily extended to classification between multiple categories which is then reffered to as Multinomial Logisitic Regression. 
+Though we use use multinomial logisitic regression for our task of multi-label text classification, for the sake of brevity we would refer to our algorithm as logisitic regression.\
+
+In the sections below we describe the training data available for the task of multi-label document classification, the logisitic regression model as modified for the task and also its similarity to relational learning.
+
+\subsection{Training Data}
+The training data $\traindata$ is composed of a set of documents $\setD$, set of categories $\setC$ and data about in what categories do each of the documents belong to. 
+
+\textbf{Document-Category Data} : 
+Each document $d_{i}$ in $\setD$ belongs to atleast one category from $\setC$. To store this relational data between the documents and the categories, we create a database $\db$ in which for every training instance $t$ we store tuples of the form $\{ d^{(t)}_{i}, c^{(t)}_{j}, y^{(t)}\}$ where $y^{(t)} \in \{0, 1\}$ denotes whether the document $d^{(t)}_{i}$ belongs the category $c^{(t)}_{j}$ or not. 
+
+Mostly the data about document categories is given such that it is known what categories do the documents belong to, without conclusive information about whether a document necessarily does not belong to a particular category. In such cases, if we assume the given data to be complete, then along with positive data examples of the form, $\{ d_{i}, c_{j}, 1\}$, we introduce negative samples, $\{ d_{i}, c_{k}, 0\}$ for every category $c_{k}$ each document $d_{i}$ does not belong to. 
+If the document-category data is viewed as a matrix with documents as rows and categories as columns, then in such case, we would only observe positive examples ($1$) in matrix but at sparse locations. To make the training data complete in such cases, we would fill the matrix with negative examples ($0$) at every empty location.
+
+\textbf{Document Reresentations} : 
+Along with the document-category data, the training data also composes of the document representations in the form of either bag-of-words representations or distributed document embeddings as learnt in Sec.~\ref{sec:document_embeddings}.  Therefore for every document $d_{i} \in \setD$ indexed by $i$, we have a vector representation $\vecdi{i} \in \mathbb{R}^{k}$ of the document.
+

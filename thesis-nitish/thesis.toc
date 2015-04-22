@@ -27,4 +27,7 @@
 \contentsline {subsubsection}{\numberline {2.3.2.5}New Training Objective}{27}{subsubsection.82}
 \contentsline {subsubsection}{\numberline {2.3.2.6}Parameter Estimation}{27}{subsubsection.86}
 \contentsline {subsubsection}{\numberline {2.3.2.7}Hyper-parameters}{30}{subsubsection.112}
-\contentsline {chapter}{Bibliography}{33}{Item.116}
+\contentsline {chapter}{\numberline {3}Multi-Label Text Categorization}{33}{chapter.117}
+\contentsline {section}{\numberline {3.1}Logisitic Regression (LR) for Multi-label Document Categorization}{33}{section.118}
+\contentsline {subsection}{\numberline {3.1.1}Training Data}{34}{subsection.119}
+\contentsline {chapter}{Bibliography}{37}{subsection.119}

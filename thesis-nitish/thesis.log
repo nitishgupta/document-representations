@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  22 APR 2015 12:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  22 APR 2015 17:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -562,31 +562,32 @@ Package caption Info: subfigure package is loaded.
 
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 97.
+(hyperref)                setting the option has no effect on input line 99.
 
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 97.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 97.
-Package hyperref Info: Option `hypertexnames' set `false' on input line 97.
-Package hyperref Info: Option `colorlinks' set `true' on input line 97.
-Package hyperref Info: Option `breaklinks' set `true' on input line 97.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 99.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 99.
+Package hyperref Info: Option `hypertexnames' set `false' on input line 99.
+Package hyperref Info: Option `colorlinks' set `true' on input line 99.
+Package hyperref Info: Option `breaklinks' set `true' on input line 99.
 (./thesis.aux (./title.aux) (./abstract.aux) (./Dedication.aux)
-(./acknowledgement.aux) (./RelatedWork.aux) (./DistributedEmbeddings.aux))
+(./acknowledgement.aux) (./RelatedWork.aux) (./DistributedEmbeddings.aux)
+(./TextCategorization.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -652,7 +653,7 @@ e
 ))
 \c@lstlisting=\count185
 \AtBeginShipoutBox=\box39
-Package hyperref Info: Link coloring ON on input line 100.
+Package hyperref Info: Link coloring ON on input line 102.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -662,9 +663,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count186
 )
-LaTeX Info: Redefining \ref on input line 100.
-LaTeX Info: Redefining \pageref on input line 100.
-LaTeX Info: Redefining \nameref on input line 100.
+LaTeX Info: Redefining \ref on input line 102.
+LaTeX Info: Redefining \pageref on input line 102.
+LaTeX Info: Redefining \nameref on input line 102.
 
 (./thesis.out) (./thesis.out)
 \@outlinefile=\write3
@@ -675,7 +676,7 @@ Package caption Info: End \AtBeginDocument code.
 \openout2 = `title.aux'.
 
  (./title.tex
-<figs/iitkblue.jpg, id=124, 204.765pt x 194.7275pt>
+<figs/iitkblue.jpg, id=135, 204.765pt x 194.7275pt>
 File: figs/iitkblue.jpg Graphic file (type jpg)
  <use figs/iitkblue.jpg>
 Package pdftex.def Info: figs/iitkblue.jpg used on input line 41.
@@ -687,40 +688,40 @@ Package pdftex.def Info: figs/iitkblue.jpg used on input line 41.
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figs/iitkblue.jpg>])
-<sumitbCertificate.pdf, id=134, 620.3175pt x 891.33pt>
+<sumitbCertificate.pdf, id=145, 620.3175pt x 891.33pt>
 File: sumitbCertificate.pdf Graphic file (type pdf)
 
 <use sumitbCertificate.pdf>
-Package pdftex.def Info: sumitbCertificate.pdf used on input line 112.
+Package pdftex.def Info: sumitbCertificate.pdf used on input line 114.
 (pdftex.def)             Requested size: 620.316pt x 891.32784pt.
 File: sumitbCertificate.pdf Graphic file (type pdf)
  <use sumitbCertificate.pdf>
-Package pdftex.def Info: sumitbCertificate.pdf used on input line 112.
+Package pdftex.def Info: sumitbCertificate.pdf used on input line 114.
 (pdftex.def)             Requested size: 620.316pt x 891.32784pt.
 
-<sumitbCertificate.pdf, id=137, page=1, 620.3175pt x 891.33pt>
+<sumitbCertificate.pdf, id=148, page=1, 620.3175pt x 891.33pt>
 File: sumitbCertificate.pdf Graphic file (type pdf)
 
 <use sumitbCertificate.pdf, page 1>
-Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 112.
+Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 114.
 (pdftex.def)             Requested size: 620.316pt x 891.32784pt.
 File: sumitbCertificate.pdf Graphic file (type pdf)
  <use sumitbCertificate.pdf, page 1>
-Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 112.
+Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 114.
 (pdftex.def)             Requested size: 588.3139pt x 845.34425pt.
 File: sumitbCertificate.pdf Graphic file (type pdf)
 
 <use sumitbCertificate.pdf, page 1>
-Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 112.
+Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 114.
 (pdftex.def)             Requested size: 588.3139pt x 845.34425pt.
 File: sumitbCertificate.pdf Graphic file (type pdf)
  <use sumitbCertificate.pdf, page 1>
-Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 112.
+Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 114.
 (pdftex.def)             Requested size: 588.3139pt x 845.34425pt.
 File: sumitbCertificate.pdf Graphic file (type pdf)
 
 <use sumitbCertificate.pdf, page 1>
-Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 112.
+Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 114.
 (pdftex.def)             Requested size: 588.3139pt x 845.34425pt.
  [2
 
@@ -826,7 +827,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 Chapter 2.
-[13] [14] <figs/bengio_nn.png, id=483, 1062.97125pt x 901.3675pt>
+[13] [14] <figs/bengio_nn.png, id=498, 1062.97125pt x 901.3675pt>
 File: figs/bengio_nn.png Graphic file (type png)
 
 <use figs/bengio_nn.png>
@@ -838,7 +839,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [15]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [16 <./figs/bengio_nn.png>] <figs/mikolov_cbow.png, id=513, 626.34pt x 694.595
+ [16 <./figs/bengio_nn.png>] <figs/mikolov_cbow.png, id=528, 626.34pt x 694.595
 pt>
 File: figs/mikolov_cbow.png Graphic file (type png)
 
@@ -853,7 +854,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [17]
-<figs/mikolov_skip.png, id=526, 596.2275pt x 693.59125pt>
+<figs/mikolov_skip.png, id=541, 596.2275pt x 693.59125pt>
 File: figs/mikolov_skip.png Graphic file (type png)
 
 <use figs/mikolov_skip.png>
@@ -864,7 +865,7 @@ Package pdftex.def Info: figs/mikolov_skip.png used on input line 95.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [18 <./figs/mikolov_cbow.png>]
-<figs/dependency_context.png, id=544, 1179.40625pt x 781.92125pt>
+<figs/dependency_context.png, id=559, 1179.40625pt x 781.92125pt>
 File: figs/dependency_context.png Graphic file (type png)
 
 <use figs/dependency_context.png>
@@ -875,7 +876,7 @@ Package pdftex.def Info: figs/dependency_context.png used on input line 114.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [19 <./figs/mikolov_skip.png>] [20 <./figs/dependency_context.png>] [21]
-[22] <figs/nn_arch.png, id=592, 603.25375pt x 428.60126pt>
+[22] <figs/nn_arch.png, id=607, 603.25375pt x 428.60126pt>
 File: figs/nn_arch.png Graphic file (type png)
 
 <use figs/nn_arch.png>
@@ -899,32 +900,46 @@ Overfull \hbox (57.18317pt too wide) in paragraph at lines 271--271
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [28]
-[29] [30]) [31] [32
+[29] [30]) [31]
+\openout2 = `TextCategorization.aux'.
+
+ (./TextCategorization.tex [32
 
 
-] (./thesis.bbl [33
 
-] [34] [35])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 200.
- [36]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 200.
+]
+Chapter 3.
+
+Overfull \hbox (1.15034pt too wide) in paragraph at lines 11--11
+[]\OT1/cmr/bx/n/17.28 Logisitic Re-gres-sion (LR) for Multi-label Doc-
+ []
+
+[33] [34]) [35] [36
+
+
+] (./thesis.bbl [37
+
+] [38] [39])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 203.
+ [40]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 203.
  (./thesis.aux
 (./title.aux) (./abstract.aux) (./Dedication.aux) (./acknowledgement.aux)
-(./RelatedWork.aux) (./DistributedEmbeddings.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 200.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 200.
+(./RelatedWork.aux) (./DistributedEmbeddings.aux) (./TextCategorization.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 203.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 203.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 4603626749DD664602C8C8EC34AB355B;2283.
+(rerunfilecheck)             Checksum: 0D576F429E71D42DB5184F6C2D5BB228;2551.
  )
 (\end occurred inside a group at level 1)
 
-### semi simple group (level 1) entered at line 125 (\begingroup)
+### semi simple group (level 1) entered at line 127 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 12864 strings out of 493304
- 187873 string characters out of 6139871
- 314909 words of memory out of 5000000
- 15817 multiletter control sequences out of 15000+600000
+ 12885 strings out of 493304
+ 188181 string characters out of 6139871
+ 315851 words of memory out of 5000000
+ 15824 multiletter control sequences out of 15000+600000
  14623 words of font info for 52 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  39i,18n,45p,1038b,616s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -944,10 +959,10 @@ cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (50 pages, 983134 bytes).
+Output written on thesis.pdf (54 pages, 988901 bytes).
 PDF statistics:
- 838 PDF objects out of 1000 (max. 8388607)
- 745 compressed objects within 8 object streams
- 219 named destinations out of 1000 (max. 500000)
- 291 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 874 PDF objects out of 1000 (max. 8388607)
+ 777 compressed objects within 8 object streams
+ 226 named destinations out of 1000 (max. 500000)
+ 315 words of extra memory for PDF output out of 10000 (max. 10000000)
 

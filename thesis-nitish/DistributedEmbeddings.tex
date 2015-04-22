@@ -355,7 +355,7 @@ The update rules for the document vector, word vectors and the neural network we
 To learn the vectors $\matD$, $\matW$ and weights $\Lambda$ we initialize them to small random vectors and scalars respectively and using Eqs.~\ref{eq:update_doc}, ~\ref{eq:update_mword}, ~\ref{eq:update_cword} and ~\ref{eq:update_wgt} we iterate through the training data, making the appropriate updates for a fixed number of epochs that is learnt using the development data. For each training sequence we make one update to the document vector, $2c+1$ updates for the word vectors in the sequence and $2c$ updates for the neural network weights, where $c$ is the window length we consider while training.
 
 \subsubsection{Hyper-parameters}
-Our model, like any other, has a few hyper-parameters that need to be tuned for learning the optimum document and word vectors and neural network weights. In this section we describe the hyper-parameters in our model.
+Our model, like any other, has hyper-parameters that need to be tuned for optimum model performance and learning high quality document and word vectors and the model parameters for acheiving the the best accuracies in the task. Below we describe the hyper-parameters in our model and the effect they have on learning document representations.
 \begin{enumerate}
 \item \textbf{Embedding Dimensionality ($k$)} : The most important hyper-parameter in our model is the size of the document and word embdding vectors $k$. The embedding dimensionality needs to be big enough such that the document vectors can encode the different semantic topics across the corpus but shouldn't be very large so that it introduces noise in the vectors.
 
@@ -365,4 +365,6 @@ Our model, like any other, has a few hyper-parameters that need to be tuned for 
 
 \item \textbf{Number of Epochs} : The number of times we need to loop through the training data to learn the vectors needs to be optimized to prevent overfitting with large epochs while at the same time learn high quality representations.
 \end{enumerate}
+
+
 
