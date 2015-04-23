@@ -28,9 +28,11 @@
 \BOOKMARK [3][-]{subsubsection.86}{2.3.2.6 Parameter Estimation}{subsection.62}% 28
 \BOOKMARK [3][-]{subsubsection.112}{2.3.2.7 Hyper-parameters}{subsection.62}% 29
 \BOOKMARK [0][-]{chapter.117}{3 Multi-Label Text Categorization}{}% 30
-\BOOKMARK [1][-]{section.118}{3.1 Logisitic Regression \(LR\) for Multi-label Document Categorization}{chapter.117}% 31
+\BOOKMARK [1][-]{section.118}{3.1 Logistic Regression \(LR\) for Multi-label Document Categorization}{chapter.117}% 31
 \BOOKMARK [2][-]{subsection.119}{3.1.1 Training Data}{section.118}% 32
 \BOOKMARK [2][-]{subsection.120}{3.1.2 Logistic Regression Model}{section.118}% 33
 \BOOKMARK [3][-]{subsubsection.124}{3.1.2.1 Training Objective}{subsection.120}% 34
 \BOOKMARK [3][-]{subsubsection.131}{3.1.2.2 Parameter Estimation}{subsection.120}% 35
-\BOOKMARK [0][-]{equation.136}{Bibliography}{}% 36
+\BOOKMARK [1][-]{section.138}{3.2 Similarity to Relational Learning}{chapter.117}% 36
+\BOOKMARK [1][-]{section.142}{3.3 Advantages of Logistic Regression Learning Algorithm}{chapter.117}% 37
+\BOOKMARK [0][-]{Item.146}{Bibliography}{}% 38

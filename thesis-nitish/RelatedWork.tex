@@ -87,6 +87,7 @@ Multi-label classification problems can be also be classified into classificatio
 Below we describe some of the famous learning algorithms for multi-label text classification, 
 
 \subsection{With Multiple Binary Classifiers}
+\label{sec:rw_multiple_classifiers}
 The most common approach of multi-label text classification treats each label independently and learns multiple binary classifiers, one for each category and then assigns to a test document all the categories for which the corresponding classfier says \emph{`yes'}. Below we describe some of the algorithms, in the context of multi-label text classification, that learn multiple independent binary classifiers.
 \begin{enumerate}
 \item{\textbf{Logistic Regression (LR)} : }Introduced by \citep{hosmer1989applied}, LR is a probabilistic binary classification regression model, that, for binary text classification learns a category weight vector and estimates the probability of a document belonging to the category using dot-product and the logistic link function. LR can be extended for multi-label document classification by learning multiple category vectors, specifically, one for each category. At test time, one would need to query all category vectors for each document to make the category assignments. In our work, we use logistic regression for multi-label text classification, the details for which are given in Sec~\ref{sec:lrtc}.

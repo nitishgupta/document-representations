@@ -1,22 +1,16 @@
 \chapter{Multi-Label Text Categorization}
 \label{chapter:mltextcat}
-\todo{Introducing multi-label text classification. Multiple algos as in related work. }
+In this chapter we will give an overview of the training data required for the document categorization task and present the multinomial logistic regression algorithm in context of the multi-label text categorization, discuss its advantages and similarity to matrix factorization and relational learning.
 
-\todo{Section on our model. why logisitic regression. We go ahead with logisitic regression. Similar to Matrix factorization. abides by the idea of embddings. helps learn correlations among cats using low-dimensional embeddings.}
-\todo{sub1 : Dataset details. sub2 : model details. training objective updates. }
-\todo{sub3 : Similarity to matrix factorization and relational learning.}
-
-In this chapter we will give an overview of the training data required for the document categorization task and present the multinomial logisitic regression algorithm in context of the multi-label text categorization, discuss its advantages and similarity to matrix factorization and relational learning.
-
-\section{Logisitic Regression (LR) for Multi-label Document Categorization}
+\section{Logistic Regression (LR) for Multi-label Document Categorization}
 \label{sec:lrtc}
-Introduced by \citep{hosmer1989applied}, Logisitic Regression (LR) is a probabilistic binary classification regression model that, given labeled binary data, performs regression over the data and learns weight vectors to predict whether a given data point belongs to the positive or the negative class. 
-The probability of the data point to belong in a class is estimated using the \emph{logisic (sigmoid) function}, hence the name logisitic regression.
+Introduced by \citep{hosmer1989applied}, Logistic Regression (LR) is a probabilistic binary classification regression model that, given labeled binary data, performs regression over the data and learns weight vectors to predict whether a given data point belongs to the positive or the negative class. 
+The probability of the data point to belong in a class is estimated using the \emph{logistic (sigmoid) function}, hence the name logistic regression.
 
-Logisitic Regression, though is a technique to discriminate between two categories can be easily extended to classification between multiple categories which is then reffered to as Multinomial Logisitic Regression. 
-Though we use use multinomial logisitic regression for our task of multi-label text classification, for the sake of brevity we would refer to our algorithm as logisitic regression.\
+Logistic Regression, though is a technique to discriminate between two categories can be easily extended to classification between multiple categories which is then referred to as Multinomial Logistic Regression. 
+Though we use use multinomial logistic regression for our task of multi-label text classification, for the sake of brevity we would refer to our algorithm as logistic regression.\
 
-In the sections below we describe the training data required for the task of multi-label document classification, the logisitic regression model as modified for the task and also its similarity to relational learning.
+In the sections below we describe the training data required for the task of multi-label document classification, the logistic regression model as modified for the task and also its similarity to relational learning.
 
 \subsection{Training Data}
 \label{sec:trdata_lr}
@@ -28,24 +22,24 @@ Each document $d_{i}$ in $\setD$ belongs to atleast one category from $\setC$. T
 Mostly the data about document categories is given such that it is known what categories do the documents belong to, without conclusive information about whether a document necessarily does not belong to a particular category. In such cases, if we assume the given data to be complete, then along with positive data examples of the form, $\{ d_{i}, c_{j}, 1\}$, we introduce negative samples, $\{ d_{i}, c_{k}, 0\}$ for every category $c_{k}$ each document $d_{i}$ does not belong to. 
 If the document-category data is viewed as a matrix with documents as rows and categories as columns, then in such case, we would only observe positive examples ($1$) in matrix but at sparse locations. To make the training data complete in such cases, we would fill the matrix with negative examples ($0$) at every empty location.
 
-\textbf{Document Reresentations} : 
+\textbf{Document Representations} : 
 Along with the document-category data, the training data also composes of the document representations in the form of either bag-of-words representations or distributed document embeddings as learnt in Sec.~\ref{sec:document_embeddings}.  Therefore for every document $d_{i} \in \setD$ indexed by $i$, we have a vector representation $\vecdi{i} \in \mathbb{R}^{k}$ of the document.
 
 %\subsection{Multi-label Document Categorization using LR}
 \subsection{Logistic Regression Model}
-For multi-label document categorization we extend the standard logisitic regression (which is a binary classification algorithm) to,
+For multi-label document categorization we extend the standard logistic regression (which is a binary classification algorithm) to,
 \begin{enumerate}
 \item Train from multi-labeled document-category data data 
 \item Given a document-category pair $\{d_{i}, c_{j}\}$, estimate the probability of the document $d_{i}$ belonging to the category $c_{j}$.
 \end{enumerate}
-As we explained in Sec.~\ref{sec:document_embeddings}, we learn low-rank distributed vector representation for every document in the corpus. Similarly, for multi-label logisitic regression, we represent each category $c_{i} \in \setC$ using a low-rank embedding $\vecci{c_{i}} \in \mathbb{R}^{k}$ of the same dimensionality as the document embeddings, $k$. Similar to $\matD$, we stack these category embeddings as columns in the matrix $\matC \in \mathbb{R}^{k \times |\setC|}$.
+As we explained in Sec.~\ref{sec:document_embeddings}, we learn low-rank distributed vector representation for every document in the corpus. Similarly, for multi-label logistic regression, we represent each category $c_{i} \in \setC$ using a low-rank embedding $\vecci{c_{i}} \in \mathbb{R}^{k}$ of the same dimensionality as the document embeddings, $k$. Similar to $\matD$, we stack these category embeddings as columns in the matrix $\matC \in \mathbb{R}^{k \times |\setC|}$.
 
-Given a document-category tuple of the form $\{d_{i}, c_{j}\}$, we estimate the probability of the document belonging to the category ($y = 1$) using the logisitic function as,
+Given a document-category tuple of the form $\{d_{i}, c_{j}\}$, we estimate the probability of the document belonging to the category ($y = 1$) using the logistic function as,
 \begin{equation}
 \label{eq:prob_dc}
 P(y=1|d_{i}, c_{j}, \matD, \matC) = \sigma(\vecdi{d_{i}}\cdot \vecci{c_{j}})
 \end{equation}
-This model is similar to the standard logisitic regression (LR) as in standard LR for binary classification, we learn a universal weight vector $\mathbf{w}$ that is used to estimate the probability in Eq.~\ref{eq:prob_dc} instead of $\vecci{c_{j}}$. Here, because we have multiple categories, we learn multiple weight vectors (category embeddings) for each category separately and hence perform multiple binary classifications.
+This model is similar to the standard logistic regression (LR) as in standard LR for binary classification, we learn a universal weight vector $\mathbf{w}$ that is used to estimate the probability in Eq.~\ref{eq:prob_dc} instead of $\vecci{c_{j}}$. Here, because we have multiple categories, we learn multiple weight vectors (category embeddings) for each category separately and hence perform multiple binary classifications.
 
 \subsubsection{Training Objective}
 \label{sec:tro_lr}
@@ -80,25 +74,60 @@ where,
 \end{equation}
 
 \subsubsection{Parameter Estimation}
-To learn the optimum parameters $\Theta=(\matC)$ we would maximize the log-likelihood of observing the training data given in Eq~\ref{eq:new_to_lr} using the Stochastic Gradient Descent(SGD) algorithm as described earlier in Sec~\ref{sec:para_esti_doc}. We first need to calculate the gradient of the log probability estimate in Eq.~\ref{log_P_lr} with respect to the category embeddings which is given by,
+To learn the optimum parameters $\Theta=(\matC)$ we would maximize the log-likelihood of observing the training data given in Eq~\ref{eq:new_to_lr} using the Stochastic Gradient Descent(SGD) algorithm as described earlier in Sec~\ref{sec:para_esti_doc}. We first need to calculate the gradient of the log probability estimate (Eq.~\ref{eq:log_P_lr}) with respect to the category embeddings which is given by,
 \begin{align}
 \frac{\partial \log P_{\matD, \matC}(y_{m}=y^{(m)})} {\partial \vecci{c^{(m)}_{j}}} &= \left[ y^{(m)}\frac{1}{\sigma(s^{(m)})} - (1-y^{(m)})\frac{1}{(1 - \sigma(s^{(m)}))}\right] \frac{\partial \sigma(s^{(m)})}{\partial \vecci{c^{(m)}_{j}}} \\
 &= \left[ y^{(m)}\frac{1}{\sigma(s^{(m)})} - (1-y^{(m)})\frac{1}{(1 - \sigma(s^{(m)}))}\right] \left[\sigma(s^{(m)})(1-\sigma(s^{(m)}))\right]\frac{\partial s^{(m)}}{\partial \vecci{c^{(m)}_{j}}} \\
-\frac{\partial \log P_{\Theta}(y_{m}=y^{(m)})} {\partial \vecci{c^{(m)}_{j}}} &= \left[ y^{(m)} - \sigma(s^{(m)})\right] \frac{\partial s^{(m)}}{\partial \vecci{c^{(m)}_{j}}}
+\frac{\partial \log P_{\matD, \matC}(y_{m}=y^{(m)})} {\partial \vecci{c^{(m)}_{j}}} &= \left[ y^{(m)} - \sigma(s^{(m)})\right] \frac{\partial s^{(m)}}{\partial \vecci{c^{(m)}_{j}}}
 \end{align}
 where, $s^{(m)} = (\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})$ is the \emph{pre-sigmoid activation}. Therefore,
 \begin{equation}
+\frac{\partial \log P_{\matD, \matC}(y_{m}=y^{(m)})} {\partial \vecci{c^{(m)}_{j}}} = \left[ y^{(m)} - \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})\right] \frac{\partial (\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})}{\partial \vecci{c^{(m)}_{j}}}
+\end{equation}
+\begin{equation}
 \label{eq:grad_c}
-\frac{\partial \log P_{\Theta}(y_{m}=y^{(m)})} {\partial \vecci{c^{(m)}_{j}}} = \left[ y^{(m)} - \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})\right] \frac{\partial (\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})}{\partial \vecci{c^{(m)}_{j}}}
+\frac{\partial \log P_{\matD, \matC}(y_{m}=y^{(m)})} {\partial \vecci{c^{(m)}_{j}}} = \left[ y^{(m)} - \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})\right] \vecdi{d^{(m)}_{i}}
 \end{equation}
 According to the SGD algorithm and Eq.~\ref{eq:update_reg}, the update to be made to the category embedding on observing the $m$-th training instance is given by Eq.~\ref{eq:update_cat}. We also include L2
 regularization for the category embeddings as it helps in avoiding overfitting and restricts the embeddings to blow up in value.
 \begin{equation}
 \label{eq:update_cat}
-(\vecci{c^{(m)}_{j}})^{(i+1)} = (\vecci{c^{(m)}_{j}})^{(i)} + \gamma* \left[ \left[ y^{(m)} - \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})\right] \frac{\partial (\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})}{\partial \vecci{c^{(m)}_{j}}} -\beta(\vecci{c^{(m)}_{j}})^{(i)} \right]
+(\vecci{c^{(m)}_{j}})^{(i+1)} = (\vecci{c^{(m)}_{j}})^{(i)} + \gamma \left[ ( y^{(m)} - \sigma(\vecdi{d^{(m)}_{i}}\cdot (\vecci{c^{(m)}_{j}})^{(i)}) \vecdi{d^{(m)}_{i}} -\beta(\vecci{c^{(m)}_{j}})^{(i)} \right]
 \end{equation}
+Here $(\vecci{c^{(m)}_{j}})^{(i)}$ and $(\vecci{c^{(m)}_{j}})^{(i+1)}$ are the category embeddings before and after the update, respectively, $\gamma$ is the learning rate of the algorithm and $\beta$ is the regularization constant used for the $L_{2}$ regularization. 
 
+As explained in Sec.~\ref{sec:para_esti_doc}, we initialize the category embeddings $\matC$ to small random vectors and loop through the training data $\traindata$ until we reach convergence based on the development data. The complete algorithm for employing the logistic regression model for multi-label document categorization is given in Algorithm.\todo{Add algo}.
 
+\section{Similarity to Relational Learning}
+\label{sec:lr_similar_rl}
+The multi-label document categorization can be viewed as a relational learning problem where the task is to find missing links between documents and categories or for new documents find what categories does it link to. Relational learning has a novel solution in Matrix Factorization which assumes that the relational data matrix has a low-rank structure and tries to factorize it as a product of two matrices representing the row and column entity factors. 
 
+Therefore, if $R$ denotes the binary relational matrix, where rows and columns correspond to the entities of two different type and the entries $r(i, j) \in \{0,1\}$ of the matrix denotes the presence/absence of link between the $i$-th row and the $j$-th column entity. Employing matrix factorization would try to decompose the matrix $R$ into row and column factors, say $U$ and $V$ such that,
+\begin{equation}
+\label{eq:mf_decompose}
+R = UV^{T}
+\end{equation}
+where, if $R \in \mathbb{R}^{m \times n}$ then $U \in \mathbb{R}^{m \times k}$ and $V \in \mathbb{R}^{n \times k}$, where $k < min(m, n)$ is the approximate rank of $R$. The rows of the matrix $U$ and $V$ store the factors/embeddings for the entities. As we see, such an approach tries to learn low-rank embeddings for the row and column entities and projects them on to the same $k$-dimensional space.
 
+In our model of logistic regression for multi-label document classification, though we take a similar approach and learn category embeddings to project the categories along with the documents to the same $k$-dimensional space, our method has the following differences,
+\begin{enumerate}
+\item Instead of factorizing the document-category data matrix, $R$ using a linear matrix factorization approach as in Eq.~\ref{eq:mf_decompose}, we take a probabilistic approach and think of $R$ has a probabilistic database and estimate the probability of a document belonging to a particular category.
 
+\item As we already learn document embeddings $\matD$ using our model described in Sec.~\ref{sec:docem_ourmodel}, we only learn the category embeddings matrix $\matC$ instead of learning embeddings for both kind of entities as done in Eq.~\ref{eq:mf_decompose} by learning both $U$ and $V$.
+\end{enumerate}
+
+\section{Advantages of Logistic Regression Learning Algorithm}
+As shown above, we use a modified version of the Logistic Regression for multi-label document categorization that learns multiple classifiers (in terms of the category embeddings) for multi-labeling task. Even though learning algorithms that learn multiple independent classifiers have drawbacks as elucidated in Sec~\ref{sec:rw_multiple_classifiers}, our logistic regression style algorithm has a lot of advantages that make it a good choice for the document categorization task. Below we list some of the major advantages of the algorithm. 
+\begin{enumerate}
+\item 
+Since we learn distributed embeddings for the categories in the same $k$-dimensional space as the documents and words it enables us to estimate the similarity within entities and between unrelated entities. It is as simple as taking a dot-product of the corresponding embeddings. For example, we can estimate the similarity between two or more categories or between categories and words that wouldn't be possible if some other learning technique was used. 
+
+\item 
+The major drawback of algorithms that learn multiple independent classifiers is their inability to capture and exploit the correlations among categories from the training data. As we exploit the low-rank structure of the document-category relational matrix by learning factors for categories we are able to learn correlations among categories in a way similar to as done by collaborative filtering.
+
+\item 
+Generally, document-category data is accompanied by additional relational data about documents and/or categories which is often incomplete. As has been shown in \todo{cite\{arXiv\}}, joint modeling of relations and entities using collective matrix factorization of multiple relational matrices can provide signification improvements in the relation prediction task. 
+Our model, based on matrix factorization as shown in Sec~\ref{sec:lr_similar_rl}, can easily be extended to incorporate additional relational data and aid in improved database completion. 
+
+\item \todo{Find missing categories??}
+\end{enumerate}
