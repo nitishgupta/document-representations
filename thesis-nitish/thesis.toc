@@ -35,4 +35,6 @@
 \contentsline {subsubsection}{\numberline {3.1.2.2}Parameter Estimation}{36}{subsubsection.131}
 \contentsline {section}{\numberline {3.2}Similarity to Relational Learning}{38}{section.138}
 \contentsline {section}{\numberline {3.3}Advantages of Logistic Regression Learning Algorithm}{39}{section.142}
-\contentsline {chapter}{Bibliography}{41}{Item.146}
+\contentsline {chapter}{\numberline {4}Datasets and Evaluations}{41}{chapter.147}
+\contentsline {section}{\numberline {4.1}Datasets}{41}{section.148}
+\contentsline {chapter}{Bibliography}{43}{section.148}
