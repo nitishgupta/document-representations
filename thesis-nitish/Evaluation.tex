@@ -1,24 +1,62 @@
 \chapter{Datasets and Evaluations}
 \label{chapter:evaluations}
-\todo{Section 1 : Datasets, two types. Subsection 1 : Wikipedia Datasets. Relative Sizes. Subsection 2 : Reuters Dataset. ModApte Split. Num of categories. Docs.}
-
-\todo{Section 2 : Experimental Setup. How is evaluation done. Hyper-parameters. Baselines }
-
-\todo{Section 3 : Document Categorization}
-
-\todo{Section 4 : Imputing Missing Categories. Only done on Wikipedia datasets}
-
-\todo{Section 5 : Estimating Similarity between cats, docs, words}
+\todo{Section 2 : Experimental Setup. How is evaluation done. Hyper-parameters. Baselines 
+Section 3 : Document Categorization
+Section 4 : Imputing Missing Categories. Only done on Wikipedia datasets
+Section 5 : Estimating Similarity between cats, docs, words}
 
 In this chapter we first introduce the datasets that we use for evaluating the efficacy of our document representations for the document categorization task. We then explain the details of our experimentation setup and the different document representation techniques that form strong baselines for the task. In the sections following that we present the results for assigning categories to new documents and also recommending categories for documents which we already have some prior category information. 
 
 \section{Datasets}
 We perform our experimentation on 5 datasets that contain rich data about documents belonging to multiple categories simultaneously. One of the 5 datasets we use is the famous Reuters-21578 collection, which is considered the benchmark for text classification evaluation. Along with the being richly multi-label and large-sized, Reuters-21578 has been used for many years for evaluation which gives us the opportunity to compare our accuracy with the previous state-of-the-art results. The other 4 datasets that we evaluate on are, exclusive subsets of documents, extracted from Wikipedia.
 
+
 \subsection{Reuters-21578}
+Reuters-21578 collection consists of documents published on the Reuters newswire in 1987. As the name suggests it has a total of 21758 documents and contains a total of 135 categories. Though most of the documents in the collection are multi-labeled, many documents are assigned only a single category. The Reuters-21578 dataset has over the years become a standard dataset for evaluating many information retrieval algorithms due to the the multi-label nature of the collection and the large number of categories present in the collection that are overlapping and non-exhaustive. Relationships between the categories also makes it an interesting dataset to evaluate on, as the algorithms that capture the correlations between the categories are bound to perform better. Even though the large number of documents and categories present, the dataset is very sparse that makes learning difficult.
 
+Though there exist many processed versions of the collection, the \emph{ModApte} (Modified Apte) version is the most widely used version of the Reuters-21578 for evaluating multi-label classification algorithms. The \emph{ModApte} version predefines a train/test split by considering all documents published after a specific date for testing purposes and the rest for training. After the split, only categories considered are the ones that have atleast one document in the training and the test set. The number of documents, categories and training data points along with the sparsity of the document-category data matrix for the training and the test data is given in Table~\ref{reuter:data:stat}.
 
+\begin{table}[h!]
+%\tabcolsep=0.05cm
+%\footnotesize
+\begin{center}
+\begin{tabular}{l c c c c} % ccc ccc}
+\toprule
+& \textbf{$|\setD|$} & \textbf{$|\setC|$} & \textbf{Data Points} & \textbf{Sparsity}\\
+\midrule
+\textbf{Train Set}	& 7\,767 & 90 & 9\,585 & 0.0137 \\
+\textbf{Test Set}	& 3\,019 & 90 & 3\,745 & 0.0138 \\
+\bottomrule         
+\end{tabular}
+\caption{\label{reuter:data:stat}Statistics of the Reuters-21578 (\emph{ModApte}) Dataset}
+\end{center}
+\end{table}
 
+\subsection{Wikipedia Datasets}
+Wikipedia\footnote{www.wikipedia.org} is a free-access free content Internet encyclopedia that contains articles about virtually anything possible. Along with the humongous amounts of articles, Wikipedia also has a hierarchical cyclic \emph{Wikipedia Category Graph} that is used to label articles with the categories they belong in. 
+Though the category graph is completely connected, it has few major top-level categories within which all subsequent categories fall. For eg. some of the top-level categories are \emph{Culture and Arts}, \emph{Geography}, \emph{Health}, \emph{History}, \emph{Mathematics}, \emph{Natural and Physical Sciences}, \emph{Philosophy} etc. Each of the top-level categories are further divided into deep trees of fine-grained categories that are assigned to the articles. 
+
+The categories that are assigned to an article thus ranges from broader categories to much fine-grained that are very difficult to assign via an automated system. For eg. some of the categories assigned to an article on the musician \emph{Jimi Hendrix} are \emph{1942 Births}, \emph{1970 deaths}, \emph{American Roch Guitarists}, \emph{Musicians from Seattle}, \emph{Military Brats}, \emph{Alcohol-related deaths in England}. Automatic categorization of such granularity requires the document representation to capture the different semantic topics in the document with great accuracy.
+
+To test the efficacy of our model on such a diverse, recent and real-life dataset, we extracted documents from 4 top-level categories in the following manner. For each of the top-level category we compiled a list of all its child categories till a 3-level depth. Then, to create our document-category dataset, we considered all the documents that belonged to these categories along with all the categories that were assigned to these documents. The four datasets that we extract are from the \emph{Physics}, \emph{Biology}, \emph{Mathematics} and \emph{Sports} categories. The number of documents, categories and training data points along with the sparsity of the document-category data matrix is given in Table~\ref{wiki:data:stat}.
+
+\begin{table}[h!]
+%\tabcolsep=0.05cm
+%\footnotesize
+\begin{center}
+\begin{tabular}{l c c c c} % ccc ccc}
+\toprule
+& \textbf{$|\setD|$} & \textbf{$|\setC|$} & \textbf{Data Points} & \textbf{Sparsity}\\
+\midrule
+\textbf{Physics}		& 7\,767 & 90 & 9\,585 & 0.0137 \\
+\textbf{Biology}		& 3\,019 & 90 & 3\,745 & 0.0138 \\
+\textbf{Mathematics}	& 7\,767 & 90 & 9\,585 & 0.0137 \\
+\textbf{Sports}			& 3\,019 & 90 & 3\,745 & 0.0138 \\
+\bottomrule         
+\end{tabular}
+\caption{\label{wiki:data:stat}Statistics of the Reuters-21578 (\emph{ModApte}) Dataset}
+\end{center}
+\end{table}
 
 
 

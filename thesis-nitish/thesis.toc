@@ -37,4 +37,6 @@
 \contentsline {section}{\numberline {3.3}Advantages of Logistic Regression Learning Algorithm}{39}{section.142}
 \contentsline {chapter}{\numberline {4}Datasets and Evaluations}{41}{chapter.147}
 \contentsline {section}{\numberline {4.1}Datasets}{41}{section.148}
-\contentsline {chapter}{Bibliography}{43}{section.148}
+\contentsline {subsection}{\numberline {4.1.1}Reuters-21578}{42}{subsection.149}
+\contentsline {subsection}{\numberline {4.1.2}Wikipedia Datasets}{43}{subsection.151}
+\contentsline {chapter}{Bibliography}{45}{table.caption.153}
