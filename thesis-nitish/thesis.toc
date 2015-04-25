@@ -40,4 +40,4 @@
 \contentsline {subsection}{\numberline {4.1.1}Reuters-21578}{42}{subsection.151}
 \contentsline {subsection}{\numberline {4.1.2}Wikipedia Datasets}{43}{subsection.153}
 \contentsline {section}{\numberline {4.2}Experimental Setup}{44}{section.156}
-\contentsline {chapter}{Bibliography}{45}{section.156}
+\contentsline {chapter}{Bibliography}{49}{Item.160}

@@ -1,8 +1,7 @@
 \chapter{Datasets and Evaluations}
 \label{chapter:evaluations}
-\todo{Section 2 : Experimental Setup. How is evaluation done. Hyper-parameters. Baselines 
-Section 3 : Document Categorization
-Section 4 : Imputing Missing Categories. Only done on Wikipedia datasets
+\todo{Section 3 : Results - Document Categorization
+Section 4 : Results - Imputing Missing Categories. Only done on Wikipedia datasets
 Section 5 : Estimating Similarity between cats, docs, words}
 
 In this chapter we first introduce the datasets that we use for evaluating the efficacy of our document representations for the document categorization task. We then explain the details of our experimentation setup and the different document representation techniques that form strong baselines for the task. In the sections following that we present the results for assigning categories to new documents and also recommending categories for documents which we already have some prior category information. 
@@ -60,9 +59,29 @@ To test the efficacy of our model on such a diverse, recent and real-life datase
 
 \section{Experimental Setup}
 \label{sec:exp_setup}
-\todo{Para 1: first learn doc embeddings for all docs. different hyper-parameters to be tuned discussed in backref ~\ref{sec:hp_doc}. what order they tuned in.  learning rate and regcon based on validation. Ref to NCE saying final task decides hp tuning. not perplexity. 
-Para 2 : Then categorization using lr algo. HP are learning rate, regcon and logisitic threshold. Again set using validation data.
-Para 3 : evaluation critera. F1. Why F1. 
-Para 4 : Basilines }
+In this section we describe in detail the data preprocessing steps, how we tune the hyper-parameters for both the document representation learning and the categorization algorithm, our evaluation criteria and techniques and also the baselines that we compare to.
 
+\para{Data Preprocessing} : To curate the documents for learning their distributed representations we first split each document at sentence boundaries. We consider different sentences separately because we expect our system to learn syntactic qualities of the language which would not be possible if the sentence boundaries are ignored.
+All independent numbers in the documents are converted to `$\backslash num$' and numbers that are a part of a word are left as it is. Eg. \emph{TH1RT3EN}, \emph{Se7en}. 
+To remove noise in the documents we only consider those words that occur atleast $5$ times in the corpus.
+We keep the capitalization of the words as it is because capitalization sometimes encodes a lot of semantic content that we do not wish to lose. Eg. \emph{Apple} in most cases is used to refer \emph{Apple Inc.} (Company) rather than the fruit. Similarly, \emph{apple} is most likely to refer to the fruit. Models that distinguish between the two forms will be able to learn better embeddings.
 
+\para{Learning Document Embeddings} : To learn document representations using our model, we initialize the documents and word embeddings to small random vectors whose elements are drawn uniformly from the range $[\frac{-1}{k}, \frac{1}{k}]$. 
+The value of the hyper-parameters of the model are chosen based on the performance on development data on the end-task of categorization. We could also find the optimum hyper-parameters by minimizing the development data perplexity on the document embedding learning task but as found in \citep{mnih2013learning}, lower perplexity does not ensure better representations but could also mean under-training. To choose the hyper-parameters we first use the default values as $k = 100$, $c = 2$, $n = 10$, \emph{number of epochs = 100}, $\gamma = 0.0025$, $\beta = 0.1$. We found that the learning rate $\gamma$ and the regularization constant $\beta$ give best performance across datasets at their default value. To choose the value of the other parameters, we first tune the embedding dimensions $k$ then the \emph{number of epochs} after which we consider different window sizes ($c$) and finally the number of negative samples $n$ for noise contrastive estimation. The values of the different hyper-parameters depend on the dataset. 
+
+\para{Document Categorization} : For the task of document categorization, we split the document category data into training, development and test data by keeping $10\%$ documents for test purposes and $10\%$ for development. The rest $80\%$ are used for training purposes, i.e. learning category embeddings. We stop training based on the convergence reached on the development data. The value of the hyper-parameters learning rate $\gamma = 0.01$ and regularization constant $\beta = 0.01$ is chosen based on the performance on development data across different datasets. To make final predictions that whether the document should be assigned a particular category, we need to threshold the estimated probability, threshold for which was chosen based on the development data across datasets. It was found that the default logistic threshold of $0.5$ gave the best performance.
+
+\para{Evaluation Criteria} : To evaluate the task of multi-label classification many evaluation criteria such as \emph{Hamming Loss}, \emph{Accuracy} and \emph{F1 score} have been used. We use the \emph{F1} score to evaluate our model i.e. the harmonic mean of the precision and recall values. We compute the F1 score in the micro-averaged fashion i.e. we combine prediction values for all the categories together for a particular dataset and then compute the precision and recall values. F1 score is a much more preferred measure compared to hamming loss or accuracy in the presence of imbalanced label distribution.
+
+\para{Baselines} : To test the efficiency of our document representation learning algorithm, we compare our model's accuracy to some of the baseline method accuracies that are explained below.
+\begin{enumerate}
+\item \textbf{Bag-of-Words (BOW)} : The most famous document representation that has produced state-of-the-art results is the bag-of-words model with tf-idf weighting. We compare our document representations against the bag-of-words representations. We call this model the \textbf{BOW} model.
+
+\item \textbf{Probabilistic Matrix Factorization (PMF)} : The most simple technique for document categorization is the probabilistic matrix factorization of the document-category data matrix as explained in Sec.~\ref{sec:lr_similar_rl}. In this model, instead of learning only category embeddings, we also learn document representations simultaneously. Note that this model does not require any information about the document contents and also uses the document-category co-occurrence data. We call this the \textbf{PMF} model
+
+\item \textbf{Latent Semantic Indexing (LSI)} : As explained in Sec~\ref{sec:rw_dr}, Latent Semantic Indexing is a popular dimensionality reduction technique that uses the term co-occurrence statistics to capture the latent semantic structure of the documents. We use LSI to learn $100$-dimensional representation vectors for documents and compare our representations against them.
+We call this the \textbf{LSI} model.
+
+\item \textbf{Word Vector Averaging (WordVecAvg)} : With the availability of word vectors learned using the NPLM or the word2vec model, the most simple method to learn document embeddings is to take a weighted average of the word embeddings to represent the document. This method is similar to the bag-of-words technique as it ignores word ordering. We show that the representations learned using our method perform better than averaged vector representations. We call this the \textbf{WordVecAvg} model. The weighing scheme used to take the weighted average is \emph{tf-idf}.
+\end{enumerate}
+Apart from the above baselines, many more baselines for the \emph{Reuters-21578} dataset exist in literature that primarily use bag-of-words representation but use different learning algorithms. We also compare our accuracies to them, details for which are given in the next section.
