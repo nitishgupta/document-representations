@@ -27,16 +27,17 @@
 \BOOKMARK [3][-]{subsubsection.82}{2.3.2.5 New Training Objective}{subsection.62}% 27
 \BOOKMARK [3][-]{subsubsection.86}{2.3.2.6 Parameter Estimation}{subsection.62}% 28
 \BOOKMARK [3][-]{subsubsection.112}{2.3.2.7 Hyper-parameters}{subsection.62}% 29
-\BOOKMARK [0][-]{chapter.117}{3 Multi-Label Text Categorization}{}% 30
-\BOOKMARK [1][-]{section.118}{3.1 Logistic Regression \(LR\) for Multi-label Document Categorization}{chapter.117}% 31
-\BOOKMARK [2][-]{subsection.119}{3.1.1 Training Data}{section.118}% 32
-\BOOKMARK [2][-]{subsection.120}{3.1.2 Logistic Regression Model}{section.118}% 33
-\BOOKMARK [3][-]{subsubsection.124}{3.1.2.1 Training Objective}{subsection.120}% 34
-\BOOKMARK [3][-]{subsubsection.131}{3.1.2.2 Parameter Estimation}{subsection.120}% 35
-\BOOKMARK [1][-]{section.138}{3.2 Similarity to Relational Learning}{chapter.117}% 36
-\BOOKMARK [1][-]{section.142}{3.3 Advantages of Logistic Regression Learning Algorithm}{chapter.117}% 37
-\BOOKMARK [0][-]{chapter.147}{4 Datasets and Evaluations}{}% 38
-\BOOKMARK [1][-]{section.148}{4.1 Datasets}{chapter.147}% 39
-\BOOKMARK [2][-]{subsection.149}{4.1.1 Reuters-21578}{section.148}% 40
-\BOOKMARK [2][-]{subsection.151}{4.1.2 Wikipedia Datasets}{section.148}% 41
-\BOOKMARK [0][-]{table.caption.153}{Bibliography}{}% 42
+\BOOKMARK [0][-]{chapter.119}{3 Multi-Label Text Categorization}{}% 30
+\BOOKMARK [1][-]{section.120}{3.1 Logistic Regression \(LR\) for Multi-label Document Categorization}{chapter.119}% 31
+\BOOKMARK [2][-]{subsection.121}{3.1.1 Training Data}{section.120}% 32
+\BOOKMARK [2][-]{subsection.122}{3.1.2 Logistic Regression Model}{section.120}% 33
+\BOOKMARK [3][-]{subsubsection.126}{3.1.2.1 Training Objective}{subsection.122}% 34
+\BOOKMARK [3][-]{subsubsection.133}{3.1.2.2 Parameter Estimation}{subsection.122}% 35
+\BOOKMARK [1][-]{section.140}{3.2 Similarity to Relational Learning}{chapter.119}% 36
+\BOOKMARK [1][-]{section.144}{3.3 Advantages of Logistic Regression Learning Algorithm}{chapter.119}% 37
+\BOOKMARK [0][-]{chapter.149}{4 Datasets and Evaluations}{}% 38
+\BOOKMARK [1][-]{section.150}{4.1 Datasets}{chapter.149}% 39
+\BOOKMARK [2][-]{subsection.151}{4.1.1 Reuters-21578}{section.150}% 40
+\BOOKMARK [2][-]{subsection.153}{4.1.2 Wikipedia Datasets}{section.150}% 41
+\BOOKMARK [1][-]{section.156}{4.2 Experimental Setup}{chapter.149}% 42
+\BOOKMARK [0][-]{section.156}{Bibliography}{}% 43

@@ -14,18 +14,18 @@ We perform our experimentation on 5 datasets that contain rich data about docume
 \subsection{Reuters-21578}
 Reuters-21578 collection consists of documents published on the Reuters newswire in 1987. As the name suggests it has a total of 21758 documents and contains a total of 135 categories. Though most of the documents in the collection are multi-labeled, many documents are assigned only a single category. The Reuters-21578 dataset has over the years become a standard dataset for evaluating many information retrieval algorithms due to the the multi-label nature of the collection and the large number of categories present in the collection that are overlapping and non-exhaustive. Relationships between the categories also makes it an interesting dataset to evaluate on, as the algorithms that capture the correlations between the categories are bound to perform better. Even though the large number of documents and categories present, the dataset is very sparse that makes learning difficult.
 
-Though there exist many processed versions of the collection, the \emph{ModApte} (Modified Apte) version is the most widely used version of the Reuters-21578 for evaluating multi-label classification algorithms. The \emph{ModApte} version predefines a train/test split by considering all documents published after a specific date for testing purposes and the rest for training. After the split, only categories considered are the ones that have atleast one document in the training and the test set. The number of documents, categories and training data points along with the sparsity of the document-category data matrix for the training and the test data is given in Table~\ref{reuter:data:stat}.
+Though there exist many processed versions of the collection, the \emph{ModApte} (Modified Apte) version is the most widely used version of the Reuters-21578 for evaluating multi-label classification algorithms. The \emph{ModApte} version predefines a train/test split by considering all documents published after a specific date for testing purposes and the rest for training. After the split, only categories considered are the ones that have atleast one document in the training and the test set. The number of documents, categories, words and other statistics of the Reuters(\emph{ModApte}) dataset are given in Table~\ref{reuter:data:stat}.
 
 \begin{table}[h!]
 %\tabcolsep=0.05cm
 %\footnotesize
 \begin{center}
-\begin{tabular}{l c c c c} % ccc ccc}
+\begin{tabular}{l c c c c c} % ccc ccc}
 \toprule
-& \textbf{$|\setD|$} & \textbf{$|\setC|$} & \textbf{Data Points} & \textbf{Sparsity}\\
+& \textbf{$|\setD|$} & \textbf{$|\setC|$} & \textbf{$|\setW|$} & \textbf{Data Points} & \textbf{Sparsity}\\
 \midrule
-\textbf{Train Set}	& 7\,767 & 90 & 9\,585 & 0.0137 \\
-\textbf{Test Set}	& 3\,019 & 90 & 3\,745 & 0.0138 \\
+\textbf{Train Set}	& 7\,767 & 90 & 39\,853 & 9\,585 & 0.0137 \\
+\textbf{Test Set}	& 3\,019 & 90 & 39\,853 & 3\,745 & 0.0138 \\
 \bottomrule         
 \end{tabular}
 \caption{\label{reuter:data:stat}Statistics of the Reuters-21578 (\emph{ModApte}) Dataset}
@@ -38,25 +38,31 @@ Though the category graph is completely connected, it has few major top-level ca
 
 The categories that are assigned to an article thus ranges from broader categories to much fine-grained that are very difficult to assign via an automated system. For eg. some of the categories assigned to an article on the musician \emph{Jimi Hendrix} are \emph{1942 Births}, \emph{1970 deaths}, \emph{American Roch Guitarists}, \emph{Musicians from Seattle}, \emph{Military Brats}, \emph{Alcohol-related deaths in England}. Automatic categorization of such granularity requires the document representation to capture the different semantic topics in the document with great accuracy.
 
-To test the efficacy of our model on such a diverse, recent and real-life dataset, we extracted documents from 4 top-level categories in the following manner. For each of the top-level category we compiled a list of all its child categories till a 3-level depth. Then, to create our document-category dataset, we considered all the documents that belonged to these categories along with all the categories that were assigned to these documents. The four datasets that we extract are from the \emph{Physics}, \emph{Biology}, \emph{Mathematics} and \emph{Sports} categories. The number of documents, categories and training data points along with the sparsity of the document-category data matrix is given in Table~\ref{wiki:data:stat}.
+To test the efficacy of our model on such a diverse, recent and real-life dataset, we extracted documents from 4 top-level categories in Wikipedia in the following manner. \todo{rephrase}For each of the top-level category we compiled a list of all its child categories till a 3-level depth. Then, to create the document-category dataset, we considered all the documents and the categories assigned to them, that belonged to these categories. The four top-level categories we consider, hence, the datasets that we extract from Wikipedia are from the \emph{Physics}, \emph{Biology}, \emph{Mathematics} and \emph{Sports} categories. The number of documents, categories, words and other statistics of the extracted datasets are given in Table~\ref{wiki:data:stat}.
 
 \begin{table}[h!]
 %\tabcolsep=0.05cm
 %\footnotesize
 \begin{center}
-\begin{tabular}{l c c c c} % ccc ccc}
+\begin{tabular}{l c c c c c} % ccc ccc}
 \toprule
-& \textbf{$|\setD|$} & \textbf{$|\setC|$} & \textbf{Data Points} & \textbf{Sparsity}\\
+& \textbf{$|\setD|$} & \textbf{$|\setC|$} & \textbf{$|\setW|$} & \textbf{Data Points} & \textbf{Sparsity}\\
 \midrule
-\textbf{Physics}		& 7\,767 & 90 & 9\,585 & 0.0137 \\
-\textbf{Biology}		& 3\,019 & 90 & 3\,745 & 0.0138 \\
-\textbf{Mathematics}	& 7\,767 & 90 & 9\,585 & 0.0137 \\
-\textbf{Sports}			& 3\,019 & 90 & 3\,745 & 0.0138 \\
+\textbf{Physics}		& 4\,229 & 2\,999 & 81\,614 & 14\,070 & 0.0010 \\
+\textbf{Biology}		& 1\,604 & 2\,051 & 63\,767 & 5\,908 & 0.0018 \\
+\textbf{Sports}			& 1\,529 & 2\,829 & 59\,058 & 3\,745 & 0.0008 \\
+\textbf{Mathematics}	& 1\,193 & 1\,519 & 43\,398 & 3\,916 & 0.0013 \\
 \bottomrule         
 \end{tabular}
-\caption{\label{wiki:data:stat}Statistics of the Reuters-21578 (\emph{ModApte}) Dataset}
+\caption{\label{wiki:data:stat}Statistics of the Wikipedia Datasets}
 \end{center}
 \end{table}
 
+\section{Experimental Setup}
+\label{sec:exp_setup}
+\todo{Para 1: first learn doc embeddings for all docs. different hyper-parameters to be tuned discussed in backref ~\ref{sec:hp_doc}. what order they tuned in.  learning rate and regcon based on validation. Ref to NCE saying final task decides hp tuning. not perplexity. 
+Para 2 : Then categorization using lr algo. HP are learning rate, regcon and logisitic threshold. Again set using validation data.
+Para 3 : evaluation critera. F1. Why F1. 
+Para 4 : Basilines }
 
 
