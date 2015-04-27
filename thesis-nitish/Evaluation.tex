@@ -67,7 +67,7 @@ To remove noise in the documents we only consider those words that occur atleast
 We keep the capitalization of the words as it is because capitalization sometimes encodes a lot of semantic content that we do not wish to lose. Eg. \emph{Apple} in most cases is used to refer \emph{Apple Inc.} (Company) rather than the fruit. Similarly, \emph{apple} is most likely to refer to the fruit. Models that distinguish between the two forms will be able to learn better embeddings.
 
 \para{Learning Document Embeddings} : To learn document representations using our model, we initialize the documents and word embeddings to small random vectors whose elements are drawn uniformly from the range $[\frac{-1}{k}, \frac{1}{k}]$. 
-The value of the hyper-parameters of the model are chosen based on the performance on development data on the end-task of categorization. We could also find the optimum hyper-parameters by minimizing the development data perplexity on the document embedding learning task but as found in \citep{mnih2013learning}, lower perplexity does not ensure better representations but could also mean under-training. To choose the hyper-parameters we first use the default values as $k = 100$, $c = 2$, $n = 10$, \emph{number of epochs = 100}, $\gamma = 0.0025$, $\beta = 0.1$. We found that the learning rate $\gamma$ and the regularization constant $\beta$ give best performance across datasets at their default value. To choose the value of the other parameters, we first tune the embedding dimensions $k$ then the \emph{number of epochs} after which we consider different window sizes ($c$) and finally the number of negative samples $n$ for noise contrastive estimation. The values of the different hyper-parameters depend on the dataset. 
+The value of the hyper-parameters of the model are chosen based on the performance on development data on the end-task of categorization. We could also find the optimum hyper-parameters by minimizing the development data perplexity on the document embedding learning task but as found in \citep{mnih2013learning}, lower perplexity does not ensure better representations but could also mean under-training. To choose the hyper-parameters we first use the default values as $k = 100$, $c = 2$, $n = 10$, \emph{number of epochs = 50}, $\gamma = 0.0025$, $\beta = 0.1$. We found that the learning rate $\gamma$ and the regularization constant $\beta$ give best performance across datasets at their default value. To choose the value of the other parameters, we first tune the embedding dimensions $k$ then the \emph{number of epochs} after which we consider different window sizes ($c$) and finally the number of negative samples $n$ for noise contrastive estimation. The values of the different hyper-parameters depend on the dataset. 
 
 \para{Document Categorization} : For the task of document categorization, we split the document category data into training, development and test data by keeping $10\%$ documents for test purposes and $10\%$ for development. The rest $80\%$ are used for training purposes, i.e. learning category embeddings. We stop training based on the convergence reached on the development data. The value of the hyper-parameters learning rate $\gamma = 0.01$ and regularization constant $\beta = 0.01$ is chosen based on the performance on development data across different datasets. To make final predictions that whether the document should be assigned a particular category, we need to threshold the estimated probability, threshold for which was chosen based on the development data across datasets. It was found that the default logistic threshold of $0.5$ gave the best performance.
 
@@ -75,13 +75,110 @@ The value of the hyper-parameters of the model are chosen based on the performan
 
 \para{Baselines} : To test the efficiency of our document representation learning algorithm, we compare our model's accuracy to some of the baseline method accuracies that are explained below.
 \begin{enumerate}
-\item \textbf{Bag-of-Words (BOW)} : The most famous document representation that has produced state-of-the-art results is the bag-of-words model with tf-idf weighting. We compare our document representations against the bag-of-words representations. We call this model the \textbf{BOW} model.
+\item \textbf{Bag-of-Words (BOW)} : 
+The most famous document representation that has produced state-of-the-art results is the bag-of-words model with tf-idf weighting. We compare our document representations against the bag-of-words representations. We call this model the \textbf{BOW} model.
 
-\item \textbf{Probabilistic Matrix Factorization (PMF)} : The most simple technique for document categorization is the probabilistic matrix factorization of the document-category data matrix as explained in Sec.~\ref{sec:lr_similar_rl}. In this model, instead of learning only category embeddings, we also learn document representations simultaneously. Note that this model does not require any information about the document contents and also uses the document-category co-occurrence data. We call this the \textbf{PMF} model
+\item \textbf{Probabilistic Matrix Factorization (PMF)} : 
+The most simple technique for document categorization is the probabilistic matrix factorization of the document-category data matrix as explained in Sec.~\ref{sec:lr_similar_rl}. In this model, instead of learning only category embeddings, we also learn document representations simultaneously. Note that this model does not require any information about the document contents and also uses the document-category co-occurrence data. We call this the \textbf{PMF} model
 
-\item \textbf{Latent Semantic Indexing (LSI)} : As explained in Sec~\ref{sec:rw_dr}, Latent Semantic Indexing is a popular dimensionality reduction technique that uses the term co-occurrence statistics to capture the latent semantic structure of the documents. We use LSI to learn $100$-dimensional representation vectors for documents and compare our representations against them.
+\item \textbf{Latent Semantic Indexing (LSI)} : 
+As explained in Sec~\ref{sec:rw_dr}, Latent Semantic Indexing is a popular dimensionality reduction technique that uses the term co-occurrence statistics to capture the latent semantic structure of the documents. We use LSI to learn $100$-dimensional representation vectors for documents and compare our representations against them.
 We call this the \textbf{LSI} model.
 
-\item \textbf{Word Vector Averaging (WordVecAvg)} : With the availability of word vectors learned using the NPLM or the word2vec model, the most simple method to learn document embeddings is to take a weighted average of the word embeddings to represent the document. This method is similar to the bag-of-words technique as it ignores word ordering. We show that the representations learned using our method perform better than averaged vector representations. We call this the \textbf{WordVecAvg} model. The weighing scheme used to take the weighted average is \emph{tf-idf}.
+\item \textbf{Word Vector Averaging (WordVecAvg)} : 
+With the availability of word vectors learned using the NPLM or the word2vec model, the most simple method to learn document embeddings is to take a weighted average of the word embeddings to represent the document. This method is similar to the bag-of-words technique as it ignores word ordering. We show that the representations learned using our method perform better than averaged vector representations. We call this the \textbf{WordVecAvg} model. The weighing scheme used to take the weighted average is \emph{tf-idf}.
 \end{enumerate}
 Apart from the above baselines, many more baselines for the \emph{Reuters-21578} dataset exist in literature that primarily use bag-of-words representation but use different learning algorithms. We also compare our accuracies to them, details for which are given in the next section.
+
+\section{Results}
+\label{sec:results}
+In this section we present our model's accuracy in categorizing new documents by learning distributed representations for the documents in the corpus and using historical data to learn category embeddings to predict categories for new documents. We compare our model's performance with baselines explained in the above section and also explain the process to choose hyper-parameters dependent on the dataset. 
+We also present our model's performance in imputing categories for known documents in case the data has missing values. 
+
+\subsection{Document Categorization}
+As we see in \todo{some ref}, the task of categorizing documents with no prior categorization is of immense importance. In this section we present our model's efficacy in assigning categories to documents with no prior categorization. 
+
+For evaluation of a particular dataset, we first divide it into training, development and test sets by keeping $80\%$ of the documents for training purposes and then dividing rest of the documents equally for development and testing. For each of the different hyper-parameter settings for the representation learning phase, we first learn document representations for all the documents. We then use the training document-category data to learn category embeddings and evaluate our model based on the development data. Using the accuracies obtained on the development data for different hyper-parameter settings we select the ``\emph{best}'' model (hyper-parameters, document and category-embeddings) which is then used to report results on the test data.
+
+\subsubsection{Reuters - 21578}
+%\para{\large Reuters - 21578}
+
+\begin{table}[tb]
+\tabcolsep=0.1cm
+%\footnotesize
+\begin{center}
+\begin{tabular}{c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$epochs = 50$, $c = 2$, $n = 10$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$k = 50$}}         
+& \multicolumn{3}{c}{{\highest{$k = 100$}}}        
+& \multicolumn{3}{c}{{$k = 150$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Reuters} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 88.7	 & 89.9	 & 89.3
+& 90.9	 & 89.8	 & \highest{90.3}
+& 90.9	 & 89.8	 & \highest{90.3} \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{reuter:hp:k}\footnotesize {Performance on Reuters development data for different embedding dimensionality}}
+\end{center}
+\end{table}
+
+\begin{table}[tb]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l c c c c c c c c c c c c c c c}
+\toprule
+& \multicolumn{15}{c}{\textbf{Hyper-parameters} : {$k = 100$, $c = 2$, $n = 10$}}         \\
+\cmidrule(lr){2-16}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$epochs = 50$}}         
+& \multicolumn{3}{c}{{$epochs = 100$}}         
+& \multicolumn{3}{c}{{$epochs = 150$}}         
+& \multicolumn{3}{c}{{$epochs = 200$}}         
+& \multicolumn{3}{c}{{$epochs = 250$}}	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+\cmidrule(lr){11-13}
+\cmidrule(lr){14-16}
+\multirow{2}{*}{\textbf{Reuters} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+\cmidrule(lr){11-13}
+\cmidrule(lr){14-16}
+& 90.9	 & 89.8	 & 90.3
+& 92.3   & 92.9  & 92.6
+& 93.3   & 93.0  & 93.2
+& 93.7   & 93.9  & \highest{93.8}
+& 94.0   & 93.1  & 93.6 \\
+\bottomrule         
+\end{tabular}
+\caption{\label{reuter:hp:epoch}Performance on Reuters development data for different number of epochs}
+%\vskip -4mm
+\end{center}
+\end{table}
+
+
+
+
+

@@ -40,4 +40,7 @@
 \contentsline {subsection}{\numberline {4.1.1}Reuters-21578}{42}{subsection.151}
 \contentsline {subsection}{\numberline {4.1.2}Wikipedia Datasets}{43}{subsection.153}
 \contentsline {section}{\numberline {4.2}Experimental Setup}{44}{section.156}
-\contentsline {chapter}{Bibliography}{49}{Item.160}
+\contentsline {section}{\numberline {4.3}Results}{47}{section.161}
+\contentsline {subsection}{\numberline {4.3.1}Document Categorization}{47}{subsection.162}
+\contentsline {subsubsection}{\numberline {4.3.1.1}Reuters - 21578}{48}{subsubsection.163}
+\contentsline {chapter}{Bibliography}{49}{table.caption.165}

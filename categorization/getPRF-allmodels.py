@@ -12,6 +12,7 @@ threshold = 0.5
 
 
 evaluation = sys.argv[2]
+testval = sys.argv[3]
 
 dataset_output_directory  = sys.argv[1]
 if dataset_output_directory[-1] != "/":
@@ -25,7 +26,8 @@ for root, dirs, files in os.walk(dataset_output_directory):
 dirs.sort()
 
 for model in dirs:
-	filename = model+"-test.dat"
+	filename = model + "-"+testval+".dat"
+	#filename = model+"-test.dat"
 	file_address = dataset_output_directory+model+"/prediction/"+evaluation + "/" + filename
 	if os.path.isfile(file_address):
 		PRF1 = prf_prediction.getPRF(file_address, threshold)
