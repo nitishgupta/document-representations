@@ -78,17 +78,20 @@ The value of the hyper-parameters of the model are chosen based on the performan
 \item \textbf{Bag-of-Words (BOW)} : 
 The most famous document representation that has produced state-of-the-art results is the bag-of-words model with tf-idf weighting. We compare our document representations against the bag-of-words representations. We call this model the \textbf{BOW} model.
 
-\item \textbf{Probabilistic Matrix Factorization (PMF)} : 
-The most simple technique for document categorization is the probabilistic matrix factorization of the document-category data matrix as explained in Sec.~\ref{sec:lr_similar_rl}. In this model, instead of learning only category embeddings, we also learn document representations simultaneously. Note that this model does not require any information about the document contents and also uses the document-category co-occurrence data. We call this the \textbf{PMF} model
-
 \item \textbf{Latent Semantic Indexing (LSI)} : 
 As explained in Sec~\ref{sec:rw_dr}, Latent Semantic Indexing is a popular dimensionality reduction technique that uses the term co-occurrence statistics to capture the latent semantic structure of the documents. We use LSI to learn $100$-dimensional representation vectors for documents and compare our representations against them.
-We call this the \textbf{LSI} model.
+We call this the \textbf{LSI-100} model.
 
 \item \textbf{Word Vector Averaging (WordVecAvg)} : 
 With the availability of word vectors learned using the NPLM or the word2vec model, the most simple method to learn document embeddings is to take a weighted average of the word embeddings to represent the document. This method is similar to the bag-of-words technique as it ignores word ordering. We show that the representations learned using our method perform better than averaged vector representations. We call this the \textbf{WordVecAvg} model. The weighing scheme used to take the weighted average is \emph{tf-idf}.
+
+\item \textbf{Probabilistic Matrix Factorization (PMF)} : 
+The most simple technique for document categorization is the probabilistic matrix factorization of the document-category data matrix as explained in Sec.~\ref{sec:lr_similar_rl}. In this model, instead of learning only category embeddings, we also learn document representations simultaneously. Note that this model does not require any information about the document contents and also uses the document-category co-occurrence data. We call this the \textbf{PMF} model.
+
+Also note that employing PMF for predicting categories from new documents is useless as they do not contain any category history in the training data and hence the document vectors would not be learned. PMF in such case would act as a trivial strawman. PMF can be used to predict categories for documents that already have category history in training data. 
+
 \end{enumerate}
-Apart from the above baselines, many more baselines for the \emph{Reuters-21578} dataset exist in literature that primarily use bag-of-words representation but use different learning algorithms. We also compare our accuracies to them, details for which are given in the next section.
+Apart from the above baselines, many more baselines for the \emph{Reuters-21578} dataset exist in literature that primarily use bag-of-words representation but use different learning algorithms. We also compare our model against them, details for which are given in the next section.
 
 \section{Results}
 \label{sec:results}
@@ -101,13 +104,13 @@ As we see in \todo{some ref}, the task of categorizing documents with no prior c
 For evaluation of a particular dataset, we first divide it into training, development and test sets by keeping $80\%$ of the documents for training purposes and then dividing rest of the documents equally for development and testing. For each of the different hyper-parameter settings for the representation learning phase, we first learn document representations for all the documents. We then use the training document-category data to learn category embeddings and evaluate our model based on the development data. Using the accuracies obtained on the development data for different hyper-parameter settings we select the ``\emph{best}'' model (hyper-parameters, document and category-embeddings) which is then used to report results on the test data.
 
 \subsubsection{Reuters - 21578}
-%\para{\large Reuters - 21578}
+The performance of our model on the development data for different values of different hyper-parameters is given in Table.~\ref{reuter:hp:k}, ~\ref{reuter:hp:epoch}, ~\ref{reuter:hp:c} and ~\ref{reuter:hp:n}. Table.~\ref{reuter:hp:k} and ~\ref{reuter:hp:epoch} shows that with increasing embedding dimensionality and the number of training epochs the accuracy of category prediction improves in terms of the F1 score. To avoid overfitting we use $k = 100$ and $epoch = 200$. In Table.~\ref{reuter:hp:c} we see that the default window size of $c=2$ performs best and Table~\ref{reuter:hp:n} shows that $10$ - $15$ negative samples per positive sample should be used for NCE.
 
 \begin{table}[tb]
 \tabcolsep=0.1cm
-%\footnotesize
+\footnotesize
 \begin{center}
-\begin{tabular}{c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
 \toprule
 & \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$epochs = 50$, $c = 2$, $n = 10$}}         \\
 \cmidrule(lr){2-10}
@@ -178,7 +181,126 @@ For evaluation of a particular dataset, we first divide it into training, develo
 \end{center}
 \end{table}
 
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$k = 100$, $epochs = 200$, $n = 10$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$c = 2$}}         
+& \multicolumn{3}{c}{{$c = 3$}}        
+& \multicolumn{3}{c}{{$c = 4$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Reuters} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 93.7   & 93.9  & \highest{93.8}
+& 93.2   & 90.9  & 92.0
+& 91.8   & 90.8  & 91.3 \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{reuter:hp:c}\footnotesize {Performance on Reuters development data for different window sizes}}
+\end{center}
+\end{table}
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$k = 100$, $epochs = 200$, $c = 2$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$n = 5$}}         
+& \multicolumn{3}{c}{{$n = 10$}}        
+& \multicolumn{3}{c}{{$n = 15$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Reuters} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 92.5   & 89.5  & 91.0
+& 93.7   & 93.9  & \highest{93.8}
+& 94.7   & 92.4  & 93.5 \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{reuter:hp:n}\footnotesize {Performance on Reuters development data for different number of negative samples}}
+\end{center}
+\end{table}
+
+Table~\ref{reuter:cs} compares our model's accuracy against different document representations and other learning algorithms that use bag-of-words representations. 
+We find that document representations learned using our model performs the best. Our representations improves the F1 score of $84.1\%$, achieved when using bag-of-words representation, by $9\%$. 
+Improvements of $1\%$-$6.6\%$ on the F1 score are found against models such as SVM, CRF, LSI, MFoM and representations learned using tf-idf weighted average of word vectors.
+We also see that simple summing of word vectors to compute the projection layer reduces the performance of our model and hence leads to poor quality document representations. This corroborates with our hypothesis that weighted average of surrounding words is necessary to capture syntactic qualities and learn better quality representations.
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+% & \multicolumn{3}{c}{Reuters-21578}         \\
+% \cmidrule(lr){2-4}
+\textbf{Reuters-21578} & {P} & {R} & \textbf{F1} \\
+\midrule
+\textbf{BOW}
+& 77.8   & 91.5  & 84.1 \\
+\textbf{LSI-100}
+& 84.8   & 96.7  & 90.4 \\
+\textbf{WordVecAvg}
+& 94.1   & 88.1  & 91.0 \\ \addlinespace[1mm]
+
+\textbf{CMLF (CRF)}
+& -   & -  & 87.0 \\
+\textbf{SVM (poly)}
+& -   & -  & 86.0 \\
+\textbf{SVM (rbf)}
+& -   & -  & 86.4 \\ 
+\textbf{Binary-MFoM}
+& -   & -  & 88.4 \\ 
+\textbf{MC-MFoM}
+& -   & -  & 88.8 \\ 
+
+\addlinespace[1mm]
+\textbf{Our Model}
+& \multirow{2}{*}{92.1}   & \multirow{2}{*}{86.1}  & \multirow{2}{*}{89.0} \\
+(no weight) & & & \\ \addlinespace[1mm]
+\textbf{Our Model}
+& \multirow{2}{*}{94.1}   & \multirow{2}{*}{89.3}  & \multirow{2}{*}{\highest{91.7}} \\
+(with weights) & & & \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{reuter:cs}\footnotesize {\textbf{Document Categorization on Reuters-21578(\emph{ModApte}):} Precision/Recall/F1 on document categorization of our model compared against different document representations and complex learning algorithms on the Reuters-21578 dataset.}}
+\end{center}
+\end{table}
+
+\begin{figure}[tb]
+\centering
+        \includegraphics[width=\columnwidth]{figs/pr/reuter-cs.pdf}
+    \caption{Precision/Recall for Document Categorization on Reuters-21578}
+    \label{fig:pr:reuter:cs}
+\end{figure}
 
 
-
+\subsubsection{Physics - Wikipedia}
 

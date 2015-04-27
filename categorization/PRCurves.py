@@ -11,9 +11,25 @@ if(output_directory[-1] != "/"):
 
 evaluation = sys.argv[2]
 
-models = ['PMF', 'wordvec-avg', 'bow-tfidf', 'weight-update-epoch150', 'weight-update-epoch150-K50-win4']
+models = ['bow-tfidf', 'lsi-tfidf-100', 'wordvec-avg', 'weight-noupdate-epoch200', 'weight-update-epoch200']
 #models = ["PMF"]
+legend = {}
 
+for model in models:
+	if(model.split("-")[0] == "weight" and model.split("-")[1] == "update"):
+		legend[model] = "Our Model (with weights)"
+
+	if(model.split("-")[0] == "weight" and model.split("-")[1] == "noupdate"):
+		legend[model] = "Our Model (no weights)"
+
+	if(model.split("-")[0] == "lsi"):
+		legend[model] = "LSI-100"			
+
+	if(model.split("-")[0] == "bow"):
+		legend[model] = "BOW"			
+
+	if(model.split("-")[0] == "wordvec"):
+		legend[model] = "WordVecAvg"			
 
 def read_prediction_data(prediction_file):
 	fi = open(prediction_file, 'r')
@@ -53,7 +69,8 @@ for model in models:
 	print len(p), len(r), len(thresholds)
 	#plot_prcurve(model, p, r, output_file)
 	#h = plt.plot(r, p, label=str(model))
-	ax.plot(r, p, label=model)
+
+	ax.plot(r, p, label=legend[model])
 	area = auc(r, p)
 	print model, " : ", area
 
