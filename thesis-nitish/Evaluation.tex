@@ -98,13 +98,15 @@ Apart from the above baselines, many more baselines for the \emph{Reuters-21578}
 In this section we present our model's accuracy in categorizing new documents by learning distributed representations for the documents in the corpus and using historical data to learn category embeddings to predict categories for new documents. We compare our model's performance with baselines explained in the above section and also explain the process to choose hyper-parameters dependent on the dataset. 
 We also present our model's performance in imputing categories for known documents in case the data has missing values. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			DOCUMENT CATEGORIZATION 				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Document Categorization}
+\label{sec:results:categorization}
 As we see in \todo{some ref}, the task of categorizing documents with no prior categorization is of immense importance. In this section we present our model's efficacy in assigning categories to documents with no prior categorization. 
 
 For evaluation of a particular dataset, we first divide it into training, development and test sets by keeping $80\%$ of the documents for training purposes and then dividing rest of the documents equally for development and testing. For each of the different hyper-parameter settings for the representation learning phase, we first learn document representations for all the documents. We then use the training document-category data to learn category embeddings and evaluate our model based on the development data. Using the accuracies obtained on the development data for different hyper-parameter settings we select the ``\emph{best}'' model (hyper-parameters, document and category-embeddings) which is then used to report results on the test data.
 
 \subsubsection{Reuters - 21578}
-The performance of our model on the development data for different values of different hyper-parameters is given in Table.~\ref{reuter:hp:k}, ~\ref{reuter:hp:epoch}, ~\ref{reuter:hp:c} and ~\ref{reuter:hp:n}. Table.~\ref{reuter:hp:k} and ~\ref{reuter:hp:epoch} shows that with increasing embedding dimensionality and the number of training epochs the accuracy of category prediction improves in terms of the F1 score. To avoid overfitting we use $k = 100$ and $epoch = 200$. In Table.~\ref{reuter:hp:c} we see that the default window size of $c=2$ performs best and Table~\ref{reuter:hp:n} shows that $10$ - $15$ negative samples per positive sample should be used for NCE.
+The performance of our model on the development data for different values of different hyper-parameters is given in Table~\ref{reuter:hp:k}, ~\ref{reuter:hp:epoch}, ~\ref{reuter:hp:c} and ~\ref{reuter:hp:n}. Table~\ref{reuter:hp:k} and ~\ref{reuter:hp:epoch} shows that with increasing embedding dimensionality and the number of training epochs the accuracy of category prediction improves in terms of the F1 score. To avoid overfitting we use $k = 100$ and $epoch = 200$. In Table~\ref{reuter:hp:c} we see that the default window size of $c=2$ performs best and Table~\ref{reuter:hp:n} shows that $10$ - $15$ negative samples per positive sample should be used for NCE.
 
 \begin{table}[tb]
 \tabcolsep=0.1cm
@@ -291,20 +293,20 @@ Similar observations are seen in the Precision/Recall curves in Fig.~\ref{fig:pr
 \bottomrule         
 \end{tabular}
 %\vskip -4mm
-\caption{\label{reuter:cs}\footnotesize {\textbf{Document Categorization on Reuters-21578(\emph{ModApte}):} Precision/Recall/F1 on document categorization of our model compared against different document representations and complex learning algorithms on the Reuters-21578 dataset.}}
+\caption{\label{reuter:cs}\footnotesize {\textbf{Document Categorization on Reuters-21578(\emph{ModApte}) dataset:} Precision/Recall/F1 on document categorization of our model compared against different document representations and complex learning algorithms on the Reuters-21578 dataset.}}
 \end{center}
 \end{table}
 
 \begin{figure}[tb]
 \centering
         \includegraphics[width=0.8\columnwidth]{figs/pr/reuter-cs.pdf}
-    \caption{Precision/Recall for Document Categorization on Reuters-21578}
+    \caption{\footnotesize Precision/Recall for Document Categorization on Reuters-21578 (\emph{ModApte}) dataset} 
     \label{fig:pr:reuter:cs}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  		Physics 		  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Physics - Wikipedia}
-The performance of our model on the development data for different values of different hyper-parameters is given in Table~\ref{physics:hp:k}, ~\ref{physics:hp:epoch}, ~\ref{physics:hp:c} and ~\ref{physics:hp:n}. From Table.~\ref{physics:hp:k} and ~\ref{reuter:hp:epoch} we find that our model performs the best for $k=100$ when trained for $150$ epochs. Table~\ref{physics:hp:c} shows that larger context window ($c = 3$) and default number of negative samples ($n = 10$) per positive sample gives the best performance. 
+The performance of our model on the development data for different values of different hyper-parameters is given in Table~\ref{physics:hp:k}, ~\ref{physics:hp:epoch}, ~\ref{physics:hp:c} and ~\ref{physics:hp:n}. From Table~\ref{physics:hp:k} and ~\ref{physics:hp:epoch} we find that our model performs the best for $k=100$ when trained for $150$ epochs. Table~\ref{physics:hp:c} shows that larger context window ($c = 3$) and default number of negative samples ($n = 10$) per positive sample gives the best performance. 
 
 \begin{table}[h!]
 \tabcolsep=0.1cm
@@ -322,7 +324,7 @@ The performance of our model on the development data for different values of dif
 \cmidrule(lr){5-7}
 \cmidrule(lr){8-10}
 %\cmidrule(lr){2-10}
-\multirow{2}{*}{\textbf{Reuters} (Development)}
+\multirow{2}{*}{\textbf{Physics} (Development)}
 & {P} & {R} & \textbf{F1} 
 & {P} & {R} & \textbf{F1} 
 & {P} & {R} & \textbf{F1} \\
@@ -358,7 +360,7 @@ The performance of our model on the development data for different values of dif
 \cmidrule(lr){8-10}
 \cmidrule(lr){11-13}
 \cmidrule(lr){14-16}
-\multirow{2}{*}{\textbf{Reuters} (Development)}
+\multirow{2}{*}{\textbf{Physics} (Development)}
 & {P} & {R} & \textbf{F1} 
 & {P} & {R} & \textbf{F1} 
 & {P} & {R} & \textbf{F1} 
@@ -397,7 +399,7 @@ The performance of our model on the development data for different values of dif
 \cmidrule(lr){5-7}
 \cmidrule(lr){8-10}
 %\cmidrule(lr){2-10}
-\multirow{2}{*}{\textbf{Reuters} (Development)}
+\multirow{2}{*}{\textbf{Physics} (Development)}
 & {P} & {R} & \textbf{F1} 
 & {P} & {R} & \textbf{F1} 
 & {P} & {R} & \textbf{F1} \\
@@ -420,7 +422,7 @@ The performance of our model on the development data for different values of dif
 \begin{center}
 \begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
 \toprule
-& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$k = 100$, $epochs = 200$, $c = 2$}}         \\
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$k = 100$, $epochs = 150$, $c = 3$}}         \\
 \cmidrule(lr){2-10}
 \textbf{Tuning}
 & \multicolumn{3}{c}{{$n = 5$}}         
@@ -430,7 +432,7 @@ The performance of our model on the development data for different values of dif
 \cmidrule(lr){5-7}
 \cmidrule(lr){8-10}
 %\cmidrule(lr){2-10}
-\multirow{2}{*}{\textbf{Reuters} (Development)}
+\multirow{2}{*}{\textbf{Physics} (Development)}
 & {P} & {R} & \textbf{F1} 
 & {P} & {R} & \textbf{F1} 
 & {P} & {R} & \textbf{F1} \\
@@ -470,7 +472,7 @@ Fig.~\ref{fig:pr:physics:cs} also shows that our model performs the best while \
 & 91.0   & 59.1  & 71.7 \\ \addlinespace[1mm]
 
 \textbf{Our Model}
-& \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x} \\
+& \multirow{2}{*}{86.1}   & \multirow{2}{*}{64.6}  & \multirow{2}{*}{73.8} \\
 (no weights) & & & \\ \addlinespace[1mm]
 \textbf{Our Model}
 & \multirow{2}{*}{88.6}   & \multirow{2}{*}{72.4}  & \multirow{2}{*}{\highest{79.7}} \\
@@ -478,13 +480,583 @@ Fig.~\ref{fig:pr:physics:cs} also shows that our model performs the best while \
 \bottomrule         
 \end{tabular}
 %\vskip -4mm
-\caption{\label{physics:cs}\footnotesize {\textbf{Document Categorization on Physics(Wikipedia):} Precision/Recall/F1 on document categorization of our model compared against different document representations on the Physics(Wikipedia) dataset.}}
+\caption{\label{physics:cs}\footnotesize {\textbf{Document Categorization on Physics(Wikipedia) dataset:} Precision/Recall/F1 of our model for document categorization compared against different document representations on the Physics(Wikipedia) dataset.}}
 \end{center}
 \end{table}
 
 \begin{figure}[tb]
 \centering
         \includegraphics[width=0.8\columnwidth]{figs/pr/physics-cs.pdf}
-    \caption{Precision/Recall for Document Categorization on Physics(Wikipedia) dataset}
+    \caption{\footnotesize Precision/Recall for Document Categorization on Physics(Wikipedia) dataset}
     \label{fig:pr:physics:cs} 
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  		Biology 		  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Biology - Wikipedia}
+The performance of our model on the development data for different values of different hyper-parameters is shown in Table~\ref{biology:hp:k}, ~\ref{biology:hp:epoch}, ~\ref{biology:hp:c} and ~\ref{biology:hp:n}. From Table~\ref{biology:hp:k} shows that default embedding size of $k = 100$ performs the best and ~\ref{biology:hp:epoch} shows that relatively low training epochs ($epochs = 50$) gives the best results. Table~\ref{biology:hp:c} shows that larger context window ($c = 3$) and default number of negative samples ($n = 10$) per positive sample gives the best model performance. 
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$epochs = 50$, $c = 2$, $n = 10$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$k = 50$}}         
+& \multicolumn{3}{c}{{$k = 100$}}        
+& \multicolumn{3}{c}{{$k = 150$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Biology} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 83.9   & 60.0  & 70.0
+& 82.4   & 61.2  & \highest{70.2}
+& 83.7   & 60.2  & 70.0 \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{biology:hp:k}\footnotesize {Model performance on Biology(Wikipedia) development data for different embedding dimensionality}}
+\end{center}
+\end{table}
+
+\begin{table}[tb]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l c c c c c c c c c c c c c c c}
+\toprule
+& \multicolumn{15}{c}{\textbf{Hyper-parameters} : {$k = 100$, $c = 2$, $n = 10$}}         \\
+\cmidrule(lr){2-16}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$epochs = 20$}}         
+& \multicolumn{3}{c}{{$epochs = 50$}}         
+& \multicolumn{3}{c}{{$epochs = 100$}}         
+& \multicolumn{3}{c}{{$epochs = 150$}}         
+& \multicolumn{3}{c}{{$epochs = 200$}}	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+\cmidrule(lr){11-13}
+\cmidrule(lr){14-16}
+\multirow{2}{*}{\textbf{Biology} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+\cmidrule(lr){11-13}
+\cmidrule(lr){14-16}
+& 75.3   & 59.8  & 66.7
+& 82.4   & 61.2  & \highest{70.2}
+& 82.9   & 60.2  & 69.7
+& 85.6   & 58.6  & 69.6
+& 85.3   & 58.0  & 69.0 \\
+\bottomrule         
+\end{tabular}
+\caption{\label{biology:hp:epoch}\footnotesize Model performance on Biology(Wikipedia) development data for different number of epochs}
+%\vskip -4mm
+\end{center}
+\end{table}
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$k = 100$, $epochs = 50$, $n = 10$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$c = 2$}}         
+& \multicolumn{3}{c}{{$c = 3$}}        
+& \multicolumn{3}{c}{{$c = 4$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Biology} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 82.4   & 61.2  & \highest{70.2}
+& 80.8   & 62.0  & \highest{70.2}
+& 81.3   & 61.4  & 70.0 \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{biology:hp:c}\footnotesize {Model performance on Biology(Wikipedia) development data for different window sizes}}
+\end{center}
+\end{table}
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$k = 100$, $epochs = 50$, $c = 3$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$n = 5$}}         
+& \multicolumn{3}{c}{{$n = 10$}}        
+& \multicolumn{3}{c}{{$n = 15$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Biology} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 81.8   & 61.0  & 69.9
+& 80.8   & 62.0  & \highest{70.2}
+& 81.2   & 60.8  & 69.6 \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{biology:hp:n}\footnotesize {Model performance on Biology(Wikipedia) development data for different number of negative samples}}
+\end{center}
+\end{table}
+
+Table~\ref{biology:cs} shows that the distributed representations learned by our model outperform other baseline representations.
+Our model achieves a F1 score of $67.8\%$ while the second best model, again the Bag-of-Words (\textbf{BOW}) trails ours by $2.41\%$.
+We also find that document representations learned by averaging word vectors perform worse by $9.1\%$ and the model accuracy suffers by $4.95\%$ when word ordering is ignored during training.
+Fig.~\ref{fig:pr:biology:cs} shows the precision/recall curves for our model and other baseline methods. It also shows that the \textbf{BOW} representations perform the closest representations learned using our model.
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+% & \multicolumn{3}{c}{Reuters-21578}         \\
+% \cmidrule(lr){2-4}
+\textbf{Biology (Wikipedia)} & {P} & {R} & \textbf{F1} \\
+\midrule
+\textbf{BOW}
+& 67.0   & 65.3  & 66.2 \\
+\textbf{LSI-100}
+& 51.8   & 69.6  & 59.4 \\
+\textbf{WordVecAvg}
+& 79.4   & 50.4  & 61.6 \\ \addlinespace[1mm]
+
+\textbf{Our Model}
+& \multirow{2}{*}{80.3}   & \multirow{2}{*}{53.8}  & \multirow{2}{*}{64.4} \\
+(no weights) & & & \\ \addlinespace[1mm]
+\textbf{Our Model}
+79.7  R :  59.0  F1 :  67.8
+& \multirow{2}{*}{79.7}   & \multirow{2}{*}{59.0}  & \multirow{2}{*}{\highest{67.8}} \\
+(with weights) & & & \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{biology:cs}\footnotesize {\textbf{Document Categorization on Biology(Wikipedia) dataset:} Precision/Recall/F1 of our model for document categorization compared against different document representations on the Biology(Wikipedia) dataset.}}
+\end{center}
+\end{table}
+
+\begin{figure}[tb]
+\centering
+        \includegraphics[width=0.8\columnwidth]{figs/pr/biology-cs.pdf}
+    \caption{\footnotesize Precision/Recall for Document Categorization on Biology(Wikipedia) dataset}
+    \label{fig:pr:biology:cs} 
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  		Mathematics 		  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Mathematics - Wikipedia}
+The performance of our model on the development data for different values of different hyper-parameters is shown in Table~\ref{mathematics:hp:k}, ~\ref{mathematics:hp:epoch}, ~\ref{mathematics:hp:c} and ~\ref{mathematics:hp:n}. Table~\ref{mathematics:hp:k} and ~\ref{mathematics:hp:epoch} show that low embedding size of $k = 50$ and moderate training epochs ($epochs = 100$) give the best model performance. 
+Table~\ref{mathematics:hp:c} shows that small context window ($c = 3$) and relatively larger number of negative samples ($n = 15$) per positive sample achieves the best performance.
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$epochs = 50$, $c = 2$, $n = 10$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$k = 50$}}         
+& \multicolumn{3}{c}{{$k = 100$}}        
+& \multicolumn{3}{c}{{$k = 150$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Mathematics} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 83.2   & 57.0  & \highest{67.7}
+& 82.3   & 56.0  & 66.7
+& 86.1   & 55.5  & 67.5 \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{mathematics:hp:k}\footnotesize {Model performance on Mathematics(Wikipedia) development data for different embedding dimensionality}}
+\end{center}
+\end{table}
+
+\begin{table}[tb]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l c c c c c c c c c c c c c c c}
+\toprule
+& \multicolumn{15}{c}{\textbf{Hyper-parameters} : {$k = 50$, $c = 2$, $n = 10$}}         \\
+\cmidrule(lr){2-16}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$epochs = 20$}}         
+& \multicolumn{3}{c}{{$epochs = 50$}}         
+& \multicolumn{3}{c}{{$epochs = 100$}}         
+& \multicolumn{3}{c}{{$epochs = 150$}}         
+& \multicolumn{3}{c}{{$epochs = 200$}}	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+\cmidrule(lr){11-13}
+\cmidrule(lr){14-16}
+\multirow{2}{*}{\textbf{Mathematics} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+\cmidrule(lr){11-13}
+\cmidrule(lr){14-16}
+& 81.2   & 55.2  & 65.8
+& 83.2   & 57.0  & 67.7
+& 87.0   & 56.3  & \highest{68.3}
+& 86.7   & 55.2  & 67.5
+& 82.2   & 57.8  & 67.9 \\
+\bottomrule         
+\end{tabular}
+\caption{\label{mathematics:hp:epoch}\footnotesize Model performance on Mathematics(Wikipedia) development data for different number of epochs}
+%\vskip -4mm
+\end{center}
+\end{table}
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$k = 50$, $epochs = 100$, $n = 10$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$c = 2$}}         
+& \multicolumn{3}{c}{{$c = 3$}}        
+& \multicolumn{3}{c}{{$c = 4$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Mathematics} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 87.0   & 56.3  & \highest{68.3}
+& 91.0   & 54.5  & 68.2
+& 88.1   & 55.0  & 67.7 \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{mathematics:hp:c}\footnotesize {Model performance on Mathematics(Wikipedia) development data for different window sizes}}
+\end{center}
+\end{table}
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$k = 50$, $epochs = 100$, $c = 2$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$n = 5$}}         
+& \multicolumn{3}{c}{{$n = 10$}}        
+& \multicolumn{3}{c}{{$n = 15$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Mathematics} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 86.1   & 57.0  & 68.6
+& 87.0   & 56.3  & 68.3
+& 90.0   & 55.5  & \highest{68.7} \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{mathematics:hp:n}\footnotesize {Model performance on Mathematics(Wikipedia) development data for different number of negative samples}}
+\end{center}
+\end{table}
+
+Table~\ref{mathematics:cs} shows that the distributed representations learned by our model outperform other baseline representations.
+Our model achieves a F1 score of $68.2\%$ while the second best model, Bag-of-Words (\textbf{BOW}) trails ours by $4.41\%$.
+Word vectors averaged by tf-idf weighing scheme to represent document in the Mathematics (Wikipedia) dataset give the worst accuracy with an F1 score of $55.7\%$.
+We again find that modeling syntactic qualities of the language is important as weighting word vectors to represent the context gives the best performance.
+Fig.~\ref{fig:pr:mathematics:cs} shows the precision/recall curves for our model and other baseline methods. It also shows that the \textbf{BOW} representations perform the closest representations learned using our model.
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+% & \multicolumn{3}{c}{Reuters-21578}         \\
+% \cmidrule(lr){2-4}
+\textbf{Mathematics (Wikipedia)} & {P} & {R} & \textbf{F1} \\
+\midrule
+\textbf{BOW}
+& 65.6   & 65.1  & 65.3 \\
+\textbf{LSI-100}
+& 47.0   & 75.0  & 57.8 \\
+\textbf{WordVecAvg}
+& 90.5   & 40.3  & 55.7 \\ \addlinespace[1mm]
+
+\textbf{Our Model}
+& \multirow{2}{*}{78.4}   & \multirow{2}{*}{57.4}  & \multirow{2}{*}{66.3} \\
+(no weights) & & & \\ \addlinespace[1mm]
+\textbf{Our Model}
+& \multirow{2}{*}{85.3}   & \multirow{2}{*}{56.8}  & \multirow{2}{*}{\highest{68.2}} \\
+(with weights) & & & \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{mathematics:cs}\footnotesize {\textbf{Document Categorization on Mathematics(Wikipedia) dataset:} Precision/Recall/F1 of our model for document categorization compared against different document representations on the Mathematics(Wikipedia) dataset.}}
+\end{center}
+\end{table}
+
+\begin{figure}[tb]
+\centering
+        \includegraphics[width=0.8\columnwidth]{figs/pr/mathematics-cs.pdf}
+    \caption{\footnotesize Precision/Recall for Document Categorization on Mathematics(Wikipedia) dataset}
+    \label{fig:pr:mathematics:cs} 
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  		Sports 		  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Sports - Wikipedia}
+The performance of our model on the development data for different values of different hyper-parameters is shown in Table~\ref{sports:hp:k}, ~\ref{sports:hp:epoch}, ~\ref{sports:hp:c} and ~\ref{sports:hp:n}. Table~\ref{sports:hp:k} shows that low vector size of $k = 50$ and Table~\ref{sports:hp:epoch} shows moderate training epochs ($epochs = 100$) gives the best model performance. 
+Table~\ref{sports:hp:c} shows that small context window ($c = 3$) and relatively larger number of negative samples ($n = 15$) per positive sample achieves the best performance.
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$epochs = 50$, $c = 2$, $n = 10$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$k = 50$}}         
+& \multicolumn{3}{c}{{$k = 100$}}        
+& \multicolumn{3}{c}{{$k = 150$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Sports} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 82.2   & 45.7  & \highest{58.8}
+& 81.2   & 45.9  & 58.6
+& 80.9   & 45.7  & 58.4 \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{sports:hp:k}\footnotesize {Model performance on Sports(Wikipedia) development data for different embedding dimensionality}}
+\end{center}
+\end{table}
+
+\begin{table}[tb]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l c c c c c c c c c c c c c c c}
+\toprule
+& \multicolumn{15}{c}{\textbf{Hyper-parameters} : {$k = 50$, $c = 2$, $n = 10$}}         \\
+\cmidrule(lr){2-16}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$epochs = 20$}}         
+& \multicolumn{3}{c}{{$epochs = 50$}}         
+& \multicolumn{3}{c}{{$epochs = 100$}}         
+& \multicolumn{3}{c}{{$epochs = 150$}}         
+& \multicolumn{3}{c}{{$epochs = 200$}}	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+\cmidrule(lr){11-13}
+\cmidrule(lr){14-16}
+\multirow{2}{*}{\textbf{Sports} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+\cmidrule(lr){11-13}
+\cmidrule(lr){14-16}
+& 73.9   & 45.9  & 56.6
+& 82.2   & 45.7  & 58.8
+& 83.9   & 47.6  & \highest{60.7}
+& 83.7   & 46.8  & 60.0
+& 67.1   & 50.2  & 57.4 \\
+\bottomrule         
+\end{tabular}
+\caption{\label{sports:hp:epoch}\footnotesize Model performance on Sports(Wikipedia) development data for different number of epochs}
+%\vskip -4mm
+\end{center}
+\end{table}
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$k = 50$, $epochs = 100$, $n = 10$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$c = 2$}}         
+& \multicolumn{3}{c}{{$c = 3$}}        
+& \multicolumn{3}{c}{{$c = 4$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Sports} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 83.9   & 47.6  & 60.7
+& 84.5   & 47.8  & \highest{61.0}
+& 86.0   & 47.0  & 60.8 \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{sports:hp:c}\footnotesize {Model performance on Sports(Wikipedia) development data for different window sizes}}
+\end{center}
+\end{table}
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$k = 50$, $epochs = 100$, $c = 3$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$n = 5$}}         
+& \multicolumn{3}{c}{{$n = 10$}}        
+& \multicolumn{3}{c}{{$n = 15$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Sports} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 84.6   & 47.0  & 60.4
+& 84.5   & 47.8  & \highest{61.0}
+& 82.7   & 47.4  & 60.3 \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{sports:hp:n}\footnotesize {Model performance on Sports(Wikipedia) development data for different number of negative samples}}
+\end{center}
+\end{table}
+
+Table~\ref{sports:cs} shows that the distributed representations learned by our model outperform other baseline representations.
+Our model achieves a F1 score of $57.3\%$ while the second best performing representations are learned using Latent Semantic Indexing. It achieves a F1 score of $54.1\%$ and trails our model by $6.1\%$.
+As found in previous evaluations, document representations using bag-of-words style word vector averaging does not give the best performance and also modeling syntactic features is important for learning the best quality document representations.
+Fig.~\ref{fig:pr:sports:cs} shows the precision/recall curves for our model and other baseline methods. 
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+% & \multicolumn{3}{c}{Reuters-21578}         \\
+% \cmidrule(lr){2-4}
+\textbf{Sports (Wikipedia)} & {P} & {R} & \textbf{F1} \\
+\midrule
+\textbf{BOW}
+& 58.5   & 48.3  & 52.9 \\
+\textbf{LSI-100}
+& 43.5   & 71.4  & 54.1 \\
+\textbf{WordVecAvg}
+& 81.8   & 37.5  & 51.4 \\ \addlinespace[1mm]
+
+\textbf{Our Model}
+80.5  R :  40.1  F1 :  53.6
+& \multirow{2}{*}{80.5}   & \multirow{2}{*}{40.1}  & \multirow{2}{*}{53.6} \\
+(no weights) & & & \\ \addlinespace[1mm]
+\textbf{Our Model}
+& \multirow{2}{*}{82.1}   & \multirow{2}{*}{44.0}  & \multirow{2}{*}{\highest{57.3}} \\
+(with weights) & & & \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{sports:cs}\footnotesize {\textbf{Document Categorization on Sports(Wikipedia) dataset:} Precision/Recall/F1 of our model for document categorization compared against different document representations on the Sports(Wikipedia) dataset.}}
+\end{center}
+\end{table}
+
+\begin{figure}[tb]
+\centering
+        \includegraphics[width=0.8\columnwidth]{figs/pr/sports-cs.pdf}
+    \caption{\footnotesize Precision/Recall for Document Categorization on Sports(Wikipedia) dataset}
+    \label{fig:pr:sports:cs} 
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			IMPUTING MISSING CAEGORIES 				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Imputing Missing Categories}
+\label{sec:results:imputing}

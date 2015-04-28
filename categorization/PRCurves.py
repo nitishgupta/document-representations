@@ -11,7 +11,7 @@ if(output_directory[-1] != "/"):
 
 evaluation = sys.argv[2]
 
-models = ['bow-tfidf', 'lsi-tfidf-100', 'wordvec-avg', 'weight-update-epoch150-win3-n15']
+models = ['bow-tfidf', 'lsi-tfidf-100', 'wordvec-avg', 'weight-noupdate-epoch100-K50-win3', 'weight-update-epoch100-K50-win3']
 #models = ["PMF"]
 legend = {}
 
@@ -62,7 +62,7 @@ fig = plt.figure()
 ax = plt.subplot(111)
 output_file = output_directory+"Test-" + evaluation + "-PRCurve.pdf"
 for model in models:
-	prediction_file = output_directory+model+"/prediction/"+evaluation+"/"+model+"-test.dat"
+	prediction_file = output_directory+model+"/prediction/"+evaluation+"/"+model+"-val.dat"
 	y_true, y_pred = read_prediction_data(prediction_file)
 	print len(y_true), len(y_pred)
 	p, r, thresholds = precision_recall_curve(y_true, y_pred)

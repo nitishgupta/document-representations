@@ -126,7 +126,7 @@ Since we learn distributed embeddings for the categories in the same $k$-dimensi
 The major drawback of algorithms that learn multiple independent classifiers is their inability to capture and exploit the correlations among categories from the training data. As we exploit the low-rank structure of the document-category relational matrix by learning factors for categories we are able to learn correlations among categories in a way similar to as done by collaborative filtering.
 
 \item 
-Generally, document-category data is accompanied by additional relational data about documents and/or categories which is often incomplete. As has been shown in \todo{cite\{arXiv\}}, joint modeling of relations and entities using collective matrix factorization of multiple relational matrices can provide signification improvements in the relation prediction task. 
+Generally, document-category data is accompanied by additional relational data about documents and/or categories which is often incomplete. As has been shown in \cite{gupta2015collectively}, joint modeling of relations and entities using collective matrix factorization of multiple relational matrices can provide signification improvements in the relation prediction task. 
 Our model, based on matrix factorization as shown in Sec~\ref{sec:lr_similar_rl}, can easily be extended to incorporate additional relational data and aid in improved database completion. 
 
 \item \todo{Find missing categories??}
