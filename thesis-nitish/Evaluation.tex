@@ -135,7 +135,7 @@ The performance of our model on the development data for different values of dif
 \bottomrule         
 \end{tabular}
 %\vskip -4mm
-\caption{\label{reuter:hp:k}\footnotesize {Performance on Reuters development data for different embedding dimensionality}}
+\caption{\label{reuter:hp:k}\footnotesize {Model performance on Reuters development data for different embedding dimensionality}}
 \end{center}
 \end{table}
 
@@ -176,7 +176,7 @@ The performance of our model on the development data for different values of dif
 & 94.0   & 93.1  & 93.6 \\
 \bottomrule         
 \end{tabular}
-\caption{\label{reuter:hp:epoch}Performance on Reuters development data for different number of epochs}
+\caption{\label{reuter:hp:epoch}\footnotesize Model performance on Reuters development data for different number of epochs}
 %\vskip -4mm
 \end{center}
 \end{table}
@@ -210,7 +210,7 @@ The performance of our model on the development data for different values of dif
 \bottomrule         
 \end{tabular}
 %\vskip -4mm
-\caption{\label{reuter:hp:c}\footnotesize {Performance on Reuters development data for different window sizes}}
+\caption{\label{reuter:hp:c}\footnotesize {Model performance on Reuters development data for different window sizes}}
 \end{center}
 \end{table}
 
@@ -243,7 +243,7 @@ The performance of our model on the development data for different values of dif
 \bottomrule         
 \end{tabular}
 %\vskip -4mm
-\caption{\label{reuter:hp:n}\footnotesize {Performance on Reuters development data for different number of negative samples}}
+\caption{\label{reuter:hp:n}\footnotesize {Model performance on Reuters development data for different number of negative samples}}
 \end{center}
 \end{table}
 
@@ -251,6 +251,7 @@ Table~\ref{reuter:cs} compares our model's accuracy against different document r
 We find that document representations learned using our model performs the best. Our representations improves the F1 score of $84.1\%$, achieved when using bag-of-words representation, by $9\%$. 
 Improvements of $1\%$-$6.6\%$ on the F1 score are found against models such as SVM, CRF, LSI, MFoM and representations learned using tf-idf weighted average of word vectors.
 We also see that simple summing of word vectors to compute the projection layer reduces the performance of our model and hence leads to poor quality document representations. This corroborates with our hypothesis that weighted average of surrounding words is necessary to capture syntactic qualities and learn better quality representations.
+Similar observations are seen in the Precision/Recall curves in Fig.~\ref{fig:pr:reuter:cs}.
 
 \begin{table}[h!]
 \tabcolsep=0.1cm
@@ -296,11 +297,194 @@ We also see that simple summing of word vectors to compute the projection layer 
 
 \begin{figure}[tb]
 \centering
-        \includegraphics[width=\columnwidth]{figs/pr/reuter-cs.pdf}
+        \includegraphics[width=0.8\columnwidth]{figs/pr/reuter-cs.pdf}
     \caption{Precision/Recall for Document Categorization on Reuters-21578}
     \label{fig:pr:reuter:cs}
 \end{figure}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  		Physics 		  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Physics - Wikipedia}
+The performance of our model on the development data for different values of different hyper-parameters is given in Table~\ref{physics:hp:k}, ~\ref{physics:hp:epoch}, ~\ref{physics:hp:c} and ~\ref{physics:hp:n}. From Table.~\ref{physics:hp:k} and ~\ref{reuter:hp:epoch} we find that our model performs the best for $k=100$ when trained for $150$ epochs. Table~\ref{physics:hp:c} shows that larger context window ($c = 3$) and default number of negative samples ($n = 10$) per positive sample gives the best performance. 
 
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$epochs = 50$, $c = 2$, $n = 10$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$k = 50$}}         
+& \multicolumn{3}{c}{{$k = 100$}}        
+& \multicolumn{3}{c}{{$k = 150$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Reuters} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 84.4   & 72.1  & 77.8
+& 89.1   & 71.2  & \highest{79.2}
+& 89.1   & 69.7  & 78.2 \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{physics:hp:k}\footnotesize {Model performance on Physics(Wikipedia) development data for different embedding dimensionality}}
+\end{center}
+\end{table}
+
+\begin{table}[tb]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l c c c c c c c c c c c c c c c}
+\toprule
+& \multicolumn{15}{c}{\textbf{Hyper-parameters} : {$k = 100$, $c = 2$, $n = 10$}}         \\
+\cmidrule(lr){2-16}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$epochs = 20$}}         
+& \multicolumn{3}{c}{{$epochs = 50$}}         
+& \multicolumn{3}{c}{{$epochs = 100$}}         
+& \multicolumn{3}{c}{{$epochs = 150$}}         
+& \multicolumn{3}{c}{{$epochs = 200$}}	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+\cmidrule(lr){11-13}
+\cmidrule(lr){14-16}
+\multirow{2}{*}{\textbf{Reuters} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+\cmidrule(lr){11-13}
+\cmidrule(lr){14-16}
+& 85.5   & 70.6  & 77.3
+& 89.1   & 71.2  & 79.2
+& 86.9   & 73.8  & 79.9
+& 87.4   & 73.6  & \highest{79.9}
+& 86.9   & 73.3  & 79.5 \\
+\bottomrule         
+\end{tabular}
+\caption{\label{physics:hp:epoch}\footnotesize Model performance on Physics(Wikipedia) development data for different number of epochs}
+%\vskip -4mm
+\end{center}
+\end{table}
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$k = 100$, $epochs = 150$, $n = 10$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$c = 2$}}         
+& \multicolumn{3}{c}{{$c = 3$}}        
+& \multicolumn{3}{c}{{$c = 4$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Reuters} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 87.4   & 73.6  & 79.9
+& 86.5   & 74.4  & \highest{80.0}
+& 87.0   & 73.1  & 79.5 \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{physics:hp:c}\footnotesize {Model performance on Physics(Wikipedia) development data for different window sizes}}
+\end{center}
+\end{table}
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+& \multicolumn{9}{c}{\textbf{Hyper-parameters} : {$k = 100$, $epochs = 200$, $c = 2$}}         \\
+\cmidrule(lr){2-10}
+\textbf{Tuning}
+& \multicolumn{3}{c}{{$n = 5$}}         
+& \multicolumn{3}{c}{{$n = 10$}}        
+& \multicolumn{3}{c}{{$n = 15$}}        	\\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+%\cmidrule(lr){2-10}
+\multirow{2}{*}{\textbf{Reuters} (Development)}
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} 
+& {P} & {R} & \textbf{F1} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+& 85.5   & 74.3  & 79.5
+& 86.5   & 74.4  & \highest{80.0}
+& 87.8   & 73.3  & 79.9 \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{physics:hp:n}\footnotesize {Model performance on Physics(Wikipedia) development data for different number of negative samples}}
+\end{center}
+\end{table}
+
+Table~\ref{physics:cs} shows that our model outperforms other baseline models with a huge margin. 
+Our model achieves a F1 score of $79.7\%$ while the second best model, Bag-of-Words (\textbf{BOW}) trails our by $4.18\%$.
+As observed in the evaluation of Reuters-21578, syntactic features are necessary to learn high quality document representations. This is shown by the fact that when we simply sum the word vectors to represent the context, our model only achieves an accuracy of \todo{add no weight} in terms of the F1 score.
+Fig.~\ref{fig:pr:physics:cs} also shows that our model performs the best while \textbf{BOW} model is the second best performing model.
+
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c}
+\toprule
+% & \multicolumn{3}{c}{Reuters-21578}         \\
+% \cmidrule(lr){2-4}
+\textbf{Physics (Wikipedia)} & {P} & {R} & \textbf{F1} \\
+\midrule
+\textbf{BOW}
+& 75.5   & 77.5  & 76.5 \\
+\textbf{LSI-100}
+& 57.4   & 80.5  & 67.0 \\
+\textbf{WordVecAvg}
+& 91.0   & 59.1  & 71.7 \\ \addlinespace[1mm]
+
+\textbf{Our Model}
+& \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x} \\
+(no weights) & & & \\ \addlinespace[1mm]
+\textbf{Our Model}
+& \multirow{2}{*}{88.6}   & \multirow{2}{*}{72.4}  & \multirow{2}{*}{\highest{79.7}} \\
+(with weights) & & & \\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{physics:cs}\footnotesize {\textbf{Document Categorization on Physics(Wikipedia):} Precision/Recall/F1 on document categorization of our model compared against different document representations on the Physics(Wikipedia) dataset.}}
+\end{center}
+\end{table}
+
+\begin{figure}[tb]
+\centering
+        \includegraphics[width=0.8\columnwidth]{figs/pr/physics-cs.pdf}
+    \caption{Precision/Recall for Document Categorization on Physics(Wikipedia) dataset}
+    \label{fig:pr:physics:cs} 
+\end{figure}

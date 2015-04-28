@@ -11,7 +11,7 @@ if(output_directory[-1] != "/"):
 
 evaluation = sys.argv[2]
 
-models = ['bow-tfidf', 'lsi-tfidf-100', 'wordvec-avg', 'weight-noupdate-epoch200', 'weight-update-epoch200']
+models = ['bow-tfidf', 'lsi-tfidf-100', 'wordvec-avg', 'weight-update-epoch150-win3-n15']
 #models = ["PMF"]
 legend = {}
 
