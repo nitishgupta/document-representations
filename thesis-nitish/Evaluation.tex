@@ -1070,13 +1070,19 @@ The task is similar to Relational Learning where the task is to complete the spa
 Here we estimate the probability of every unobserved document-category pair $(d_{i}, c_{k})$ to be true to complete the sparse document-category matrix in which only positive document-category pairs are observed.
 For training and testing purposes, we first introduce corrupt document-category pairs as negative samples in the training data $\traindata$ in the following manner. For every positive $\{ d_{i}, c_{j}, 1\}$ observed in the training data, we introduce two negative samples $\{ d_{i}, c_{k}, 0\}$ where the negative sampled category $c'_{k}$ is chosen uniformly for the category set. This increases the tuples in the training data by three times. From the modified training data we randomly choose $80\%$ document-category pairs for training purposes and divide the rest equally for development and test purposes. The document representations are learned in the same manner as in the previous evaluation.
 
-Table~\ref{wikipedia:ho} shows our model's efficacy in imputing missing categories in the Physics dataset.
+Table~\ref{wikipedia:ho} shows our model's efficacy in imputing missing categories in the different Wikipedia datasets. We also compute a combined F1 score for all the datasets in the micro-averaged fashion, i.e. by combining all the prediction for all the datasets and then computing the precision and the recall. 
+As expected our model of learning distributed document representations outperforms all other baselines by a large margin. 
+Our model achieves an overall F1 score of $74.3\%$ which improves upon the bag-of-words (\textbf{BOW}) model by $4.78\%$. 
+Representing documents by weighted averaging the word vectors achieves a F1 score of $65.4\%$. 
+The worst performing model, as expected is \textbf{PMF} which does not use any textual information about the documents.
+As found in the previous section, in our model, simple summing of surrounding word vectors to represent the context does not provide competitive results which corroborated with the hypothesis that encoding syntactic information is necessary. 
 
 \begin{table}[tb]
 \tabcolsep=1mm
 \footnotesize
 \begin{center}
-\begin{tabular}{l cc@{\hskip 3mm}c@{\hskip 3mm} cc@{\hskip 3mm}c@{\hskip 3mm} cc@{\hskip 3mm}c@{\hskip 3mm} cc@{\hskip 3mm}c@{\hskip 3mm} cc@{\hskip 3mm}c}
+%\begin{tabular}{l cc@{\hskip 2mm}c@{\hskip 2mm} cc@{\hskip 2mm}c@{\hskip 2mm} cc@{\hskip 2mm}c@{\hskip 2mm} cc@{\hskip 2mm}c@{\hskip 2mm} cc@{\hskip 2mm}c}
+\begin{tabular}{l ccc@{\hskip 3mm} ccc@{\hskip 3mm} ccc@{\hskip 3mm} ccc@{\hskip 3mm} ccc}
 \toprule
 \multirow{2}{*}{} & 
 \multicolumn{3}{c}{{Physics}}         & 
@@ -1100,33 +1106,33 @@ Table~\ref{wikipedia:ho} shows our model's efficacy in imputing missing categori
 & 72.1   & 47.5  & 57.3
 & 41.6   & 58.2  & 48.5
 & 51.3   & 35.6  & 42.0
-& xx.x   & xx.x  & xx.x 
+& 63.0   & 54.8  & 58.6 
 \\
 \textbf{LSI-100}
 & 59.5   & 82.3  & 69.0
 & 49.9   & 71.6  & 58.8
 & 47.1   & 73.0  & 57.3
 & 43.1   & 68.2  & 52.8
-& xx.x   & xx.x  & xx.x
+& 52.5   & 76.3  & 62.2
 \\ 
 \textbf{BOW}
 & 76.1   & 79.4  & 77.7
 & 69.7   & 67.7  & 68.7
 & 70.9   & 63.5  & 67.0
 & 64.8   & 49.3  & 56.0
-& xx.x   & xx.x  & xx.x
+& 72.5   & 69.4  & 70.9
 \\
 \textbf{WordVecAvg}
 & 88.0   & 63.5  & 73.8
 & 80.7   & 50.3  & 61.9
 & 71.8   & 46.7  & 56.6
 & 87.2   & 35.4  & 50.3
-& xx.x   & xx.x  & xx.x
+& 84.2   & 53.4  & 65.4
 \\ \addlinespace[1mm]
 \textbf{Our Model}
 & \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x}
-& \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x}
-& \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x}
+& \multirow{2}{*}{80.5}   & \multirow{2}{*}{55.3}  & \multirow{2}{*}{65.6}
+& \multirow{2}{*}{74.3}   & \multirow{2}{*}{53.1}  & \multirow{2}{*}{61.9}
 & \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x}
 & \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x}
 \\ 
@@ -1137,11 +1143,13 @@ Table~\ref{wikipedia:ho} shows our model's efficacy in imputing missing categori
 & \multirow{2}{*}{84.9}   & \multirow{2}{*}{63.8} & \multirow{2}{*}{\highest{72.9}}
 & \multirow{2}{*}{79.9}   & \multirow{2}{*}{60.7}  & \multirow{2}{*}{\highest{69.0}}
 & \multirow{2}{*}{81.1}   & \multirow{2}{*}{45.6} & \multirow{2}{*}{\highest{58.4}}
-& \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{\highest{xx.x}}
+& \multirow{2}{*}{86.3}   & \multirow{2}{*}{65.2}  & \multirow{2}{*}{\highest{74.3}}
 \\ 
 (with weights) & & & & & & & & & & & & & &  & \\
 \bottomrule         
 \end{tabular}
 \end{center}
-\caption{\label{wikipedia:ho} \textbf{Cold-Start Evaluation of Attributes:} Performance of different collective factorization models in predicting attributes for business without any observed attributes. As for ratings, matrix factorization \textbf{A} is an uninformative baseline that has the same predictions for all business attributes.}
+\caption{\label{wikipedia:ho} \footnotesize \textbf{Imputing Missing Categories in Wikipedia Datasets:} Performance of different document representation models against our distributed representations model in imputing missing categories in the Wikipedia document-category datasets. }
 \end{table}
+
+

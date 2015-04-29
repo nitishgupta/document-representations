@@ -11,11 +11,16 @@ if(output_directory[-1] != "/"):
 
 evaluation = sys.argv[2]
 
-models = ['bow-tfidf', 'lsi-tfidf-100', 'wordvec-avg', 'weight-noupdate-epoch100-K50-win3', 'weight-update-epoch100-K50-win3']
+models = ['PMF', 'bow-tfidf', 'lsi-tfidf-100', 'wordvec-avg', 'ourmodel-ww']
 #models = ["PMF"]
 legend = {}
 
 for model in models:
+	print model
+	if(model == "PMF"):
+		legend[model] = "PMF"
+		continue
+		
 	if(model.split("-")[0] == "weight" and model.split("-")[1] == "update"):
 		legend[model] = "Our Model (with weights)"
 
@@ -29,7 +34,16 @@ for model in models:
 		legend[model] = "BOW"			
 
 	if(model.split("-")[0] == "wordvec"):
-		legend[model] = "WordVecAvg"			
+		legend[model] = "WordVecAvg"
+
+	if(model.split("-")[1] == "ww"):
+		legend[model] = "Our Model (with weights)"
+
+	if(model.split("-")[1] == "nw"):
+		legend[model] = "Our Model (no weights)"
+
+			
+
 
 def read_prediction_data(prediction_file):
 	fi = open(prediction_file, 'r')
@@ -62,7 +76,7 @@ fig = plt.figure()
 ax = plt.subplot(111)
 output_file = output_directory+"Test-" + evaluation + "-PRCurve.pdf"
 for model in models:
-	prediction_file = output_directory+model+"/prediction/"+evaluation+"/"+model+"-val.dat"
+	prediction_file = output_directory+model+"/prediction/"+evaluation+"/"+model+"-test.dat"
 	y_true, y_pred = read_prediction_data(prediction_file)
 	print len(y_true), len(y_pred)
 	p, r, thresholds = precision_recall_curve(y_true, y_pred)
