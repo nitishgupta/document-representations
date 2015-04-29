@@ -49,7 +49,7 @@ w_{k} = \log \frac{N}{n}
 % A common feature in the bag-of-words document representation is the \emph{normalization factor}\citep{salton1988term} introduced to reduce the effect of varying document lengths and give equal weightage to documents of all lengths when learning the classifier for text categorization. \todo{Do we put how normalization is done?}
 % Another feature added to the bag-of-words representation is the removal of stop-words (short function words that do not add to the semantic content of the document) and words that occur infrequently to make the document vector more meaningful.
 
-\subsection{Dimensionality Reduction / Feature Selection}
+\subsection{Dimensionality Reduction and Feature Selection}
 \label{sec:rw_dr}
 The bag-of-words representation scheme has several drawbacks but the most important drawback it suffers from is that document vectors are very sparse and high dimensional. Typical vocabulary sizes of a moderate-sized document collection ranges from tens to hundreds of thousands of terms which is prohibitively high for many learning algorithms. 
 To overcome this issue of high-dimensional bag-of-words document representations, automatic feature selection is performed that removes uninformative terms according to corpus statistics and constructs new orthogonal features by combining several lower level features (terms/words). Several techniques used in practice are discussed below, 
@@ -87,7 +87,7 @@ Multi-label classification problems can be also be classified into classificatio
 
 Below we describe some of the famous learning algorithms for multi-label text classification, 
 
-\subsection{With Multiple Binary Classifiers}
+\subsection{Text Classification with Multiple Binary Classifiers}
 \label{sec:rw_multiple_classifiers}
 The most common approach of multi-label text classification treats each label independently and learns multiple binary classifiers, one for each category and then assigns to a test document all the categories for which the corresponding classifier says \emph{`yes'}. Below we describe some of the algorithms, in the context of multi-label text classification, that learn multiple independent binary classifiers.
 \begin{enumerate}
@@ -115,7 +115,7 @@ Apart from inefficiencies induced by ignoring category correlations, learning in
 \end{itemize}
 
 
-\subsection{With Single Joint Classifier}
+\subsection{Text Classification with Single Joint Classifier}
 To overcome the difficulties and drawback of learning multiple binary classifiers, researchers have since developed learning algorithms that jointly classify each document into categories it belongs to. Outputs of such algorithms are $|L|$-dimensional label vectors $\boldsymbol{y} \in \{0, 1\}^{L}$, with $\boldsymbol{y}_{l} = 1$ if label $l$ is relevant for the particular document. Below we describe algorithms for multi-label text classification that learn a single classifier for assigning all relevant labels to a document jointly.
 \begin{enumerate}
 \item{\textbf{k-Nearest Neighbor (kNN)} : }k-nearest neighbor classification is one of the most effective lazy learning approaches to classification. Given an arbitrary text document input, the algorithm first ranks the nearest neighbors among the training documents using some similarity measure. It then uses the category information of the top-k ranked nearest neighbors to predict the categories of the input test document. One simple approach is to take a weighted average of the label vector of the k-nearest neighbors, weights being the similarity score while estimating document distances. This yields a category ranking for the test input which can be thresholded to yield binary classifications.

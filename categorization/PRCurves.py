@@ -11,7 +11,7 @@ if(output_directory[-1] != "/"):
 
 evaluation = sys.argv[2]
 
-models = ['PMF', 'bow-tfidf', 'lsi-tfidf-100', 'wordvec-avg', 'ourmodel-ww']
+models = ['PMF', 'bow-tfidf', 'lsi-tfidf-100', 'wordvec-avg', 'ourmodel-nw', 'ourmodel-ww']
 #models = ["PMF"]
 legend = {}
 
@@ -20,7 +20,7 @@ for model in models:
 	if(model == "PMF"):
 		legend[model] = "PMF"
 		continue
-		
+
 	if(model.split("-")[0] == "weight" and model.split("-")[1] == "update"):
 		legend[model] = "Our Model (with weights)"
 

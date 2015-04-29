@@ -5,16 +5,16 @@
 \contentsline {chapter}{\numberline {1}Related Work}{1}{chapter.7}
 \contentsline {section}{\numberline {1.1}Text Representation}{1}{section.8}
 \contentsline {subsection}{\numberline {1.1.1}Bag of Words}{2}{subsection.9}
-\contentsline {subsection}{\numberline {1.1.2}Dimensionality Reduction / Feature Selection}{3}{subsection.15}
+\contentsline {subsection}{\numberline {1.1.2}Dimensionality Reduction and Feature Selection}{3}{subsection.15}
 \contentsline {section}{\numberline {1.2}Learning Algorithms}{5}{section.24}
-\contentsline {subsection}{\numberline {1.2.1}With Multiple Binary Classifiers}{6}{subsection.25}
-\contentsline {subsection}{\numberline {1.2.2}With Single Joint Classifier}{9}{subsection.30}
+\contentsline {subsection}{\numberline {1.2.1}Text Classification with Multiple Binary Classifiers}{6}{subsection.25}
+\contentsline {subsection}{\numberline {1.2.2}Text Classification with Single Joint Classifier}{9}{subsection.30}
 \contentsline {chapter}{\numberline {2}Distributed Document Embeddings}{13}{chapter.35}
 \contentsline {section}{\numberline {2.1}Motivation}{13}{section.36}
 \contentsline {section}{\numberline {2.2}Background on Word Embeddings}{14}{section.39}
-\contentsline {subsection}{\numberline {2.2.1}Neural Probabilistic Language Model (NPLM)}{15}{subsection.40}
+\contentsline {subsection}{\numberline {2.2.1}Neural Probabilistic Language Model}{15}{subsection.40}
 \contentsline {subsection}{\numberline {2.2.2}Log-Linear Models : word2vec}{17}{subsection.47}
-\contentsline {subsubsection}{\numberline {2.2.2.1}Continuous Bag-of-Words (CBOW)}{17}{subsubsection.48}
+\contentsline {subsubsection}{\numberline {2.2.2.1}Continuous Bag-of-Words}{17}{subsubsection.48}
 \contentsline {subsubsection}{\numberline {2.2.2.2}Continuous Skip-gram}{18}{subsubsection.53}
 \contentsline {subsubsection}{\numberline {2.2.2.3}Dependency-based Word Embeddings}{19}{subsubsection.56}
 \contentsline {section}{\numberline {2.3}Document Embeddings}{20}{section.58}
@@ -23,12 +23,12 @@
 \contentsline {subsubsection}{\numberline {2.3.2.1}Projection Layer (Context Representation)}{23}{subsubsection.67}
 \contentsline {subsubsection}{\numberline {2.3.2.2}Estimating Prediction Probability}{24}{subsubsection.69}
 \contentsline {subsubsection}{\numberline {2.3.2.3}Training Objective}{24}{subsubsection.74}
-\contentsline {subsubsection}{\numberline {2.3.2.4}Noise Contrastive Estimation (NCE)}{25}{subsubsection.78}
+\contentsline {subsubsection}{\numberline {2.3.2.4}Noise Contrastive Estimation}{25}{subsubsection.78}
 \contentsline {subsubsection}{\numberline {2.3.2.5}New Training Objective}{27}{subsubsection.82}
 \contentsline {subsubsection}{\numberline {2.3.2.6}Parameter Estimation}{27}{subsubsection.86}
 \contentsline {subsubsection}{\numberline {2.3.2.7}Hyper-parameters}{30}{subsubsection.112}
 \contentsline {chapter}{\numberline {3}Multi-Label Text Categorization}{33}{chapter.119}
-\contentsline {section}{\numberline {3.1}Logistic Regression (LR) for Multi-label Document Categorization}{33}{section.120}
+\contentsline {section}{\numberline {3.1}Logistic Regression for Multi-label Document Categorization}{33}{section.120}
 \contentsline {subsection}{\numberline {3.1.1}Training Data}{34}{subsection.121}
 \contentsline {subsection}{\numberline {3.1.2}Logistic Regression Model}{35}{subsection.122}
 \contentsline {subsubsection}{\numberline {3.1.2.1}Training Objective}{35}{subsubsection.126}
@@ -48,4 +48,4 @@
 \contentsline {subsubsection}{\numberline {4.3.1.4}Mathematics - Wikipedia}{53}{subsubsection.184}
 \contentsline {subsubsection}{\numberline {4.3.1.5}Sports - Wikipedia}{56}{subsubsection.191}
 \contentsline {subsection}{\numberline {4.3.2}Imputing Missing Categories}{58}{subsection.198}
-\contentsline {chapter}{Bibliography}{61}{table.caption.199}
+\contentsline {chapter}{Bibliography}{61}{figure.caption.200}

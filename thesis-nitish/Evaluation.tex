@@ -1076,6 +1076,7 @@ Our model achieves an overall F1 score of $74.3\%$ which improves upon the bag-o
 Representing documents by weighted averaging the word vectors achieves a F1 score of $65.4\%$. 
 The worst performing model, as expected is \textbf{PMF} which does not use any textual information about the documents.
 As found in the previous section, in our model, simple summing of surrounding word vectors to represent the context does not provide competitive results which corroborated with the hypothesis that encoding syntactic information is necessary. 
+Figure~\ref{fig:pr:wiki:ho} shows the precision/recall curves for the different document representation models along with the performance of our models.
 
 \begin{table}[tb]
 \tabcolsep=1mm
@@ -1130,11 +1131,11 @@ As found in the previous section, in our model, simple summing of surrounding wo
 & 84.2   & 53.4  & 65.4
 \\ \addlinespace[1mm]
 \textbf{Our Model}
-& \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x}
+& \multirow{2}{*}{88.6}   & \multirow{2}{*}{69.1}  & \multirow{2}{*}{77.7}
 & \multirow{2}{*}{80.5}   & \multirow{2}{*}{55.3}  & \multirow{2}{*}{65.6}
 & \multirow{2}{*}{74.3}   & \multirow{2}{*}{53.1}  & \multirow{2}{*}{61.9}
-& \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x}
-& \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x}
+& \multirow{2}{*}{84.7}   & \multirow{2}{*}{40.2}  & \multirow{2}{*}{54.5}
+& \multirow{2}{*}{85.4}   & \multirow{2}{*}{58.5}  & \multirow{2}{*}{69.2}
 \\ 
 (without weights) & & & & & & & & & & & & & &  & \\
 \addlinespace[1mm]
@@ -1152,4 +1153,9 @@ As found in the previous section, in our model, simple summing of surrounding wo
 \caption{\label{wikipedia:ho} \footnotesize \textbf{Imputing Missing Categories in Wikipedia Datasets:} Performance of different document representation models against our distributed representations model in imputing missing categories in the Wikipedia document-category datasets. }
 \end{table}
 
-
+\begin{figure}[tb]
+\centering
+        \includegraphics[width=0.8\columnwidth]{figs/pr/wiki-ho.pdf}
+    \caption{\footnotesize Precision/Recall for Imputing Missing Categories on the Wikipedia datasets}
+    \label{fig:pr:wiki:ho} 
+\end{figure}

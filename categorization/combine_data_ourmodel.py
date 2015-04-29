@@ -1,7 +1,7 @@
 import sys
 import os
 
-ourmodel = "ourmodel-ww"
+ourmodel = "ourmodel-nw"
 indir = "output/Combined/" + ourmodel + "/prediction/"
 ev = "held-out"
 testval = 'test'

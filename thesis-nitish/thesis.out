@@ -5,16 +5,16 @@
 \BOOKMARK [0][-]{chapter.7}{1 Related Work}{}% 5
 \BOOKMARK [1][-]{section.8}{1.1 Text Representation}{chapter.7}% 6
 \BOOKMARK [2][-]{subsection.9}{1.1.1 Bag of Words}{section.8}% 7
-\BOOKMARK [2][-]{subsection.15}{1.1.2 Dimensionality Reduction / Feature Selection}{section.8}% 8
+\BOOKMARK [2][-]{subsection.15}{1.1.2 Dimensionality Reduction and Feature Selection}{section.8}% 8
 \BOOKMARK [1][-]{section.24}{1.2 Learning Algorithms}{chapter.7}% 9
-\BOOKMARK [2][-]{subsection.25}{1.2.1 With Multiple Binary Classifiers}{section.24}% 10
-\BOOKMARK [2][-]{subsection.30}{1.2.2 With Single Joint Classifier}{section.24}% 11
+\BOOKMARK [2][-]{subsection.25}{1.2.1 Text Classification with Multiple Binary Classifiers}{section.24}% 10
+\BOOKMARK [2][-]{subsection.30}{1.2.2 Text Classification with Single Joint Classifier}{section.24}% 11
 \BOOKMARK [0][-]{chapter.35}{2 Distributed Document Embeddings}{}% 12
 \BOOKMARK [1][-]{section.36}{2.1 Motivation}{chapter.35}% 13
 \BOOKMARK [1][-]{section.39}{2.2 Background on Word Embeddings}{chapter.35}% 14
-\BOOKMARK [2][-]{subsection.40}{2.2.1 Neural Probabilistic Language Model \(NPLM\)}{section.39}% 15
+\BOOKMARK [2][-]{subsection.40}{2.2.1 Neural Probabilistic Language Model}{section.39}% 15
 \BOOKMARK [2][-]{subsection.47}{2.2.2 Log-Linear Models : word2vec}{section.39}% 16
-\BOOKMARK [3][-]{subsubsection.48}{2.2.2.1 Continuous Bag-of-Words \(CBOW\)}{subsection.47}% 17
+\BOOKMARK [3][-]{subsubsection.48}{2.2.2.1 Continuous Bag-of-Words}{subsection.47}% 17
 \BOOKMARK [3][-]{subsubsection.53}{2.2.2.2 Continuous Skip-gram}{subsection.47}% 18
 \BOOKMARK [3][-]{subsubsection.56}{2.2.2.3 Dependency-based Word Embeddings}{subsection.47}% 19
 \BOOKMARK [1][-]{section.58}{2.3 Document Embeddings}{chapter.35}% 20
@@ -23,12 +23,12 @@
 \BOOKMARK [3][-]{subsubsection.67}{2.3.2.1 Projection Layer \(Context Representation\)}{subsection.62}% 23
 \BOOKMARK [3][-]{subsubsection.69}{2.3.2.2 Estimating Prediction Probability}{subsection.62}% 24
 \BOOKMARK [3][-]{subsubsection.74}{2.3.2.3 Training Objective}{subsection.62}% 25
-\BOOKMARK [3][-]{subsubsection.78}{2.3.2.4 Noise Contrastive Estimation \(NCE\)}{subsection.62}% 26
+\BOOKMARK [3][-]{subsubsection.78}{2.3.2.4 Noise Contrastive Estimation}{subsection.62}% 26
 \BOOKMARK [3][-]{subsubsection.82}{2.3.2.5 New Training Objective}{subsection.62}% 27
 \BOOKMARK [3][-]{subsubsection.86}{2.3.2.6 Parameter Estimation}{subsection.62}% 28
 \BOOKMARK [3][-]{subsubsection.112}{2.3.2.7 Hyper-parameters}{subsection.62}% 29
 \BOOKMARK [0][-]{chapter.119}{3 Multi-Label Text Categorization}{}% 30
-\BOOKMARK [1][-]{section.120}{3.1 Logistic Regression \(LR\) for Multi-label Document Categorization}{chapter.119}% 31
+\BOOKMARK [1][-]{section.120}{3.1 Logistic Regression for Multi-label Document Categorization}{chapter.119}% 31
 \BOOKMARK [2][-]{subsection.121}{3.1.1 Training Data}{section.120}% 32
 \BOOKMARK [2][-]{subsection.122}{3.1.2 Logistic Regression Model}{section.120}% 33
 \BOOKMARK [3][-]{subsubsection.126}{3.1.2.1 Training Objective}{subsection.122}% 34
@@ -48,4 +48,4 @@
 \BOOKMARK [3][-]{subsubsection.184}{4.3.1.4 Mathematics - Wikipedia}{subsection.162}% 48
 \BOOKMARK [3][-]{subsubsection.191}{4.3.1.5 Sports - Wikipedia}{subsection.162}% 49
 \BOOKMARK [2][-]{subsection.198}{4.3.2 Imputing Missing Categories}{section.161}% 50
-\BOOKMARK [0][-]{table.caption.199}{Bibliography}{}% 51
+\BOOKMARK [0][-]{figure.caption.200}{Bibliography}{}% 51
