@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  28 APR 2015 20:13
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  29 APR 2015 12:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -697,7 +697,7 @@ Package caption Info: End \AtBeginDocument code.
 \openout2 = `title.aux'.
 
  (./title.tex
-<figs/iitkblue.jpg, id=208, 204.765pt x 194.7275pt>
+<figs/iitkblue.jpg, id=209, 204.765pt x 194.7275pt>
 File: figs/iitkblue.jpg Graphic file (type jpg)
  <use figs/iitkblue.jpg>
 Package pdftex.def Info: figs/iitkblue.jpg used on input line 41.
@@ -709,7 +709,7 @@ Package pdftex.def Info: figs/iitkblue.jpg used on input line 41.
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figs/iitkblue.jpg>])
-<sumitbCertificate.pdf, id=218, 620.3175pt x 891.33pt>
+<sumitbCertificate.pdf, id=219, 620.3175pt x 891.33pt>
 File: sumitbCertificate.pdf Graphic file (type pdf)
 
 <use sumitbCertificate.pdf>
@@ -720,7 +720,7 @@ File: sumitbCertificate.pdf Graphic file (type pdf)
 Package pdftex.def Info: sumitbCertificate.pdf used on input line 118.
 (pdftex.def)             Requested size: 620.316pt x 891.32784pt.
 
-<sumitbCertificate.pdf, id=221, page=1, 620.3175pt x 891.33pt>
+<sumitbCertificate.pdf, id=222, page=1, 620.3175pt x 891.33pt>
 File: sumitbCertificate.pdf Graphic file (type pdf)
 
 <use sumitbCertificate.pdf, page 1>
@@ -857,7 +857,7 @@ Underfull \vbox (badness 3746) has occurred while \output is active []
 
 ]
 Chapter 2.
-[13] [14] <figs/bengio_nn.png, id=699, 1062.97125pt x 901.3675pt>
+[13] [14] <figs/bengio_nn.png, id=705, 1062.97125pt x 901.3675pt>
 File: figs/bengio_nn.png Graphic file (type png)
 
 <use figs/bengio_nn.png>
@@ -869,7 +869,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [15]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [16 <./figs/bengio_nn.png>] <figs/mikolov_cbow.png, id=729, 626.34pt x 694.595
+ [16 <./figs/bengio_nn.png>] <figs/mikolov_cbow.png, id=735, 626.34pt x 694.595
 pt>
 File: figs/mikolov_cbow.png Graphic file (type png)
 
@@ -884,7 +884,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [17]
-<figs/mikolov_skip.png, id=742, 596.2275pt x 693.59125pt>
+<figs/mikolov_skip.png, id=748, 596.2275pt x 693.59125pt>
 File: figs/mikolov_skip.png Graphic file (type png)
 
 <use figs/mikolov_skip.png>
@@ -895,7 +895,7 @@ Package pdftex.def Info: figs/mikolov_skip.png used on input line 95.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [18 <./figs/mikolov_cbow.png>]
-<figs/dependency_context.png, id=760, 1179.40625pt x 781.92125pt>
+<figs/dependency_context.png, id=766, 1179.40625pt x 781.92125pt>
 File: figs/dependency_context.png Graphic file (type png)
 
 <use figs/dependency_context.png>
@@ -906,7 +906,7 @@ Package pdftex.def Info: figs/dependency_context.png used on input line 114.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [19 <./figs/mikolov_skip.png>] [20 <./figs/dependency_context.png>] [21]
-[22] <figs/nn_arch.png, id=808, 603.25375pt x 428.60126pt>
+[22] <figs/nn_arch.png, id=814, 603.25375pt x 428.60126pt>
 File: figs/nn_arch.png Graphic file (type png)
 
 <use figs/nn_arch.png>
@@ -986,21 +986,32 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [45]
 [46] [47]
-Overfull \hbox (40.81345pt too wide) in paragraph at lines 148--181
+Overfull \hbox (40.81345pt too wide) in paragraph at lines 152--185
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[48] <figs/pr/reuter-cs.pdf, id=1068, 578.16pt x 433.62pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[48]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figs/pr/reuter-cs.pdf, id=1074, 578.16pt x 433.62pt>
 File: figs/pr/reuter-cs.pdf Graphic file (type pdf)
 
 <use figs/pr/reuter-cs.pdf>
-Package pdftex.def Info: figs/pr/reuter-cs.pdf used on input line 302.
+Package pdftex.def Info: figs/pr/reuter-cs.pdf used on input line 306.
 (pdftex.def)             Requested size: 341.43437pt x 256.07178pt.
- [49]
-Overfull \hbox (38.89119pt too wide) in paragraph at lines 348--381
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (38.89119pt too wide) in paragraph at lines 352--385
  [] 
  []
 
@@ -1010,15 +1021,18 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[50 <./figs/pr/reuter-cs.pdf>]
-<figs/pr/physics-cs.pdf, id=1135, 578.16pt x 433.62pt>
+[49] [50]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figs/pr/physics-cs.pdf, id=1093, 578.16pt x 433.62pt>
 File: figs/pr/physics-cs.pdf Graphic file (type pdf)
 
 <use figs/pr/physics-cs.pdf>
-Package pdftex.def Info: figs/pr/physics-cs.pdf used on input line 489.
+Package pdftex.def Info: figs/pr/physics-cs.pdf used on input line 493.
 (pdftex.def)             Requested size: 341.43437pt x 256.07178pt.
- [51]
-Overfull \hbox (39.56206pt too wide) in paragraph at lines 535--568
+ [51 <./figs/pr/reuter-cs.pdf>]
+Overfull \hbox (39.56206pt too wide) in paragraph at lines 539--572
  [] 
  []
 
@@ -1029,14 +1043,21 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [52 <./figs/pr/physics-cs.pdf>]
-<figs/pr/biology-cs.pdf, id=1201, 578.16pt x 433.62pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figs/pr/biology-cs.pdf, id=1207, 578.16pt x 433.62pt>
 File: figs/pr/biology-cs.pdf Graphic file (type pdf)
 
 <use figs/pr/biology-cs.pdf>
-Package pdftex.def Info: figs/pr/biology-cs.pdf used on input line 677.
+Package pdftex.def Info: figs/pr/biology-cs.pdf used on input line 681.
 (pdftex.def)             Requested size: 341.43437pt x 256.07178pt.
  [53]
-Overfull \hbox (66.63963pt too wide) in paragraph at lines 724--757
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (66.63963pt too wide) in paragraph at lines 728--761
  [] 
  []
 
@@ -1046,18 +1067,28 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[54 <./figs/pr/biology-cs.pdf>]
+
+Underfull \vbox (badness 1127) has occurred while \output is active []
+
+ [54 <./figs/pr/biology-cs.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figs/pr/mathematics-cs.pdf, id=1267, 578.16pt x 433.62pt>
+<figs/pr/mathematics-cs.pdf, id=1273, 578.16pt x 433.62pt>
 File: figs/pr/mathematics-cs.pdf Graphic file (type pdf)
 
 <use figs/pr/mathematics-cs.pdf>
-Package pdftex.def Info: figs/pr/mathematics-cs.pdf used on input line 866.
+Package pdftex.def Info: figs/pr/mathematics-cs.pdf used on input line 870.
 (pdftex.def)             Requested size: 341.43437pt x 256.07178pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [55]
-Overfull \hbox (34.10513pt too wide) in paragraph at lines 913--946
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (34.10513pt too wide) in paragraph at lines 917--950
  [] 
  []
 
@@ -1071,41 +1102,50 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figs/pr/sports-cs.pdf, id=1335, 578.16pt x 433.62pt>
+<figs/pr/sports-cs.pdf, id=1341, 578.16pt x 433.62pt>
 File: figs/pr/sports-cs.pdf Graphic file (type pdf)
 
 <use figs/pr/sports-cs.pdf>
-Package pdftex.def Info: figs/pr/sports-cs.pdf used on input line 1055.
+Package pdftex.def Info: figs/pr/sports-cs.pdf used on input line 1058.
 (pdftex.def)             Requested size: 341.43437pt x 256.07178pt.
-) [57] [58 <./figs/pr/sports-cs.pdf>] (./thesis.bbl
-[59
+ [57] [58 <./figs/pr/sports-cs.pdf>]
+Overfull \hbox (56.43446pt too wide) in paragraph at lines 1079--1145
+ [] 
+ []
+
+) [59] [60
 
 
+] (./thesis.bbl [61
 
-] [60] [61])
+] [62] [63])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 208.
- [62]
+ [64]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 208.
- (./thesis.aux (./title.aux) (./abstract.aux)
-(./Dedication.aux) (./acknowledgement.aux) (./RelatedWork.aux)
+ (./thesis.aux (./title.aux)
+(./abstract.aux) (./Dedication.aux) (./acknowledgement.aux) (./RelatedWork.aux)
 (./DistributedEmbeddings.aux) (./TextCategorization.aux) (./Evaluation.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 208.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 208.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: C7C836B8F884EA69AD68B9E794042F02;3987.
+(rerunfilecheck)             Checksum: 8716B08F171F9B1643BF68037F06314A;3990.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 131 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 13188 strings out of 493304
- 192564 string characters out of 6139871
- 337155 words of memory out of 5000000
- 15994 multiletter control sequences out of 15000+600000
+ 13193 strings out of 493304
+ 192628 string characters out of 6139871
+ 346488 words of memory out of 5000000
+ 15996 multiletter control sequences out of 15000+600000
  19784 words of font info for 71 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 39i,18n,45p,1085b,617s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,18n,45p,1039b,617s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></u
@@ -1127,10 +1167,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (80 pages, 1433742 bytes).
+Output written on thesis.pdf (82 pages, 1438898 bytes).
 PDF statistics:
- 1556 PDF objects out of 1728 (max. 8388607)
- 1208 compressed objects within 13 object streams
- 332 named destinations out of 1000 (max. 500000)
+ 1571 PDF objects out of 1728 (max. 8388607)
+ 1221 compressed objects within 13 object streams
+ 335 named destinations out of 1000 (max. 500000)
  484 words of extra memory for PDF output out of 10000 (max. 10000000)
 

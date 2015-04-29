@@ -67,7 +67,11 @@ To remove noise in the documents we only consider those words that occur atleast
 We keep the capitalization of the words as it is because capitalization sometimes encodes a lot of semantic content that we do not wish to lose. Eg. \emph{Apple} in most cases is used to refer \emph{Apple Inc.} (Company) rather than the fruit. Similarly, \emph{apple} is most likely to refer to the fruit. Models that distinguish between the two forms will be able to learn better embeddings.
 
 \para{Learning Document Embeddings} : To learn document representations using our model, we initialize the documents and word embeddings to small random vectors whose elements are drawn uniformly from the range $[\frac{-1}{k}, \frac{1}{k}]$. 
-The value of the hyper-parameters of the model are chosen based on the performance on development data on the end-task of categorization. We could also find the optimum hyper-parameters by minimizing the development data perplexity on the document embedding learning task but as found in \citep{mnih2013learning}, lower perplexity does not ensure better representations but could also mean under-training. To choose the hyper-parameters we first use the default values as $k = 100$, $c = 2$, $n = 10$, \emph{number of epochs = 50}, $\gamma = 0.0025$, $\beta = 0.1$. We found that the learning rate $\gamma$ and the regularization constant $\beta$ give best performance across datasets at their default value. To choose the value of the other parameters, we first tune the embedding dimensions $k$ then the \emph{number of epochs} after which we consider different window sizes ($c$) and finally the number of negative samples $n$ for noise contrastive estimation. The values of the different hyper-parameters depend on the dataset. 
+The value of the hyper-parameters of the model are chosen based on the performance on development data on the end-task of categorization. 
+We could also choose the optimum hyper-parameters that minimize the development data perplexity on the document embedding learning task but as found in \citep{mnih2013learning}, lower perplexity does not ensure better representations but could also mean under-training. 
+To choose the hyper-parameters we first use the default values as $k = 100$, $c = 2$, $n = 10$, \emph{number of epochs = 50}, $\gamma = 0.0025$, $\beta = 0.1$. 
+We found that the learning rate $\gamma$ and the regularization constant $\beta$ give best performance across datasets at their default value. To choose the value of the other parameters, we first tune the embedding dimensions $k$ then the \emph{number of epochs} after which we consider different window sizes ($c$) and finally the number of negative samples $n$ for noise contrastive estimation. The values of the different hyper-parameters depend on the dataset. 
+The noise distribution, $P_{n}(w)$ for NCE is chosen to be unigram distribution $U(w)$ raised to the $3/4rd$ power (i.e. $U(w)^{\frac{3}{4}}/Z$) where $Z$ is the normalization factor. Other common choices for noise distribution are uniform distribution and unigram distribution but as found in previous works, $P_{n}(w) \sim U(w)^{\frac{3}{4}}$ works best.
 
 \para{Document Categorization} : For the task of document categorization, we split the document category data into training, development and test data by keeping $10\%$ documents for test purposes and $10\%$ for development. The rest $80\%$ are used for training purposes, i.e. learning category embeddings. We stop training based on the convergence reached on the development data. The value of the hyper-parameters learning rate $\gamma = 0.01$ and regularization constant $\beta = 0.01$ is chosen based on the performance on development data across different datasets. To make final predictions that whether the document should be assigned a particular category, we need to threshold the estimated probability, threshold for which was chosen based on the development data across datasets. It was found that the default logistic threshold of $0.5$ gave the best performance.
 
@@ -1015,8 +1019,8 @@ Table~\ref{sports:hp:c} shows that small context window ($c = 3$) and relatively
 \end{table}
 
 Table~\ref{sports:cs} shows that the distributed representations learned by our model outperform other baseline representations.
-Our model achieves a F1 score of $57.3\%$ while the second best performing representations are learned using Latent Semantic Indexing. It achieves a F1 score of $54.1\%$ and trails our model by $6.1\%$.
-As found in previous evaluations, document representations using bag-of-words style word vector averaging does not give the best performance and also modeling syntactic features is important for learning the best quality document representations.
+Our model achieves a F1 score of $57.3\%$ while the second best performing representations are learned using Latent Semantic Indexing (\textbf{LSI-100}). \textbf{LSI-100} achieves a F1 score of $54.1\%$ and trails our model by $6.1\%$.
+As found in previous evaluations, document representations using bag-of-words style word vector averaging do not give the best performance and also modeling syntactic features is important for learning the best quality document representations.
 Fig.~\ref{fig:pr:sports:cs} shows the precision/recall curves for our model and other baseline methods. 
 
 \begin{table}[h!]
@@ -1037,7 +1041,6 @@ Fig.~\ref{fig:pr:sports:cs} shows the precision/recall curves for our model and 
 & 81.8   & 37.5  & 51.4 \\ \addlinespace[1mm]
 
 \textbf{Our Model}
-80.5  R :  40.1  F1 :  53.6
 & \multirow{2}{*}{80.5}   & \multirow{2}{*}{40.1}  & \multirow{2}{*}{53.6} \\
 (no weights) & & & \\ \addlinespace[1mm]
 \textbf{Our Model}
@@ -1060,3 +1063,85 @@ Fig.~\ref{fig:pr:sports:cs} shows the precision/recall curves for our model and 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%			IMPUTING MISSING CAEGORIES 				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Imputing Missing Categories}
 \label{sec:results:imputing}
+Most of the real-life databases that contain categorization for documents are incomplete. In the case of huge number of categories and when document categorization is carried out by non-experts, as in Wikipedia, one can never be sure that all the relevant categories have been assigned to a document. In such large-scale databases where manual annotation and review is difficult, systems that can automatically impute missing categories for documents in the database are imperative.
+
+In this section we evaluate our system's efficacy in imputing missing categories in the Wikipedia datasets.  
+The task is similar to Relational Learning where the task is to complete the sparse relational matrix, $R$ between two types of entities. 
+Here we estimate the probability of every unobserved document-category pair $(d_{i}, c_{k})$ to be true to complete the sparse document-category matrix in which only positive document-category pairs are observed.
+For training and testing purposes, we first introduce corrupt document-category pairs as negative samples in the training data $\traindata$ in the following manner. For every positive $\{ d_{i}, c_{j}, 1\}$ observed in the training data, we introduce two negative samples $\{ d_{i}, c_{k}, 0\}$ where the negative sampled category $c'_{k}$ is chosen uniformly for the category set. This increases the tuples in the training data by three times. From the modified training data we randomly choose $80\%$ document-category pairs for training purposes and divide the rest equally for development and test purposes. The document representations are learned in the same manner as in the previous evaluation.
+
+Table~\ref{wikipedia:ho} shows our model's efficacy in imputing missing categories in the Physics dataset.
+
+\begin{table}[tb]
+\tabcolsep=1mm
+\footnotesize
+\begin{center}
+\begin{tabular}{l cc@{\hskip 3mm}c@{\hskip 3mm} cc@{\hskip 3mm}c@{\hskip 3mm} cc@{\hskip 3mm}c@{\hskip 3mm} cc@{\hskip 3mm}c@{\hskip 3mm} cc@{\hskip 3mm}c}
+\toprule
+\multirow{2}{*}{} & 
+\multicolumn{3}{c}{{Physics}}         & 
+\multicolumn{3}{c}{{Biology}}        & \multicolumn{3}{c}{{Mathematics}}         & \multicolumn{3}{c}{{Sports}}        & %\multicolumn{3}{c}{\textbf{Restaurant}}       & 
+\multicolumn{3}{c}{\textbf{Combined}}              
+\\ 
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-7}
+\cmidrule(lr){8-10}
+\cmidrule(lr){11-13}
+\cmidrule(lr){14-16}
+& 
+{P} & {R} & \textbf{F1} & 
+{P} & {R} & \textbf{F1} & 
+{P} & {R} & \textbf{F1} & 
+{P} & {R} & \textbf{F1} &
+{P} & {R} & \textbf{F1} \\ 
+\midrule
+\textbf{PMF}
+& 73.0   & 64.3  & 68.4
+& 72.1   & 47.5  & 57.3
+& 41.6   & 58.2  & 48.5
+& 51.3   & 35.6  & 42.0
+& xx.x   & xx.x  & xx.x 
+\\
+\textbf{LSI-100}
+& 59.5   & 82.3  & 69.0
+& 49.9   & 71.6  & 58.8
+& 47.1   & 73.0  & 57.3
+& 43.1   & 68.2  & 52.8
+& xx.x   & xx.x  & xx.x
+\\ 
+\textbf{BOW}
+& 76.1   & 79.4  & 77.7
+& 69.7   & 67.7  & 68.7
+& 70.9   & 63.5  & 67.0
+& 64.8   & 49.3  & 56.0
+& xx.x   & xx.x  & xx.x
+\\
+\textbf{WordVecAvg}
+& 88.0   & 63.5  & 73.8
+& 80.7   & 50.3  & 61.9
+& 71.8   & 46.7  & 56.6
+& 87.2   & 35.4  & 50.3
+& xx.x   & xx.x  & xx.x
+\\ \addlinespace[1mm]
+\textbf{Our Model}
+& \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x}
+& \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x}
+& \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x}
+& \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x}
+& \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{xx.x}
+\\ 
+(without weights) & & & & & & & & & & & & & &  & \\
+\addlinespace[1mm]
+\textbf{Our Model}
+& \multirow{2}{*}{89.9}   & \multirow{2}{*}{74.5}  & \multirow{2}{*}{\highest{81.5}}
+& \multirow{2}{*}{84.9}   & \multirow{2}{*}{63.8} & \multirow{2}{*}{\highest{72.9}}
+& \multirow{2}{*}{79.9}   & \multirow{2}{*}{60.7}  & \multirow{2}{*}{\highest{69.0}}
+& \multirow{2}{*}{81.1}   & \multirow{2}{*}{45.6} & \multirow{2}{*}{\highest{58.4}}
+& \multirow{2}{*}{xx.x}   & \multirow{2}{*}{xx.x}  & \multirow{2}{*}{\highest{xx.x}}
+\\ 
+(with weights) & & & & & & & & & & & & & &  & \\
+\bottomrule         
+\end{tabular}
+\end{center}
+\caption{\label{wikipedia:ho} \textbf{Cold-Start Evaluation of Attributes:} Performance of different collective factorization models in predicting attributes for business without any observed attributes. As for ratings, matrix factorization \textbf{A} is an uninformative baseline that has the same predictions for all business attributes.}
+\end{table}
