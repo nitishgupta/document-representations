@@ -147,5 +147,6 @@ The major drawback of algorithms that learn multiple independent classifiers is 
 Generally, document-category data is accompanied by additional relational data about documents and/or categories which is often incomplete. As has been shown in \cite{gupta2015collectively}, joint modeling of relations and entities using collective matrix factorization of multiple relational matrices can provide signification improvements in the relation prediction task. 
 Our model, based on matrix factorization as shown in Sec~\ref{sec:lr_similar_rl}, can easily be extended to incorporate additional relational data and aid in improved database completion. 
 
-\item \todo{Find missing categories??}
+\item 
+The fact that we use Stochastic Gradient Descent to find the optimum parameters (category representations) in which the training examples are presented to the system one at a time makes our document categorization algorithm completely online. It enables us to incorporate streaming data and additional training data at any stage of the learning without any effort.  
 \end{enumerate}

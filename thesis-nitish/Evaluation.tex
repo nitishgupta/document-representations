@@ -1,9 +1,5 @@
 \chapter{Datasets and Evaluations}
 \label{chapter:evaluations}
-\todo{Section 3 : Results - Document Categorization
-Section 4 : Results - Imputing Missing Categories. Only done on Wikipedia datasets
-Section 5 : Estimating Similarity between cats, docs, words}
-
 In this chapter we first introduce the datasets that we use for evaluating the efficacy of our document representations for the document categorization task. We then explain the details of our experimentation setup and the different document representation techniques that form strong baselines for the task. In the sections following that we present the results for assigning categories to new documents and also recommending categories for documents which we already have some prior category information. 
 
 \section{Datasets}
@@ -23,8 +19,8 @@ Though there exist many processed versions of the collection, the \emph{ModApte}
 \toprule
 & \textbf{$|\setD|$} & \textbf{$|\setC|$} & \textbf{$|\setW|$} & \textbf{Data Points} & \textbf{Sparsity}\\
 \midrule
-\textbf{Train Set}	& 7\,767 & 90 & 39\,853 & 9\,585 & 0.0137 \\
-\textbf{Test Set}	& 3\,019 & 90 & 39\,853 & 3\,745 & 0.0138 \\
+\textbf{Train Set}	& 7,767 & 90 & 39,853 & 9,585 & 0.0137 \\
+\textbf{Test Set}	& 3,019 & 90 & 39,853 & 3,745 & 0.0138 \\
 \bottomrule         
 \end{tabular}
 \caption{\label{reuter:data:stat}Statistics of the Reuters-21578 (\emph{ModApte}) Dataset}
@@ -47,10 +43,10 @@ To test the efficacy of our model on such a diverse, recent and real-life datase
 \toprule
 & \textbf{$|\setD|$} & \textbf{$|\setC|$} & \textbf{$|\setW|$} & \textbf{Data Points} & \textbf{Sparsity}\\
 \midrule
-\textbf{Physics}		& 4\,229 & 2\,999 & 81\,614 & 14\,070 & 0.0010 \\
-\textbf{Biology}		& 1\,604 & 2\,051 & 63\,767 & 5\,908 & 0.0018 \\
-\textbf{Sports}			& 1\,529 & 2\,829 & 59\,058 & 3\,745 & 0.0008 \\
-\textbf{Mathematics}	& 1\,193 & 1\,519 & 43\,398 & 3\,916 & 0.0013 \\
+\textbf{Physics}		& 4,229 & 2,999 & 81,614 & 14,070 & 0.0010 \\
+\textbf{Biology}		& 1,604 & 2,051 & 63,767 & 5,908 & 0.0018 \\
+\textbf{Sports}			& 1,529 & 2,829 & 59,058 & 3,745 & 0.0008 \\
+\textbf{Mathematics}	& 1,193 & 1,519 & 43,398 & 3,916 & 0.0013 \\
 \bottomrule         
 \end{tabular}
 \caption{\label{wiki:data:stat}Statistics of the Wikipedia Datasets}
@@ -105,7 +101,7 @@ We also present our model's performance in imputing categories for known documen
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			DOCUMENT CATEGORIZATION 				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Document Categorization}
 \label{sec:results:categorization}
-As we see in \todo{some ref}, the task of categorizing documents with no prior categorization is of immense importance. In this section we present our model's efficacy in assigning categories to documents with no prior categorization. 
+As we see in Chapter~\ref{chapter:introduction} the task of categorizing documents with no prior categorization is of immense importance. In this section we present our model's efficacy in assigning categories to documents with no prior categorization. 
 
 For evaluation of a particular dataset, we first divide it into training, development and test sets by keeping $80\%$ of the documents for training purposes and then dividing rest of the documents equally for development and testing. For each of the different hyper-parameter settings for the representation learning phase, we first learn document representations for all the documents. We then use the training document-category data to learn category embeddings and evaluate our model based on the development data. Using the accuracies obtained on the development data for different hyper-parameter settings we select the ``\emph{best}'' model (hyper-parameters, document and category-embeddings) which is then used to report results on the test data.
 

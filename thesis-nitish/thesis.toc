@@ -3,50 +3,50 @@
 \contentsline {chapter}{List of Figures}{xiii}{chapter*.5}
 \contentsline {chapter}{List of Algorithms}{xv}{chapter*.6}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.7}
-\contentsline {chapter}{\numberline {2}Related Work}{3}{chapter.8}
-\contentsline {section}{\numberline {2.1}Text Representation}{3}{section.9}
-\contentsline {subsection}{\numberline {2.1.1}Bag of Words}{4}{subsection.10}
-\contentsline {subsection}{\numberline {2.1.2}Dimensionality Reduction and Feature Selection}{5}{subsection.16}
-\contentsline {section}{\numberline {2.2}Learning Algorithms}{7}{section.25}
-\contentsline {subsection}{\numberline {2.2.1}Text Classification with Multiple Binary Classifiers}{8}{subsection.26}
-\contentsline {subsection}{\numberline {2.2.2}Text Classification with Single Joint Classifier}{11}{subsection.31}
-\contentsline {chapter}{\numberline {3}Distributed Document Embeddings}{15}{chapter.36}
-\contentsline {section}{\numberline {3.1}Motivation}{15}{section.37}
-\contentsline {section}{\numberline {3.2}Background on Word Embeddings}{16}{section.40}
-\contentsline {subsection}{\numberline {3.2.1}Neural Probabilistic Language Model}{17}{subsection.41}
-\contentsline {subsection}{\numberline {3.2.2}Log-Linear Models}{19}{subsection.48}
-\contentsline {subsubsection}{\numberline {3.2.2.1}Continuous Bag-of-Words}{19}{subsubsection.49}
-\contentsline {subsubsection}{\numberline {3.2.2.2}Continuous Skip-gram}{20}{subsubsection.54}
-\contentsline {subsubsection}{\numberline {3.2.2.3}Dependency-based Word Embeddings}{21}{subsubsection.57}
-\contentsline {section}{\numberline {3.3}Document Embeddings}{22}{section.59}
-\contentsline {subsection}{\numberline {3.3.1}Problem Setup}{23}{subsection.62}
-\contentsline {subsection}{\numberline {3.3.2}Our Model}{24}{subsection.63}
-\contentsline {subsubsection}{\numberline {3.3.2.1}Projection Layer (Context Representation)}{25}{subsubsection.68}
-\contentsline {subsubsection}{\numberline {3.3.2.2}Estimating Prediction Probability}{26}{subsubsection.70}
-\contentsline {subsubsection}{\numberline {3.3.2.3}Training Objective}{26}{subsubsection.75}
-\contentsline {subsubsection}{\numberline {3.3.2.4}Noise Contrastive Estimation}{27}{subsubsection.79}
-\contentsline {subsubsection}{\numberline {3.3.2.5}New Training Objective}{29}{subsubsection.83}
-\contentsline {subsubsection}{\numberline {3.3.2.6}Parameter Estimation}{29}{subsubsection.87}
-\contentsline {subsubsection}{\numberline {3.3.2.7}Hyper-parameters}{32}{subsubsection.114}
-\contentsline {chapter}{\numberline {4}Multi-Label Text Categorization}{35}{chapter.121}
-\contentsline {section}{\numberline {4.1}Logistic Regression for Multi-label Document Categorization}{35}{section.122}
-\contentsline {subsection}{\numberline {4.1.1}Training Data}{36}{subsection.123}
-\contentsline {subsection}{\numberline {4.1.2}Logistic Regression Model}{37}{subsection.124}
-\contentsline {subsubsection}{\numberline {4.1.2.1}Training Objective}{37}{subsubsection.128}
-\contentsline {subsubsection}{\numberline {4.1.2.2}Parameter Estimation}{38}{subsubsection.135}
-\contentsline {section}{\numberline {4.2}Similarity to Relational Learning}{40}{section.143}
-\contentsline {section}{\numberline {4.3}Advantages of Logistic Regression Learning Algorithm}{41}{section.147}
-\contentsline {chapter}{\numberline {5}Datasets and Evaluations}{43}{chapter.152}
-\contentsline {section}{\numberline {5.1}Datasets}{43}{section.153}
-\contentsline {subsection}{\numberline {5.1.1}Reuters-21578}{44}{subsection.154}
-\contentsline {subsection}{\numberline {5.1.2}Wikipedia Datasets}{45}{subsection.156}
-\contentsline {section}{\numberline {5.2}Experimental Setup}{46}{section.159}
-\contentsline {section}{\numberline {5.3}Results}{49}{section.164}
-\contentsline {subsection}{\numberline {5.3.1}Document Categorization}{49}{subsection.165}
-\contentsline {subsubsection}{\numberline {5.3.1.1}Reuters - 21578}{50}{subsubsection.166}
-\contentsline {subsubsection}{\numberline {5.3.1.2}Physics - Wikipedia}{51}{subsubsection.173}
-\contentsline {subsubsection}{\numberline {5.3.1.3}Biology - Wikipedia}{53}{subsubsection.180}
-\contentsline {subsubsection}{\numberline {5.3.1.4}Mathematics - Wikipedia}{55}{subsubsection.187}
-\contentsline {subsubsection}{\numberline {5.3.1.5}Sports - Wikipedia}{58}{subsubsection.194}
-\contentsline {subsection}{\numberline {5.3.2}Imputing Missing Categories}{60}{subsection.201}
-\contentsline {chapter}{Bibliography}{63}{figure.caption.203}
+\contentsline {chapter}{\numberline {2}Related Work}{3}{chapter.9}
+\contentsline {section}{\numberline {2.1}Text Representation}{3}{section.10}
+\contentsline {subsection}{\numberline {2.1.1}Bag of Words}{4}{subsection.11}
+\contentsline {subsection}{\numberline {2.1.2}Dimensionality Reduction and Feature Selection}{5}{subsection.17}
+\contentsline {section}{\numberline {2.2}Learning Algorithms}{7}{section.26}
+\contentsline {subsection}{\numberline {2.2.1}Text Classification with Multiple Binary Classifiers}{8}{subsection.27}
+\contentsline {subsection}{\numberline {2.2.2}Text Classification with Single Joint Classifier}{11}{subsection.32}
+\contentsline {chapter}{\numberline {3}Distributed Document Embeddings}{15}{chapter.37}
+\contentsline {section}{\numberline {3.1}Motivation}{15}{section.38}
+\contentsline {section}{\numberline {3.2}Background on Word Embeddings}{16}{section.41}
+\contentsline {subsection}{\numberline {3.2.1}Neural Probabilistic Language Model}{17}{subsection.42}
+\contentsline {subsection}{\numberline {3.2.2}Log-Linear Models}{19}{subsection.49}
+\contentsline {subsubsection}{\numberline {3.2.2.1}Continuous Bag-of-Words}{19}{subsubsection.50}
+\contentsline {subsubsection}{\numberline {3.2.2.2}Continuous Skip-gram}{20}{subsubsection.55}
+\contentsline {subsubsection}{\numberline {3.2.2.3}Dependency-based Word Embeddings}{21}{subsubsection.58}
+\contentsline {section}{\numberline {3.3}Document Embeddings}{22}{section.60}
+\contentsline {subsection}{\numberline {3.3.1}Problem Setup}{23}{subsection.63}
+\contentsline {subsection}{\numberline {3.3.2}Our Model}{24}{subsection.64}
+\contentsline {subsubsection}{\numberline {3.3.2.1}Projection Layer (Context Representation)}{25}{subsubsection.69}
+\contentsline {subsubsection}{\numberline {3.3.2.2}Estimating Prediction Probability}{26}{subsubsection.71}
+\contentsline {subsubsection}{\numberline {3.3.2.3}Training Objective}{26}{subsubsection.76}
+\contentsline {subsubsection}{\numberline {3.3.2.4}Noise Contrastive Estimation}{27}{subsubsection.80}
+\contentsline {subsubsection}{\numberline {3.3.2.5}New Training Objective}{29}{subsubsection.84}
+\contentsline {subsubsection}{\numberline {3.3.2.6}Parameter Estimation}{29}{subsubsection.88}
+\contentsline {subsubsection}{\numberline {3.3.2.7}Hyper-parameters}{32}{subsubsection.115}
+\contentsline {chapter}{\numberline {4}Multi-Label Text Categorization}{35}{chapter.122}
+\contentsline {section}{\numberline {4.1}Logistic Regression for Multi-label Document Categorization}{35}{section.123}
+\contentsline {subsection}{\numberline {4.1.1}Training Data}{36}{subsection.124}
+\contentsline {subsection}{\numberline {4.1.2}Logistic Regression Model}{37}{subsection.125}
+\contentsline {subsubsection}{\numberline {4.1.2.1}Training Objective}{37}{subsubsection.129}
+\contentsline {subsubsection}{\numberline {4.1.2.2}Parameter Estimation}{38}{subsubsection.136}
+\contentsline {section}{\numberline {4.2}Similarity to Relational Learning}{40}{section.144}
+\contentsline {section}{\numberline {4.3}Advantages of Logistic Regression Learning Algorithm}{41}{section.148}
+\contentsline {chapter}{\numberline {5}Datasets and Evaluations}{43}{chapter.153}
+\contentsline {section}{\numberline {5.1}Datasets}{43}{section.154}
+\contentsline {subsection}{\numberline {5.1.1}Reuters-21578}{44}{subsection.155}
+\contentsline {subsection}{\numberline {5.1.2}Wikipedia Datasets}{45}{subsection.157}
+\contentsline {section}{\numberline {5.2}Experimental Setup}{46}{section.160}
+\contentsline {section}{\numberline {5.3}Results}{49}{section.165}
+\contentsline {subsection}{\numberline {5.3.1}Document Categorization}{49}{subsection.166}
+\contentsline {subsubsection}{\numberline {5.3.1.1}Reuters - 21578}{50}{subsubsection.167}
+\contentsline {subsubsection}{\numberline {5.3.1.2}Physics - Wikipedia}{51}{subsubsection.174}
+\contentsline {subsubsection}{\numberline {5.3.1.3}Biology - Wikipedia}{53}{subsubsection.181}
+\contentsline {subsubsection}{\numberline {5.3.1.4}Mathematics - Wikipedia}{55}{subsubsection.188}
+\contentsline {subsubsection}{\numberline {5.3.1.5}Sports - Wikipedia}{58}{subsubsection.195}
+\contentsline {subsection}{\numberline {5.3.2}Imputing Missing Categories}{60}{subsection.202}
+\contentsline {chapter}{Bibliography}{63}{figure.caption.204}
