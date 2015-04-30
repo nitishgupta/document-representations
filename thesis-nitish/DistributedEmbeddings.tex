@@ -60,9 +60,9 @@ P(w_{t} = i | w_{t-1}, \ldots, w_{t-n+1}) = \frac{e^{y_{w_t}}}{\sum_{i}e^{y_{i}}
 \end{equation}
 The parameters of the model $(b, d, W, U, H)$ and the word vectors $C$ are estimated by maximizing the log-likelihood of the training corpus.
 
-\subsection{Log-Linear Models : word2vec}
+\subsection{Log-Linear Models}
 \label{sec:word2vec}
-Simple log-linear models are proposed in \cite{mikolov2013efficient} as opposed to the non-linear NPLM model to bring down the training time complexity without sacrificing with the quality of the word vectors. \todo{Also these models are based on the Distributional Hypothesis} The models bring down the complexity of learning vectors by not having a non-linear layer and matrix weighting of the input vectors that are the costliest operations in NPLM. The two models proposed in \cite{mikolov2013efficient} are Continuous Bag-of-Words and Continuous Skip-Gram model, described below.
+Simple log-linear models are proposed in \cite{mikolov2013efficient} as opposed to the non-linear NPLM model to bring down the training time complexity without sacrificing with the quality of the word vectors. \todo{Also these models are based on the Distributional Hypothesis} The models bring down the complexity of learning vectors by not having a non-linear layer and matrix weighting of the input vectors that are the costliest operations in NPLM. The two models proposed in \cite{mikolov2013efficient} (word2vec) are Continuous Bag-of-Words and Continuous Skip-Gram model, described below.
 
 \subsubsection{Continuous Bag-of-Words}
 \label{sec:cbow}
@@ -351,10 +351,38 @@ The update rules for the document vector, word vectors and the neural network we
 \textbf{Neural Network Weights} : 
 \begin{equation}
 \label{eq:update_wgt}
-\wgt{t+j}^{(i+1)} = \wgt{t+j}^{(i)} + \gamma* \left[ (Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c}))(\vecwi{w^{(m)}_{t}} \cdot \vecwi{w^{(m)}_{t+j}}) -\beta\wgt{t+j} \right]
+\wgt{t+j}^{(i+1)} = \wgt{t+j}^{(i)} + \gamma \left[ (Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c}))(\vecwi{w^{(m)}_{t}} \cdot \vecwi{w^{(m)}_{t+j}}) -\beta\wgt{t+j} \right]
 \end{equation}
 \end{enumerate}
-To learn the vectors $\matD$, $\matW$ and weights $\Lambda$ we initialize them to small random vectors and scalars respectively and using Eqs.~\ref{eq:update_doc}, ~\ref{eq:update_mword}, ~\ref{eq:update_cword} and ~\ref{eq:update_wgt} we iterate through the training data, making the appropriate updates for a fixed number of epochs that is learned using the development data. For each training sequence we make one update to the document vector, $2c+1$ updates for the word vectors in the sequence and $2c$ updates for the neural network weights, where $c$ is the window length we consider while training.
+To learn the vectors $\matD$, $\matW$ and weights $\Lambda$ we initialize them to small random vectors and scalars respectively and using Eqs.~\ref{eq:update_doc}, ~\ref{eq:update_mword}, ~\ref{eq:update_cword} and ~\ref{eq:update_wgt} we iterate through the training data, making the appropriate updates for a fixed number of epochs that is learned using the development data. For each training sequence we make one update to the document vector, $2c$ updates for the word vectors in the sequence and the neural network weights, where $c$ is the window length we consider while training. The complete algorithm for learning document and word vectors using our model is described in Algorithm~\ref{alg:doc_embeddings}.
+
+\begin{algorithm}[h]
+\begin{algorithmic}[1]
+ \State \textbf{Input: } $\setD$, $k$, $c$, $n$, $\beta$, $\gamma$, $epochs$
+ \State \textbf{Output: } Document Vectors $\matD$, Word Vectors $\matW$ 
+ \State Extract Vocabulary $\setW$ from $\setD$
+ \State $\setW \gets Extractfrom(\setD)$ 
+ \State $\matD \gets random(\mathbb{R}^{k \times |\setD|})$
+ \State $\matW \gets random(\mathbb{R}^{k \times |\setW|})$
+ \State $\traindata \gets Extract from (\setD, c, n)$ \Comment{$|\traindata| = M + nM$}
+ \State $\Lambda \gets \mathbf{1}^{2c}$ \Comment{$2c$-sized vector of 1s}
+ \While{$epochs \geq 1$}
+ \ForAll{$\{d_{i}, w_{t-c}, \ldots, w_{t+c}, Y\} \in \traindata$}
+  \State $h_{c} \gets \vecdi{d_{i}} + \wgt{t-c}\vecwi{w_{t-c}} + \ldots + \wgt{t+c}\vecwi{w_{t+c}}$
+  \State $\vecdi{d_{i}} \gets \vecdi{d_{i}} + \gamma \left[ (Y - \sigma(\vecwi{w_{t}} \cdot h_{c}))\vecwi{w_{t}} - \beta\vecdi{d_{i}} \right]$
+  \State $\vecwi{w_{t}} \gets \vecwi{w_{t}} + \gamma \left[ (Y - \sigma(\vecwi{w_{t}} \cdot h_{c})) h_{c} - \beta\vecwi{w_{t}} \right]$
+  \State $\vecwi{w_{t+j}} \gets \vecwi{w_{t+j}} + \gamma \left[(Y - \sigma(\vecwi{w_{t}} \cdot h_{c}))\wgt{t+j} \vecwi{w_{t}} - \beta\vecwi{w_{t+j}} \right]$
+  \State $\wgt{t+j} \gets \wgt{t+j} + \gamma \left[ (Y - \sigma(\vecwi{w_{t}} \cdot h_{c}))(\vecwi{w_{t}} \cdot \vecwi{w_{t+j}}) -\beta\wgt{t+j} \right]$
+  \State $epochs \gets epochs - 1$
+  %compute(\vecdi{d_{i}}, \vecwi{w_{t-c}}, \ldots, \vecwi{w_{t-1}}, \vecwi{w_{t+1}}, \vecwi{w_{t+c}})$
+ \EndFor 
+ \EndWhile
+ \\
+ \Return $\matD, \matW$
+\end{algorithmic}
+\caption{Learning Document and Word Representations}
+\label{alg:doc_embeddings}
+\end{algorithm}
 
 \subsubsection{Hyper-parameters}
 \label{sec:hp_doc}

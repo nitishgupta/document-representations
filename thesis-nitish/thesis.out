@@ -13,7 +13,7 @@
 \BOOKMARK [1][-]{section.36}{2.1 Motivation}{chapter.35}% 13
 \BOOKMARK [1][-]{section.39}{2.2 Background on Word Embeddings}{chapter.35}% 14
 \BOOKMARK [2][-]{subsection.40}{2.2.1 Neural Probabilistic Language Model}{section.39}% 15
-\BOOKMARK [2][-]{subsection.47}{2.2.2 Log-Linear Models : word2vec}{section.39}% 16
+\BOOKMARK [2][-]{subsection.47}{2.2.2 Log-Linear Models}{section.39}% 16
 \BOOKMARK [3][-]{subsubsection.48}{2.2.2.1 Continuous Bag-of-Words}{subsection.47}% 17
 \BOOKMARK [3][-]{subsubsection.53}{2.2.2.2 Continuous Skip-gram}{subsection.47}% 18
 \BOOKMARK [3][-]{subsubsection.56}{2.2.2.3 Dependency-based Word Embeddings}{subsection.47}% 19
@@ -26,26 +26,26 @@
 \BOOKMARK [3][-]{subsubsection.78}{2.3.2.4 Noise Contrastive Estimation}{subsection.62}% 26
 \BOOKMARK [3][-]{subsubsection.82}{2.3.2.5 New Training Objective}{subsection.62}% 27
 \BOOKMARK [3][-]{subsubsection.86}{2.3.2.6 Parameter Estimation}{subsection.62}% 28
-\BOOKMARK [3][-]{subsubsection.112}{2.3.2.7 Hyper-parameters}{subsection.62}% 29
-\BOOKMARK [0][-]{chapter.119}{3 Multi-Label Text Categorization}{}% 30
-\BOOKMARK [1][-]{section.120}{3.1 Logistic Regression for Multi-label Document Categorization}{chapter.119}% 31
-\BOOKMARK [2][-]{subsection.121}{3.1.1 Training Data}{section.120}% 32
-\BOOKMARK [2][-]{subsection.122}{3.1.2 Logistic Regression Model}{section.120}% 33
-\BOOKMARK [3][-]{subsubsection.126}{3.1.2.1 Training Objective}{subsection.122}% 34
-\BOOKMARK [3][-]{subsubsection.133}{3.1.2.2 Parameter Estimation}{subsection.122}% 35
-\BOOKMARK [1][-]{section.140}{3.2 Similarity to Relational Learning}{chapter.119}% 36
-\BOOKMARK [1][-]{section.144}{3.3 Advantages of Logistic Regression Learning Algorithm}{chapter.119}% 37
-\BOOKMARK [0][-]{chapter.149}{4 Datasets and Evaluations}{}% 38
-\BOOKMARK [1][-]{section.150}{4.1 Datasets}{chapter.149}% 39
-\BOOKMARK [2][-]{subsection.151}{4.1.1 Reuters-21578}{section.150}% 40
-\BOOKMARK [2][-]{subsection.153}{4.1.2 Wikipedia Datasets}{section.150}% 41
-\BOOKMARK [1][-]{section.156}{4.2 Experimental Setup}{chapter.149}% 42
-\BOOKMARK [1][-]{section.161}{4.3 Results}{chapter.149}% 43
-\BOOKMARK [2][-]{subsection.162}{4.3.1 Document Categorization}{section.161}% 44
-\BOOKMARK [3][-]{subsubsection.163}{4.3.1.1 Reuters - 21578}{subsection.162}% 45
-\BOOKMARK [3][-]{subsubsection.170}{4.3.1.2 Physics - Wikipedia}{subsection.162}% 46
-\BOOKMARK [3][-]{subsubsection.177}{4.3.1.3 Biology - Wikipedia}{subsection.162}% 47
-\BOOKMARK [3][-]{subsubsection.184}{4.3.1.4 Mathematics - Wikipedia}{subsection.162}% 48
-\BOOKMARK [3][-]{subsubsection.191}{4.3.1.5 Sports - Wikipedia}{subsection.162}% 49
-\BOOKMARK [2][-]{subsection.198}{4.3.2 Imputing Missing Categories}{section.161}% 50
-\BOOKMARK [0][-]{figure.caption.200}{Bibliography}{}% 51
+\BOOKMARK [3][-]{subsubsection.113}{2.3.2.7 Hyper-parameters}{subsection.62}% 29
+\BOOKMARK [0][-]{chapter.120}{3 Multi-Label Text Categorization}{}% 30
+\BOOKMARK [1][-]{section.121}{3.1 Logistic Regression for Multi-label Document Categorization}{chapter.120}% 31
+\BOOKMARK [2][-]{subsection.122}{3.1.1 Training Data}{section.121}% 32
+\BOOKMARK [2][-]{subsection.123}{3.1.2 Logistic Regression Model}{section.121}% 33
+\BOOKMARK [3][-]{subsubsection.127}{3.1.2.1 Training Objective}{subsection.123}% 34
+\BOOKMARK [3][-]{subsubsection.134}{3.1.2.2 Parameter Estimation}{subsection.123}% 35
+\BOOKMARK [1][-]{section.142}{3.2 Similarity to Relational Learning}{chapter.120}% 36
+\BOOKMARK [1][-]{section.146}{3.3 Advantages of Logistic Regression Learning Algorithm}{chapter.120}% 37
+\BOOKMARK [0][-]{chapter.151}{4 Datasets and Evaluations}{}% 38
+\BOOKMARK [1][-]{section.152}{4.1 Datasets}{chapter.151}% 39
+\BOOKMARK [2][-]{subsection.153}{4.1.1 Reuters-21578}{section.152}% 40
+\BOOKMARK [2][-]{subsection.155}{4.1.2 Wikipedia Datasets}{section.152}% 41
+\BOOKMARK [1][-]{section.158}{4.2 Experimental Setup}{chapter.151}% 42
+\BOOKMARK [1][-]{section.163}{4.3 Results}{chapter.151}% 43
+\BOOKMARK [2][-]{subsection.164}{4.3.1 Document Categorization}{section.163}% 44
+\BOOKMARK [3][-]{subsubsection.165}{4.3.1.1 Reuters - 21578}{subsection.164}% 45
+\BOOKMARK [3][-]{subsubsection.172}{4.3.1.2 Physics - Wikipedia}{subsection.164}% 46
+\BOOKMARK [3][-]{subsubsection.179}{4.3.1.3 Biology - Wikipedia}{subsection.164}% 47
+\BOOKMARK [3][-]{subsubsection.186}{4.3.1.4 Mathematics - Wikipedia}{subsection.164}% 48
+\BOOKMARK [3][-]{subsubsection.193}{4.3.1.5 Sports - Wikipedia}{subsection.164}% 49
+\BOOKMARK [2][-]{subsection.200}{4.3.2 Imputing Missing Categories}{section.163}% 50
+\BOOKMARK [0][-]{figure.caption.202}{Bibliography}{}% 51
