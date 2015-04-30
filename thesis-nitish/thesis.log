@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  30 APR 2015 12:14
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  30 APR 2015 16:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -591,8 +591,8 @@ Package hyperref Info: Option `hypertexnames' set `false' on input line 103.
 Package hyperref Info: Option `colorlinks' set `true' on input line 103.
 Package hyperref Info: Option `breaklinks' set `true' on input line 103.
 (./thesis.aux (./title.aux) (./abstract.aux) (./Dedication.aux)
-(./acknowledgement.aux) (./RelatedWork.aux) (./DistributedEmbeddings.aux)
-(./TextCategorization.aux) (./Evaluation.aux))
+(./acknowledgement.aux) (./Introduction.aux) (./RelatedWork.aux)
+(./DistributedEmbeddings.aux) (./TextCategorization.aux) (./Evaluation.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 106.
@@ -697,7 +697,7 @@ Package caption Info: End \AtBeginDocument code.
 \openout2 = `title.aux'.
 
  (./title.tex
-<figs/iitkblue.jpg, id=209, 204.765pt x 194.7275pt>
+<figs/iitkblue.jpg, id=213, 204.765pt x 194.7275pt>
 File: figs/iitkblue.jpg Graphic file (type jpg)
  <use figs/iitkblue.jpg>
 Package pdftex.def Info: figs/iitkblue.jpg used on input line 41.
@@ -709,7 +709,7 @@ Package pdftex.def Info: figs/iitkblue.jpg used on input line 41.
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figs/iitkblue.jpg>])
-<sumitbCertificate.pdf, id=219, 620.3175pt x 891.33pt>
+<sumitbCertificate.pdf, id=223, 620.3175pt x 891.33pt>
 File: sumitbCertificate.pdf Graphic file (type pdf)
 
 <use sumitbCertificate.pdf>
@@ -720,7 +720,7 @@ File: sumitbCertificate.pdf Graphic file (type pdf)
 Package pdftex.def Info: sumitbCertificate.pdf used on input line 118.
 (pdftex.def)             Requested size: 620.316pt x 891.32784pt.
 
-<sumitbCertificate.pdf, id=222, page=1, 620.3175pt x 891.33pt>
+<sumitbCertificate.pdf, id=226, page=1, 620.3175pt x 891.33pt>
 File: sumitbCertificate.pdf Graphic file (type pdf)
 
 <use sumitbCertificate.pdf, page 1>
@@ -769,11 +769,11 @@ Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 118.
 
 
 ] (./thesis.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 6.
+LaTeX Font Info:    Try loading font information for U+msa on input line 7.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 6.
+LaTeX Font Info:    Try loading font information for U+msb on input line 7.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -789,7 +789,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [9]
 [10]
-Overfull \hbox (5.65448pt too wide) in paragraph at lines 32--32
+Overfull \hbox (5.65448pt too wide) in paragraph at lines 33--33
  \OT1/cmr/m/n/10 model in im-put-ing miss-ing cat-e-gories in the Wikipedia doc
 ument-category datasets. 
  []
@@ -813,15 +813,24 @@ ument-category datasets.
  [15] [16
 
 ]
+\openout2 = `Introduction.aux'.
+
+
+(./Introduction.tex
+Chapter 1.
+) [1
+
+
+]
 \openout2 = `RelatedWork.aux'.
 
-
-(./RelatedWork.tex
-Chapter 1.
-[1
+ (./RelatedWork.tex [2
 
 
-] [2] [3]
+
+]
+Chapter 2.
+[3] [4] [5]
 Overfull \hbox (34.26413pt too wide) detected at line 60
 []\OML/cmm/m/it/12 G\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) = \OMS
 /cmsy/m/n/12 ^^@ [] \OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 c[]\OT1
@@ -836,13 +845,13 @@ it/12 t\OT1/cmr/m/n/12 ) [] \OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12
  c[]\OMS/cmsy/m/n/12 j []\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )
  []
 
-[4] [5] [6]
+[6] [7] [8]
 Overfull \hbox (3.7252pt too wide) in paragraph at lines 100--101
 []\OT1/cmr/bx/n/12 Neural Net-works (NNet) \OT1/cmr/m/n/12 : Classification-bas
 ed, Neu-ral Net-work ap-proaches
  []
 
-[7]
+[9]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 107.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
@@ -850,20 +859,20 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 107.
- [8] [9]
+ [10] [11]
 Underfull \vbox (badness 3746) has occurred while \output is active []
 
- [10])
-[11]
+ [12])
+[13]
 \openout2 = `DistributedEmbeddings.aux'.
 
- (./DistributedEmbeddings.tex [12
+ (./DistributedEmbeddings.tex [14
 
 
 
 ]
-Chapter 2.
-[13] [14] <figs/bengio_nn.png, id=710, 1062.97125pt x 901.3675pt>
+Chapter 3.
+[15] [16] <figs/bengio_nn.png, id=723, 1062.97125pt x 901.3675pt>
 File: figs/bengio_nn.png Graphic file (type png)
 
 <use figs/bengio_nn.png>
@@ -872,10 +881,10 @@ Package pdftex.def Info: figs/bengio_nn.png used on input line 45.
 
 Underfull \vbox (badness 1571) has occurred while \output is active []
 
- [15]
+ [17]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [16 <./figs/bengio_nn.png>] <figs/mikolov_cbow.png, id=740, 626.34pt x 694.595
+ [18 <./figs/bengio_nn.png>] <figs/mikolov_cbow.png, id=754, 626.34pt x 694.595
 pt>
 File: figs/mikolov_cbow.png Graphic file (type png)
 
@@ -886,7 +895,7 @@ Package pdftex.def Info: figs/mikolov_cbow.png used on input line 72.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[17] <figs/mikolov_skip.png, id=754, 596.2275pt x 693.59125pt>
+[19] <figs/mikolov_skip.png, id=768, 596.2275pt x 693.59125pt>
 File: figs/mikolov_skip.png Graphic file (type png)
 
 <use figs/mikolov_skip.png>
@@ -896,8 +905,8 @@ Package pdftex.def Info: figs/mikolov_skip.png used on input line 95.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[18 <./figs/mikolov_cbow.png>]
-<figs/dependency_context.png, id=772, 1179.40625pt x 781.92125pt>
+[20 <./figs/mikolov_cbow.png>]
+<figs/dependency_context.png, id=786, 1179.40625pt x 781.92125pt>
 File: figs/dependency_context.png Graphic file (type png)
 
 <use figs/dependency_context.png>
@@ -907,56 +916,56 @@ Package pdftex.def Info: figs/dependency_context.png used on input line 114.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[19 <./figs/mikolov_skip.png>] [20 <./figs/dependency_context.png>] [21]
-[22] <figs/nn_arch.png, id=820, 603.25375pt x 428.60126pt>
+[21 <./figs/mikolov_skip.png>] [22 <./figs/dependency_context.png>] [23]
+[24] <figs/nn_arch.png, id=833, 603.25375pt x 428.60126pt>
 File: figs/nn_arch.png Graphic file (type png)
 
 <use figs/nn_arch.png>
 Package pdftex.def Info: figs/nn_arch.png used on input line 164.
 (pdftex.def)             Requested size: 384.1096pt x 272.89778pt.
- [23 <./figs/nn_arch.png>] [24]
+ [25 <./figs/nn_arch.png>] [26]
 Overfull \hbox (14.53462pt too wide) in paragraph at lines 221--222
-\OT1/cmr/m/n/12 (Sec. [][]2.2.1[][]) [[][]Mnih and Teh[][], [][]2012[][]] and l
+\OT1/cmr/m/n/12 (Sec. [][]3.2.1[][]) [[][]Mnih and Teh[][], [][]2012[][]] and l
 earn-ing word em-bed-dings [][]Mnih and Kavukcuoglu[][]
- []
-
-[25]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [26]
-Overfull \hbox (57.18317pt too wide) in paragraph at lines 273--273
-[] 
  []
 
 [27]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [28]
+Overfull \hbox (57.18317pt too wide) in paragraph at lines 273--273
+[] 
+ []
+
 [29]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30]
+[31]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 383.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[30]
+[32]
 Underfull \vbox (badness 1097) has occurred while \output is active []
 
- [31])
-[32]
+ [33])
+[34]
 \openout2 = `TextCategorization.aux'.
 
  (./TextCategorization.tex
-Chapter 3.
-[33
+Chapter 4.
+[35
 
 
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [34]
-[35]
+ [36]
+[37]
 Overfull \hbox (54.87115pt too wide) in paragraph at lines 83--83
 [] 
  []
@@ -964,45 +973,45 @@ Overfull \hbox (54.87115pt too wide) in paragraph at lines 83--83
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [36]
+ [38]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [37]
-[38]
+ [39]
+[40]
 Overfull \hbox (16.75267pt too wide) in paragraph at lines 141--142
 []\OT1/cmr/m/n/12 Since we learn dis-tributed em-bed-dings for the cat-e-gories
  in the same $\OML/cmm/m/it/12 k$\OT1/cmr/m/n/12 -dimensional
  []
 
-[39]) [40]
+[41]) [42]
 \openout2 = `Evaluation.aux'.
 
  (./Evaluation.tex
-Chapter 4.
-[41
+Chapter 5.
+[43
 
 
 
 ]
 Underfull \vbox (badness 4084) has occurred while \output is active []
 
- [42]
+ [44]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [43]
-[44]
+ [45]
+[46]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [45]
-[46] [47]
+ [47]
+[48] [49]
 Overfull \hbox (40.81345pt too wide) in paragraph at lines 152--185
  [] 
  []
@@ -1013,11 +1022,11 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[48]
+[50]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figs/pr/reuter-cs.pdf, id=1082, 578.16pt x 433.62pt>
+<figs/pr/reuter-cs.pdf, id=1096, 578.16pt x 433.62pt>
 File: figs/pr/reuter-cs.pdf Graphic file (type pdf)
 
 <use figs/pr/reuter-cs.pdf>
@@ -1038,17 +1047,17 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[49] [50]
+[51] [52]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figs/pr/physics-cs.pdf, id=1101, 578.16pt x 433.62pt>
+<figs/pr/physics-cs.pdf, id=1114, 578.16pt x 433.62pt>
 File: figs/pr/physics-cs.pdf Graphic file (type pdf)
 
 <use figs/pr/physics-cs.pdf>
 Package pdftex.def Info: figs/pr/physics-cs.pdf used on input line 493.
 (pdftex.def)             Requested size: 341.43437pt x 256.07178pt.
- [51 <./figs/pr/reuter-cs.pdf>]
+ [53 <./figs/pr/reuter-cs.pdf>]
 Overfull \hbox (39.56206pt too wide) in paragraph at lines 539--572
  [] 
  []
@@ -1059,17 +1068,17 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[52 <./figs/pr/physics-cs.pdf>]
+[54 <./figs/pr/physics-cs.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figs/pr/biology-cs.pdf, id=1215, 578.16pt x 433.62pt>
+<figs/pr/biology-cs.pdf, id=1228, 578.16pt x 433.62pt>
 File: figs/pr/biology-cs.pdf Graphic file (type pdf)
 
 <use figs/pr/biology-cs.pdf>
 Package pdftex.def Info: figs/pr/biology-cs.pdf used on input line 681.
 (pdftex.def)             Requested size: 341.43437pt x 256.07178pt.
- [53]
+ [55]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1087,11 +1096,11 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Underfull \vbox (badness 1127) has occurred while \output is active []
 
- [54 <./figs/pr/biology-cs.pdf>]
+ [56 <./figs/pr/biology-cs.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figs/pr/mathematics-cs.pdf, id=1281, 578.16pt x 433.62pt>
+<figs/pr/mathematics-cs.pdf, id=1296, 578.16pt x 433.62pt>
 File: figs/pr/mathematics-cs.pdf Graphic file (type pdf)
 
 <use figs/pr/mathematics-cs.pdf>
@@ -1100,7 +1109,7 @@ Package pdftex.def Info: figs/pr/mathematics-cs.pdf used on input line 870.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [55]
+ [57]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1115,53 +1124,53 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[56 <./figs/pr/mathematics-cs.pdf>]
+[58 <./figs/pr/mathematics-cs.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figs/pr/sports-cs.pdf, id=1349, 578.16pt x 433.62pt>
+<figs/pr/sports-cs.pdf, id=1362, 578.16pt x 433.62pt>
 File: figs/pr/sports-cs.pdf Graphic file (type pdf)
 
 <use figs/pr/sports-cs.pdf>
 Package pdftex.def Info: figs/pr/sports-cs.pdf used on input line 1058.
 (pdftex.def)             Requested size: 341.43437pt x 256.07178pt.
- [57] [58 <./figs/pr/sports-cs.pdf>]
+ [59] [60 <./figs/pr/sports-cs.pdf>]
 Overfull \hbox (32.91609pt too wide) in paragraph at lines 1086--1152
  [] 
  []
 
-<figs/pr/wiki-ho.pdf, id=1408, 578.16pt x 433.62pt>
+<figs/pr/wiki-ho.pdf, id=1421, 578.16pt x 433.62pt>
 File: figs/pr/wiki-ho.pdf Graphic file (type pdf)
  <use figs/pr/wiki-ho.pdf>
 Package pdftex.def Info: figs/pr/wiki-ho.pdf used on input line 1158.
 (pdftex.def)             Requested size: 341.43437pt x 256.07178pt.
 )
-[59] [60 <./figs/pr/wiki-ho.pdf>] (./thesis.bbl [61
+[61] [62 <./figs/pr/wiki-ho.pdf>] (./thesis.bbl [63
 
 
 
-] [62] [63])
+] [64] [65])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 208.
- [64]
+ [66]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 208.
 
 (./thesis.aux (./title.aux) (./abstract.aux) (./Dedication.aux)
-(./acknowledgement.aux) (./RelatedWork.aux) (./DistributedEmbeddings.aux)
-(./TextCategorization.aux) (./Evaluation.aux))
+(./acknowledgement.aux) (./Introduction.aux) (./RelatedWork.aux)
+(./DistributedEmbeddings.aux) (./TextCategorization.aux) (./Evaluation.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 208.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 208.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: AAB818051DD5808AFEC59247DF1CB7B5;3989.
+(rerunfilecheck)             Checksum: 9A844BB906FE5B59FC49D062CAC17FA0;4040.
  )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 131 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 13226 strings out of 493304
- 193201 string characters out of 6139871
- 346631 words of memory out of 5000000
- 16025 multiletter control sequences out of 15000+600000
+ 13239 strings out of 493304
+ 193389 string characters out of 6139871
+ 347480 words of memory out of 5000000
+ 16028 multiletter control sequences out of 15000+600000
  19784 words of font info for 71 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  39i,18n,45p,1039b,617s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1186,10 +1195,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (82 pages, 1581072 bytes).
+Output written on thesis.pdf (84 pages, 1581767 bytes).
 PDF statistics:
- 1631 PDF objects out of 1728 (max. 8388607)
- 1237 compressed objects within 13 object streams
- 338 named destinations out of 1000 (max. 500000)
- 489 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1644 PDF objects out of 1728 (max. 8388607)
+ 1248 compressed objects within 13 object streams
+ 341 named destinations out of 1000 (max. 500000)
+ 497 words of extra memory for PDF output out of 10000 (max. 10000000)
 

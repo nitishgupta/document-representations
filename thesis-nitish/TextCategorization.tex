@@ -106,13 +106,13 @@ As explained in Sec.~\ref{sec:para_esti_doc}, we initialize the category embeddi
  \State $\matC \gets random(\mathbb{R}^{k \times |\setC|})$
  \While{not converged}
  \ForAll{$\{ d_{i}, c_{j}, y\} \in \traindata$}
-  \State $\vecci{c_{j}} \gets \vecci{c_{j}} + \gamma \left[ ( y - \sigma(\vecdi{d_{i}}\cdot \vecci{c_{j}}) \vecdi{d_{i}} -\beta\vecci{c_{j}} \right]$
+  \State $\vecci{c_{j}} \gets \vecci{c_{j}} + \gamma \left[ ( y - \sigma(\vecdi{d_{i}}\cdot \vecci{c_{j}})) \vecdi{d_{i}} -\beta\vecci{c_{j}} \right]$
  \EndFor 
  \EndWhile
  \\
  \Return $\matC$
 \end{algorithmic}
-\caption{Learning Category Embeddings}
+\caption{Learning Category Vector Representations}
 \label{alg:cat_embeddings}
 \end{algorithm}
 
