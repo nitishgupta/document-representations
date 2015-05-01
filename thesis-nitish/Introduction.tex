@@ -1,14 +1,51 @@
 \chapter{Introduction}
 \label{chapter:introduction}
 
-\todo{para 1: Why document categorization. What is DC.
-para 2 : What has been done before in terms of representations and learning algorithms. most work on LA. Bag of words suffer
-para 3 : Distributed vectors are new representations models. explore low-rank structure of the universe, kind of. Based on distributional hypo. Word vectors have shown promising future avenues. Even after that it is difficult to compose them to docs. 
-para 4 : Here is where we come in. We present a model for document representations. Earlier cites have tried doing this. LSI is another dimensionality reduction technique. }
+\todo{ Section 2 : Problem Statement. Formally with document vectors $x_{d_{i}}$ and task of finding appropriate label vector $l_{d_{i}}$ Section. Along with table as in http://lpis.csd.auth.gr/publications/tsoumakas-ijdwm.pdf 3 : Contribution Section 4 : Organization of thesis}
 
-\todo{Section 1 : Motivation - problems with bag of words. adv. of distributed repre. That with large scale databases. correlations increase. and there is much need to understand semantic content and represent it in a distributed fashion. Section 2 : Problem Statement. Formally with document vectors $x_{d_{i}}$ and task of finding appropriate label vector $l_{d_{i}}$ Section 3 : Contribution Section 4 : Organization of thesis}
-
-Multi-Label Document Categorization \emph{(also known as Text Categorization or Classification)} is the task of assigning one or more predefined categories to documents to provide a conceptual view of the document collection and describe the semantic content of a document. For example, an article on music piracy can be simultaneously classified into \emph{Arts/Music}, \emph{Internet/Security}, \emph{Laws/Cyber}.    
+Text documents usually belong to more than one conceptual class. For example, a document on music piracy can be simultaneously classified into \emph{Arts/Music}, \emph{Internet/Security}, \emph{Laws/Cyber}.     Multi-Label Document Categorization \emph{(also known as Text Categorization or Classification)} is the task of assigning one or more predefined categories to documents to describe the semantic content of a document and provide a conceptual view of the document collection.
 With the growth of online information, Document Categorization has found its use in many important real world applications ranging from document organization to information retrieval. It can be used to organize news stories by categories (topics), classify academic papers by the technical domains and sub-domains they belong to, cluster documents based on their semantic content for easy retrieval and recommendation etc.
-With the advent of crowd-sourced databases such as Wikipedia\footnote{www.wikipedia.org} which contains over $4$ million documents that are manually categorized from a category set containing over $500$ thousand categories, automatic document categorization is utmost necessary and useful to assign categories to new articles that are being added daily and also assign missing categories to older documents.
+With the advent of crowd-sourced databases such as Wikipedia\footnote{www.wikipedia.org} which contains over $4$ million documents that are manually categorized from a category set containing over $500$ thousand categories, automatic document categorization is utmost necessary and useful to assign categories to new articles that are added on a daily basis and also assign missing categories to older documents.
+
+The task of multi-label classification belongs to a general family of supervised learning where the training instances along with the labels they belong to are used to learn a multi-label classifier that assigns appropriate labels to new test instances. 
+Another supervised learning task that is very relevant to multi-label classification is that of \emph{ranking}. In the ranking task, the learning algorithm learns a ranking function from the training examples that ranks the set of labels for a new instance such that the more relevant labels are the topmost in the ranked list. 
+To generate the proper output of the multi-label classifier, i.e. the set of relevant labels for the test instance, post-processing of the ranked list of categories is required.
+
+Supervised machine learning techniques that learn classifiers to perform the document categorization task can be broken down into two main components, namely, text representation and learning algorithm. 
+Text representation involves converting the documents, that are usually strings of characters, into numerical vectors that are suitable inputs to the learning algorithm while the learning algorithm uses pairs of labeled input text representations and the categories it belongs to, to learn a model so as to assign relevant categories to new documents. \todo{ADD COMPLETE SYTEM FIGURE.}
+
+Over the years, documents have been represented as a \emph{bag-of-words} feature vector, which contains information about the presence and absence of words in the document. Given a corpus of documents, each document $d_{i}$ in the corpus is represented as a vector $v_{d_{i}} \in \mathbb{R}^{|V|}$ whose size is equal to the size of the vocabulary. Each element in the vector belongs to $\{0, 1\}$ and denotes whether the particular word is present in the document or not. Though bag-of-words document representation has been widely used for document categorization due to its simplicity, efficiency and ability to capture topical content of the documents necessary for categorization, it suffers from various drawbacks. Bag-of-words representation ignores word ordering and the context in which the words appear in the document, that is vital for encoding the semantic content of text. It also lacks in the ability to encode the semantic similarity between words and documents to estimate distances between them. Disadvantages of such sought have necessitated the need for a more robust and efficient document representation model.
+%In the section below we describe the drawbacks of the bag-of-words model and why there is a need for an alternate document representation model.
+
+Models to learn fixed-length continuous distributed word vector representations from huge corpora of unlabeled text have shown promising results in tasks of language modeling \citep{bengio2003neural}, sentiment analysis \citep{socher2013recursive}, machine translation \citep{zou2013bilingual} etc. by supplementing the labeled data to overcome the inherent data sparsity and improving generalization accuracies in the high-dimensional domain of Natural Language Processing. Such models learn low-dimensional (generally of the order $100$ - $500$) vector representations of words that encode the semantic similarity between them \citep{mikolov2013efficient}. 
+
+Though these word embeddings try to overcome a lot of disadvantages in the bag-of-words model, it is unclear how thy can be composed to represent continuous text, namely documents. In this work we present a model to learn such low-dimensional distributed vector representations for documents to aid in the task of document categorization.
+ 
+\section{Motivation}
+The prime drawback faced by the bag-of-words representation is their inability to preserve word ordering information in the text. Language is a complex phenomenon that often changes meaning when the word ordering in sentences changes, even though they may contain exactly the same words. For example, even though the sentences
+\begin{quote}
+\centering
+\emph{ 	Jim can only ride bicycles. } and \emph{ 	Only Jim can ride bicycles. }
+\end{quote}
+contain exactly the same words and hence have the same bag-of-words representation, they completely differ in their meaning. While the first sentence points to the fact that \emph{Jim} only rides bicycles among other vehicles, the second sentence suggests that no one apart from \emph{Jim} knows how to ride a bicycle. 
+Similarly, the phrases 
+\begin{quote}
+\centering
+\emph{ 	``a good book'' } and \emph{ 	``book a good'' }
+\end{quote}
+that have the same bag-of-words representations though they contain different topical content. A document containing the first phrase would like by categorized under \emph{Literature} while containing the second under \emph{Trade}.
+As shown in the examples above, document representations that preserve word ordering and information about the context the words occur in are more likely to perform better at the task of document categorization.
+
+Distance or similarity between two documents is commonly computed by taking the dot product of their corresponding representation vectors. In the case of bag-of-words representation, this amounts to counting the number of words co-occurring in the two documents. For example, consider the case when all the words in a document $d_{1}$ are replaced by synonyms to form another document $d_{2}$, in one case, and replaced by random words to form $d_{3}$ in another. The distance between vectors of $d_{1}$ and $d_{2}$ will be exactly the same as the distance between vectors of $d_{1}$ and $d_{3}$ even though $d_{1}$ and $d_{2}$ are much closer to each other than to $d_{3}$. 
+Hence, the other major issue faced by the bag-of-words representations is the lack of ability to encode semantic similarity between words and documents. 
+This problem can be partially tackled with the aid of an external Lexical Knowledge Database, such as WordNet for the English Language though an ideal representation should internally encode semantic similarity.
+
+Along with the above stated problems, bag-of-words representations also suffer from high-dimensionality and sparsity issues due to huge vocabulary size in large-scale document corpora that may contain upto million unique words.
+
+
+
+
+
+
+
 

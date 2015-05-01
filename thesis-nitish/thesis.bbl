@@ -1,4 +1,4 @@
-\begin{thebibliography}{52}
+\begin{thebibliography}{53}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -341,5 +341,10 @@ Min-Ling Zhang and Zhi-Hua Zhou.
 \newblock Ml-knn: A lazy learning approach to multi-label learning.
 \newblock \emph{Pattern recognition}, 40\penalty0 (7):\penalty0 2038--2048,
   2007.
+
+\bibitem[Zou et~al.(2013)Zou, Socher, Cer, and Manning]{zou2013bilingual}
+Will~Y Zou, Richard Socher, Daniel~M Cer, and Christopher~D Manning.
+\newblock Bilingual word embeddings for phrase-based machine translation.
+\newblock In \emph{EMNLP}, pages 1393--1398, 2013.
 
 \end{thebibliography}
