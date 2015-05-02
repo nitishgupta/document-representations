@@ -250,8 +250,8 @@ The performance of our model on the development data for different values of dif
 \end{table}
 
 Table~\ref{reuter:cs} compares our model's accuracy against different document representations and other learning algorithms that use bag-of-words representations. 
-We find that document representations learned using our model performs the best. Our representations improves the F1 score of $84.1\%$, achieved when using bag-of-words representation, by $9\%$. 
-Improvements of $1\%$-$6.6\%$ on the F1 score are found against models such as SVM, CRF, LSI, MFoM and representations learned using tf-idf weighted average of word vectors.
+We find that document representations learned using our model performs the best and beats previous state of the art results achieving a F1 score of $91.7\%$. Our representations improves the F1 score of $84.1\%$, achieved using bag-of-words representation, by $9\%$. 
+Improvements of $1\%$-$6.6\%$ on the F1 score are found against models such as SVM, CRF, LSI, MFoM and representations learned using tf-idf weighed average of word vectors.
 We also see that simple summing of word vectors to compute the projection layer reduces the performance of our model and hence leads to poor quality document representations. This corroborates with our hypothesis that weighted average of surrounding words is necessary to capture syntactic qualities and learn better quality representations.
 Similar observations are seen in the Precision/Recall curves in Fig.~\ref{fig:pr:reuter:cs}.
 
@@ -451,7 +451,7 @@ The performance of our model on the development data for different values of dif
 \end{table}
 
 Table~\ref{physics:cs} shows that our model outperforms other baseline models with a huge margin. 
-Our model achieves a F1 score of $79.7\%$ while the second best model, Bag-of-Words (\textbf{BOW}) trails our by $4.18\%$.
+Our model achieves a F1 score of $79.7\%$ while the second best model, Bag-of-Words (\textbf{BOW}) trails our by $2.31\%$.
 As observed in the evaluation of Reuters-21578, syntactic features are necessary to learn high quality document representations. This is shown by the fact that when we simply sum the word vectors to represent the context, our model only achieves an accuracy of \todo{add no weight} in terms of the F1 score.
 Fig.~\ref{fig:pr:physics:cs} also shows that our model performs the best while \textbf{BOW} model is the second best performing model.
 
@@ -466,9 +466,9 @@ Fig.~\ref{fig:pr:physics:cs} also shows that our model performs the best while \
 \textbf{Physics (Wikipedia)} & {P} & {R} & \textbf{F1} \\
 \midrule
 \textbf{BOW}
-& 75.5   & 77.5  & 76.5 \\
+& 87.8   & 70.1  & 77.9 \\
 \textbf{LSI-100}
-& 57.4   & 80.5  & 67.0 \\
+& 83.4   & 69.5  & 75.8 \\
 \textbf{WordVecAvg}
 & 91.0   & 59.1  & 71.7 \\ \addlinespace[1mm]
 
@@ -638,8 +638,8 @@ The performance of our model on the development data for different values of dif
 \end{center}
 \end{table}
 
-Table~\ref{biology:cs} shows that the distributed representations learned by our model outperform other baseline representations.
-Our model achieves a F1 score of $67.8\%$ while the second best model, again the Bag-of-Words (\textbf{BOW}) trails ours by $2.41\%$.
+Table~\ref{biology:cs} shows that the distributed representations learned by our model outperform some baseline representations but the bag-of-words representation works the best.
+Our model achieves a F1 score of $67.8\%$ while the bag-of-words (\textbf{BOW}) improves our model by $1.7\%$.
 We also find that document representations learned by averaging word vectors perform worse by $9.1\%$ and the model accuracy suffers by $4.95\%$ when word ordering is ignored during training.
 Fig.~\ref{fig:pr:biology:cs} shows the precision/recall curves for our model and other baseline methods. It also shows that the \textbf{BOW} representations perform the closest representations learned using our model.
 
@@ -654,9 +654,9 @@ Fig.~\ref{fig:pr:biology:cs} shows the precision/recall curves for our model and
 \textbf{Biology (Wikipedia)} & {P} & {R} & \textbf{F1} \\
 \midrule
 \textbf{BOW}
-& 67.0   & 65.3  & 66.2 \\
+& 90.3   & 59.5  & \highest{69.0} \\
 \textbf{LSI-100}
-& 51.8   & 69.6  & 59.4 \\
+& 82.1   & 51.6  & 63.4 \\
 \textbf{WordVecAvg}
 & 79.4   & 50.4  & 61.6 \\ \addlinespace[1mm]
 
@@ -665,7 +665,7 @@ Fig.~\ref{fig:pr:biology:cs} shows the precision/recall curves for our model and
 (no weights) & & & \\ \addlinespace[1mm]
 \textbf{Our Model}
 79.7  R :  59.0  F1 :  67.8
-& \multirow{2}{*}{79.7}   & \multirow{2}{*}{59.0}  & \multirow{2}{*}{\highest{67.8}} \\
+& \multirow{2}{*}{79.7}   & \multirow{2}{*}{59.0}  & \multirow{2}{*}{67.8} \\
 (with weights) & & & \\
 \bottomrule         
 \end{tabular}
@@ -828,12 +828,6 @@ Table~\ref{mathematics:hp:c} shows that small context window ($c = 3$) and relat
 \end{center}
 \end{table}
 
-Table~\ref{mathematics:cs} shows that the distributed representations learned by our model outperform other baseline representations.
-Our model achieves a F1 score of $68.2\%$ while the second best model, Bag-of-Words (\textbf{BOW}) trails ours by $4.41\%$.
-Word vectors averaged by tf-idf weighing scheme to represent document in the Mathematics (Wikipedia) dataset give the worst accuracy with an F1 score of $55.7\%$.
-We again find that modeling syntactic qualities of the language is important as weighting word vectors to represent the context gives the best performance.
-Fig.~\ref{fig:pr:mathematics:cs} shows the precision/recall curves for our model and other baseline methods. It also shows that the \textbf{BOW} representations perform the closest representations learned using our model.
-
 \begin{table}[h!]
 \tabcolsep=0.1cm
 \footnotesize
@@ -847,7 +841,7 @@ Fig.~\ref{fig:pr:mathematics:cs} shows the precision/recall curves for our model
 \textbf{BOW}
 & 65.6   & 65.1  & 65.3 \\
 \textbf{LSI-100}
-& 47.0   & 75.0  & 57.8 \\
+& 89.7   & 50.3  & 64.4 \\
 \textbf{WordVecAvg}
 & 90.5   & 40.3  & 55.7 \\ \addlinespace[1mm]
 
@@ -863,6 +857,12 @@ Fig.~\ref{fig:pr:mathematics:cs} shows the precision/recall curves for our model
 \caption{\label{mathematics:cs}\footnotesize {\textbf{Document Categorization on Mathematics(Wikipedia) dataset:} Precision/Recall/F1 of our model for document categorization compared against different document representations on the Mathematics(Wikipedia) dataset.}}
 \end{center}
 \end{table}
+
+Table~\ref{mathematics:cs} shows that the distributed representations learned by our model outperform other baseline representations.
+Our model achieves a F1 score of $68.2\%$ while the second best model, Bag-of-Words (\textbf{BOW}) trails ours by $4.41\%$.
+Word vectors averaged by tf-idf weighing scheme to represent document in the Mathematics (Wikipedia) dataset give the worst accuracy with an F1 score of $55.7\%$.
+We again find that modeling syntactic qualities of the language is important as weighting word vectors to represent the context gives the best performance.
+Fig.~\ref{fig:pr:mathematics:cs} shows the precision/recall curves for our model and other baseline methods. It also shows that the \textbf{BOW} representations perform the closest representations learned using our model.
 
 \begin{figure}[tb]
 \centering
@@ -1019,7 +1019,7 @@ Table~\ref{sports:hp:c} shows that small context window ($c = 3$) and relatively
 \end{table}
 
 Table~\ref{sports:cs} shows that the distributed representations learned by our model outperform other baseline representations.
-Our model achieves a F1 score of $57.3\%$ while the second best performing representations are learned using Latent Semantic Indexing (\textbf{LSI-100}). \textbf{LSI-100} achieves a F1 score of $54.1\%$ and trails our model by $6.1\%$.
+Our model achieves a F1 score of $57.3\%$ while the second best performing representations are again learned using bag-of-words (\textbf{BOW}). \textbf{BOW} achieves a F1 score of $56.9\%$ and trails our model by a slight $0.7\%$.
 As found in previous evaluations, document representations using bag-of-words style word vector averaging do not give the best performance and also modeling syntactic features is important for learning the best quality document representations.
 Fig.~\ref{fig:pr:sports:cs} shows the precision/recall curves for our model and other baseline methods. 
 
@@ -1034,9 +1034,9 @@ Fig.~\ref{fig:pr:sports:cs} shows the precision/recall curves for our model and 
 \textbf{Sports (Wikipedia)} & {P} & {R} & \textbf{F1} \\
 \midrule
 \textbf{BOW}
-& 58.5   & 48.3  & 52.9 \\
+& 91.7   & 41.3  & 56.9 \\
 \textbf{LSI-100}
-& 43.5   & 71.4  & 54.1 \\
+& 91.2   & 40.1  & 55.7 \\
 \textbf{WordVecAvg}
 & 81.8   & 37.5  & 51.4 \\ \addlinespace[1mm]
 
@@ -1077,7 +1077,7 @@ Our model achieves an overall F1 score of $74.3\%$ which improves upon the bag-o
 Representing documents by weighted averaging the word vectors achieves a F1 score of $65.4\%$. 
 The worst performing model, as expected is \textbf{PMF} which does not use any textual information about the documents.
 As found in the previous section, in our model, simple summing of surrounding word vectors to represent the context does not provide competitive results which corroborated with the hypothesis that encoding syntactic information is necessary. 
-Figure~\ref{fig:pr:wiki:ho} shows the precision/recall curves for the different document representation models along with the performance of our models.
+%Figure~\ref{fig:pr:wiki:ho} shows the precision/recall curves for the different document representation models along with the performance of our models.
 
 \begin{table}[tb]
 \tabcolsep=1mm
@@ -1153,11 +1153,13 @@ Figure~\ref{fig:pr:wiki:ho} shows the precision/recall curves for the different 
 \end{center}
 \caption{\label{wikipedia:ho} \footnotesize \textbf{Imputing Missing Categories in Wikipedia Datasets:} Performance of different document representation models against our distributed representations model in imputing missing categories in the Wikipedia document-category datasets. }
 \end{table}
+% \begin{figure}[tb]
+% \centering
+%         \includegraphics[width=0.8\columnwidth]{figs/pr/wiki-ho-scala.pdf}
+%         \vskip -4mm
+%     \caption{\footnotesize Precision/Recall for Imputing Missing Categories on the Wikipedia datasets}
+%     \label{fig:pr:wiki:ho} 
+% \end{figure}
 
-\begin{figure}[tb]
-\centering
-        \includegraphics[width=0.8\columnwidth]{figs/pr/wiki-ho-scala.pdf}
-        \vskip -4mm
-    \caption{\footnotesize Precision/Recall for Imputing Missing Categories on the Wikipedia datasets}
-    \label{fig:pr:wiki:ho} 
-\end{figure}
+\subsection{Estimating Similarity between Categories and Words}
+\todo{bag-of-words does not allow estimation of similarity between entities. one prime reason of using lr. learn cat embedding in same space. Table below shows how we do.} 

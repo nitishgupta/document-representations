@@ -4,10 +4,8 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \newlabel{chapter:distembed}{{3}{19}{Distributed Document Embeddings}{chapter.44}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Motivation}{19}{section.45}}
-\newlabel{sec:motivation_distributed}{{3.1}{19}{Motivation}{section.45}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Background on Word Embeddings}{20}{section.48}}
-\newlabel{sec:background_distributed}{{3.2}{20}{Background on Word Embeddings}{section.48}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Why use Distributed Word Representations?}{19}{section.45}}
+\newlabel{sec:motivation_distributed}{{3.1}{19}{Why use Distributed Word Representations?}{section.45}{}}
 \citation{bengio2003neural}
 \citation{mnih2013learning}
 \citation{mikolov2013distributed}
@@ -16,62 +14,63 @@
 \citation{turian2010word}
 \citation{levy2014dependencybased}
 \citation{bengio2003neural}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Background on Word Embeddings}{20}{section.48}}
+\newlabel{sec:background_distributed}{{3.2}{20}{Background on Word Embeddings}{section.48}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Neural Probabilistic Language Model}{21}{subsection.49}}
 \newlabel{sec:bengio}{{3.2.1}{21}{Neural Probabilistic Language Model}{subsection.49}{}}
 \citation{mikolov2013efficient}
 \citation{mikolov2013efficient}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Bengio's Neural Network Architecture for Neural Probabilistic Language Model\relax }}{22}{figure.caption.52}}
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:nn:bengio}{{3.1}{22}{Bengio's Neural Network Architecture for Neural Probabilistic Language Model\relax }{figure.caption.52}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Log-Linear Models}{23}{subsection.56}}
-\newlabel{sec:word2vec}{{3.2.2}{23}{Log-Linear Models}{subsection.56}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Neural Network Architecture for Neural Probabilistic Language Model\relax }}{22}{figure.caption.52}}
+\newlabel{fig:nn:bengio}{{3.1}{22}{Neural Network Architecture for Neural Probabilistic Language Model\relax }{figure.caption.52}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Log-Linear Models}{22}{subsection.56}}
+\newlabel{sec:word2vec}{{3.2.2}{22}{Log-Linear Models}{subsection.56}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.1}Continuous Bag-of-Words}{23}{subsubsection.57}}
 \newlabel{sec:cbow}{{3.2.2.1}{23}{Continuous Bag-of-Words}{subsubsection.57}{}}
-\newlabel{eq:cbow:prob}{{3.8}{23}{Continuous Bag-of-Words}{equation.61}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Continuous Bag-of-Words Model (CBOW)\relax }}{23}{figure.caption.58}}
+\newlabel{fig:nn:cbow}{{3.2}{23}{Continuous Bag-of-Words Model (CBOW)\relax }{figure.caption.58}{}}
 \citation{morin2005hierarchical}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Continuous Bag-of-Words Model (CBOW) \leavevmode {\color  {red}\textbf  {TODO:} Add ref?}\relax }}{24}{figure.caption.58}}
-\newlabel{fig:nn:cbow}{{3.2}{24}{Continuous Bag-of-Words Model (CBOW) \todo {Add ref?}\relax }{figure.caption.58}{}}
+\newlabel{eq:cbow:prob}{{3.8}{24}{Continuous Bag-of-Words}{equation.61}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.2}Continuous Skip-gram}{24}{subsubsection.62}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Continuous Skip-gram Model\relax }}{24}{figure.caption.63}}
+\newlabel{fig:nn:skip}{{3.3}{24}{Continuous Skip-gram Model\relax }{figure.caption.63}{}}
 \newlabel{eq:skip:prob}{{3.9}{24}{Continuous Skip-gram}{equation.64}{}}
 \citation{mikolov2013linguistic}
 \citation{levy2014dependencybased}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Continuous Skip-gram Model \leavevmode {\color  {red}\textbf  {TODO:} Add ref?}\relax }}{25}{figure.caption.63}}
-\newlabel{fig:nn:skip}{{3.3}{25}{Continuous Skip-gram Model \todo {Add ref?}\relax }{figure.caption.63}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.3}Dependency-based Word Embeddings}{25}{subsubsection.65}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Dependency-based context extraction example\relax }}{25}{figure.caption.66}}
+\newlabel{fig:dep:context}{{3.4}{25}{Dependency-based context extraction example\relax }{figure.caption.66}{}}
 \citation{mitchell2010composition}
 \citation{zanzotto2010estimating}
 \citation{yessenalina2011compositional}
 \citation{grefenstette2013multi}
 \citation{mikolov2013distributed}
 \citation{socher2013recursive}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Dependency-based context extraction example \leavevmode {\color  {red}\textbf  {TODO:} Add ref?}\relax }}{26}{figure.caption.66}}
-\newlabel{fig:dep:context}{{3.4}{26}{Dependency-based context extraction example \todo {Add ref?}\relax }{figure.caption.66}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Document Embeddings}{26}{section.67}}
 \newlabel{sec:document_embeddings}{{3.3}{26}{Document Embeddings}{section.67}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Problem Setup}{27}{subsection.70}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Our Model}{28}{subsection.71}}
-\newlabel{sec:docem_ourmodel}{{3.3.2}{28}{Our Model}{subsection.71}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Our Model}{27}{subsection.71}}
+\newlabel{sec:docem_ourmodel}{{3.3.2}{27}{Our Model}{subsection.71}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2.1}Projection Layer (Context Representation)}{28}{subsubsection.76}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Neural Network Architecture for learning distributed document and word representations \leavevmode {\color  {red}\textbf  {TODO:} Change figure}\relax }}{29}{figure.caption.75}}
 \newlabel{fig:nn:archi}{{3.5}{29}{Neural Network Architecture for learning distributed document and word representations \todo {Change figure}\relax }{figure.caption.75}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2.1}Projection Layer (Context Representation)}{29}{subsubsection.76}}
-\newlabel{eq:hidden_vec}{{3.10}{30}{Projection Layer (Context Representation)}{equation.77}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2.2}Estimating Prediction Probability}{30}{subsubsection.78}}
+\newlabel{eq:hidden_vec}{{3.10}{29}{Projection Layer (Context Representation)}{equation.77}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2.2}Estimating Prediction Probability}{29}{subsubsection.78}}
 \newlabel{eq:nn_score}{{3.11}{30}{Estimating Prediction Probability}{equation.80}{}}
 \newlabel{eq:soft_prob}{{3.12}{30}{Estimating Prediction Probability}{equation.82}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2.3}Training Objective}{30}{subsubsection.83}}
+\newlabel{eq:paramter_argmax}{{3.13}{30}{Training Objective}{equation.84}{}}
+\newlabel{eq:training_objective}{{3.14}{30}{Training Objective}{equation.85}{}}
+\newlabel{eq:update_theta}{{3.15}{30}{Training Objective}{equation.86}{}}
 \citation{morin2005hierarchical}
 \citation{bengio2003quick}
 \citation{bengio2008adaptive}
 \citation{gutmann2012noise}
 \citation{mnih2012fast}
 \citation{mnih2013learning}
-\newlabel{eq:paramter_argmax}{{3.13}{31}{Training Objective}{equation.84}{}}
-\newlabel{eq:training_objective}{{3.14}{31}{Training Objective}{equation.85}{}}
-\newlabel{eq:update_theta}{{3.15}{31}{Training Objective}{equation.86}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2.4}Noise Contrastive Estimation}{31}{subsubsection.87}}
 \newlabel{eq:label1}{{3.16}{32}{Noise Contrastive Estimation}{equation.88}{}}
-\newlabel{eq:label0}{{3.17}{33}{Noise Contrastive Estimation}{equation.89}{}}
-\newlabel{eq:prob_y}{{3.18}{33}{Noise Contrastive Estimation}{equation.90}{}}
+\newlabel{eq:label0}{{3.17}{32}{Noise Contrastive Estimation}{equation.89}{}}
+\newlabel{eq:prob_y}{{3.18}{32}{Noise Contrastive Estimation}{equation.90}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2.5}New Training Objective}{33}{subsubsection.91}}
 \newlabel{eq:new_argmax}{{3.19}{33}{New Training Objective}{equation.92}{}}
 \newlabel{eq:new_training_objective}{{3.20}{33}{New Training Objective}{equation.93}{}}
@@ -83,13 +82,13 @@
 \newlabel{eq:partial_w_t}{{3.27}{34}{Parameter Estimation}{equation.101}{}}
 \newlabel{eq:partial_w_t-k}{{3.28}{34}{Parameter Estimation}{equation.102}{}}
 \newlabel{eq:partial_wgt_t-k}{{3.29}{34}{Parameter Estimation}{equation.103}{}}
-\newlabel{eq:grad_doc}{{3.30}{35}{Parameter Estimation}{equation.105}{}}
-\newlabel{eq:grad_mword}{{3.31}{35}{Parameter Estimation}{equation.107}{}}
+\newlabel{eq:grad_doc}{{3.30}{34}{Parameter Estimation}{equation.105}{}}
+\newlabel{eq:grad_mword}{{3.31}{34}{Parameter Estimation}{equation.107}{}}
 \newlabel{eq:grad_cword}{{3.32}{35}{Parameter Estimation}{equation.109}{}}
 \newlabel{eq:grad_wgt}{{3.33}{35}{Parameter Estimation}{equation.111}{}}
 \newlabel{eq:update_reg}{{3.34}{35}{Parameter Estimation}{equation.112}{}}
 \newlabel{eq:update_doc}{{3.35}{35}{Parameter Estimation}{equation.114}{}}
-\newlabel{eq:update_mword}{{3.36}{36}{Parameter Estimation}{equation.116}{}}
+\newlabel{eq:update_mword}{{3.36}{35}{Parameter Estimation}{equation.116}{}}
 \newlabel{eq:update_cword}{{3.37}{36}{Parameter Estimation}{equation.118}{}}
 \newlabel{eq:update_wgt}{{3.38}{36}{Parameter Estimation}{equation.120}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2.7}Hyper-parameters}{36}{subsubsection.122}}
@@ -137,7 +136,7 @@
 \setcounter{NAT@ctr}{0}
 \setcounter{Item}{38}
 \setcounter{Hfootnote}{1}
-\setcounter{bookmark@seq@number}{37}
+\setcounter{bookmark@seq@number}{36}
 \setcounter{AM@survey}{0}
 \setcounter{ContinuedFloat}{0}
 \setcounter{example}{0}

@@ -1,9 +1,7 @@
 \chapter{Introduction}
 \label{chapter:introduction}
 
-\todo{ Section 2 : Problem Statement. Formally with document vectors $x_{d_{i}}$ and task of finding appropriate label vector $l_{d_{i}}$ Section. Along with table as in http://lpis.csd.auth.gr/publications/tsoumakas-ijdwm.pdf 3 : Contribution Section 4 : Organization of thesis}
-
-Text documents usually belong to more than one conceptual class. For example, a document on music piracy can be simultaneously classified into \emph{Arts/Music}, \emph{Internet/Security}, \emph{Laws/Cyber}.     Multi-Label Document Categorization \emph{(also known as Text Categorization or Classification)} is the task of assigning a text document to one or more pre-defined categories to describe the semantic content of a document and provide a conceptual view of the document collection.
+Text documents usually belong to more than one conceptual class. For example, a document on music piracy can be simultaneously classified into \emph{Arts/Music}, \emph{Internet/Security}, \emph{Laws/Cyber}.     Multi-Label Document Categorization \emph{(also known as Text Categorization or Classification)} is the task of assigning a text document to one or more predefined categories to describe the semantic content of a document and provide a conceptual view of the document collection.
 With the growth of online information, Document Categorization has found its use in many important real world applications ranging from document organization to information retrieval. It can be used to organize news stories by categories (topics), classify academic papers by the technical domains and sub-domains they belong to, cluster documents based on their semantic content for easy retrieval and recommendation etc.
 With the advent of crowd-sourced databases such as Wikipedia\footnote{www.wikipedia.org} which contains over $4$ million documents that are manually categorized from a category set containing over $500$ thousand categories, automatic document categorization is utmost necessary and useful to assign categories to new articles that are added on a daily basis and also assign missing categories to older documents.
 
@@ -12,7 +10,7 @@ Another supervised learning task that is very relevant to multi-label classifica
 To generate the proper output of the multi-label classifier, i.e. the set of relevant labels for the test instance, post-processing of the ranked list of categories is required.
 
 Supervised machine learning techniques that learn classifiers to perform the document categorization task can be broken down into two main components, namely, text representation and learning algorithm. 
-Text representation involves converting the documents, that are usually strings of characters, into numerical vectors that are suitable inputs to the learning algorithm while the learning algorithm uses pairs of labeled input text representations and the categories it belongs to, to learn a model so as to assign relevant categories to new documents. \todo{ADD COMPLETE SYTEM FIGURE.}
+Text representation involves converting the documents, that are usually strings of characters, into numerical vectors that are suitable inputs to the learning algorithm while the learning algorithm uses pairs of labeled input text representations and the categories it belongs to, to learn a model so as to assign relevant categories to new documents. 
 
 Over the years, documents have been represented as a \emph{bag-of-words} feature vector, which contains information about the presence and absence of words in the document. Given a corpus of documents, each document $d_{i}$ in the corpus is represented as a vector $v_{d_{i}} \in \mathbb{R}^{|V|}$ whose size is equal to the size of the vocabulary. Each element in the vector belongs to $\{0, 1\}$ and denotes whether the particular word is present in the document or not. Though bag-of-words document representation has been widely used for document categorization due to its simplicity, efficiency and ability to capture topical content of the documents necessary for categorization, it suffers from various drawbacks. Bag-of-words representation ignores word ordering and the context in which the words appear in the document, that is vital for encoding the semantic content of text. It also lacks in the ability to encode the semantic similarity between words and documents to estimate distances between them. Disadvantages of such sought have necessitated the need for a more robust and efficient document representation model.
 %In the section below we describe the drawbacks of the bag-of-words model and why there is a need for an alternate document representation model.
@@ -51,12 +49,36 @@ Though word vectors have shown their efficacy in lot of different NLP tasks, the
 In this work, we present an unsupervised model for learning distributed vector representations of documents that along with encoding semantic content of the document also tries to incorporate the contextual information surrounding the words in the document.
 
 \section{Problem Statement}	
-Given a set of documents ....
+In the task of multi-label document categorization, we are given a set of documents $D = \{d_{1}, \ldots, d_{|D|}\}$, set of categories $C = \{c_{1}, \ldots, c_{|C|}\}$ and a training set $\traindata = \{l_{d_{1}}, \ldots, l_{d_{n}}\}$ which contains category information about $n$ $(n < |D|)$ documents. Each label vector $l_{d_{i}}$ can be thought of as a binary bit-vector of size $|C|$ where the $m^{th}$ element of $l_{d_{i}}$ being one suggests that the document $d_{i}$ belongs to category $c_{m}$.  
 
-\section{Contributions of Thesis}
+Given data about documents, categories and their relationship for a subset of training documents, our task is to learn an appropriate document representation matrix $\matD \in \mathbb{R}^{k \times |D|}$, where the $i$-th column of the matrix is a $k$-dimensional representation vector for $d_{i}$ and a multi-label classifier $\mathcal{H}$ such that for a new document $d_{j}$ we would be able to assign the appropriate categories it belongs to, hence the label vector $l_{d_{j}}$ using $\mathcal{H}$.
 
+\begin{table}[h!]
+\tabcolsep=0.1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{c@{\hskip5mm} c c c c c c}
+\toprule
+\textbf{Documents}	&	\textbf{Sports} & \textbf{Music} & \textbf{Arts} & \textbf{Technology}  & \textbf{Literature} & \textbf{Politics}\\
+\cmidrule{1-1}
+\cmidrule{2-7}
+$d_{1}$ & 0 & 0 & 1 & 0 & 1 & 0\\
+$d_{2}$ & 0 & 1 & 1 & 0 & 0 & 1\\
+$d_{3}$ & 1 & 0 & 0 & 1 & 0 & 1\\
+$d_{4}$ & x & x & x & x & x & x\\
+$d_{5}$ & x & x & x & x & x & x\\
+\bottomrule         
+\end{tabular}
+%\vskip -4mm
+\caption{\label{traindata:example:table}\footnotesize {Example Training Data for Multi-label Document Categorization}}
+\end{center}
+\end{table}
+
+For example, in Table~\ref{traindata:example:table} we see that the document set $D$ contains $5$ documents and the category set $C$ contains $6$ categories. The first $3$ documents $d_{1}$, $d_{2}$ and $d_{3}$ contain their label vectors and the rest of the documents $d_{4}$ and $d_{5}$ are test instances whose category assignments are to be made using the learned classifier $\mathcal{H}$.
+
+%\section{Contributions of Thesis}
 \section{Organization of Thesis}
-
+In this chapter we introduced the problem of multi-class document categorization and showed why better document representation models are needed to substitute the bag-of-words representation model. The rest of this thesis is organized as follows. Chapter~\ref{chapter:relatedwork} reviews the different text representation models, dimensionality reduction techniques employed on the bag-of-words representation and various learning algorithms developed for multi-label document categorization. Chapter~\ref{chapter:distembed} presents our model for learning distributed document representation vectors along with the details of the model. Chapter~\ref{chapter:mltextcat} presents our approach to multi-label document categorization using a modified logistic regression algorithm. Chapter~\ref{chapter:evaluations} discusses details about the datasets we use, experimental setup and presents performance evaluation for the document categorization task. The conclusions and future work are a part of Chapter~\ref{chapter:conclusion}.
 
 
 

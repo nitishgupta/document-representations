@@ -1,13 +1,12 @@
 \chapter{Distributed Document Embeddings}
 \label{chapter:distembed}
-In this chapter we describe the concept of distributed word and document embeddings and why distributed representations of words and documents are better than one-hot or bag-of-words representations as described in \ref{sec:textrepr}. We then give a background on different models that learn distributed representations for words in a fully unsupervised manner and finally describe in detail our proposed model for learning distributed embeddings for documents that can be used for multi-label text classification.
+In this chapter we describe the concept of distributed word and document embeddings and why distributed representations of words and documents are better than one-hot or bag-of-words representations as described in \ref{sec:textrepr}. We then give a background on different models that learn distributed representations for words in a fully unsupervised manner and finally describe in detail our proposed model for learning distributed representations for documents that can be used for multi-label document categorization.
 
-\section{Motivation}
+\section{Why use Distributed Word Representations?}
 \label{sec:motivation_distributed}
-\todo{Get in tune to document representations. Say words and documents suffer in the same manner with one-hot or bow representations. Express problems in docs with changing words. Give example of sentence}
+% \todo{Get in tune to document representations. Say words and documents suffer in the same manner with one-hot or bow representations. Express problems in docs with changing words. Give example of sentence}
 
-\todo{Can be tackled with distributed repr. Similarity measures as simple as cos-distance can be introduced in documents. Lets model joint distributions of words with continuous distributions. Words have distributed representaions but not docs. }
-
+% \todo{Can be tackled with distributed repr. Similarity measures as simple as cos-distance can be introduced in documents. Lets model joint distributions of words with continuous distributions. Words have distributed representaions but not docs. }
 Words are regarded as atomic symbols in most rule-based and statistical natural language processing(NLP) tasks and hence need appropriate representation to solve the NLP tasks with greater ease and accuracy. 
 Words are traditionally expressed as one-hot vectors, i.e. as vectors of the size of the vocabulary where exactly one element is $1$ and the rest all are zero.
 Though these representations have been widely used, one-hot representations have a plethora of drawbacks that pose problems and limit the ability of systems to perform better. 
@@ -43,7 +42,7 @@ Their model maps each word to a $m$-dimensional vector in a matrix $C \in \mathb
 \begin{figure}[t!]
     \centering
         \includegraphics[width=0.8\textwidth]{figs/bengio_nn.png}
-    \caption{Bengio's Neural Network Architecture for Neural Probabilistic Language Model}
+    \caption{Neural Network Architecture for Neural Probabilistic Language Model}
     \label{fig:nn:bengio}
 \end{figure}
 For each input sequence, the neural network outputs a vector $y \in \mathbb{R}^{|V|}$, where $y_{i}$ is the unnormalized log-probability that the $t^{th}$ word in the sequence is $w_{i}$.
@@ -62,7 +61,7 @@ The parameters of the model $(b, d, W, U, H)$ and the word vectors $C$ are estim
 
 \subsection{Log-Linear Models}
 \label{sec:word2vec}
-Simple log-linear models are proposed in \cite{mikolov2013efficient} as opposed to the non-linear NPLM model to bring down the training time complexity without sacrificing with the quality of the word vectors. \todo{Also these models are based on the Distributional Hypothesis} The models bring down the complexity of learning vectors by not having a non-linear layer and matrix weighting of the input vectors that are the costliest operations in NPLM. The two models proposed in \cite{mikolov2013efficient} (word2vec) are Continuous Bag-of-Words and Continuous Skip-Gram model, described below.
+Simple log-linear models are proposed in \cite{mikolov2013efficient} as opposed to the non-linear NPLM model to bring down the training time complexity without sacrificing with the quality of the word vectors. It achieves so by not having a non-linear layer and matrix weighting of the input vectors that are the costliest operations in NPLM. The two models proposed in \cite{mikolov2013efficient} (word2vec) are Continuous Bag-of-Words and Continuous Skip-Gram model, described below.
 
 \subsubsection{Continuous Bag-of-Words}
 \label{sec:cbow}
@@ -70,7 +69,7 @@ The Continuous Bag-of-Words (CBOW) model is different from the NPLM in that the 
 \begin{figure}[h!]
     \centering
         \includegraphics[width=0.5\textwidth]{figs/mikolov_cbow.png}
-    \caption{Continuous Bag-of-Words Model (CBOW) \todo{Add ref?}}
+    \caption{Continuous Bag-of-Words Model (CBOW)}
     \label{fig:nn:cbow}
 \end{figure}
 The model first computes the hidden layer vector $h$, 
@@ -93,7 +92,7 @@ This model is similar to the CBOW model, but instead of predicting the middle wo
 \begin{figure}[h!]
     \centering
         \includegraphics[width=0.4\textwidth]{figs/mikolov_skip.png}
-    \caption{Continuous Skip-gram Model \todo{Add ref?}}
+    \caption{Continuous Skip-gram Model}
     \label{fig:nn:skip}
 \end{figure}
 Formally, given a sequence of words in a context $w_{t-k}, \ldots, w_{t+k}$, the skip-gram model defines $P(w_{t+j}|w_{t})$ using the \emph{softmax}-classifier in the following manner,
@@ -112,7 +111,7 @@ Instead of using bag-of-words based context as used in \emph{NPLM} and \emph{wor
 \begin{figure}[h!]
     \centering
         \includegraphics[width=0.7\textwidth]{figs/dependency_context.png}
-    \caption{Dependency-based context extraction example \todo{Add ref?}}
+    \caption{Dependency-based context extraction example}
     \label{fig:dep:context}
 \end{figure}
 After extracting the contexts, their model uses the neural network architecture and the training objective of the skip-gram model to learn word vectors. On comparison to the vectors learned from the skip-gram model on the tasks of \emph{topical similarity} and \emph{functional similarity} estimation, it is found that the vectors learned from this model perform better on the \emph{functional similarity} task that expects word vectors to encode syntactic relationships better. In the task of \emph{topical similarity} estimation, the vectors from the skip-gram model performed better as they encode semantic similarity between words because of the bag-of-words context used during training.
