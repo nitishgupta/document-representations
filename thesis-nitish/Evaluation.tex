@@ -452,7 +452,7 @@ The performance of our model on the development data for different values of dif
 
 Table~\ref{physics:cs} shows that our model outperforms other baseline models with a huge margin. 
 Our model achieves a F1 score of $79.7\%$ while the second best model, Bag-of-Words (\textbf{BOW}) trails our by $2.31\%$.
-As observed in the evaluation of Reuters-21578, syntactic features are necessary to learn high quality document representations. This is shown by the fact that when we simply sum the word vectors to represent the context, our model only achieves an accuracy of \todo{add no weight} in terms of the F1 score.
+As observed in the evaluation of Reuters-21578, syntactic features are necessary to learn high quality document representations. This is shown by the fact that when we simply sum the word vectors to represent the context, our model only achieves an accuracy of $73.8\%$ in terms of the F1 score.
 Fig.~\ref{fig:pr:physics:cs} also shows that our model performs the best while \textbf{BOW} model is the second best performing model.
 
 \begin{table}[h!]
@@ -1162,4 +1162,39 @@ As found in the previous section, in our model, simple summing of surrounding wo
 % \end{figure}
 
 \subsection{Estimating Similarity between Categories and Words}
-\todo{bag-of-words does not allow estimation of similarity between entities. one prime reason of using lr. learn cat embedding in same space. Table below shows how we do.} 
+One of the primary drawbacks faced by the bag-of-words representations is the lack of similarity measures die to the discrete nature of the representation vectors. Also, when documents are represented using bag-of-words vectors, there is no representation for the words in the vocabulary. 
+As we show in our model, we embed words and documents in the same k-dimensional space such that semantically similar entities have similar vector representations. 
+
+One of the biggest advantages of using the modified logistic regression algorithm is that we learn distributed category representations in the same $k$-dimensional space as the semantic space of words and documents. Such representations allow us to compute similarity between indirectly related entities such as words and categories. Estimating the similarity or distance between two entities is equivalent to taking the dot-product between their vectors.
+
+In Table~\ref{catword:sim} we show a few random categories along with their nearest neighboring words. We see that the representations learned using our model can successfully encode the semantic similarity between entities. For example, we see that the words closest to the category \emph{Evolutionary Biology} are \emph{Darwin}, \emph{lineage}, \emph{phylogenetics}, closest to category \emph{Thermodynamics} are \emph{convection}, \emph{enthalpy}, \emph{calorimetric} and closest to category \emph{Theoretical Physicists} are world famous physicists such as \emph{Dipankar}, \emph{Uri}, \emph{Aneesur}.
+
+\begin{table}[h!]
+\tabcolsep=1mm
+\footnotesize
+\begin{center}
+\begin{adjustwidth}{-1.5cm}{}
+\begin{tabular}{l@{\hskip3mm} l}
+\toprule
+\multirow{2}{*}{\textbf{Category}} & \multirow{2}{*}{\textbf{Nearest Neighbors}} \\
+ & \\
+%\cmidrule{2-2}
+\textbf{Evolutionary Biology}   & gene, phylogenetics, speciation, ancestor, Darwin, lineage, evolutionary, interbreeding \\
+\textbf{Statistical Mechanics}  & ergodicity, Eigenstate, Universality, DMFT, Markovian, Parisi, Combinatorics \\
+\textbf{Thermodynamics}         & Convection, ecosystem, Enthalpy, Joule, calorimetric, compressible, Thermodynamic \\
+\textbf{Trade}                  & import, Pledges, Tariff, Trade, competitiveness, toll, billion, basket, Ditch, Worldwide \\
+\textbf{Money-FX}               & Borrowing, franc, banker, Currency, banks, nervous, sideways, Markets, FORWARD \\
+\textbf{Virology}               & nucleoside, ribozyme, adenoviruses, Virology, retroviruses, poliovirus, Viroid \\
+\textbf{Neurobiology}           & purinergic, cyclase, vertebral, Ehrlich, nexus, steroid, lean, gendered, reticular \\
+\textbf{Physical Exercise}      & Fitness, aerobics, metabolic, workout, Exercise, Stretching, pelvic, Physiology, fibers \\
+\textbf{Algebra}                & subalgebra, Algebras, nilpotent, adjoints, octonions, bicommutant, diagonalizable \\
+\textbf{Theoretical Physicists} & Dipankar, DSc, Hubert, Aneesur, Uri, Ignaz, Chia, Stig, Diderot, Dannie \\
+\textbf{Mathematical Physics}   & covectors, pseudotensor, spacelike, dyadic, Curl, torque, contractions, wavefunctions \\
+\textbf{Sports Venues}          & stadion, decoration, tracks, seating, buildings, parcourse, architectural, arenas, circular \\
+\textbf{Indian Mathematics}     & utkrama, ecliptic, Siddhanta, Hellenistic, Brahmi, sexagesimal, scribe, Islamic, Sanskrit \\
+\bottomrule         
+\end{tabular}
+ \end{adjustwidth}
+\end{center}
+\caption{\label{catword:sim} \footnotesize \textbf{Estimating Similarity between Categories and Words}}
+\end{table}
