@@ -11,8 +11,15 @@ Using continuous vector representations we embed documents, words and categories
 
 \section{Future Work}
 
-\subsection{Include Syntactic Dependencies}
+\subsection{Improving Compositionality of Word Vectors}
+Human language is complex and change in word ordering and syntax can completely change the semantic meaning of a sentence and hence longer pieces of text. 
+As we see in our performance evaluation, encoding syntactic nature of the language in terms of weighting the context words leads to better document representations than weighing all context words equally. 
+In our model, we do not preserve word ordering and do not consider the parse tree of the sentences in documents. 
+Recursive Neural Tensor Networks \citep{socher2013recursive} have shown to be effective in composing word vectors to learn sentence level representations for sentiment analysis. 
+We would like to extend our model to incorporate syntactic dependencies in sentences for more effective compositionality of word vectors to the document level.
 
-\subsection{Complex Learning Algos}
+\subsection{Multi-view Supervised Representation Learning}
+In our model, we learn universal document representations in an unsupervised manner for the task of multi-label document categorization. 
+Though such document representations are general purpose and can be used as inputs for any document level tasks, such as sentiment analysis, better performance accuracies on the required task can be achieved by making the document representation learning model supervised with the help of training data for document categorization. This would lead to joint learning of document and category vectors though the drawback being document representations will lose they generality.
 
-\subsection{Multi-view Joint Learning}
+As discussed in Sec.~\ref{sec:adv:lr}, one of the advantages of the learning distributed representations is that additional relational information about documents can be incorporated to the task of document categorization to improve the quality of learned representations. Also, as shown in \cite{gupta2015collectively}, joint modeling of relational data about entities can boost the performance of predicting relations while learning high quality distributed representations that can encode dependencies between unrelated entities. 
