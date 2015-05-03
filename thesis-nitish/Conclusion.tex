@@ -1,14 +1,18 @@
 \chapter{Conclusions and Future Work}
 \label{chapter:conclusion}
+We presented an unsupervised neural network model that jointly learns fixed-length low-dimensional distributed vector representations for documents and words that encode the semantic content of the documents and words for multi-label document categorization. 
+We overcome some of the issues in the bag-of-words representations by encoding the contextual information surrounding the words in the documents in our representations to improve their quality and performance on the categorization task.
+Our neural network architecture is a linear-model that uses Noise Contrastive Estimation (NCE) to approximate the word probability distribution making parameter learning computationally inexpensive. We use the Stochastic Gradient Descent (SGD) to minimize the training objective that allows parallelization of the learning task further decreasing training time many folds.
 
-\todo{Presented a NN architechture for learning distributed doc embeddings that tries to overcome issues in bow. Give a computationally inexpensive NCE objective rather than modelling distribution exactly. makes system parallel implementable. 
-Present a modified logisitic regression algo to also embed cats in the same space. 
-Show results on reuters 21758. achieve 91.7 F1. improves previous state of art by some percentage. }
-
-\todo{Also present evaluations on imputing missing categories. }
+We use a modified version of the logistic regression algorithm that learns distributed category representations by embedding categories in the same low-dimensional space as the documents and words for the multi-label document categorization task. 
+On the standard \emph{Reuters-21578} dataset we show that using representations learned using model we achieve a F1 score of $91.7\%$ improving the bag-of-words representation accuracy by $9.03\%$ and the previous state-of-the-art, Multi-Class Maximum Figure-of-Merit (MC-MFoM) by $3.26\%$ in terms of the F1 score. 
+We also present evaluations on the Wikipedia datasets showing that our representations perform better than the bag-of-words representations. We also show our model performs better than the bag-of-words representation at the task of imputing missing categories for existing articles on Wikipedia.
+Using continuous vector representations we embed documents, words and categories in the same semantic space allowing us to estimate similarities between indirectly related entities such as words and categories. We qualitatively show that representations learned using our model capture the semantic similarity between categories and words effectively.
 
 \section{Future Work}
 
 \subsection{Include Syntactic Dependencies}
 
 \subsection{Complex Learning Algos}
+
+\subsection{Multi-view Joint Learning}

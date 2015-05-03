@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  2 MAY 2015 22:28
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  3 MAY 2015 11:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -756,7 +756,7 @@ Package pdftex.def Info: sumitbCertificate.pdf, page1 used on input line 119.
 
 
 (./abstract.tex
-Underfull \hbox (badness 10000) in paragraph at lines 5--9
+Underfull \hbox (badness 10000) in paragraph at lines 13--14
 
  []
 
@@ -1154,9 +1154,14 @@ Overfull \hbox (37.5921pt too wide) in paragraph at lines 1177--1197
 
 ]
 Chapter 6.
-) [69] [70
 
-] (./thesis.bbl [71
+Overfull \hbox (11.21799pt too wide) in paragraph at lines 7--11
+\OT1/cmr/m/n/12 tributed cat-e-gory rep-re-sen-ta-tions by em-bed-ding cat-e-go
+ries in the same low-dimensional
+ []
+
+[69]) [70] (./thesis.bbl [71
+
 
 ] [72] [73])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 211.
@@ -1168,21 +1173,28 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 211.
 (./Evaluation.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 211.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 211.
-Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 97A80C28763DF51CBDD6865BC2CE441B;4953.
+
+
+Package rerunfilecheck Warning: File `thesis.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `thesis.out':
+(rerunfilecheck)             Before: 97A80C28763DF51CBDD6865BC2CE441B;4953
+(rerunfilecheck)             After:  CB32F61C3962D4F1E609869375A69029;5036.
  )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 133 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 13317 strings out of 493304
- 194593 string characters out of 6139871
- 352677 words of memory out of 5000000
+ 13318 strings out of 493304
+ 194607 string characters out of 6139871
+ 351677 words of memory out of 5000000
  16076 multiletter control sequences out of 15000+600000
  19784 words of font info for 71 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 39i,18n,45p,1185b,617s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,18n,45p,1414b,617s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></u
@@ -1204,10 +1216,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (94 pages, 1225703 bytes).
+Output written on thesis.pdf (94 pages, 1227157 bytes).
 PDF statistics:
- 1516 PDF objects out of 1728 (max. 8388607)
- 1353 compressed objects within 14 object streams
- 365 named destinations out of 1000 (max. 500000)
+ 1517 PDF objects out of 1728 (max. 8388607)
+ 1354 compressed objects within 14 object streams
+ 366 named destinations out of 1000 (max. 500000)
  580 words of extra memory for PDF output out of 10000 (max. 10000000)
 
