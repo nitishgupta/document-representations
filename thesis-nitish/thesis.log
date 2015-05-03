@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  3 MAY 2015 18:47
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  3 MAY 2015 22:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1082,7 +1082,10 @@ it/12 t\OT1/cmr/m/n/12 ) [] \OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12
  c[]\OMS/cmsy/m/n/12 j []\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )
  []
 
-[10] [11] [12]
+[10] [11]
+Underfull \vbox (badness 3460) has occurred while \output is active []
+
+ [12]
 Overfull \hbox (3.7252pt too wide) in paragraph at lines 100--101
 []\OT1/cmr/bx/n/12 Neural Net-works (NNet) \OT1/cmr/m/n/12 : Classification-bas
 ed, Neu-ral Net-work ap-proaches
@@ -1141,6 +1144,11 @@ Package pdftex.def Info: figs/dependency_context.png used on input line 113.
 (pdftex.def)             Requested size: 298.75264pt x 198.06888pt.
  [25 <./figs/dependency_context.png>] [26]
 [27] (./figs/nn_arch.tex
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.
+code.tex
+File: tikzlibrarycalc.code.tex 2009/09/04 v2.10 (rcs-revision 1.6)
+)
+Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -1148,29 +1156,21 @@ Missing character: There is no ; in font nullfont!
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[28] [29]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [30]
+[28] [29] [30]
 Overfull \hbox (14.53462pt too wide) in paragraph at lines 221--222
 \OT1/cmr/m/n/12 (Sec. [][]3.2.1[][]) [[][]Mnih and Teh[][], [][]2012[][]] and l
 earn-ing word em-bed-dings [][]Mnih and Kavukcuoglu[][]
  []
 
+[31]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Underfull \vbox (badness 1072) has occurred while \output is active []
-
- [31]
-[32]
+ [32]
 Overfull \hbox (57.18317pt too wide) in paragraph at lines 273--273
 [] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [33]
-[34] [35]
+[33] [34] [35]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 383.
  [36]) [37]
@@ -1388,24 +1388,20 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 213.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 213.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 213.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 3A21E65F50DBEC3D8C4F654ACD7B1361;4988.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+(rerunfilecheck)             Checksum: 8988C8EA73AA998B0DA3D7769E9B0203;5022.
  )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 135 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 21268 strings out of 493304
- 356475 string characters out of 6139871
- 490405 words of memory out of 5000000
- 23835 multiletter control sequences out of 15000+600000
+ 21326 strings out of 493304
+ 357839 string characters out of 6139871
+ 491439 words of memory out of 5000000
+ 23890 multiletter control sequences out of 15000+600000
  19784 words of font info for 71 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 56i,18n,70p,1414b,994s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,18n,70p,1414b,1066s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></u
@@ -1427,7 +1423,7 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (96 pages, 1218987 bytes).
+Output written on thesis.pdf (96 pages, 1218588 bytes).
 PDF statistics:
  1531 PDF objects out of 1728 (max. 8388607)
  1368 compressed objects within 14 object streams

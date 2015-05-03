@@ -9,14 +9,14 @@
 \contentsline {subsection}{\numberline {1.1.3}Compositionality of distributed word vectors}{4}{subsection.12}
 \contentsline {section}{\numberline {1.2}Problem Statement}{5}{section.13}
 \contentsline {section}{\numberline {1.3}Organization of Thesis}{6}{section.15}
-\contentsline {chapter}{\numberline {2}Related Work}{7}{chapter.16}
+\contentsline {chapter}{\numberline {2}Background on Document Categorization}{7}{chapter.16}
 \contentsline {section}{\numberline {2.1}Text Representation}{7}{section.17}
 \contentsline {subsection}{\numberline {2.1.1}Bag of Words}{8}{subsection.18}
 \contentsline {subsection}{\numberline {2.1.2}Dimensionality Reduction and Feature Selection}{9}{subsection.24}
 \contentsline {section}{\numberline {2.2}Learning Algorithms}{11}{section.33}
 \contentsline {subsection}{\numberline {2.2.1}Document Categorization using Binary Classifiers}{12}{subsection.34}
 \contentsline {subsection}{\numberline {2.2.2}Document Categorization with Single Joint Classifier}{15}{subsection.39}
-\contentsline {chapter}{\numberline {3}Distributed Document Embeddings}{19}{chapter.44}
+\contentsline {chapter}{\numberline {3}Distributed Document Representations}{19}{chapter.44}
 \contentsline {section}{\numberline {3.1}Why use Distributed Word Representations?}{19}{section.45}
 \contentsline {section}{\numberline {3.2}Background on Word Embeddings}{20}{section.48}
 \contentsline {subsection}{\numberline {3.2.1}Neural Probabilistic Language Model}{21}{subsection.49}
@@ -24,7 +24,7 @@
 \contentsline {subsubsection}{\numberline {3.2.2.1}Continuous Bag-of-Words}{23}{subsubsection.57}
 \contentsline {subsubsection}{\numberline {3.2.2.2}Continuous Skip-gram}{24}{subsubsection.62}
 \contentsline {subsubsection}{\numberline {3.2.2.3}Dependency-based Word Embeddings}{25}{subsubsection.65}
-\contentsline {section}{\numberline {3.3}Document Embeddings}{26}{section.67}
+\contentsline {section}{\numberline {3.3}Document Representation}{26}{section.67}
 \contentsline {subsection}{\numberline {3.3.1}Problem Setup}{27}{subsection.70}
 \contentsline {subsection}{\numberline {3.3.2}Our Model}{27}{subsection.71}
 \contentsline {subsubsection}{\numberline {3.3.2.1}Projection Layer (Context Representation)}{28}{subsubsection.76}

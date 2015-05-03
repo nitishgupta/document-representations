@@ -1,41 +1,59 @@
+\usetikzlibrary{calc}
+
 \def\layersep{2.5cm}
 
-\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep,transform shape,rotate=90]  %<-- rotate the NN
     \tikzstyle{every pin edge}=[<-,shorten <=1pt]
-    \tikzstyle{neuron}=[circle,fill=black!25,minimum size=17pt,inner sep=0pt]
-    \tikzstyle{input neuron}=[neuron, fill=green!50];
-    \tikzstyle{output neuron}=[neuron, fill=red!50];
-    \tikzstyle{hidden neuron}=[neuron, fill=blue!50];
+    \tikzstyle{neuronrect}=[rectangle,fill=black!25, minimum size=17pt, inner sep=0pt] %
+    \tikzstyle{neuroncircle}=[circle,fill=black!25,minimum size=17pt,inner sep=0pt]
+    \tikzstyle{input neuron}=[neuronrect, fill=green!50];
+    \tikzstyle{doc neuron}=[neuronrect, fill=purple!50];
+    \tikzstyle{output neuron}=[neuroncircle, fill=red!50];
+    \tikzstyle{hidden neuron}=[neuronrect, fill=blue!50];
     \tikzstyle{annot} = [text width=4em, text centered]
-
+    \tikzset{hoz/.style={rotate=-90}}   %<--- for labels
     % Draw the input layer nodes
-    \foreach \name / \y in {1,...,4}
+    %\foreach \name / \y in {1,...,4}
     % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
-        \node[input neuron, pin=left:$w_{\y}$] (I-\name) at (0,-\y) {};
+        %\node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t-j}$}}] (I-\name) at (0,-\y) {};
+
+	\node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t}$}}] (W-0) at (0,2.5) {};    
+
+    \node[doc neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $d_{i}$}}] (I-0) at (0,0.5) {};    
+
+    \node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t-2}$}}] (I-1) at (0,-1) {};
+    \node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t-1}$}}] (I-2) at (0,-2) {};
+    \node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t+1}$}}] (I-3) at (0,-3) {};
+    \node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t+2}$}}] (I-4) at (0,-4) {};    
 
     % Draw the hidden layer nodes
-    \foreach \name / \y in {1,...,5}
+    % \foreach \name / \y in {1,...,5}
         \path[yshift=0.5cm]
-            node[hidden neuron] (H-\name) at (\layersep,-\y cm) {};
+        node[hidden neuron] (H-1) at (\layersep,-2.0 cm) [label=below:\rotatebox{-90}{\parbox[t][][r]{20mm}{\centering \footnotesize $h=$ Projection Layer}}] {};
 
     % Draw the output layer node
-    \node[output neuron,pin={[pin edge={->}]right:Output}, right of=H-3] (O) {};
+    \node[output neuron, pin={[pin edge={->}]right:\rotatebox{-90}{$p(w_{t}|d_{i}, w_{t-2}, \ldots, w_{t+2})$}}] (O) at (\layersep + \layersep,0) {};
+    %\node[output neuron,pin={[pin edge={->}]right:\rotatebox{-90}{$p(w_{t}|d_{i}, w_{t-2}, \ldots, w_{t+2})$}}, right of=H-1] (O) {};
 
-    % Connect every node in the input layer with every node in the
-    % hidden layer.
+    % Connect word vectors to projection later
     \foreach \source in {1,...,4}
-        \foreach \dest in {1,...,5}
-            \path (I-\source) edge (H-\dest);
+        \path (I-\source) edge (H-1);
 
-    % Connect every node in the hidden layer with the output layer
-    \foreach \source in {1,...,5}
-        \path (H-\source) edge (O);
+    %Connect Middle Word to Output Node
+	\path (W-0) edge (O);            
+
+	%Connect Doc Embedding to Projection Layer
+	\path (I-0) edge (H-1);            
+
+    %Connect Projection Layer to Output
+    \path (H-1) edge (O);
 
     % Annotate the layers
-    \node[annot,above of=H-1, node distance=1cm] (hl) {Hidden layer};
-    \node[annot,left of=hl] {Input layer};
-    \node[annot,right of=hl] {Output layer};
+    % \node[annot,above of=H-1, node distance=1cm,hoz] (hl) {Hidden layer};
+    % \node[annot,left of=hl,hoz] {Input layer};
+    % \node[annot,right of=hl,hoz] {Output layer};
 \end{tikzpicture}
+
 % \begin{tikzpicture}[scale=1.0, transform shape]
 % % Macros
 % % relative positioning

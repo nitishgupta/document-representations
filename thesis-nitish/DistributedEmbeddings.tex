@@ -1,4 +1,4 @@
-\chapter{Distributed Document Embeddings}
+\chapter{Distributed Document Representations}
 \label{chapter:distembed}
 In this chapter we describe the concept of distributed word and document embeddings and why distributed representations of words and documents are better than one-hot or bag-of-words representations as described in \ref{sec:textrepr}. We then give a background on different models that learn distributed representations for words in a fully unsupervised manner and finally describe in detail our proposed model for learning distributed representations for documents that can be used for multi-label document categorization.
 
@@ -116,7 +116,7 @@ Instead of using bag-of-words based context as used in \emph{NPLM} and \emph{wor
 \end{figure}
 After extracting the contexts, their model uses the neural network architecture and the training objective of the skip-gram model to learn word vectors. On comparison to the vectors learned from the skip-gram model on the tasks of \emph{topical similarity} and \emph{functional similarity} estimation, it is found that the vectors learned from this model perform better on the \emph{functional similarity} task that expects word vectors to encode syntactic relationships better. In the task of \emph{topical similarity} estimation, the vectors from the skip-gram model performed better as they encode semantic similarity between words because of the bag-of-words context used during training.
 
-\section{Document Embeddings}
+\section{Document Representation}
 \label{sec:document_embeddings}
 In the previous section we saw how distributed word embeddings that encode semantic similarity can be learned from text. 
 Though these semantic word spaces are very useful for a lot of tasks, their ability to capture the complexity and compositionality of human language is limited. 
@@ -153,8 +153,8 @@ Therefore, our training objective is to maximize the probability $p(w_{t} | d_{i
 To learn distributed word and document representations, we present a neural network model using which we,
 \begin{enumerate}
 \item Represent each word and document in the corpus by a $k$-dimensional distributed representation stored as vectors in the matrices $\matW$ and $\matD$, respectively.
-\item Estimate the probability of predicting the middle word in a sequence, given the document it occurs in, using the vector representation of the document and the words in the context.
-\item Learn the word and document vectors simultaneously with the parameters of the function to estimate the probability.
+\item Estimate the probability of predicting the middle word in a given word sequence using the vector representation of the the words in the context and the document it occurs in.
+\item Learn the word and document vectors simultaneously with the parameters of the model to estimate the probability.
 \end{enumerate}
 The architecture for the proposed neural network is given in Fig.~\ref{fig:nn:archi}.
 Also note that the word vector representations learned and stored in the matrix $\matW$ are universal representations and shared across all documents and contexts.

@@ -9,14 +9,14 @@
 \BOOKMARK [2][-]{subsection.12}{1.1.3 Compositionality of distributed word vectors}{section.9}% 9
 \BOOKMARK [1][-]{section.13}{1.2 Problem Statement}{chapter.7}% 10
 \BOOKMARK [1][-]{section.15}{1.3 Organization of Thesis}{chapter.7}% 11
-\BOOKMARK [0][-]{chapter.16}{2 Related Work}{}% 12
+\BOOKMARK [0][-]{chapter.16}{2 Background on Document Categorization}{}% 12
 \BOOKMARK [1][-]{section.17}{2.1 Text Representation}{chapter.16}% 13
 \BOOKMARK [2][-]{subsection.18}{2.1.1 Bag of Words}{section.17}% 14
 \BOOKMARK [2][-]{subsection.24}{2.1.2 Dimensionality Reduction and Feature Selection}{section.17}% 15
 \BOOKMARK [1][-]{section.33}{2.2 Learning Algorithms}{chapter.16}% 16
 \BOOKMARK [2][-]{subsection.34}{2.2.1 Document Categorization using Binary Classifiers}{section.33}% 17
 \BOOKMARK [2][-]{subsection.39}{2.2.2 Document Categorization with Single Joint Classifier}{section.33}% 18
-\BOOKMARK [0][-]{chapter.44}{3 Distributed Document Embeddings}{}% 19
+\BOOKMARK [0][-]{chapter.44}{3 Distributed Document Representations}{}% 19
 \BOOKMARK [1][-]{section.45}{3.1 Why use Distributed Word Representations?}{chapter.44}% 20
 \BOOKMARK [1][-]{section.48}{3.2 Background on Word Embeddings}{chapter.44}% 21
 \BOOKMARK [2][-]{subsection.49}{3.2.1 Neural Probabilistic Language Model}{section.48}% 22
@@ -24,7 +24,7 @@
 \BOOKMARK [3][-]{subsubsection.57}{3.2.2.1 Continuous Bag-of-Words}{subsection.56}% 24
 \BOOKMARK [3][-]{subsubsection.62}{3.2.2.2 Continuous Skip-gram}{subsection.56}% 25
 \BOOKMARK [3][-]{subsubsection.65}{3.2.2.3 Dependency-based Word Embeddings}{subsection.56}% 26
-\BOOKMARK [1][-]{section.67}{3.3 Document Embeddings}{chapter.44}% 27
+\BOOKMARK [1][-]{section.67}{3.3 Document Representation}{chapter.44}% 27
 \BOOKMARK [2][-]{subsection.70}{3.3.1 Problem Setup}{section.67}% 28
 \BOOKMARK [2][-]{subsection.71}{3.3.2 Our Model}{section.67}% 29
 \BOOKMARK [3][-]{subsubsection.76}{3.3.2.1 Projection Layer \(Context Representation\)}{subsection.71}% 30
