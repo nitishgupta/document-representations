@@ -2,11 +2,8 @@
 \label{chapter:distembed}
 In this chapter we describe the concept of distributed word and document embeddings and why distributed representations of words and documents are better than one-hot or bag-of-words representations as described in \ref{sec:textrepr}. We then give a background on different models that learn distributed representations for words in a fully unsupervised manner and finally describe in detail our proposed model for learning distributed representations for documents that can be used for multi-label document categorization.
 
-\section{Why use Distributed Word Representations?}
+\section{Need of Distributed Word Representations}
 \label{sec:motivation_distributed}
-% \todo{Get in tune to document representations. Say words and documents suffer in the same manner with one-hot or bow representations. Express problems in docs with changing words. Give example of sentence}
-
-% \todo{Can be tackled with distributed repr. Similarity measures as simple as cos-distance can be introduced in documents. Lets model joint distributions of words with continuous distributions. Words have distributed representaions but not docs. }
 Words are regarded as atomic symbols in most rule-based and statistical natural language processing(NLP) tasks and hence need appropriate representation to solve the NLP tasks with greater ease and accuracy. 
 Words are traditionally expressed as one-hot vectors, i.e. as vectors of the size of the vocabulary where exactly one element is $1$ and the rest all are zero.
 Though these representations have been widely used, one-hot representations have a plethora of drawbacks that pose problems and limit the ability of systems to perform better. 
@@ -63,7 +60,7 @@ The parameters of the model $(b, d, W, U, H)$ and the word vectors $C$ are estim
 \label{sec:word2vec}
 Simple log-linear models are proposed in \cite{mikolov2013efficient} as opposed to the non-linear NPLM model to bring down the training time complexity without sacrificing with the quality of the word vectors. It achieves so by not having a non-linear layer and matrix weighting of the input vectors that are the costliest operations in NPLM. The two models proposed in \cite{mikolov2013efficient} (word2vec) are Continuous Bag-of-Words and Continuous Skip-Gram model, described below.
 
-\subsubsection{Continuous Bag-of-Words}
+\subsubsection{Continuous Bag-of-Words Model}
 \label{sec:cbow}
 The Continuous Bag-of-Words (CBOW) model is different from the NPLM in that the projection layer is shared for all words; i.e. all words get projected into the same hidden layer vector (their vectors are averaged). This architecture hence neglects the ordering of the words as opposed to NNLM that uses the concatenation of input vectors for the projection layer. The training criteria in this model is to to classify the current (middle) word given its context. It also uses word sequence from the future to aid this task with the relaxation that the aim is not to learn a language model. The model architecture is given in Figure~\ref{fig:nn:cbow}.
 \begin{figure}[h!]
@@ -87,7 +84,7 @@ P(w_{t}|w_{t-k}, \ldots, w_{t+k}) = \frac{e^{y_{w_t}}}{\sum_{i} e^{y_{i}}}
 \end{equation}
 The parameters of the CBOW model, $(b, U)$ and the word vectors ($w_{i}$) are learned by maximizing the average log probability (Eq.~\ref{eq:cbow:prob}) of the training corpus.
 
-\subsubsection{Continuous Skip-gram}
+\subsubsection{Continuous Skip-gram Model}
 This model is similar to the CBOW model, but instead of predicting the middle word based on the context, it tries to maximize the classification of a word based on another word in the context. More precisely, given each word, the skip-gram model tries to predict words within a certain range before and after the current word. The model architecture is given in Figure~\ref{fig:nn:skip}
 \begin{figure}[h!]
     \centering
@@ -162,12 +159,12 @@ Also note that the word vector representations learned and stored in the matrix 
     \centering
         %\includegraphics[width=0.9\textwidth]{figs/nn_arch.png}
         \input{figs/nn_arch}
-    \caption{\textbf{Neural Network Architecture} : Our model's neural network architecture when $2$ surrounding words on each side of the middle word are considered.}
+    \caption{Our model's neural network architecture where $2$ surrounding words on each side of the middle word are considered.}
     \label{fig:nn:archi}
 \end{figure}
 
 %\para{Projection Layer (Context Representation)} : 
-\subsubsection{Projection Layer (Context Representation)}
+\subsubsection{Context Representation}
 We represent the context(words surrounding the middle word to be predicted) and the document together in the same projection layer, denoted by $h_{c} \in \mathbb{R}^{k}$, by taking a weighted sum of the corresponding vector representations. 
 The weights for the context words $\Lambda = \{\wgt{i} | i=\{t-c, \ldots, t-1, t+1, \ldots, t+c\}\}$ are kept universal for different sequences across the corpus as we expect the weights to learn some kind of syntactic quality of the language to better represent the context. Also the weight corresponding to the document vector is kept constant at $1$ as we expected the document to have equal contribution to all sequences. This also gave the best results.
 We also (unsuccessfully) experimented by taking matrix weights instead of scalar weights($\wgt{i}$) to learn better syntactic qualities of the language. 
@@ -195,7 +192,7 @@ p(w_{t} | d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c}) = \frac{e^{
 \end{enumerate}
 
 %\textbf{Training Objective} : 
-\subsubsection{Training Objective}
+\subsubsection{Learning Objective}
 The training data $\traindata$, is composed of $M$ training sequences each of which consists a $2c+1$ length sequence of words and the document index it belongs to. For example, $t = \{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}\}$ represents the $m^{th}$ training sequence in $\traindata$.  
 
 Given the training data $\traindata$, our objective is to learn an optimum parameter set $\Theta = (\matD, \matW, \Lambda)$ consisting of the document and word vector matrices and the projection layer weights for the context words, by maximizing the average log probability of estimating the middle word correctly in all the training word sequences where the probability of estimating the middle word as $w_{i}$ is given by Eq.~\ref{eq:soft_prob}. Therefore, 
@@ -218,7 +215,7 @@ Updating the parameters for sufficient number of iterations should yield the opt
 \subsubsection{Noise Contrastive Estimation}
 As we see in Eq~\ref{eq:soft_prob}, estimating the probability for each training word sequence requires a sweep through the whole vocabulary of size $|\setW|$ which can be a very expensive computation given that typical vocabulary sizes range from a few tens to a few hundreds of thousand words for large datasets. Approaches to reduce this training time, such as, use of hierarchical soft-max \citep{morin2005hierarchical} and use of importance sampling to approximate the likelihood gradient \citep{bengio2003quick}, \citep{bengio2008adaptive} have been proposed. Using hierarchical softmax reduces the training time from linear to logarithmic in vocabulary size but is considerable more involved and finding well-performing trees is not trivial. Also, though importance sampling provides substantial speedups, it suffers from stability problems.
 
-\textbf{Noise Contrastive Estimation (NCE)} \citep{gutmann2012noise} is method for fitting unnormalized probabilities by reducing the problem of \emph{density estimation} to \emph{probabilistic binary classification}. It has also been adapted to NPLM (Sec.~\ref{sec:bengio}) \citep{mnih2012fast} and learning word embeddings \cite{mnih2013learning} and shows significant improvements in training time with no considerable degradation in the quality of word vectors learned.
+Noise Contrastive Estimation (NCE) \citep{gutmann2012noise} is method for fitting unnormalized probabilities by reducing the problem of \emph{density estimation} to \emph{probabilistic binary classification}. It has also been adapted to NPLM (Sec.~\ref{sec:bengio}) \citep{mnih2012fast} and learning word embeddings \cite{mnih2013learning} and shows significant improvements in training time with no considerable degradation in the quality of word vectors learned.
 
 The basic idea of NCE is to train a logistic classifier to distinguish between the correct middle word in the given word sequence and corrupt samples from some ``noise'' distribution. Therefore, given a training sequence of the form $t = \{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}\}$, our training objective now is to train a classifier such that it can distinguish between positive training sample $w^{(m)}_{t}$ as positive example and negative training samples $w_{x}$ drawn from a noise distribution $P_{n}(w)$ as negative examples for the middle word given the surrounding words (context) and the document the sequence belongs to.
 
@@ -245,7 +242,7 @@ P(Y|d_{i}, w_{t-c}, \ldots, w_{t+c}, \Theta) = [\sigma(\vecwi{w_{t}} \cdot h_{c}
 \end{equation}
 As a shorthand notation, we would express the probability estimation in Eq.~\ref{eq:prob_y} as $P_{\Theta}(Y)$.
 
-\subsubsection{New Training Objective}
+\subsubsection{Learning Objective using NCE}
 Our new training objective involves maximizing the log-likelihood of observing the modified training data $\traindata$ that includes the negative examples sampled from the noise distribution $P_{n}(w)$ along with the original positive training sequences. 	
 \begin{equation}
 \label{eq:new_argmax}
@@ -356,7 +353,7 @@ The update rules for the document vector, word vectors and the neural network we
 \end{enumerate}
 To learn the vectors $\matD$, $\matW$ and weights $\Lambda$ we initialize them to small random vectors and scalars respectively and using Eqs.~\ref{eq:update_doc}, ~\ref{eq:update_mword}, ~\ref{eq:update_cword} and ~\ref{eq:update_wgt} we iterate through the training data, making the appropriate updates for a fixed number of epochs that is learned using the development data. For each training sequence we make one update to the document vector, $2c$ updates for the word vectors in the sequence and the neural network weights, where $c$ is the window length we consider while training. The complete algorithm for learning document and word vectors using our model is described in Algorithm~\ref{alg:doc_embeddings}.
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 \begin{algorithmic}[1]
  \State \textbf{Input: } $\setD$, $k$, $c$, $n$, $\beta$, $\gamma$, $epochs$
  \State \textbf{Output: } Document Vectors $\matD$, Word Vectors $\matW$ 
@@ -384,7 +381,7 @@ To learn the vectors $\matD$, $\matW$ and weights $\Lambda$ we initialize them t
 \label{alg:doc_embeddings}
 \end{algorithm}
 
-\subsubsection{Hyper-parameters}
+\subsubsection{Hyper-parameters of our model}
 \label{sec:hp_doc}
 Our model, like any other, has hyper-parameters that need to be tuned for optimum model performance and learning high quality document and word vectors and the model parameters for achieving the the best accuracies in the task. Below we describe the hyper-parameters in our model and the effect they have on learning document representations.
 \begin{enumerate}

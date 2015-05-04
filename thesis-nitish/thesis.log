@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  4 MAY 2015 10:10
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  4 MAY 2015 20:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -983,12 +983,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--14
 
  []
 
-) [2
+LaTeX Font Info:    Try loading font information for U+msa on input line 17.
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 17.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)) [2
 
 ]
 \openout2 = `Dedication.aux'.
 
- (./Dedication.tex) [2
+
+(./Dedication.tex) [2
 
 
 ]
@@ -1000,22 +1009,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--14
 ] [4
 
 
-] (./thesis.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 6.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 6.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [5] [6])
+] (./thesis.toc [5]
+[6])
 \tf@toc=\write5
 \openout5 = `thesis.toc'.
 
- [7]
-[8
+ [7] [8
 
 ] (./thesis.lot
 Underfull \vbox (badness 1406) has occurred while \output is active []
@@ -1068,7 +1067,7 @@ Chapter 2.
 
 
 ] [8] [9]
-Overfull \hbox (34.26413pt too wide) detected at line 60
+Overfull \hbox (14.94499pt too wide) detected at line 99
 []\OML/cmm/m/it/12 G\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) = \OMS
 /cmsy/m/n/12 ^^@ [] \OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 c[]\OT1
 /cmr/m/n/12 ) [] \OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 c[]\OT1/cm
@@ -1076,75 +1075,74 @@ r/m/n/12 ) + \OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/
 12 ) [] \OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 c[]\OMS/cmsy/m/n/12
  j\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) [] \OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OM
 L/cmm/m/it/12 c[]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) + \OML/c
-mm/m/it/12 P\OT1/cmr/m/n/12 ( []\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) [] \OML/cmm
-/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 c[]\OMS/cmsy/m/n/12 j []\OML/cmm/m/
-it/12 t\OT1/cmr/m/n/12 ) [] \OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12
- c[]\OMS/cmsy/m/n/12 j []\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )
+mm/m/it/12 P\OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 ^^X \OML/cmm/m/it/12 t\OT1/cmr/m/
+n/12 ) [] \OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 c[]\OMS/cmsy/m/n/
+12 j []\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) [] \OML/cmm/m/it/12 P\OT1/cmr/m/n/12
+ (\OML/cmm/m/it/12 c[]\OMS/cmsy/m/n/12 j []\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )
  []
 
-[10] [11]
-Underfull \vbox (badness 3460) has occurred while \output is active []
 
- [12]
-Overfull \hbox (3.7252pt too wide) in paragraph at lines 100--101
-[]\OT1/cmr/bx/n/12 Neural Net-works (NNet) \OT1/cmr/m/n/12 : Classification-bas
-ed, Neu-ral Net-work ap-proaches
+Underfull \vbox (badness 1831) has occurred while \output is active []
+
+ [10]
+[11] [12]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [13]
+Overfull \hbox (5.0125pt too wide) in paragraph at lines 158--160
+[]\OT1/cmr/m/n/12 In the case of mil-lions of la-bels in the dataset, learn-ing
+ mil-lions of high-dimensional
  []
 
-[13]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 107.
+[14]
+Underfull \vbox (badness 1072) has occurred while \output is active []
 
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 107.
- [14] [15]
-[16]) [17]
+ [15])
+[16]
 \openout2 = `DistributedEmbeddings.aux'.
 
- (./DistributedEmbeddings.tex [18
-
-
-
-]
+ (./DistributedEmbeddings.tex
 Chapter 3.
-[19] [20] <figs/bengio_nn.png, id=841, 1062.97125pt x 901.3675pt>
+[17
+
+
+
+] [18] <figs/bengio_nn.png, id=815, 1062.97125pt x 901.3675pt>
 File: figs/bengio_nn.png Graphic file (type png)
 
 <use figs/bengio_nn.png>
-Package pdftex.def Info: figs/bengio_nn.png used on input line 44.
+Package pdftex.def Info: figs/bengio_nn.png used on input line 41.
 (pdftex.def)             Requested size: 341.43437pt x 289.53003pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [21]
-<figs/mikolov_cbow.png, id=856, 626.34pt x 694.595pt>
+ [19]
+<figs/mikolov_cbow.png, id=830, 626.34pt x 694.595pt>
 File: figs/mikolov_cbow.png Graphic file (type png)
 
 <use figs/mikolov_cbow.png>
-Package pdftex.def Info: figs/mikolov_cbow.png used on input line 71.
+Package pdftex.def Info: figs/mikolov_cbow.png used on input line 68.
 (pdftex.def)             Requested size: 213.39568pt x 236.64671pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [22 <./figs/bengio_nn.png>] [23 <./figs/mikolov_cbow.png>]
-<figs/mikolov_skip.png, id=874, 596.2275pt x 693.59125pt>
+ [20 <./figs/bengio_nn.png>] [21 <./figs/mikolov_cbow.png>]
+<figs/mikolov_skip.png, id=847, 596.2275pt x 693.59125pt>
 File: figs/mikolov_skip.png Graphic file (type png)
 
 <use figs/mikolov_skip.png>
-Package pdftex.def Info: figs/mikolov_skip.png used on input line 94.
+Package pdftex.def Info: figs/mikolov_skip.png used on input line 91.
 (pdftex.def)             Requested size: 170.71393pt x 198.58572pt.
- [24 <./figs/mikolov_skip.png>]
-<figs/dependency_context.png, id=893, 1179.40625pt x 781.92125pt>
+ [22 <./figs/mikolov_skip.png>]
+<figs/dependency_context.png, id=865, 1179.40625pt x 781.92125pt>
 File: figs/dependency_context.png Graphic file (type png)
 
 <use figs/dependency_context.png>
-Package pdftex.def Info: figs/dependency_context.png used on input line 113.
+Package pdftex.def Info: figs/dependency_context.png used on input line 110.
 (pdftex.def)             Requested size: 298.75264pt x 198.06888pt.
- [25 <./figs/dependency_context.png>] [26]
-[27]
-Overfull \hbox (67.78088pt too wide) in paragraph at lines 150--152
+ [23 <./figs/dependency_context.png>] [24]
+[25]
+Overfull \hbox (67.78088pt too wide) in paragraph at lines 147--149
 \OT1/cmr/m/n/12 sen-ta-tions. There-fore, our train-ing ob-jec-tive is to max-i
 -mize the prob-a-bil-ity $\OML/cmm/m/it/12 p\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 w
 []\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 d[]; w[]; [] ; w[]\OT1/cmr/m/n/12 )$
@@ -1193,46 +1191,40 @@ Overfull \hbox (4.14479pt too wide) in paragraph at lines 72--72
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[28] [29] [30]
-Overfull \hbox (14.53462pt too wide) in paragraph at lines 221--222
-\OT1/cmr/m/n/12 (Sec. [][]3.2.1[][]) [[][]Mnih and Teh[][], [][]2012[][]] and l
-earn-ing word em-bed-dings [][]Mnih and Kavukcuoglu[][]
- []
-
-[31]
+[26] [27] [28] [29]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [32]
-Overfull \hbox (57.18317pt too wide) in paragraph at lines 273--273
+ [30]
+Overfull \hbox (57.18317pt too wide) in paragraph at lines 270--270
 [] 
  []
 
 
 Underfull \vbox (badness 3118) has occurred while \output is active []
 
+ [31]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [33]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [34]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [35]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 383.
+put line 380.
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[36] [37]) [38]
+[34] [35]) [36]
 \openout2 = `TextCategorization.aux'.
 
  (./TextCategorization.tex
 Chapter 4.
-[39
+[37
 
 
 
-] [40] [41]
+] [38] [39]
 Overfull \hbox (54.87115pt too wide) in paragraph at lines 83--83
 [] 
  []
@@ -1240,21 +1232,21 @@ Overfull \hbox (54.87115pt too wide) in paragraph at lines 83--83
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [42]
+ [40]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [43]
-[44]
+ [41]
+[42]
 Overfull \hbox (16.75267pt too wide) in paragraph at lines 142--143
 []\OT1/cmr/m/n/12 Since we learn dis-tributed em-bed-dings for the cat-e-gories
  in the same $\OML/cmm/m/it/12 k$\OT1/cmr/m/n/12 -dimensional
  []
 
-[45]) [46]
+[43]) [44]
 \openout2 = `Evaluation.aux'.
 
  (./Evaluation.tex
@@ -1262,26 +1254,26 @@ Chapter 5.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [47
+ [45
 
 
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [48]
+ [46]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [49]
-[50]
+ [47]
+[48]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [51]
-[52] [53]
+ [49]
+[50] [51]
 Overfull \hbox (40.81345pt too wide) in paragraph at lines 148--181
  [] 
  []
@@ -1292,17 +1284,17 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[54]
+[52]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figs/pr/reuter-cs-scala.pdf, id=1202, 397.485pt x 325.215pt>
+<figs/pr/reuter-cs-scala.pdf, id=1174, 397.485pt x 325.215pt>
 File: figs/pr/reuter-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/reuter-cs-scala.pdf>
 Package pdftex.def Info: figs/pr/reuter-cs-scala.pdf used on input line 302.
 (pdftex.def)             Requested size: 341.43437pt x 279.36185pt.
- [55]
+ [53]
 Overfull \hbox (38.89119pt too wide) in paragraph at lines 349--382
  [] 
  []
@@ -1316,13 +1308,13 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figs/pr/physics-cs-scala.pdf, id=1216, 397.485pt x 325.215pt>
+<figs/pr/physics-cs-scala.pdf, id=1189, 397.485pt x 325.215pt>
 File: figs/pr/physics-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/physics-cs-scala.pdf>
 Package pdftex.def Info: figs/pr/physics-cs-scala.pdf used on input line 490.
 (pdftex.def)             Requested size: 341.43437pt x 279.36185pt.
- [56]
+ [54]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1340,11 +1332,11 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Underfull \vbox (badness 1038) has occurred while \output is active []
 
- [57 <./figs/pr/reuter-cs-scala.pdf>]
+ [55 <./figs/pr/reuter-cs-scala.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figs/pr/biology-cs-scala.pdf, id=1242, 397.485pt x 325.215pt>
+<figs/pr/biology-cs-scala.pdf, id=1216, 397.485pt x 325.215pt>
 File: figs/pr/biology-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/biology-cs-scala.pdf>
@@ -1353,8 +1345,8 @@ Package pdftex.def Info: figs/pr/biology-cs-scala.pdf used on input line 679.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [58]
-[59 <./figs/pr/physics-cs-scala.pdf>]
+ [56]
+[57 <./figs/pr/physics-cs-scala.pdf>]
 Overfull \hbox (66.63963pt too wide) in paragraph at lines 727--760
  [] 
  []
@@ -1368,7 +1360,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[60] <figs/pr/mathematics-cs-scala.pdf, id=1273, 397.485pt x 325.215pt>
+[58] <figs/pr/mathematics-cs-scala.pdf, id=1246, 397.485pt x 325.215pt>
 File: figs/pr/mathematics-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/mathematics-cs-scala.pdf>
@@ -1378,7 +1370,7 @@ Package pdftex.def Info: figs/pr/mathematics-cs-scala.pdf used on input line 86
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [61 <./figs/pr/biology-cs-scala.pdf>]
+ [59 <./figs/pr/biology-cs-scala.pdf>]
 Overfull \hbox (34.10513pt too wide) in paragraph at lines 917--950
  [] 
  []
@@ -1389,30 +1381,30 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[62]
+[60]
 Underfull \vbox (badness 1648) has occurred while \output is active []
 
- [63 <./figs/pr/mathematics-cs-scala.pdf>]
-<figs/pr/sports-cs-scala.pdf, id=1312, 397.485pt x 325.215pt>
+ [61 <./figs/pr/mathematics-cs-scala.pdf>]
+<figs/pr/sports-cs-scala.pdf, id=1285, 397.485pt x 325.215pt>
 File: figs/pr/sports-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/sports-cs-scala.pdf>
 Package pdftex.def Info: figs/pr/sports-cs-scala.pdf used on input line 1058.
 (pdftex.def)             Requested size: 341.43437pt x 279.36185pt.
- [64]
+ [62]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [65 <./figs/pr/sports-cs-scala.pdf>]
+ [63 <./figs/pr/sports-cs-scala.pdf>]
 Overfull \hbox (32.91609pt too wide) in paragraph at lines 1087--1153
  [] 
  []
 
-[66]
+[64]
 Overfull \hbox (37.5921pt too wide) in paragraph at lines 1177--1197
 [][] 
  []
 
-) [67] (./Conclusion.tex [68
+) [65] (./Conclusion.tex [66
 
 
 ]
@@ -1423,35 +1415,35 @@ Overfull \hbox (11.21799pt too wide) in paragraph at lines 7--11
 ries in the same low-dimensional
  []
 
-[69] [70]) [71] [72
+[67] [68]) [69] [70
 
-] (./thesis.bbl [73
+] (./thesis.bbl [71
 
-] [74] [75])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 213.
- [76]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 213.
+] [72] [73])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 214.
+ [74]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 214.
  (./thesis.aux
 (./title.aux) (./abstract.aux) (./Dedication.aux) (./acknowledgement.aux)
 (./Introduction.aux) (./RelatedWork.aux) (./DistributedEmbeddings.aux)
 (./TextCategorization.aux) (./Evaluation.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 213.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 213.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 214.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 214.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 8988C8EA73AA998B0DA3D7769E9B0203;5022.
+(rerunfilecheck)             Checksum: BECF9422F159B274607E411F838DEFB1;5031.
  )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 135 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 21408 strings out of 493304
- 359239 string characters out of 6139871
- 490483 words of memory out of 5000000
- 23972 multiletter control sequences out of 15000+600000
+ 21375 strings out of 493304
+ 358824 string characters out of 6139871
+ 491543 words of memory out of 5000000
+ 23959 multiletter control sequences out of 15000+600000
  19784 words of font info for 71 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 56i,18n,70p,1414b,1110s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,18n,70p,1188b,1108s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></u
@@ -1477,10 +1469,10 @@ sfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
 i12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb>
-Output written on thesis.pdf (96 pages, 1248953 bytes).
+Output written on thesis.pdf (94 pages, 1246711 bytes).
 PDF statistics:
- 1548 PDF objects out of 1728 (max. 8388607)
- 1381 compressed objects within 14 object streams
- 367 named destinations out of 1000 (max. 500000)
+ 1518 PDF objects out of 1728 (max. 8388607)
+ 1353 compressed objects within 14 object streams
+ 350 named destinations out of 1000 (max. 500000)
  587 words of extra memory for PDF output out of 10000 (max. 10000000)
 
