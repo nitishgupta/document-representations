@@ -4,10 +4,10 @@
 
 \begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep,transform shape,rotate=90]  %<-- rotate the NN
 	
-	\newcommand{\inputsep}{1.5}
+	\newcommand{\inputsep}{2}
 	\newcommand{\docnodey}{0}
 	\newcommand{\docinputsep}{2.0}
-	\newcommand{\docmiddlesep}{3.5}
+	\newcommand{\docmiddlesep}{3.2}
 	\newcommand{\wordneuron}{1.2}
 	
 
@@ -23,6 +23,9 @@
     \tikzstyle{every pin edge}=[<-,shorten <=1pt]
     \tikzstyle{neuronrect}=[rectangle,fill=black!25, minimum size=17pt, inner sep=0pt] %
     \tikzstyle{neuroncircle}=[circle,fill=black!25,minimum size=17pt,inner sep=0pt]
+    \tikzstyle{vecrect} = [draw,fill=green!50, minimum width=0.2,minimum height=1cm]
+    \tikzstyle{docrect} = [draw,fill=purple!50, minimum width=0.2,minimum height=1cm]
+    \tikzstyle{hrect} = [draw,fill=blue!50, minimum width=0.2,minimum height=1cm]
     \tikzstyle{input neuron}=[neuronrect, fill=green!50];
     \tikzstyle{doc neuron}=[neuronrect, fill=purple!50];
     \tikzstyle{output neuron}=[neuroncircle, fill=red!50];
@@ -36,31 +39,40 @@
 
     %Centre Word    
     \node[pin=left:\rotatebox{-90}{\word{Metallica}}] (I-1) at (-\wordneuron,\mwy) {};
-	\node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t}$}}] (W-0) at (0,\mwy) {};    
+	%\node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t}$}}] (W-0) at (0,\mwy) {};    
+	\node[vecrect, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t}$}}] (W-0) at (0,\mwy) {};    
 
+	%\node (rect) at (4,2) [draw,thick,fill=green!50, minimum width=0.2,minimum height=2cm, pin=left:\rotatebox{-90}{\word{Rolling\\Stones}}] {};
+	
 	%Doc 
-	\node[pin=left:\rotatebox{-90}{\word{Rolling\\Stones}}] (I-1) at (-\wordneuron,\docnodey) {};
-    \node[doc neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $d_{i}$}}] (D-0) at (0,\docnodey) {};    
+	\node[pin=left:\rotatebox{-90}{\word{Rolling\newline Stones}}] (I-1) at (-\wordneuron,\docnodey) {};
+    %\node[doc neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $d_{i}$}}] (D-0) at (0,\docnodey) {};    
+    \node[docrect, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $d_{i}$}}] (D-0) at (0,\docnodey) {};    
 
     \node[pin=left:\rotatebox{-90}{\word{metal}}] (I-1) at (-\wordneuron,\iy) {};
-    \node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t-2}$}}] (W-1) at (0,\iy) {};
+    %\node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t-2}$}}] (W-1) at (0,\iy) {};
+    \node[vecrect, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t-2}$}}] (W-1) at (0,\iy) {};
 
     \node[pin=left:\rotatebox{-90}{\word{band}}] (I-1) at (-\wordneuron,\iiy) {};
-    \node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t-1}$}}] (W-2) at (0,\iiy) {};
+    %\node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t-1}$}}] (W-2) at (0,\iiy) {};
+    \node[vecrect, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t-1}$}}] (W-2) at (0,\iiy) {};
     
     \node[pin=left:\rotatebox{-90}{\word{plays}}] (I-1) at (-\wordneuron,\iiiy) {};
-    \node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t+1}$}}] (W-3) at (0,\iiiy) {};
+    %\node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t+1}$}}] (W-3) at (0,\iiiy) {};
+    \node[vecrect, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t+1}$}}] (W-3) at (0,\iiiy) {};
 
     \node[pin=left:\rotatebox{-90}{\word{today}}] (I-1) at (-\wordneuron,\iiiiy) {};
-    \node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t+2}$}}] (W-4) at (0,\iiiiy) {};    
+    \node[vecrect, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t+2}$}}] (W-4) at (0,\iiiiy) {};    
+    %\node[input neuron, pin=left:\rotatebox{-90}{\parbox[t][][r]{8mm}{\centering $w_{t+2}$}}] (W-4) at (0,\iiiiy) {};    
 
     % Draw the hidden layer nodes
     % \foreach \name / \y in {1,...,5}
         \path[yshift=0.5cm]
-        node[hidden neuron] (P-1) at (\layersep,\iy - 1) [label=below:\rotatebox{-90}{\parbox[t][][r]{2mm}{\centering \footnotesize $h_{c}$}}] {};
+        %node[hidden neuron] (P-1) at (\layersep,\iy - 1) [label=below:\rotatebox{-90}{\parbox[t][][r]{2mm}{\centering \footnotesize $h_{c}$}}] {};
+        node[hrect] (P-1) at (\layersep,\iy - 1) [label=below:\rotatebox{-90}{\parbox[t][][r]{2mm}{\centering \footnotesize $h_{c}$}}] {};
 
     % Draw the output layer node
-    \node[output neuron, pin={[pin edge={->}]right:\rotatebox{-90}{$p(w_{t}|d_{i}, w_{t-2}, \ldots, w_{t+2})$}}] (O) at (\layersep + \layersep,0) {};
+    \node[output neuron, pin={[pin edge={->}]right:\rotatebox{-90}{$p(w_{t}|d_{i}, w_{t-2}, w_{t-1}, w_{t+1}, w_{t+2})$}}] (O) at (\layersep + \layersep,0) {};
     %\node[output neuron,pin={[pin edge={->}]right:\rotatebox{-90}{$p(w_{t}|d_{i}, w_{t-2}, \ldots, w_{t+2})$}}, right of=H-1] (O) {};
 
     % Connect word vectors to projection later
@@ -79,7 +91,7 @@
     \path (P-1) edge (O);
 
     % Annotate the layers
-    \node[annot,above of=P-1, node distance=7.5cm,hoz] (hl) {\footnotesize Projection layer};
+    \node[annot,above of=P-1, node distance=7.1cm,hoz] (hl) {\footnotesize Projection layer};
     \node[annot,left of=hl,hoz] {\footnotesize Input layer};
     \node[annot,right of=hl,hoz] {\footnotesize Output layer};
 \end{tikzpicture}

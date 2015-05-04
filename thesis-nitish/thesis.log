@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  4 MAY 2015 09:47
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  4 MAY 2015 10:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1160,32 +1160,32 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 
-Overfull \hbox (17.51567pt too wide) in paragraph at lines 38--38
+Overfull \hbox (17.51567pt too wide) in paragraph at lines 41--41
  []\OT1/cmr/m/n/10 Metallica 
  []
 
 
-Overfull \hbox (8.48788pt too wide) in paragraph at lines 42--42
- []\OT1/cmr/m/n/10 Rolling 
+Overfull \hbox (8.48788pt too wide) in paragraph at lines 48--48
+ []\OT1/cmr/m/n/10 Rolling  
  []
 
 
-Overfull \hbox (5.62675pt too wide) in paragraph at lines 42--42
- []\OT1/cmr/m/n/10 Stones 
+Overfull \hbox (5.62675pt too wide) in paragraph at lines 48--48
+ \OT1/cmr/m/n/10 Stones 
  []
 
 
-Overfull \hbox (1.68231pt too wide) in paragraph at lines 45--45
+Overfull \hbox (1.68231pt too wide) in paragraph at lines 52--52
  []\OT1/cmr/m/n/10 metal 
  []
 
 
-Overfull \hbox (1.96011pt too wide) in paragraph at lines 54--54
+Overfull \hbox (1.96011pt too wide) in paragraph at lines 64--64
  []\OT1/cmr/m/n/10 today 
  []
 
 
-Overfull \hbox (4.14479pt too wide) in paragraph at lines 60--60
+Overfull \hbox (4.14479pt too wide) in paragraph at lines 72--72
  []$\OML/cmm/m/it/10 h[]$ 
  []
 
@@ -1445,13 +1445,13 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 ### semi simple group (level 1) entered at line 135 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 21403 strings out of 493304
- 359131 string characters out of 6139871
- 491483 words of memory out of 5000000
- 23967 multiletter control sequences out of 15000+600000
+ 21408 strings out of 493304
+ 359239 string characters out of 6139871
+ 490483 words of memory out of 5000000
+ 23972 multiletter control sequences out of 15000+600000
  19784 words of font info for 71 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 56i,18n,70p,1414b,1107s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,18n,70p,1414b,1110s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></u
@@ -1477,7 +1477,7 @@ sfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
 i12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb>
-Output written on thesis.pdf (96 pages, 1248949 bytes).
+Output written on thesis.pdf (96 pages, 1248953 bytes).
 PDF statistics:
  1548 PDF objects out of 1728 (max. 8388607)
  1381 compressed objects within 14 object streams
