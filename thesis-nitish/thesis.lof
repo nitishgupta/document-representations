@@ -4,7 +4,7 @@
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Neural Network Architecture for Neural Probabilistic Language Model\relax }}{20}{figure.caption.37}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Continuous Bag-of-Words Model (CBOW)\relax }}{21}{figure.caption.43}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Continuous Skip-gram Model\relax }}{22}{figure.caption.48}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Dependency-based context extraction example\relax }}{23}{figure.caption.51}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Example for Dependency-based context extraction\relax }}{24}{figure.caption.51}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Our model's neural network architecture where $2$ surrounding words on each side of the middle word are considered.\relax }}{27}{figure.caption.60}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

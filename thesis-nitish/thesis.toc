@@ -17,7 +17,7 @@
 \contentsline {subsection}{\numberline {2.2.1}Document Categorization using Binary Classifiers}{12}{subsection.26}
 \contentsline {subsection}{\numberline {2.2.2}Document Categorization with Single Joint Classifier}{15}{subsection.27}
 \contentsline {chapter}{\numberline {3}Distributed Document Representations}{17}{chapter.29}
-\contentsline {section}{\numberline {3.1}Need of Distributed Word Representations}{17}{section.30}
+\contentsline {section}{\numberline {3.1}Need for Distributed Word Representations}{17}{section.30}
 \contentsline {section}{\numberline {3.2}Background on Word Embeddings}{18}{section.33}
 \contentsline {subsection}{\numberline {3.2.1}Neural Probabilistic Language Model}{19}{subsection.34}
 \contentsline {subsection}{\numberline {3.2.2}Log-Linear Models}{20}{subsection.41}
@@ -31,7 +31,7 @@
 \contentsline {subsubsection}{\numberline {3.3.2.2}Estimating Prediction Probability}{27}{subsubsection.63}
 \contentsline {subsubsection}{\numberline {3.3.2.3}Learning Objective}{28}{subsubsection.68}
 \contentsline {subsubsection}{\numberline {3.3.2.4}Noise Contrastive Estimation}{29}{subsubsection.72}
-\contentsline {subsubsection}{\numberline {3.3.2.5}Learning Objective using NCE}{31}{subsubsection.76}
+\contentsline {subsubsection}{\numberline {3.3.2.5}Learning Objective using NCE}{30}{subsubsection.76}
 \contentsline {subsubsection}{\numberline {3.3.2.6}Parameter Estimation}{31}{subsubsection.80}
 \contentsline {subsubsection}{\numberline {3.3.2.7}Hyper-parameters of our model}{34}{subsubsection.107}
 \contentsline {chapter}{\numberline {4}Multi-Label Document Categorization}{37}{chapter.114}

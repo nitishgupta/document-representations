@@ -17,7 +17,7 @@
 \BOOKMARK [2][-]{subsection.26}{2.2.1 Document Categorization using Binary Classifiers}{section.25}% 17
 \BOOKMARK [2][-]{subsection.27}{2.2.2 Document Categorization with Single Joint Classifier}{section.25}% 18
 \BOOKMARK [0][-]{chapter.29}{3 Distributed Document Representations}{}% 19
-\BOOKMARK [1][-]{section.30}{3.1 Need of Distributed Word Representations}{chapter.29}% 20
+\BOOKMARK [1][-]{section.30}{3.1 Need for Distributed Word Representations}{chapter.29}% 20
 \BOOKMARK [1][-]{section.33}{3.2 Background on Word Embeddings}{chapter.29}% 21
 \BOOKMARK [2][-]{subsection.34}{3.2.1 Neural Probabilistic Language Model}{section.33}% 22
 \BOOKMARK [2][-]{subsection.41}{3.2.2 Log-Linear Models}{section.33}% 23
