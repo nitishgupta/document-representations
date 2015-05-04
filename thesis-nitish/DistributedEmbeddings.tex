@@ -147,8 +147,8 @@ We will estimate this probability using the vector representations for documents
 A document $d_{i} \in \setD$, indexed by `$i$', in our model is represented by a vector $\vecdi{i} \in \mathbb{R}^{k}$, which is also the $i$-th column of the matrix $\matD = \left[\vecdi{1}, \ldots, \vecdi{|\setD|}\right] \in \mathbb{R}^{k \times |\setD|}$. 
 Similarly, a word indexed by `$i$' in the vocabulary $\setW$ is represented by vector $\vecwi{i} \in \mathbb{R}^{k}$, which is also the $i$-th column of the matrix $\matW = \left[\vecwi{1}, \ldots, \vecwi{|\setW|}\right] \in \mathbb{R}^{k \times |\setW|}$.
 
-Given a sequence $(w_{t-c}, \ldots, w_{t+c})$ of $2c+1$ words and the document it occurs in, our training objective is to maximize the probability of correctly predicting the middle word $w_{t}$ using the surrounding context words $(w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c})$, which we now denote as $context$ as a shorthand, and the information about the document in terms of their distributed vector representations. 
-Therefore, our training objective is to maximize the probability $p(w_{t} | d_{i}, context)$ of correctly predicting the middle word using the information about the surrounding words and the document the sequence occurs in. 
+Given a sequence $(w_{t-c}, \ldots, w_{t+c})$ of $2c+1$ words and the document it occurs in, our training objective is to maximize the probability of correctly predicting the middle word $w_{t}$ using the surrounding context words $(w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c})$, and the information about the document in terms of their distributed vector representations. 
+Therefore, our training objective is to maximize the probability $p(w_{t} | d_{i}, w_{t-c}, \ldots, w_{t+c})$ of correctly predicting the middle word using the information about the surrounding words and the document the sequence occurs in. 
 
 To learn distributed word and document representations, we present a neural network model using which we,
 \begin{enumerate}
@@ -162,7 +162,7 @@ Also note that the word vector representations learned and stored in the matrix 
     \centering
         %\includegraphics[width=0.9\textwidth]{figs/nn_arch.png}
         \input{figs/nn_arch}
-    \caption{Neural Network Architecture for learning distributed document and word representations \todo{Change figure}}
+    \caption{\textbf{Neural Network Architecture} : Our model's neural network architecture when $2$ surrounding words on each side of the middle word are considered.}
     \label{fig:nn:archi}
 \end{figure}
 

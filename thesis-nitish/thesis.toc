@@ -31,7 +31,7 @@
 \contentsline {subsubsection}{\numberline {3.3.2.2}Estimating Prediction Probability}{29}{subsubsection.78}
 \contentsline {subsubsection}{\numberline {3.3.2.3}Training Objective}{30}{subsubsection.83}
 \contentsline {subsubsection}{\numberline {3.3.2.4}Noise Contrastive Estimation}{31}{subsubsection.87}
-\contentsline {subsubsection}{\numberline {3.3.2.5}New Training Objective}{32}{subsubsection.91}
+\contentsline {subsubsection}{\numberline {3.3.2.5}New Training Objective}{33}{subsubsection.91}
 \contentsline {subsubsection}{\numberline {3.3.2.6}Parameter Estimation}{33}{subsubsection.95}
 \contentsline {subsubsection}{\numberline {3.3.2.7}Hyper-parameters}{36}{subsubsection.122}
 \contentsline {chapter}{\numberline {4}Multi-Label Document Categorization}{39}{chapter.129}

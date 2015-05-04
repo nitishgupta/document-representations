@@ -5,7 +5,7 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Continuous Bag-of-Words Model (CBOW)\relax }}{23}{figure.caption.58}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Continuous Skip-gram Model\relax }}{24}{figure.caption.63}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Dependency-based context extraction example\relax }}{25}{figure.caption.66}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Neural Network Architecture for learning distributed document and word representations \leavevmode {\color {red}\textbf {TODO:} Change figure}\relax }}{29}{figure.caption.75}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces \textbf {Neural Network Architecture} : Our model's neural network architecture when $2$ surrounding words on each side of the middle word are considered.\relax }}{29}{figure.caption.75}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces \relax \fontsize {10}{12}\selectfont \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 5\p@ plus2.5\p@ minus\p@ \topsep 10\p@ plus4\p@ minus6\p@ \itemsep 5\p@ plus2.5\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip Precision/Recall for Document Categorization on Reuters-21578 (\emph {ModApte}) dataset\relax }}{57}{figure.caption.180}
