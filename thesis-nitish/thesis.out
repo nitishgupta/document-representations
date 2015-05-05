@@ -1,63 +1,63 @@
-\BOOKMARK [0][-]{figure.caption.1}{Abstract}{}% 1
-\BOOKMARK [0][-]{chapter*.4}{List of Tables}{}% 2
-\BOOKMARK [0][-]{chapter*.5}{List of Figures}{}% 3
-\BOOKMARK [0][-]{chapter*.6}{List of Algorithms}{}% 4
-\BOOKMARK [0][-]{chapter.7}{1 Introduction}{}% 5
-\BOOKMARK [1][-]{section.9}{1.1 Motivation}{chapter.7}% 6
-\BOOKMARK [2][-]{subsection.10}{1.1.1 Inability to preserve word ordering}{section.9}% 7
-\BOOKMARK [2][-]{subsection.11}{1.1.2 Lack of similarity measures}{section.9}% 8
-\BOOKMARK [2][-]{subsection.12}{1.1.3 Compositionality of distributed word vectors}{section.9}% 9
-\BOOKMARK [1][-]{section.13}{1.2 Problem Statement}{chapter.7}% 10
-\BOOKMARK [1][-]{section.15}{1.3 Organization of Thesis}{chapter.7}% 11
-\BOOKMARK [0][-]{chapter.16}{2 Background on Document Categorization}{}% 12
-\BOOKMARK [1][-]{section.17}{2.1 Text Representation}{chapter.16}% 13
-\BOOKMARK [2][-]{subsection.18}{2.1.1 Bag of Words}{section.17}% 14
-\BOOKMARK [2][-]{subsection.20}{2.1.2 Dimensionality Reduction and Feature Selection}{section.17}% 15
-\BOOKMARK [1][-]{section.25}{2.2 Learning Algorithms}{chapter.16}% 16
-\BOOKMARK [2][-]{subsection.26}{2.2.1 Document Categorization using Binary Classifiers}{section.25}% 17
-\BOOKMARK [2][-]{subsection.27}{2.2.2 Document Categorization with Single Joint Classifier}{section.25}% 18
-\BOOKMARK [0][-]{chapter.29}{3 Distributed Document Representations}{}% 19
-\BOOKMARK [1][-]{section.30}{3.1 Need for Distributed Word Representations}{chapter.29}% 20
-\BOOKMARK [1][-]{section.33}{3.2 Background on Word Embeddings}{chapter.29}% 21
-\BOOKMARK [2][-]{subsection.34}{3.2.1 Neural Probabilistic Language Model}{section.33}% 22
-\BOOKMARK [2][-]{subsection.41}{3.2.2 Log-Linear Models}{section.33}% 23
-\BOOKMARK [3][-]{subsubsection.42}{3.2.2.1 Continuous Bag-of-Words Model}{subsection.41}% 24
-\BOOKMARK [3][-]{subsubsection.47}{3.2.2.2 Continuous Skip-gram Model}{subsection.41}% 25
-\BOOKMARK [3][-]{subsubsection.50}{3.2.2.3 Dependency-based Word Embeddings}{subsection.41}% 26
-\BOOKMARK [1][-]{section.52}{3.3 Document Representation}{chapter.29}% 27
-\BOOKMARK [2][-]{subsection.55}{3.3.1 Problem Setup}{section.52}% 28
-\BOOKMARK [2][-]{subsection.56}{3.3.2 Our Model}{section.52}% 29
-\BOOKMARK [3][-]{subsubsection.61}{3.3.2.1 Context Representation}{subsection.56}% 30
-\BOOKMARK [3][-]{subsubsection.63}{3.3.2.2 Estimating Prediction Probability}{subsection.56}% 31
-\BOOKMARK [3][-]{subsubsection.68}{3.3.2.3 Learning Objective}{subsection.56}% 32
-\BOOKMARK [3][-]{subsubsection.72}{3.3.2.4 Noise Contrastive Estimation}{subsection.56}% 33
-\BOOKMARK [3][-]{subsubsection.76}{3.3.2.5 Learning Objective using NCE}{subsection.56}% 34
-\BOOKMARK [3][-]{subsubsection.80}{3.3.2.6 Parameter Estimation}{subsection.56}% 35
-\BOOKMARK [3][-]{subsubsection.107}{3.3.2.7 Hyper-parameters of our model}{subsection.56}% 36
-\BOOKMARK [0][-]{chapter.114}{4 Multi-Label Document Categorization}{}% 37
-\BOOKMARK [1][-]{section.115}{4.1 Logistic Regression for Multi-label Document Categorization}{chapter.114}% 38
-\BOOKMARK [2][-]{subsection.116}{4.1.1 Training Data}{section.115}% 39
-\BOOKMARK [2][-]{subsection.117}{4.1.2 Logistic Regression Model}{section.115}% 40
-\BOOKMARK [3][-]{subsubsection.119}{4.1.2.1 Learning Objective}{subsection.117}% 41
-\BOOKMARK [3][-]{subsubsection.126}{4.1.2.2 Parameter Estimation}{subsection.117}% 42
-\BOOKMARK [1][-]{section.134}{4.2 Similarity to Relational Learning}{chapter.114}% 43
-\BOOKMARK [1][-]{section.138}{4.3 Advantages of Logistic Regression Learning Algorithm}{chapter.114}% 44
-\BOOKMARK [0][-]{chapter.143}{5 Performance Evaluation}{}% 45
-\BOOKMARK [1][-]{section.144}{5.1 Datasets}{chapter.143}% 46
-\BOOKMARK [2][-]{subsection.145}{5.1.1 Reuters-21578}{section.144}% 47
-\BOOKMARK [2][-]{subsection.147}{5.1.2 Wikipedia Datasets}{section.144}% 48
-\BOOKMARK [1][-]{section.150}{5.2 Experimental Setup}{chapter.143}% 49
-\BOOKMARK [1][-]{section.155}{5.3 Results}{chapter.143}% 50
-\BOOKMARK [2][-]{subsection.156}{5.3.1 Document Categorization}{section.155}% 51
-\BOOKMARK [3][-]{subsubsection.157}{5.3.1.1 Reuters - 21578}{subsection.156}% 52
-\BOOKMARK [3][-]{subsubsection.164}{5.3.1.2 Physics - Wikipedia}{subsection.156}% 53
-\BOOKMARK [3][-]{subsubsection.171}{5.3.1.3 Biology - Wikipedia}{subsection.156}% 54
-\BOOKMARK [3][-]{subsubsection.178}{5.3.1.4 Mathematics - Wikipedia}{subsection.156}% 55
-\BOOKMARK [3][-]{subsubsection.185}{5.3.1.5 Sports - Wikipedia}{subsection.156}% 56
-\BOOKMARK [2][-]{subsection.192}{5.3.2 Imputing Missing Categories}{section.155}% 57
-\BOOKMARK [2][-]{subsection.194}{5.3.3 Estimating Similarity between Categories and Words}{section.155}% 58
-\BOOKMARK [0][-]{chapter.196}{6 Conclusions and Future Work}{}% 59
-\BOOKMARK [1][-]{section.197}{6.1 Future Work}{chapter.196}% 60
-\BOOKMARK [2][-]{subsection.198}{6.1.1 Improving Compositionality of Word Vectors}{section.197}% 61
-\BOOKMARK [2][-]{subsection.199}{6.1.2 Multi-view Supervised Representation Learning}{section.197}% 62
-\BOOKMARK [0][-]{subsection.199}{Bibliography}{}% 63
+\BOOKMARK [0][-]{Doc-Start}{Abstract}{}% 1
+\BOOKMARK [0][-]{chapter*.3}{List of Tables}{}% 2
+\BOOKMARK [0][-]{chapter*.4}{List of Figures}{}% 3
+\BOOKMARK [0][-]{chapter*.5}{List of Algorithms}{}% 4
+\BOOKMARK [0][-]{chapter.6}{1 Introduction}{}% 5
+\BOOKMARK [1][-]{section.8}{1.1 Motivation}{chapter.6}% 6
+\BOOKMARK [2][-]{subsection.9}{1.1.1 Inability to preserve word ordering}{section.8}% 7
+\BOOKMARK [2][-]{subsection.10}{1.1.2 Lack of similarity measures}{section.8}% 8
+\BOOKMARK [2][-]{subsection.11}{1.1.3 Compositionality of distributed word vectors}{section.8}% 9
+\BOOKMARK [1][-]{section.12}{1.2 Problem Statement}{chapter.6}% 10
+\BOOKMARK [1][-]{section.14}{1.3 Organization of Thesis}{chapter.6}% 11
+\BOOKMARK [0][-]{chapter.15}{2 Background on Document Categorization}{}% 12
+\BOOKMARK [1][-]{section.16}{2.1 Text Representation}{chapter.15}% 13
+\BOOKMARK [2][-]{subsection.17}{2.1.1 Bag of Words}{section.16}% 14
+\BOOKMARK [2][-]{subsection.19}{2.1.2 Dimensionality Reduction and Feature Selection}{section.16}% 15
+\BOOKMARK [1][-]{section.24}{2.2 Learning Algorithms}{chapter.15}% 16
+\BOOKMARK [2][-]{subsection.25}{2.2.1 Document Categorization using Binary Classifiers}{section.24}% 17
+\BOOKMARK [2][-]{subsection.26}{2.2.2 Document Categorization with Single Joint Classifier}{section.24}% 18
+\BOOKMARK [0][-]{chapter.28}{3 Distributed Document Representations}{}% 19
+\BOOKMARK [1][-]{section.29}{3.1 Need for Distributed Word Representations}{chapter.28}% 20
+\BOOKMARK [1][-]{section.32}{3.2 Background on Word Embeddings}{chapter.28}% 21
+\BOOKMARK [2][-]{subsection.33}{3.2.1 Neural Probabilistic Language Model}{section.32}% 22
+\BOOKMARK [2][-]{subsection.40}{3.2.2 Log-Linear Models}{section.32}% 23
+\BOOKMARK [3][-]{subsubsection.41}{3.2.2.1 Continuous Bag-of-Words Model}{subsection.40}% 24
+\BOOKMARK [3][-]{subsubsection.46}{3.2.2.2 Continuous Skip-gram Model}{subsection.40}% 25
+\BOOKMARK [3][-]{subsubsection.49}{3.2.2.3 Dependency-based Word Embeddings}{subsection.40}% 26
+\BOOKMARK [1][-]{section.51}{3.3 Document Representation}{chapter.28}% 27
+\BOOKMARK [2][-]{subsection.54}{3.3.1 Problem Setup}{section.51}% 28
+\BOOKMARK [2][-]{subsection.55}{3.3.2 Our Model}{section.51}% 29
+\BOOKMARK [3][-]{subsubsection.60}{3.3.2.1 Context Representation}{subsection.55}% 30
+\BOOKMARK [3][-]{subsubsection.62}{3.3.2.2 Estimating Prediction Probability}{subsection.55}% 31
+\BOOKMARK [3][-]{subsubsection.67}{3.3.2.3 Learning Objective}{subsection.55}% 32
+\BOOKMARK [3][-]{subsubsection.71}{3.3.2.4 Noise Contrastive Estimation}{subsection.55}% 33
+\BOOKMARK [3][-]{subsubsection.75}{3.3.2.5 Learning Objective using NCE}{subsection.55}% 34
+\BOOKMARK [3][-]{subsubsection.79}{3.3.2.6 Parameter Estimation}{subsection.55}% 35
+\BOOKMARK [3][-]{subsubsection.106}{3.3.2.7 Hyper-parameters of our model}{subsection.55}% 36
+\BOOKMARK [0][-]{chapter.113}{4 Multi-Label Document Categorization}{}% 37
+\BOOKMARK [1][-]{section.114}{4.1 Logistic Regression for Multi-label Document Categorization}{chapter.113}% 38
+\BOOKMARK [2][-]{subsection.115}{4.1.1 Training Data}{section.114}% 39
+\BOOKMARK [2][-]{subsection.116}{4.1.2 Logistic Regression Model}{section.114}% 40
+\BOOKMARK [3][-]{subsubsection.118}{4.1.2.1 Learning Objective}{subsection.116}% 41
+\BOOKMARK [3][-]{subsubsection.125}{4.1.2.2 Parameter Estimation}{subsection.116}% 42
+\BOOKMARK [1][-]{section.133}{4.2 Similarity to Relational Learning}{chapter.113}% 43
+\BOOKMARK [1][-]{section.137}{4.3 Advantages of Logistic Regression Learning Algorithm}{chapter.113}% 44
+\BOOKMARK [0][-]{chapter.142}{5 Performance Evaluation}{}% 45
+\BOOKMARK [1][-]{section.143}{5.1 Datasets}{chapter.142}% 46
+\BOOKMARK [2][-]{subsection.144}{5.1.1 Reuters-21578}{section.143}% 47
+\BOOKMARK [2][-]{subsection.146}{5.1.2 Wikipedia Datasets}{section.143}% 48
+\BOOKMARK [1][-]{section.149}{5.2 Experimental Setup}{chapter.142}% 49
+\BOOKMARK [1][-]{section.154}{5.3 Results}{chapter.142}% 50
+\BOOKMARK [2][-]{subsection.155}{5.3.1 Document Categorization}{section.154}% 51
+\BOOKMARK [3][-]{subsubsection.156}{5.3.1.1 Reuters - 21578}{subsection.155}% 52
+\BOOKMARK [3][-]{subsubsection.163}{5.3.1.2 Physics - Wikipedia}{subsection.155}% 53
+\BOOKMARK [3][-]{subsubsection.170}{5.3.1.3 Biology - Wikipedia}{subsection.155}% 54
+\BOOKMARK [3][-]{subsubsection.177}{5.3.1.4 Mathematics - Wikipedia}{subsection.155}% 55
+\BOOKMARK [3][-]{subsubsection.184}{5.3.1.5 Sports - Wikipedia}{subsection.155}% 56
+\BOOKMARK [2][-]{subsection.191}{5.3.2 Imputing Missing Categories}{section.154}% 57
+\BOOKMARK [2][-]{subsection.193}{5.3.3 Estimating Similarity between Categories and Words}{section.154}% 58
+\BOOKMARK [0][-]{chapter.195}{6 Conclusions and Future Work}{}% 59
+\BOOKMARK [1][-]{section.196}{6.1 Future Work}{chapter.195}% 60
+\BOOKMARK [2][-]{subsection.197}{6.1.1 Improving Compositionality of Word Vectors}{section.196}% 61
+\BOOKMARK [2][-]{subsection.198}{6.1.2 Multi-view Supervised Representation Learning}{section.196}% 62
+\BOOKMARK [0][-]{subsection.198}{Bibliography}{}% 63

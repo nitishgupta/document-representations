@@ -23,7 +23,8 @@
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{chngpage}
-\usepackage[square, comma, sort&compress]{natbib}
+%\usepackage[square, comma, sort&compress]{natbib}
+\usepackage[numbers]{natbib}
 \usepackage{hyperref}
 \usepackage{fixltx2e}
 \usepackage{url}
@@ -109,7 +110,9 @@
 \begin{document}
 	\frontmatter
 	\thispagestyle{empty}
-	\include{title}
+	%\include{title}
+	\includepdf{title.pdf}
+	%\include{title-mips}
 	
 	\newpage
 	\thispagestyle{empty}
@@ -118,7 +121,7 @@
 	
 	\thispagestyle{empty}
  	%\include{certificate} % not to be used.
-        \includepdf{sumitbCertificate.pdf}
+        \includepdf{certificate.pdf}
 	%\pagestyle{myheadings} % not be used I think
 	\pagenumbering{roman} 
 	\pagestyle{plain}
@@ -208,7 +211,9 @@
 	\addcontentsline{toc}{chapter}{Bibliography}
 	%\bibliographystyle{unsrt}
 %       \bibliographystyle{alpha}
-	\bibliographystyle{plainnat}
+	%\bibliographystyle{plainnat}
+	%\bibliographystyle{abbrvnat}
+	\bibliographystyle{abbrvnat}
 	\bibliography{references}
 
 \end{document}

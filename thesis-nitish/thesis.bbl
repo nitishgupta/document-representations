@@ -6,7 +6,7 @@
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
 \bibitem[Bengio and Senecal(2008)]{bengio2008adaptive}
-Yoshua Bengio and J-S Senecal.
+Y.~Bengio and J.-S. Senecal.
 \newblock Adaptive importance sampling to accelerate training of a neural
   probabilistic language model.
 \newblock \emph{Neural Networks, IEEE Transactions on}, 19\penalty0
@@ -14,43 +14,42 @@ Yoshua Bengio and J-S Senecal.
 
 \bibitem[Bengio et~al.(2003{\natexlab{a}})Bengio, Ducharme, Vincent, and
   Janvin]{bengio2003neural}
-Yoshua Bengio, R{\'e}jean Ducharme, Pascal Vincent, and Christian Janvin.
+Y.~Bengio, R.~Ducharme, P.~Vincent, and C.~Janvin.
 \newblock A neural probabilistic language model.
 \newblock \emph{The Journal of Machine Learning Research}, 3:\penalty0
   1137--1155, 2003{\natexlab{a}}.
 
 \bibitem[Bengio et~al.(2003{\natexlab{b}})Bengio, Sen{\'e}cal,
   et~al.]{bengio2003quick}
-Yoshua Bengio, Jean-S{\'e}bastien Sen{\'e}cal, et~al.
+Y.~Bengio, J.-S. Sen{\'e}cal, et~al.
 \newblock Quick training of probabilistic neural nets by importance sampling.
 \newblock In \emph{AISTATS Conference}, 2003{\natexlab{b}}.
 
 \bibitem[Bottou(2014)]{bottou2014machine}
-L{\'e}on Bottou.
+L.~Bottou.
 \newblock From machine learning to machine reasoning.
 \newblock \emph{Machine learning}, 94\penalty0 (2):\penalty0 133--149, 2014.
 
 \bibitem[Collobert et~al.(2011)Collobert, Weston, Bottou, Karlen, Kavukcuoglu,
   and Kuksa]{collobert2011natural}
-Ronan Collobert, Jason Weston, L{\'e}on Bottou, Michael Karlen, Koray
-  Kavukcuoglu, and Pavel Kuksa.
+R.~Collobert, J.~Weston, L.~Bottou, M.~Karlen, K.~Kavukcuoglu, and P.~Kuksa.
 \newblock Natural language processing (almost) from scratch.
 \newblock \emph{The Journal of Machine Learning Research}, 12:\penalty0
   2493--2537, 2011.
 
 \bibitem[Cooper et~al.(1994)Cooper, Chen, and Gey]{cooper1994full}
-W~Cooper, Aitao Chen, and F~Gey.
+W.~Cooper, A.~Chen, and F.~Gey.
 \newblock Full text retrieval based on probabilistic equations with
   coefficients fitted by logistic regression.
 \newblock \emph{NIST SPECIAL PUBLICATION SP}, pages 57--57, 1994.
 
 \bibitem[Cortes and Vapnik(1995)]{cortes1995support}
-Corinna Cortes and Vladimir Vapnik.
+C.~Cortes and V.~Vapnik.
 \newblock Support-vector networks.
 \newblock \emph{Machine learning}, 20\penalty0 (3):\penalty0 273--297, 1995.
 
 \bibitem[Crammer and Singer(2002)]{crammer2002new}
-Koby Crammer and Yoram Singer.
+K.~Crammer and Y.~Singer.
 \newblock A new family of online algorithms for category ranking.
 \newblock In \emph{Proceedings of the 25th annual international ACM SIGIR
   conference on Research and development in information retrieval}, pages
@@ -58,97 +57,95 @@ Koby Crammer and Yoram Singer.
 
 \bibitem[Deerwester et~al.(1990)Deerwester, Dumais, Landauer, Furnas, and
   Harshman]{deerwester1990indexing}
-Scott~C. Deerwester, Susan~T Dumais, Thomas~K. Landauer, George~W. Furnas, and
-  Richard~A. Harshman.
+S.~C. Deerwester, S.~T. Dumais, T.~K. Landauer, G.~W. Furnas, and R.~A.
+  Harshman.
 \newblock Indexing by latent semantic analysis.
 \newblock \emph{JAsIs}, 41\penalty0 (6):\penalty0 391--407, 1990.
 
 \bibitem[Elisseeff and Weston(2001)]{elisseeff2001kernel}
-Andr{\'e} Elisseeff and Jason Weston.
+A.~Elisseeff and J.~Weston.
 \newblock A kernel method for multi-labelled classification.
 \newblock In \emph{Advances in neural information processing systems}, pages
   681--687, 2001.
 
 \bibitem[Fuhr et~al.(1991)Fuhr, Hartmann, Lustig, Schwantner, Tzeras, and
   Knorz]{fuhr1991air}
-Norbert Fuhr, Stephan Hartmann, Gerhard Lustig, Michael Schwantner, Kostas
-  Tzeras, and Gerhard Knorz.
+N.~Fuhr, S.~Hartmann, G.~Lustig, M.~Schwantner, K.~Tzeras, and G.~Knorz.
 \newblock \emph{AIR, X: a rule based multistage indexing system for large
   subject fields}.
 \newblock Citeseer, 1991.
 
 \bibitem[Ghamrawi and McCallum(2005)]{ghamrawi2005collective}
-Nadia Ghamrawi and Andrew McCallum.
+N.~Ghamrawi and A.~McCallum.
 \newblock Collective multi-label classification.
 \newblock In \emph{Proceedings of the 14th ACM international conference on
   Information and knowledge management}, pages 195--200. ACM, 2005.
 
 \bibitem[Grefenstette et~al.(2013)Grefenstette, Dinu, Zhang, Sadrzadeh, and
   Baroni]{grefenstette2013multi}
-Edward Grefenstette, Georgiana Dinu, Yao-Zhong Zhang, Mehrnoosh Sadrzadeh, and
-  Marco Baroni.
+E.~Grefenstette, G.~Dinu, Y.-Z. Zhang, M.~Sadrzadeh, and M.~Baroni.
 \newblock Multi-step regression learning for compositional distributional
   semantics.
 \newblock \emph{arXiv preprint arXiv:1301.6939}, 2013.
 
 \bibitem[Gupta and Singh(2015)]{gupta2015collectively}
-Nitish Gupta and Sameer Singh.
+N.~Gupta and S.~Singh.
 \newblock Collectively embedding multi-relational data for predicting user
   preferences.
 \newblock \emph{arXiv preprint arXiv:1504.06165}, 2015.
 
 \bibitem[Gutmann and Hyv{\"a}rinen(2012)]{gutmann2012noise}
-Michael~U Gutmann and Aapo Hyv{\"a}rinen.
+M.~U. Gutmann and A.~Hyv{\"a}rinen.
 \newblock Noise-contrastive estimation of unnormalized statistical models, with
   applications to natural image statistics.
 \newblock \emph{The Journal of Machine Learning Research}, 13\penalty0
   (1):\penalty0 307--361, 2012.
 
 \bibitem[Hosmer and Lemeshow(1989)]{hosmer1989applied}
-David~W Hosmer and Stanley Lemeshow.
+D.~W. Hosmer and S.~Lemeshow.
 \newblock Applied logistic regression. 1989.
 \newblock \emph{New York: Johns Wiley \& Sons}, 1989.
 
 \bibitem[Joachims(1998)]{joachims1998text}
-Thorsten Joachims.
+T.~Joachims.
 \newblock \emph{Text categorization with support vector machines: Learning with
   many relevant features}.
 \newblock Springer, 1998.
 
 \bibitem[Levy and Goldberg(2014)]{levy2014dependencybased}
-Omer Levy and Yoav Goldberg.
+O.~Levy and Y.~Goldberg.
 \newblock Dependencybased word embeddings.
 \newblock \emph{Proceedings of the 52nd Annual Meeting of the Association for
   Computational Linguistics}, 2:\penalty0 302--308, 2014.
 
-\bibitem[Lewis(1992{\natexlab{a}})]{lewis1992text}
-David~D Lewis.
+\bibitem[Lewis(1992{\natexlab{a}})]{lewis1992representation}
+D.~D. Lewis.
+\newblock \emph{Representation and learning in information retrieval}.
+\newblock PhD thesis, University of Massachusetts, 1992{\natexlab{a}}.
+
+\bibitem[Lewis(1992{\natexlab{b}})]{lewis1992text}
+D.~D. Lewis.
 \newblock Text representation for intelligent text retrieval: a
   classification-oriented view.
 \newblock \emph{Text-based intelligent systems: current research and practice
-  in information extraction and retrieval}, pages 179--197, 1992{\natexlab{a}}.
+  in information extraction and retrieval}, pages 179--197, 1992{\natexlab{b}}.
 
 \bibitem[Lewis and Ringuette(1994)]{lewis1994comparison}
-David~D Lewis and Marc Ringuette.
+D.~D. Lewis and M.~Ringuette.
 \newblock A comparison of two learning algorithms for text categorization.
 \newblock In \emph{Third annual symposium on document analysis and information
   retrieval}, volume~33, pages 81--93, 1994.
 
 \bibitem[Lewis et~al.(1996)Lewis, Schapire, Callan, and
   Papka]{lewis1996training}
-David~D Lewis, Robert~E Schapire, James~P Callan, and Ron Papka.
+D.~D. Lewis, R.~E. Schapire, J.~P. Callan, and R.~Papka.
 \newblock Training algorithms for linear text classifiers.
 \newblock In \emph{Proceedings of the 19th annual international ACM SIGIR
   conference on Research and development in information retrieval}, pages
   298--306. ACM, 1996.
 
-\bibitem[Lewis(1992{\natexlab{b}})]{lewis1992representation}
-David~Dolan Lewis.
-\newblock \emph{Representation and learning in information retrieval}.
-\newblock PhD thesis, University of Massachusetts, 1992{\natexlab{b}}.
-
 \bibitem[Liu et~al.(2006)Liu, Jin, and Yang]{liu2006semi}
-Yi~Liu, Rong Jin, and Liu Yang.
+Y.~Liu, R.~Jin, and L.~Yang.
 \newblock Semi-supervised multi-label learning by constrained non-negative
   matrix factorization.
 \newblock In \emph{Proceedings of the national conference on artificial
@@ -156,19 +153,19 @@ Yi~Liu, Rong Jin, and Liu Yang.
   AAAI Press; MIT Press; 1999, 2006.
 
 \bibitem[McCallum(1999)]{mccallum1999multi}
-Andrew McCallum.
+A.~McCallum.
 \newblock Multi-label text classification with a mixture model trained by em.
 \newblock 1999.
 
 \bibitem[Mikolov et~al.(2013{\natexlab{a}})Mikolov, Chen, Corrado, and
   Dean]{mikolov2013efficient}
-Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean.
+T.~Mikolov, K.~Chen, G.~Corrado, and J.~Dean.
 \newblock Efficient estimation of word representations in vector space.
 \newblock \emph{arXiv preprint arXiv:1301.3781}, 2013{\natexlab{a}}.
 
 \bibitem[Mikolov et~al.(2013{\natexlab{b}})Mikolov, Sutskever, Chen, Corrado,
   and Dean]{mikolov2013distributed}
-Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg~S Corrado, and Jeff Dean.
+T.~Mikolov, I.~Sutskever, K.~Chen, G.~S. Corrado, and J.~Dean.
 \newblock Distributed representations of words and phrases and their
   compositionality.
 \newblock In \emph{Advances in Neural Information Processing Systems}, pages
@@ -176,104 +173,104 @@ Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg~S Corrado, and Jeff Dean.
 
 \bibitem[Mikolov et~al.(2013{\natexlab{c}})Mikolov, Yih, and
   Zweig]{mikolov2013linguistic}
-Tomas Mikolov, Wen-tau Yih, and Geoffrey Zweig.
+T.~Mikolov, W.-t. Yih, and G.~Zweig.
 \newblock Linguistic regularities in continuous space word representations.
 \newblock In \emph{HLT-NAACL}, pages 746--751, 2013{\natexlab{c}}.
 
 \bibitem[Mitchell and Lapata(2010)]{mitchell2010composition}
-Jeff Mitchell and Mirella Lapata.
+J.~Mitchell and M.~Lapata.
 \newblock Composition in distributional models of semantics.
 \newblock \emph{Cognitive science}, 34\penalty0 (8):\penalty0 1388--1429, 2010.
 
 \bibitem[Mnih and Kavukcuoglu(2013)]{mnih2013learning}
-Andriy Mnih and Koray Kavukcuoglu.
+A.~Mnih and K.~Kavukcuoglu.
 \newblock Learning word embeddings efficiently with noise-contrastive
   estimation.
 \newblock In \emph{Advances in Neural Information Processing Systems}, pages
   2265--2273, 2013.
 
 \bibitem[Mnih and Teh(2012)]{mnih2012fast}
-Andriy Mnih and Yee~Whye Teh.
+A.~Mnih and Y.~W. Teh.
 \newblock A fast and simple algorithm for training neural probabilistic
   language models.
 \newblock \emph{arXiv preprint arXiv:1206.6426}, 2012.
 
 \bibitem[Morin and Bengio(2005)]{morin2005hierarchical}
-Frederic Morin and Yoshua Bengio.
+F.~Morin and Y.~Bengio.
 \newblock Hierarchical probabilistic neural network language model.
 \newblock In \emph{Proceedings of the international workshop on artificial
   intelligence and statistics}, pages 246--252. Citeseer, 2005.
 
 \bibitem[Moulinier et~al.(1996)Moulinier, Raskinis, and
   Ganascia]{moulinier1996text}
-Isabelle Moulinier, Gailius Raskinis, and J~Ganascia.
+I.~Moulinier, G.~Raskinis, and J.~Ganascia.
 \newblock Text categorization: a symbolic approach.
 \newblock In \emph{proceedings of the fifth annual symposium on document
   analysis and information retrieval}, pages 87--99, 1996.
 
 \bibitem[Ng et~al.(1997)Ng, Goh, and Low]{ng1997feature}
-Hwee~Tou Ng, Wei~Boon Goh, and Kok~Leong Low.
+H.~T. Ng, W.~B. Goh, and K.~L. Low.
 \newblock Feature selection, perceptron learning, and a usability case study
   for text categorization.
 \newblock In \emph{ACM SIGIR Forum}, volume~31, pages 67--73. ACM, 1997.
 
 \bibitem[Nigam et~al.(1999)Nigam, Lafferty, and McCallum]{nigam1999using}
-Kamal Nigam, John Lafferty, and Andrew McCallum.
+K.~Nigam, J.~Lafferty, and A.~McCallum.
 \newblock Using maximum entropy for text classification.
 \newblock In \emph{IJCAI-99 workshop on machine learning for information
   filtering}, volume~1, pages 61--67, 1999.
 
 \bibitem[Nigam et~al.(2000)Nigam, McCallum, Thrun, and Mitchell]{nigam2000text}
-Kamal Nigam, Andrew~Kachites McCallum, Sebastian Thrun, and Tom Mitchell.
+K.~Nigam, A.~K. McCallum, S.~Thrun, and T.~Mitchell.
 \newblock Text classification from labeled and unlabeled documents using em.
 \newblock \emph{Machine learning}, 39\penalty0 (2-3):\penalty0 103--134, 2000.
 
 \bibitem[Quinlan(1983)]{quinlan1983learning}
-J~Ross Quinlan.
+J.~R. Quinlan.
 \newblock Learning efficient classification procedures and their application to
   chess end games.
 \newblock In \emph{Machine learning}, pages 463--482. Springer, 1983.
 
 \bibitem[Quinlan(1986)]{quinlan1986induction}
-J.~Ross Quinlan.
+J.~R. Quinlan.
 \newblock Induction of decision trees.
 \newblock \emph{Machine learning}, 1\penalty0 (1):\penalty0 81--106, 1986.
 
 \bibitem[Rubin et~al.(2012)Rubin, Chambers, Smyth, and
   Steyvers]{rubin2012statistical}
-Timothy~N Rubin, America Chambers, Padhraic Smyth, and Mark Steyvers.
+T.~N. Rubin, A.~Chambers, P.~Smyth, and M.~Steyvers.
 \newblock Statistical topic models for multi-label document classification.
 \newblock \emph{Machine Learning}, 88\penalty0 (1-2):\penalty0 157--208, 2012.
 
 \bibitem[Salton and Buckley(1988)]{salton1988term}
-Gerard Salton and Christopher Buckley.
+G.~Salton and C.~Buckley.
 \newblock Term-weighting approaches in automatic text retrieval.
 \newblock \emph{Information processing \& management}, 24\penalty0
   (5):\penalty0 513--523, 1988.
 
 \bibitem[Salton and Yang(1973)]{salton1973specification}
-Gerard Salton and Chung-Shu Yang.
+G.~Salton and C.-S. Yang.
 \newblock On the specification of term values in automatic indexing.
 \newblock \emph{Journal of documentation}, 29\penalty0 (4):\penalty0 351--372,
   1973.
 
 \bibitem[Socher et~al.(2013)Socher, Perelygin, Wu, Chuang, Manning, Ng, and
   Potts]{socher2013recursive}
-Richard Socher, Alex Perelygin, Jean~Y Wu, Jason Chuang, Christopher~D Manning,
-  Andrew~Y Ng, and Christopher Potts.
+R.~Socher, A.~Perelygin, J.~Y. Wu, J.~Chuang, C.~D. Manning, A.~Y. Ng, and
+  C.~Potts.
 \newblock Recursive deep models for semantic compositionality over a sentiment
   treebank.
 \newblock In \emph{Proceedings of the conference on empirical methods in
   natural language processing (EMNLP)}, volume 1631, page 1642. Citeseer, 2013.
 
 \bibitem[Tong and Appelbaum(1994)]{tong1994machine}
-Richard~M Tong and Lee~A Appelbaum.
+R.~M. Tong and L.~A. Appelbaum.
 \newblock Machine learning for knowledge-based document routing (a report on
   the trec-2 experiment).
 \newblock \emph{NIST SPECIAL PUBLICATION SP}, pages 253--253, 1994.
 
 \bibitem[Turian et~al.(2010)Turian, Ratinov, and Bengio]{turian2010word}
-Joseph Turian, Lev Ratinov, and Yoshua Bengio.
+J.~Turian, L.~Ratinov, and Y.~Bengio.
 \newblock Word representations: a simple and general method for semi-supervised
   learning.
 \newblock In \emph{Proceedings of the 48th annual meeting of the association
@@ -281,25 +278,25 @@ Joseph Turian, Lev Ratinov, and Yoshua Bengio.
   Linguistics, 2010.
 
 \bibitem[Ueda and Saito(2002)]{ueda2002parametric}
-Naonori Ueda and Kazumi Saito.
+N.~Ueda and K.~Saito.
 \newblock Parametric mixture models for multi-labeled text.
 \newblock In \emph{Advances in neural information processing systems}, pages
   721--728, 2002.
 
 \bibitem[Vapnik(2000)]{vapnik2000nature}
-Vladimir Vapnik.
+V.~Vapnik.
 \newblock \emph{The nature of statistical learning theory}.
 \newblock Springer Science \& Business Media, 2000.
 
 \bibitem[Wiener et~al.(1995)Wiener, Pedersen, Weigend,
   et~al.]{wiener1995neural}
-Erik Wiener, Jan~O Pedersen, Andreas~S Weigend, et~al.
+E.~Wiener, J.~O. Pedersen, A.~S. Weigend, et~al.
 \newblock A neural network approach to topic spotting.
 \newblock In \emph{Proceedings of SDAIR-95, 4th annual symposium on document
   analysis and information retrieval}, pages 317--332. Citeseer, 1995.
 
 \bibitem[Yang(1994)]{yang1994expert}
-Yiming Yang.
+Y.~Yang.
 \newblock Expert network: Effective and efficient learning from human decisions
   in text categorization and retrieval.
 \newblock In \emph{Proceedings of the 17th annual international ACM SIGIR
@@ -307,7 +304,7 @@ Yiming Yang.
   13--22. Springer-Verlag New York, Inc., 1994.
 
 \bibitem[Yang and Chute(1992)]{yang1992linear}
-Yiming Yang and Christopher~G Chute.
+Y.~Yang and C.~G. Chute.
 \newblock A linear least squares fit mapping method for information retrieval
   from natural language texts.
 \newblock In \emph{Proceedings of the 14th conference on Computational
@@ -315,7 +312,7 @@ Yiming Yang and Christopher~G Chute.
   Linguistics, 1992.
 
 \bibitem[Yessenalina and Cardie(2011)]{yessenalina2011compositional}
-Ainur Yessenalina and Claire Cardie.
+A.~Yessenalina and C.~Cardie.
 \newblock Compositional matrix-space models for sentiment analysis.
 \newblock In \emph{Proceedings of the Conference on Empirical Methods in
   Natural Language Processing}, pages 172--182. Association for Computational
@@ -323,27 +320,26 @@ Ainur Yessenalina and Claire Cardie.
 
 \bibitem[Zanzotto et~al.(2010)Zanzotto, Korkontzelos, Fallucchi, and
   Manandhar]{zanzotto2010estimating}
-Fabio~Massimo Zanzotto, Ioannis Korkontzelos, Francesca Fallucchi, and Suresh
-  Manandhar.
+F.~M. Zanzotto, I.~Korkontzelos, F.~Fallucchi, and S.~Manandhar.
 \newblock Estimating linear models for compositional distributional semantics.
 \newblock In \emph{Proceedings of the 23rd International Conference on
   Computational Linguistics}, pages 1263--1271. Association for Computational
   Linguistics, 2010.
 
 \bibitem[Zhang and Zhou(2005)]{zhang2005k}
-Min-Ling Zhang and Zhi-Hua Zhou.
+M.-L. Zhang and Z.-H. Zhou.
 \newblock A k-nearest neighbor based algorithm for multi-label classification.
 \newblock In \emph{Granular Computing, 2005 IEEE International Conference on},
   volume~2, pages 718--721. IEEE, 2005.
 
 \bibitem[Zhang and Zhou(2007)]{zhang2007ml}
-Min-Ling Zhang and Zhi-Hua Zhou.
+M.-L. Zhang and Z.-H. Zhou.
 \newblock Ml-knn: A lazy learning approach to multi-label learning.
 \newblock \emph{Pattern recognition}, 40\penalty0 (7):\penalty0 2038--2048,
   2007.
 
 \bibitem[Zou et~al.(2013)Zou, Socher, Cer, and Manning]{zou2013bilingual}
-Will~Y Zou, Richard Socher, Daniel~M Cer, and Christopher~D Manning.
+W.~Y. Zou, R.~Socher, D.~M. Cer, and C.~D. Manning.
 \newblock Bilingual word embeddings for phrase-based machine translation.
 \newblock In \emph{EMNLP}, pages 1393--1398, 2013.
 

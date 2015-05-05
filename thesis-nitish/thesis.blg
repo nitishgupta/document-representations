@@ -1,7 +1,6 @@
 This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis.aux
-A level-1 auxiliary file: title.aux
 A level-1 auxiliary file: abstract.aux
 A level-1 auxiliary file: Dedication.aux
 A level-1 auxiliary file: acknowledgement.aux
@@ -10,27 +9,25 @@ A level-1 auxiliary file: RelatedWork.aux
 A level-1 auxiliary file: DistributedEmbeddings.aux
 A level-1 auxiliary file: TextCategorization.aux
 A level-1 auxiliary file: Evaluation.aux
-The style file: plainnat.bst
+The style file: abbrvnat.bst
 Database file #1: references.bib
-Warning--can't use both volume and number fields in liu2006semi
 Warning--empty booktitle in mccallum1999multi
-Warning--can't use both volume and number fields in ng1997feature
 You've used 53 entries,
             2773 wiz_defined-function locations,
-            906 strings with 14680 characters,
-and the built_in function-call counts, 28038 in all, are:
+            904 strings with 14385 characters,
+and the built_in function-call counts, 28028 in all, are:
 = -- 2625
 > -- 1426
 < -- 64
 + -- 486
 - -- 429
-* -- 2095
+* -- 2089
 := -- 4029
 add.period$ -- 174
 call.type$ -- 53
 change.case$ -- 296
 chr.to.int$ -- 49
-cite$ -- 109
+cite$ -- 107
 duplicate$ -- 1388
 empty$ -- 2357
 format.name$ -- 526
@@ -40,20 +37,20 @@ int.to.str$ -- 1
 missing$ -- 55
 newline$ -- 273
 num.names$ -- 212
-pop$ -- 660
+pop$ -- 662
 preamble$ -- 1
 purify$ -- 247
 quote$ -- 0
 skip$ -- 1123
 stack$ -- 0
 substring$ -- 1300
-swap$ -- 329
+swap$ -- 327
 text.length$ -- 33
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 568
-warning$ -- 3
+warning$ -- 1
 while$ -- 266
 width$ -- 0
 write$ -- 706
-(There were 3 warnings)
+(There was 1 warning)

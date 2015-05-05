@@ -15,7 +15,7 @@ Text representation involves converting the documents, that are usually strings 
 Over the years, documents have been represented as a \emph{bag-of-words} feature vector, which contains information about the presence and absence of words in the document. Given a corpus of documents, each document $d_{i}$ in the corpus is represented as a vector $v_{d_{i}} \in \mathbb{R}^{|V|}$ whose size is equal to the size of the vocabulary. Each element in the vector belongs to $\{0, 1\}$ and denotes whether the particular word is present in the document or not. Though bag-of-words document representation has been widely used for document categorization due to its simplicity, efficiency and ability to capture topical content of the documents necessary for categorization, it suffers from various drawbacks. Bag-of-words representation ignores word ordering and the context in which the words appear in the document, that is vital for encoding the semantic content of text. It also lacks in the ability to encode the semantic similarity between words and documents to estimate distances between them. Disadvantages of such sought have necessitated the need for a more robust and efficient document representation model.
 %In the section below we describe the drawbacks of the bag-of-words model and why there is a need for an alternate document representation model.
 
-Models to learn fixed-length continuous distributed word vector representations from huge corpora of unlabeled text have shown promising results in tasks of language modeling \citep{bengio2003neural}, sentiment analysis \citep{socher2013recursive}, machine translation \citep{zou2013bilingual} etc. by supplementing the labeled data to overcome the inherent data sparsity and improving generalization accuracies in the high-dimensional domain of Natural Language Processing. Such models learn low-dimensional (generally of the order $100$ - $500$) vector representations of words that encode the semantic similarity between them \citep{mikolov2013efficient}. 
+Models to learn fixed-length continuous distributed word vector representations from huge corpora of unlabeled text have shown promising results in tasks of language modeling \cite{bengio2003neural}, sentiment analysis \cite{socher2013recursive}, machine translation \cite{zou2013bilingual} etc. by supplementing the labeled data to overcome the inherent data sparsity and improving generalization accuracies in the high-dimensional domain of Natural Language Processing. Such models learn low-dimensional (generally of the order $100$ - $500$) vector representations of words that encode the semantic similarity between them \citep{mikolov2013efficient}. 
 
 Though these word embeddings try to overcome disadvantages of the bag-of-words model, it is unclear how thy can be composed to represent continuous text, namely documents. In this work we present a model to learn such low-dimensional distributed vector representations for documents to aid in the task of document categorization.
  
@@ -70,7 +70,7 @@ $d_{5}$ & x & x & x & x & x & x\\
 \bottomrule         
 \end{tabular}
 %\vskip -4mm
-\caption{\label{traindata:example:table}\footnotesize {Example Training Data for Multi-label Document Categorization}}
+\caption{\label{traindata:example:table}{Example Training Data for Multi-label Document Categorization}}
 \end{center}
 \end{table}
 

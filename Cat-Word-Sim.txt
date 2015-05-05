@@ -1,69 +1,69 @@
 Theoretical_physicists :
-['Dipankar', 'DSc', 'Hubert', 'Aneesur', 'Uri', 'Ignaz', 'Chia', 'JPF', 'Dannie', 'DPhil', 'FQH', 'committees', 'Geim', 'Honorary', 'Talks', 'Boice', 'Marmanis', 'Qadir', 'Stig', 'Diderot']
+[Dipankar, DSc, Hubert, Aneesur, Uri, Ignaz, Chia, JPF, Dannie, DPhil, FQH, committees, Geim, Honorary, Talks, Boice, Marmanis, Qadir, Stig, Diderot]
 
 Statistical_mechanics
-['overcounting', 'histogram', 'Baeurle', 'BZ', 'quenched', 'Nos\xc3\xa9', 'onsite', 'ergodicity', 'Eigenstate', 'Universality', 'DMFT', 'Markovian', 'Parisi', 'Kirkpatrick', 'TEBD', 'Combinatorics', 'multicanonical', 'Widom', 'gels', 'Es']
+[overcounting, histogram, Baeurle, BZ, quenched, Nos\xc3\xa9, onsite, ergodicity, Eigenstate, Universality, DMFT, Markovian, Parisi, Kirkpatrick, TEBD, Combinatorics, multicanonical, Widom, gels, Es]
 
 Thermodynamics
-['flask', 'dT', 'Convection', '15\xc5\xa0K', 'ecosystem', 'Enthalpy', 'temperature', 'Vm', 'Joule', 'calorimetric', 'porosity', 'calorimetry', 'Sears', 'Thermodynamic', 'Isothermal', '0\xc5\xa0', 'Temperatures', 'compressible', 'thermometric', 'Volumes']
+[flask, dT, Convection, 15\xc5\xa0K, ecosystem, Enthalpy, temperature, Vm, Joule, calorimetric, porosity, calorimetry, Sears, Thermodynamic, Isothermal, 0\xc5\xa0, Temperatures, compressible, thermometric, Volumes]
 
 
 acq
-['SUES', 'HOLDERS', 'BIDDER', 'Poclain', 'shares', 'Brook', 'STAKES', 'PROXY', 'UNITS', 'CKB', 'CRAA', 'OPERATIONS', 'BIDDERS', 'vending', 'AFFILIATION', 'Bruxelles', 'SHAREHOLDERS', 'ST', 'megawatt', 'TAKEOVER']
+[SUES, HOLDERS, BIDDER, Poclain, shares, Brook, STAKES, PROXY, UNITS, CKB, CRAA, OPERATIONS, BIDDERS, vending, AFFILIATION, Bruxelles, SHAREHOLDERS, ST, megawatt, TAKEOVER]
 
 
 trade
-['IMPORT', 'PLEDGES', 'IMPORTS', 'TARIFF', 'TRADE', 'CRISIS', 'Yom', 'imports', 'bush', 'competiveness', 'Feiter', 'dedramatising', 'FEARS', 'TOLL', 'billion', 'BASKET', 'Mahn', 'DITCH', 'WORLDWIDE', 'sun']
+[IMPORT, PLEDGES, IMPORTS, TARIFF, TRADE, CRISIS, Yom, imports, bush, competiveness, Feiter, dedramatising, FEARS, TOLL, billion, BASKET, Mahn, DITCH, WORLDWIDE, sun]
 
 
 money-fx
-['players', 'BORROWING', 'franc', 'banker', 'Currency', 'Tanaka', 'banks', 'M0', 'Hirabayashi', 'RESISTS', 'bank', 'nervous', 'mere', 'sideways', 'Bank', 'MARKETS', 'FORWARD', 'Hutmann', 'Simmonds', 'Muenchmeyer']
+[players, BORROWING, franc, banker, Currency, Tanaka, banks, M0, Hirabayashi, RESISTS, bank, nervous, mere, sideways, Bank, MARKETS, FORWARD, Hutmann, Simmonds, Muenchmeyer]
 
 grain
-['Volkmer', 'grain', 'Anhui', 'cropland', 'wheat', 'FARM', 'Usage', 'Dom', 'Flour', 'SPARKS', 'Acres', 'Chaiyaphum', 'farmland', 'CHARLES', 'FLOORS', 'insect', 'Acreage', 'GRAINS', 'Leahy', 'ROUEN']
+[Volkmer, grain, Anhui, cropland, wheat, FARM, Usage, Dom, Flour, SPARKS, Acres, Chaiyaphum, farmland, CHARLES, FLOORS, insect, Acreage, GRAINS, Leahy, ROUEN]
 
 
 Pharmacokinetics
-['PEGylated', 'esters', 'PEGylation', 'bilirubin', 'disposal', 'cosmetic', 'amphiphilic', 'chlorine', 'bioavailability', 'aldehyde', 'Mycobacterium', 'solubility', 'glutaraldehyde', 'pharmacokinetic', 'rheology', 'lysine', 'narcosis', 'bioactive', 'hydrophobicity', 'calibration']
+[PEGylated, esters, PEGylation, bilirubin, disposal, cosmetic, amphiphilic, chlorine, bioavailability, aldehyde, Mycobacterium, solubility, glutaraldehyde, pharmacokinetic, rheology, lysine, narcosis, bioactive, hydrophobicity, calibration]
 
 Habitats
-['Succession', 'Cowles', 'biomes', 'Landscape', 'intertidal', 'invasions', 'mussels', 'shade', 'decomposers', 'disturbance', 'foxes', 'canopy', 'climatic', 'moist', 'Amazon', 'grazing', 'trails', 'apex', 'nurse', 'wetlands']
+[Succession, Cowles, biomes, Landscape, intertidal, invasions, mussels, shade, decomposers, disturbance, foxes, canopy, climatic, moist, Amazon, grazing, trails, apex, nurse, wetlands]
 
 Neurobiology
-['GvHD', 'Glabrennea', 'natriuretic', 'Pantydia', 'aff', 'zh', 'runt', 'purinergic', 'cyclase', 'vertebral', 'Ehrlich', 'nexus', 'Fiction', 'Cyborgs', 'steroid', 'normalization', 'lean', 'gendered', 'reticular', 'Celsius']
+[GvHD, Glabrennea, natriuretic, Pantydia, aff, zh, runt, purinergic, cyclase, vertebral, Ehrlich, nexus, Fiction, Cyborgs, steroid, normalization, lean, gendered, reticular, Celsius]
 
 Virology
-['Subgroup', 'ICTV', 'nucleoside', 'ribozyme', 'mottle', 'capsid', 'adenoviruses', 'Virology', 'Vector', 'retroviruses', 'poliovirus', 'endosome', 'replicative', 'ssRNA', 'Barr', 'nt', 'pandemic', 'herpesviruses', 'integrase', 'Viroid']
+[Subgroup, ICTV, nucleoside, ribozyme, mottle, capsid, adenoviruses, Virology, Vector, retroviruses, poliovirus, endosome, replicative, ssRNA, Barr, nt, pandemic, herpesviruses, integrase, Viroid]
 
 Biological_evolution
-['evolution', 'wing', 'Evolution', 'races', 'evolving', 'transitional', 'geological', 'Fossils', 'Aid', 'Wallace', 'feather', 'intelligent', 'naturalist', 'terrestrial', 'wolves', 'coevolution', 'Archaeopteryx', 'wings', 'ancestor', 'feathers']
+[evolution, wing, Evolution, races, evolving, transitional, geological, Fossils, Aid, Wallace, feather, intelligent, naturalist, terrestrial, wolves, coevolution, Archaeopteryx, wings, ancestor, feathers]
 
 Genetics
-['mutation', 'vector', 'apoptosis', 'Mutation', 'phenotypes', 'Chromosome', 'oncogenes', 'exons', 'Transfection', 'transferase', 'mRNA', 'Amplification', 'Mouse', 'vectors', 'mutations', 'clones', 'codon', 'genes', 'initiation', 'Factor']
+[mutation, vector, apoptosis, Mutation, phenotypes, Chromosome, oncogenes, exons, Transfection, transferase, mRNA, Amplification, Mouse, vectors, mutations, clones, codon, genes, initiation, Factor]
 
 
 Evolutionary_biology
-['mating', 'Mendel', 'phyla', 'eukaryote', 'gene', 'phylogenetics', 'Lamarck', 'speciation', 'phylogenetic', 'Weinberg', 'ancestor', 'generations', 'Darwin', 'endosymbiosis', 'lineage', 'phylogeny', 'taxon', 'Darwinian', 'evolutionary', 'interbreeding']
+[mating, Mendel, phyla, eukaryote, gene, phylogenetics, Lamarck, speciation, phylogenetic, Weinberg, ancestor, generations, Darwin, endosymbiosis, lineage, phylogeny, taxon, Darwinian, evolutionary, interbreeding]
 
  Sports_venues
-['stadion', 'decoration', 'suites', 'tracks', 'transit', 'bleachers', 'Bridge', 'seating', 'renovations', 'buildings', 'parcourse', 'enclosed', 'Stadio', 'architectural', 'traffic', 'Monster', 'bleacher', 'arenas', 'Guttmann', 'circular']
+[stadion, decoration, suites, tracks, transit, bleachers, Bridge, seating, renovations, buildings, parcourse, enclosed, Stadio, architectural, traffic, Monster, bleacher, arenas, Guttmann, circular]
 
 
 Physical_exercise
-['Fitness', 'aerobics', 'metabolic', 'fitness', 'workout', 'oxygen', 'Exercise', 'stimulation', 'exercise', 'Stretching', '</s>', 'Exercises', 'static', 'pelvic', 'dancer', 'Physiology', 'Dynamic', 'Developing', 'breath', 'fibers']
+[Fitness, aerobics, metabolic, fitness, workout, oxygen, Exercise, stimulation, exercise, Stretching, </s>, Exercises, static, pelvic, dancer, Physiology, Dynamic, Developing, breath, fibers]
 
 
 Algebras
-['subalgebra', 'Algebras', 'commuting', 'nilpotent', 'e1', 'e0', 'toral', 'Wedderburn', 'Artin', 'Schur', 'Hom', 'adjoints', 'unital', 'octonions', 'bicommutant', 'diagonalizable', 'biquaternions', 'Dickson', 'Ax', 'anticommutation']
+[subalgebra, Algebras, commuting, nilpotent, e1, e0, toral, Wedderburn, Artin, Schur, Hom, adjoints, unital, octonions, bicommutant, diagonalizable, biquaternions, Dickson, Ax, anticommutation]
 
 Mathematical_physics
-['covectors', 'pseudotensor', 'spacelike', 'ij', 'Tensors', 'dyadic', 'lowered', 'covector', 'Curl', 'antisymmetric', '2d', 'torque', 'contractions', 'xj', 'pseudovector', 'commutation', 'zenith', 'tetrads', 'spinor', 'wavefunctions']
+[covectors, pseudotensor, spacelike, ij, Tensors, dyadic, lowered, covector, Curl, antisymmetric, 2d, torque, contractions, xj, pseudovector, commutation, zenith, tetrads, spinor, wavefunctions]
 
 Indian_Mathematics
-['Arab', 'Dynasty', 'utkrama', 'ecliptic', 'Briggs', 'sinus', 'Ries', 'Siddhanta', 'PNG', 'Hellenistic', 'Rechnung', 'cha', 'western', 'Brahmi', 'sexagesimal', 'dynasty', 'scribe', 'Islamic', 'Sanskrit', 'abaci']
+[Arab, Dynasty, utkrama, ecliptic, Briggs, sinus, Ries, Siddhanta, PNG, Hellenistic, Rechnung, cha, western, Brahmi, sexagesimal, dynasty, scribe, Islamic, Sanskrit, abaci]
 
 Information_theory
-['coding', 'code', 'Pr', 'monotone', 'bits', 'Step', 'storage', 'BPP', '\xce\xa02', 'strictly', '\xc5\xa00', 'automata', 'betting', '\xce\xa32', 'Nesbitt', 'algorithm', 'information', 'PostBQP', 'Convergence', '\xc5\xa0\xce\xa3']
+[coding, code, Pr, monotone, bits, Step, storage, BPP, \xce\xa02, strictly, \xc5\xa00, automata, betting, \xce\xa32, Nesbitt, algorithm, information, PostBQP, Convergence, \xc5\xa0\xce\xa3]
 
 
 
