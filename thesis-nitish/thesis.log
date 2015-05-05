@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  5 MAY 2015 16:15
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  5 MAY 2015 18:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1036,12 +1036,6 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [7] [8
 
 ] (./thesis.lot
-Overfull \hbox (47.11586pt too wide) in paragraph at lines 13--13
- [][] [][][]\OT1/cmr/m/n/12 Precision/Recall/F1 for Doc-u-ment Cat-e-go-riza-ti
-on on Reuters-21578(\OT1/cmr/m/it/12 ModApte\OT1/cmr/m/n/12 ) 
- []
-
-
 Overfull \hbox (18.28607pt too wide) in paragraph at lines 18--18
  [][] [][][]\OT1/cmr/m/n/12 Precision/Recall/F1 for Doc-u-ment Cat-e-go-riza-ti
 on on Physics(Wikipedia) 
@@ -1343,18 +1337,12 @@ Overfull \hbox (40.81345pt too wide) in paragraph at lines 148--181
  [] 
  []
 
-[52]
-Underfull \hbox (badness 1845) in paragraph at lines 296--296
-[]\OT1/cmr/m/n/12 Table 5.7: |[] Pre-ci-sion/Re-cal-l/F1 for Doc-u-ment Cat-e-g
-o-riza-tion on Reuters-
- []
-
-<figs/pr/reuter-cs-scala.pdf, id=1142, 397.485pt x 325.215pt>
+[52] <figs/pr/reuter-cs-scala.pdf, id=1141, 397.485pt x 325.215pt>
 File: figs/pr/reuter-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/reuter-cs-scala.pdf>
 Package pdftex.def Info: figs/pr/reuter-cs-scala.pdf used on input line 302.
-(pdftex.def)             Requested size: 341.43437pt x 279.36185pt.
+(pdftex.def)             Requested size: 298.75264pt x 244.44162pt.
 
 Underfull \hbox (badness 1194) in paragraph at lines 304--304
 []\OT1/cmr/m/n/12 Figure 5.1: |Pre-ci-sion/Re-call for Doc-u-ment Cat-e-go-riza
@@ -1372,21 +1360,21 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 [54 <./figs/pr/reuter-cs-scala.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 484--484
 []\OT1/cmr/m/n/12 Table 5.12: |[] Pre-ci-sion/Re-cal-l/F1 for Doc-u-ment Cat-e-
 go-riza-tion on
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<figs/pr/physics-cs-scala.pdf, id=1169, 397.485pt x 325.215pt>
+<figs/pr/physics-cs-scala.pdf, id=1168, 397.485pt x 325.215pt>
 File: figs/pr/physics-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/physics-cs-scala.pdf>
 Package pdftex.def Info: figs/pr/physics-cs-scala.pdf used on input line 490.
-(pdftex.def)             Requested size: 341.43437pt x 279.36185pt.
+(pdftex.def)             Requested size: 298.75264pt x 244.44162pt.
  [55]
 Overfull \hbox (39.56206pt too wide) in paragraph at lines 537--570
  [] 
@@ -1398,23 +1386,20 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
+[56 <./figs/pr/physics-cs-scala.pdf>]
 Underfull \hbox (badness 3815) in paragraph at lines 673--673
 []\OT1/cmr/m/n/12 Table 5.17: |[] Pre-ci-sion/Re-cal-l/F1 for Doc-u-ment Cat-e-
 go-riza-tion on Bi-ol-
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<figs/pr/biology-cs-scala.pdf, id=1183, 397.485pt x 325.215pt>
+<figs/pr/biology-cs-scala.pdf, id=1195, 397.485pt x 325.215pt>
 File: figs/pr/biology-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/biology-cs-scala.pdf>
 Package pdftex.def Info: figs/pr/biology-cs-scala.pdf used on input line 679.
-(pdftex.def)             Requested size: 341.43437pt x 279.36185pt.
- [56] [57 <./figs/pr/physics-cs-scala.pdf>]
-Overfull \hbox (66.63963pt too wide) in paragraph at lines 727--760
+(pdftex.def)             Requested size: 298.75264pt x 244.44162pt.
+ [57]
+Overfull \hbox (66.63963pt too wide) in paragraph at lines 726--759
  [] 
  []
 
@@ -1427,24 +1412,25 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[58] <figs/pr/mathematics-cs-scala.pdf, id=1213, 397.485pt x 325.215pt>
+[58 <./figs/pr/biology-cs-scala.pdf>]
+<figs/pr/mathematics-cs-scala.pdf, id=1219, 397.485pt x 325.215pt>
 File: figs/pr/mathematics-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/mathematics-cs-scala.pdf>
 Package pdftex.def Info: figs/pr/mathematics-cs-scala.pdf used on input line 86
-9.
-(pdftex.def)             Requested size: 341.43437pt x 279.36185pt.
+8.
+(pdftex.def)             Requested size: 298.75264pt x 244.44162pt.
 
-Underfull \hbox (badness 3525) in paragraph at lines 871--871
+Underfull \hbox (badness 3525) in paragraph at lines 870--870
 []\OT1/cmr/m/n/12 Figure 5.4: |Pre-ci-sion/Re-call for Doc-u-ment Cat-e-go-riza
 -tion on Math-e-mat-
  []
 
 
-Underfull \vbox (badness 2941) has occurred while \output is active []
+Underfull \vbox (badness 6708) has occurred while \output is active []
 
- [59 <./figs/pr/biology-cs-scala.pdf>]
-Overfull \hbox (34.10513pt too wide) in paragraph at lines 917--950
+ [59]
+Overfull \hbox (34.10513pt too wide) in paragraph at lines 916--949
  [] 
  []
 
@@ -1454,23 +1440,24 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[60]
-Underfull \vbox (badness 2941) has occurred while \output is active []
-
- [61 <./figs/pr/mathematics-cs-scala.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 1052--1052
+[60 <./figs/pr/mathematics-cs-scala.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 1051--1051
 []\OT1/cmr/m/n/12 Table 5.27: |[] Pre-ci-sion/Re-cal-l/F1 for Doc-u-ment Cat-e-
 go-riza-tion on
  []
 
-<figs/pr/sports-cs-scala.pdf, id=1253, 397.485pt x 325.215pt>
+<figs/pr/sports-cs-scala.pdf, id=1246, 397.485pt x 325.215pt>
 File: figs/pr/sports-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/sports-cs-scala.pdf>
-Package pdftex.def Info: figs/pr/sports-cs-scala.pdf used on input line 1058.
-(pdftex.def)             Requested size: 341.43437pt x 279.36185pt.
- [62 <./figs/pr/sports-cs-scala.pdf>]
-Overfull \hbox (32.91609pt too wide) in paragraph at lines 1087--1153
+Package pdftex.def Info: figs/pr/sports-cs-scala.pdf used on input line 1057.
+(pdftex.def)             Requested size: 298.75264pt x 244.44162pt.
+
+Underfull \vbox (badness 1092) has occurred while \output is active []
+
+ [61]
+[62 <./figs/pr/sports-cs-scala.pdf>]
+Overfull \hbox (32.91609pt too wide) in paragraph at lines 1086--1152
  [] 
  []
 
@@ -1478,7 +1465,7 @@ Overfull \hbox (32.91609pt too wide) in paragraph at lines 1087--1153
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [63]
-Overfull \hbox (37.5921pt too wide) in paragraph at lines 1177--1197
+Overfull \hbox (37.5921pt too wide) in paragraph at lines 1180--1200
 [][] 
  []
 
@@ -1520,7 +1507,7 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 Here is how much of TeX's memory you used:
  21367 strings out of 493304
  358688 string characters out of 6139871
- 479753 words of memory out of 5000000
+ 474754 words of memory out of 5000000
  23962 multiletter control sequences out of 15000+600000
  18385 words of font info for 67 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -1551,10 +1538,10 @@ nts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (94 pages, 1059549 bytes).
+Output written on thesis.pdf (94 pages, 1058771 bytes).
 PDF statistics:
- 1477 PDF objects out of 1728 (max. 8388607)
- 1297 compressed objects within 13 object streams
+ 1474 PDF objects out of 1728 (max. 8388607)
+ 1294 compressed objects within 13 object streams
  347 named destinations out of 1000 (max. 500000)
  602 words of extra memory for PDF output out of 10000 (max. 10000000)
 
