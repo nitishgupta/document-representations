@@ -8,11 +8,11 @@
 \contentsline {table}{\numberline {5.2}{\ignorespaces Statistics of the Wikipedia Datasets\relax }}{48}{table.caption.148}
 \contentsline {table}{\numberline {5.3}{\ignorespaces {Model performance on Reuters development data for different embedding dimensionality}\relax }}{52}{table.caption.157}
 \contentsline {table}{\numberline {5.4}{\ignorespaces Model performance on Reuters development data for different number of epochs\relax }}{52}{table.caption.158}
-\contentsline {table}{\numberline {5.5}{\ignorespaces Model performance on Reuters development data for different window sizes\relax }}{53}{table.caption.159}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Model performance on Reuters development data for different window sizes\relax }}{52}{table.caption.159}
 \contentsline {table}{\numberline {5.6}{\ignorespaces Model performance on Reuters development data for different number of negative samples\relax }}{53}{table.caption.160}
-\contentsline {table}{\numberline {5.7}{\ignorespaces Precision/Recall/F1 for Document Categorization on Reuters-21578(\emph {ModApte}) dataset\relax }}{54}{table.caption.161}
+\contentsline {table}{\numberline {5.7}{\ignorespaces Precision/Recall/F1 for Document Categorization on Reuters-21578(\emph {ModApte}) dataset\relax }}{53}{table.caption.161}
 \contentsline {table}{\numberline {5.8}{\ignorespaces Model performance on Physics(Wikipedia) development data for different embedding dimensionality\relax }}{54}{table.caption.164}
-\contentsline {table}{\numberline {5.9}{\ignorespaces Model performance on Physics(Wikipedia) development data for different number of epochs\relax }}{54}{table.caption.165}
+\contentsline {table}{\numberline {5.9}{\ignorespaces Model performance on Physics(Wikipedia) development data for different number of epochs\relax }}{55}{table.caption.165}
 \contentsline {table}{\numberline {5.10}{\ignorespaces Model performance on Physics(Wikipedia) development data for different window sizes\relax }}{55}{table.caption.166}
 \contentsline {table}{\numberline {5.11}{\ignorespaces Model performance on Physics(Wikipedia) development data for different number of negative samples\relax }}{55}{table.caption.167}
 \contentsline {table}{\numberline {5.12}{\ignorespaces Precision/Recall/F1 for Document Categorization on Physics(Wikipedia) dataset\relax }}{56}{table.caption.168}
@@ -27,9 +27,9 @@
 \contentsline {table}{\numberline {5.21}{\ignorespaces Model performance on Mathematics(Wikipedia) development data for different number of negative samples\relax }}{59}{table.caption.181}
 \contentsline {table}{\numberline {5.22}{\ignorespaces Precision/Recall/F1 for Document Categorization on Mathematics(Wikipedia) dataset\relax }}{60}{table.caption.182}
 \contentsline {table}{\numberline {5.23}{\ignorespaces Model performance on Sports(Wikipedia) development data for different embedding dimensionality\relax }}{60}{table.caption.185}
-\contentsline {table}{\numberline {5.24}{\ignorespaces Model performance on Sports(Wikipedia) development data for different number of epochs\relax }}{61}{table.caption.186}
+\contentsline {table}{\numberline {5.24}{\ignorespaces Model performance on Sports(Wikipedia) development data for different number of epochs\relax }}{60}{table.caption.186}
 \contentsline {table}{\numberline {5.25}{\ignorespaces Model performance on Sports(Wikipedia) development data for different window sizes\relax }}{61}{table.caption.187}
-\contentsline {table}{\numberline {5.26}{\ignorespaces Model performance on Sports(Wikipedia) development data for different number of negative samples\relax }}{62}{table.caption.188}
+\contentsline {table}{\numberline {5.26}{\ignorespaces Model performance on Sports(Wikipedia) development data for different number of negative samples\relax }}{61}{table.caption.188}
 \contentsline {table}{\numberline {5.27}{\ignorespaces Precision/Recall/F1 for Document Categorization on Sports(Wikipedia) dataset\relax }}{62}{table.caption.189}
 \contentsline {table}{\numberline {5.28}{\ignorespaces Precision/Recall/F1 for Imputing Missing Categories in the Wikipedia Datasets \relax }}{64}{table.caption.192}
 \contentsline {table}{\numberline {5.29}{\ignorespaces Estimating Similarity between Categories and Words\relax }}{65}{table.caption.194}
