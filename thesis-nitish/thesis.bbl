@@ -1,4 +1,4 @@
-\begin{thebibliography}{53}
+\begin{thebibliography}{54}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -253,6 +253,12 @@ G.~Salton and C.-S. Yang.
 \newblock On the specification of term values in automatic indexing.
 \newblock \emph{Journal of documentation}, 29\penalty0 (4):\penalty0 351--372,
   1973.
+
+\bibitem[Singh and Gordon(2008)]{singh2008relational}
+A.~P. Singh and G.~J. Gordon.
+\newblock Relational learning via collective matrix factorization.
+\newblock In \emph{Proceedings of the 14th ACM SIGKDD international conference
+  on Knowledge discovery and data mining}, pages 650--658. ACM, 2008.
 
 \bibitem[Socher et~al.(2013)Socher, Perelygin, Wu, Chuang, Manning, Ng, and
   Potts]{socher2013recursive}

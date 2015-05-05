@@ -12,45 +12,45 @@ A level-1 auxiliary file: Evaluation.aux
 The style file: abbrvnat.bst
 Database file #1: references.bib
 Warning--empty booktitle in mccallum1999multi
-You've used 53 entries,
+You've used 54 entries,
             2773 wiz_defined-function locations,
-            904 strings with 14385 characters,
-and the built_in function-call counts, 28028 in all, are:
-= -- 2625
-> -- 1426
-< -- 64
-+ -- 486
-- -- 429
-* -- 2089
-:= -- 4029
-add.period$ -- 174
-call.type$ -- 53
-change.case$ -- 296
-chr.to.int$ -- 49
-cite$ -- 107
-duplicate$ -- 1388
-empty$ -- 2357
-format.name$ -- 526
-if$ -- 6150
+            909 strings with 14601 characters,
+and the built_in function-call counts, 28614 in all, are:
+= -- 2686
+> -- 1447
+< -- 66
++ -- 493
+- -- 435
+* -- 2125
+:= -- 4106
+add.period$ -- 178
+call.type$ -- 54
+change.case$ -- 301
+chr.to.int$ -- 50
+cite$ -- 109
+duplicate$ -- 1420
+empty$ -- 2410
+format.name$ -- 535
+if$ -- 6288
 int.to.chr$ -- 5
 int.to.str$ -- 1
-missing$ -- 55
-newline$ -- 273
-num.names$ -- 212
-pop$ -- 662
+missing$ -- 56
+newline$ -- 278
+num.names$ -- 216
+pop$ -- 675
 preamble$ -- 1
-purify$ -- 247
+purify$ -- 251
 quote$ -- 0
-skip$ -- 1123
+skip$ -- 1150
 stack$ -- 0
-substring$ -- 1300
-swap$ -- 327
-text.length$ -- 33
+substring$ -- 1334
+swap$ -- 338
+text.length$ -- 34
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 568
+type$ -- 579
 warning$ -- 1
-while$ -- 266
+while$ -- 272
 width$ -- 0
-write$ -- 706
+write$ -- 720
 (There was 1 warning)
