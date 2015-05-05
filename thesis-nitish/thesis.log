@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  4 MAY 2015 23:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  5 MAY 2015 10:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1217,8 +1217,12 @@ put line 393.
 
 ]
 Chapter 4.
-[37] [38] [39]
-Overfull \hbox (54.87115pt too wide) in paragraph at lines 83--83
+[37]
+Underfull \vbox (badness 2671) has occurred while \output is active []
+
+ [38]
+[39]
+Overfull \hbox (54.87115pt too wide) in paragraph at lines 81--81
 [] 
  []
 
@@ -1233,13 +1237,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [41]
-[42]
-Overfull \hbox (16.75267pt too wide) in paragraph at lines 142--143
-[]\OT1/cmr/m/n/12 Since we learn dis-tributed em-bed-dings for the cat-e-gories
- in the same $\OML/cmm/m/it/12 k$\OT1/cmr/m/n/12 -dimensional
- []
-
-[43]) [44]
+[42] [43]) [44]
 \openout2 = `Evaluation.aux'.
 
  (./Evaluation.tex
@@ -1281,7 +1279,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figs/pr/reuter-cs-scala.pdf, id=1175, 397.485pt x 325.215pt>
+<figs/pr/reuter-cs-scala.pdf, id=1172, 397.485pt x 325.215pt>
 File: figs/pr/reuter-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/reuter-cs-scala.pdf>
@@ -1301,7 +1299,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figs/pr/physics-cs-scala.pdf, id=1190, 397.485pt x 325.215pt>
+<figs/pr/physics-cs-scala.pdf, id=1187, 397.485pt x 325.215pt>
 File: figs/pr/physics-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/physics-cs-scala.pdf>
@@ -1329,7 +1327,7 @@ Underfull \vbox (badness 1038) has occurred while \output is active []
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figs/pr/biology-cs-scala.pdf, id=1217, 397.485pt x 325.215pt>
+<figs/pr/biology-cs-scala.pdf, id=1214, 397.485pt x 325.215pt>
 File: figs/pr/biology-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/biology-cs-scala.pdf>
@@ -1353,7 +1351,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[58] <figs/pr/mathematics-cs-scala.pdf, id=1247, 397.485pt x 325.215pt>
+[58] <figs/pr/mathematics-cs-scala.pdf, id=1244, 397.485pt x 325.215pt>
 File: figs/pr/mathematics-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/mathematics-cs-scala.pdf>
@@ -1378,7 +1376,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Underfull \vbox (badness 1648) has occurred while \output is active []
 
  [61 <./figs/pr/mathematics-cs-scala.pdf>]
-<figs/pr/sports-cs-scala.pdf, id=1286, 397.485pt x 325.215pt>
+<figs/pr/sports-cs-scala.pdf, id=1283, 397.485pt x 325.215pt>
 File: figs/pr/sports-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/sports-cs-scala.pdf>
@@ -1423,15 +1421,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 214.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 214.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 214.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: EDF1A729DCD4089C8A46F61C10EDD6ED;5032.
+(rerunfilecheck)             Checksum: DB898A5FA7C9E5719B90E10CA19837EB;5032.
  )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 135 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 21380 strings out of 493304
- 358904 string characters out of 6139871
+ 21378 strings out of 493304
+ 358888 string characters out of 6139871
  490548 words of memory out of 5000000
  23964 multiletter control sequences out of 15000+600000
  19784 words of font info for 71 fonts, out of 8000000 for 9000
@@ -1462,10 +1460,10 @@ sfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
 i12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb>
-Output written on thesis.pdf (94 pages, 1245891 bytes).
+Output written on thesis.pdf (94 pages, 1245601 bytes).
 PDF statistics:
- 1519 PDF objects out of 1728 (max. 8388607)
- 1354 compressed objects within 14 object streams
- 350 named destinations out of 1000 (max. 500000)
+ 1515 PDF objects out of 1728 (max. 8388607)
+ 1350 compressed objects within 14 object streams
+ 348 named destinations out of 1000 (max. 500000)
  587 words of extra memory for PDF output out of 10000 (max. 10000000)
 

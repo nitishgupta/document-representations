@@ -396,21 +396,22 @@ To learn the vectors $\matD$, $\matW$ and weights $\Lambda$ we initialize vector
 
 \subsubsection{Hyper-parameters of our model}
 \label{sec:hp_doc}
-Our model, like any other, has hyper-parameters that need to be tuned for optimum model performance and learning high quality document and word vectors and the model parameters for achieving the the best accuracies in the task. Below we describe the hyper-parameters in our model and the effect they have on learning document representations.
+Our model has various hyper-parameters that need to be tuned for optimum model performance and learning high quality document and word vectors. Below we describe the hyper-parameters in our model and the effect they have on learning document representations.
 \begin{enumerate}
-\item \textbf{Embedding Dimensionality ($k$)} : The most important hyper-parameter in our model is the size of the document and word embedding vectors $k$. The embedding dimensionality needs to be big enough such that the document vectors can encode the different semantic topics across the corpus but shouldn't be very large so that it introduces noise in the vectors.
+\item \textbf{Embedding Dimensionality ($k$)} : The most important hyper-parameter in our model is the size of the document and word embedding vectors, $k$. The embedding dimensionality needs to be large enough such that the document vectors can encode the different semantic topics across the corpus but shouldn't be very large so that it introduces noise in the vectors.
 
-\item \textbf{Window  Size ($c$)} : The length of the sequence or the window size $c$, that we consider as context surrounding a word plays an important role in the vectors that are learned. While a smaller window could result in the negligence of important/similar words that surround the middle word, a large window could introduce noise in the context that can deteriorate the performance of the model.
+\item \textbf{Window  Size ($c$)} : The length of the sequence or the window size $c$, that we consider as context surrounding a word is crucial for the quality of representations learned. While a smaller window could result in the negligence of important words that surround the middle word, a large window could introduce noise in the context that can deteriorate the performance of the model.
 
-\item \textbf{Number of Negative Samples ($n$)} : In NCE, the number of negative samples introduced in the training data per positive example plays an important role in deciding the trade-off between learning better word density distribution with larger $n$ while smaller $n$ leads to lesser training times. Hence, the number of negative samples introduced needs to be tuned using the development data.
+\item \textbf{Number of Negative Samples ($n$)} : In NCE, tuning the number of negative samples introduced in the training data per positive example is important for deciding the trade-off between learning better word density distribution, with larger $n$ and lower training complexity, with smaller $n$. 
 
-\item \textbf{Number of Epochs} : The number of times we need to loop through the training data to learn the vectors needs to be optimized to prevent overfitting with large epochs while at the same time learn high quality representations.
+\item \textbf{Number of Epochs ($epochs$))} : The number of times we loop through the training data to learn the representations needs to be optimum to prevent overfitting, that would occur with large epochs, while at the same time learn high quality representations.
 
-\item \textbf{Learning Rate ($\gamma$)} : The learning rate used in the SGD algorithm plays an important role whose optimum value is dependent on the dataset and the objective function. While a smaller learning rate could harm the training time and convergence, a larger learning rate may lead to a case of non-convergence and poor parameters
+\item \textbf{Learning Rate ($\gamma$)} : The convergence of a non-convex objective being optimized using the SGD algorithm depends largely on the learning rate. 
+While a smaller learning rate could harm the training time and convergence, a larger learning rate may lead to the case of non-convergence and poor parameters.
 
-\item \textbf{Regularization Constant ($\beta$)} : Regularization is introduced in the training objective to avoid overfitting of parameters by reducing model complexity. While a small value may not penalize complexity by enough, larger constants may inhibit the growing of parameters with a negative effect which required careful selection of the regularization constant dependent on the dataset.
+\item \textbf{Regularization Constant ($\beta$)} : Regularization is introduced in the training objective to avoid overfitting of parameters by reducing model complexity. While a small $\beta$ may not penalize complexity enough, larger constants may inhibit the growing of parameters with a negative effect which requires careful selection of the regularization constant dependent on the dataset.
 \end{enumerate}
-We explain the manner in which we tune these hyper-parameters later in Sec.~\ref{sec:exp_setup}.
+We explain the technique in which we tune these hyper-parameters later in Sec.~\ref{sec:exp_setup}.
 
 
 

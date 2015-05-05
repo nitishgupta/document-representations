@@ -38,26 +38,26 @@
 \BOOKMARK [1][-]{section.115}{4.1 Logistic Regression for Multi-label Document Categorization}{chapter.114}% 38
 \BOOKMARK [2][-]{subsection.116}{4.1.1 Training Data}{section.115}% 39
 \BOOKMARK [2][-]{subsection.117}{4.1.2 Logistic Regression Model}{section.115}% 40
-\BOOKMARK [3][-]{subsubsection.121}{4.1.2.1 Training Objective}{subsection.117}% 41
-\BOOKMARK [3][-]{subsubsection.128}{4.1.2.2 Parameter Estimation}{subsection.117}% 42
-\BOOKMARK [1][-]{section.136}{4.2 Similarity to Relational Learning}{chapter.114}% 43
-\BOOKMARK [1][-]{section.140}{4.3 Advantages of Logistic Regression Learning Algorithm}{chapter.114}% 44
-\BOOKMARK [0][-]{chapter.145}{5 Datasets and Evaluations}{}% 45
-\BOOKMARK [1][-]{section.146}{5.1 Datasets}{chapter.145}% 46
-\BOOKMARK [2][-]{subsection.147}{5.1.1 Reuters-21578}{section.146}% 47
-\BOOKMARK [2][-]{subsection.149}{5.1.2 Wikipedia Datasets}{section.146}% 48
-\BOOKMARK [1][-]{section.152}{5.2 Experimental Setup}{chapter.145}% 49
-\BOOKMARK [1][-]{section.157}{5.3 Results}{chapter.145}% 50
-\BOOKMARK [2][-]{subsection.158}{5.3.1 Document Categorization}{section.157}% 51
-\BOOKMARK [3][-]{subsubsection.159}{5.3.1.1 Reuters - 21578}{subsection.158}% 52
-\BOOKMARK [3][-]{subsubsection.166}{5.3.1.2 Physics - Wikipedia}{subsection.158}% 53
-\BOOKMARK [3][-]{subsubsection.173}{5.3.1.3 Biology - Wikipedia}{subsection.158}% 54
-\BOOKMARK [3][-]{subsubsection.180}{5.3.1.4 Mathematics - Wikipedia}{subsection.158}% 55
-\BOOKMARK [3][-]{subsubsection.187}{5.3.1.5 Sports - Wikipedia}{subsection.158}% 56
-\BOOKMARK [2][-]{subsection.194}{5.3.2 Imputing Missing Categories}{section.157}% 57
-\BOOKMARK [2][-]{subsection.196}{5.3.3 Estimating Similarity between Categories and Words}{section.157}% 58
-\BOOKMARK [0][-]{chapter.198}{6 Conclusions and Future Work}{}% 59
-\BOOKMARK [1][-]{section.199}{6.1 Future Work}{chapter.198}% 60
-\BOOKMARK [2][-]{subsection.200}{6.1.1 Improving Compositionality of Word Vectors}{section.199}% 61
-\BOOKMARK [2][-]{subsection.201}{6.1.2 Multi-view Supervised Representation Learning}{section.199}% 62
-\BOOKMARK [0][-]{subsection.201}{Bibliography}{}% 63
+\BOOKMARK [3][-]{subsubsection.119}{4.1.2.1 Learning Objective}{subsection.117}% 41
+\BOOKMARK [3][-]{subsubsection.126}{4.1.2.2 Parameter Estimation}{subsection.117}% 42
+\BOOKMARK [1][-]{section.134}{4.2 Similarity to Relational Learning}{chapter.114}% 43
+\BOOKMARK [1][-]{section.138}{4.3 Advantages of Logistic Regression Learning Algorithm}{chapter.114}% 44
+\BOOKMARK [0][-]{chapter.143}{5 Datasets and Evaluations}{}% 45
+\BOOKMARK [1][-]{section.144}{5.1 Datasets}{chapter.143}% 46
+\BOOKMARK [2][-]{subsection.145}{5.1.1 Reuters-21578}{section.144}% 47
+\BOOKMARK [2][-]{subsection.147}{5.1.2 Wikipedia Datasets}{section.144}% 48
+\BOOKMARK [1][-]{section.150}{5.2 Experimental Setup}{chapter.143}% 49
+\BOOKMARK [1][-]{section.155}{5.3 Results}{chapter.143}% 50
+\BOOKMARK [2][-]{subsection.156}{5.3.1 Document Categorization}{section.155}% 51
+\BOOKMARK [3][-]{subsubsection.157}{5.3.1.1 Reuters - 21578}{subsection.156}% 52
+\BOOKMARK [3][-]{subsubsection.164}{5.3.1.2 Physics - Wikipedia}{subsection.156}% 53
+\BOOKMARK [3][-]{subsubsection.171}{5.3.1.3 Biology - Wikipedia}{subsection.156}% 54
+\BOOKMARK [3][-]{subsubsection.178}{5.3.1.4 Mathematics - Wikipedia}{subsection.156}% 55
+\BOOKMARK [3][-]{subsubsection.185}{5.3.1.5 Sports - Wikipedia}{subsection.156}% 56
+\BOOKMARK [2][-]{subsection.192}{5.3.2 Imputing Missing Categories}{section.155}% 57
+\BOOKMARK [2][-]{subsection.194}{5.3.3 Estimating Similarity between Categories and Words}{section.155}% 58
+\BOOKMARK [0][-]{chapter.196}{6 Conclusions and Future Work}{}% 59
+\BOOKMARK [1][-]{section.197}{6.1 Future Work}{chapter.196}% 60
+\BOOKMARK [2][-]{subsection.198}{6.1.1 Improving Compositionality of Word Vectors}{section.197}% 61
+\BOOKMARK [2][-]{subsection.199}{6.1.2 Multi-view Supervised Representation Learning}{section.197}% 62
+\BOOKMARK [0][-]{subsection.199}{Bibliography}{}% 63
