@@ -4,7 +4,7 @@ In this chapter, we present the multinomial logistic regression algorithm in the
 
 \section{Logistic Regression for Multi-label Document Categorization}
 \label{sec:lrtc}
-Introduced by \cite{hosmer1989applied}, Logistic Regression (LR) is a probabilistic binary classification regression model that, given binary labeled data, performs regression over the data and learns weight vectors to predict whether a given data point belongs to the positive or the negative class. 
+Introduced by \citet{hosmer1989applied}, Logistic Regression (LR) is a probabilistic binary classification regression model that, given binary labeled data, performs regression over the data and learns weight vectors to predict whether a given data point belongs to the positive or the negative class. 
 The probability of the data point to belong in a class is estimated using the \emph{logistic (sigmoid) function}, hence the name logistic regression.
 
 Logistic Regression, though is a technique to discriminate between two categories, can be easily extended to classification between multiple categories which is then referred to as Multinomial Logistic Regression. 
@@ -143,7 +143,7 @@ Since we learn distributed representations for the categories in the same $k$-di
 The major drawback of algorithms that learn multiple independent classifiers is their inability to capture and exploit the correlations among categories from the training data. As we exploit the low-rank structure of the document-category relational matrix by learning factors for categories we are able to learn correlations among categories in a way similar to collaborative filtering.
 
 \item 
-Generally, document-category data is accompanied by additional relational data about documents and/or categories which is often incomplete. As has been shown in \cite{gupta2015collectively}, joint modeling of relations and entities using collective matrix factorization of multiple relational matrices can provide signification improvements in the relation prediction task. 
+Generally, document-category data is accompanied by additional relational data about documents and/or categories which is often incomplete. As has been shown in \citet{gupta2015collectively}, joint modeling of relations and entities using collective matrix factorization of multiple relational matrices can provide signification improvements in the relation prediction task. 
 Our model, based on matrix factorization as shown in Sec~\ref{sec:lr_similar_rl}, can easily be extended to incorporate additional relational data and aid in improved database completion. 
 
 \item 

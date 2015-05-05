@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  5 MAY 2015 14:03
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  5 MAY 2015 14:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1160,16 +1160,6 @@ Overfull \hbox (5.0125pt too wide) in paragraph at lines 158--160
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15]
-Overfull \hbox (9.34325pt too wide) in paragraph at lines 174--175
-\OT1/cmr/m/n/12 bels that are present in the doc-u-ment. There-fore, if $\OML/c
-mm/b/it/12 ^^^\OT1/cmr/m/n/12 (\OML/cmm/b/it/12 y\OT1/cmr/m/n/12 ) = \OMS/cmsy/
-m/n/12 f\OML/cmm/m/it/12 ^^^[]\OT1/cmr/m/n/12 (\OML/cmm/b/it/12 y\OT1/cmr/m/n/1
-2 )\OML/cmm/m/it/12 ; ^^^[]\OT1/cmr/m/n/12 (\OML/cmm/b/it/12 y\OT1/cmr/m/n/12 )
-\OML/cmm/m/it/12 ; [] ; ^^^[]\OT1/cmr/m/n/12 (\OML/cmm/b/it/12 y\OT1/cmr/m/n/12
- )\OMS/cmsy/m/n/12 g$
- []
-
-
 Overfull \hbox (1.32643pt too wide) in paragraph at lines 177--179
 \OT1/cmr/m/n/12 each la-bel are found by max-i-miz-ing the pos-te-rior [[]] and
  em-ploy-ing the Expectation-
@@ -1278,7 +1268,9 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 1072) has occurred while \output is active []
 
  [29]
-[30]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30]
 Overfull \hbox (57.18317pt too wide) in paragraph at lines 274--274
 [] 
  []
@@ -1300,7 +1292,7 @@ put line 393.
 ]
 Chapter 4.
 [37]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2671) has occurred while \output is active []
 
  [38]
 [39]
@@ -1569,7 +1561,7 @@ nts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (94 pages, 1059642 bytes).
+Output written on thesis.pdf (94 pages, 1059909 bytes).
 PDF statistics:
  1477 PDF objects out of 1728 (max. 8388607)
  1297 compressed objects within 13 object streams
