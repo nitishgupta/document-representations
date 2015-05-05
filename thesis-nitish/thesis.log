@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  5 MAY 2015 10:23
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  5 MAY 2015 10:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1285,7 +1285,11 @@ File: figs/pr/reuter-cs-scala.pdf Graphic file (type pdf)
 <use figs/pr/reuter-cs-scala.pdf>
 Package pdftex.def Info: figs/pr/reuter-cs-scala.pdf used on input line 302.
 (pdftex.def)             Requested size: 341.43437pt x 279.36185pt.
- [53]
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
 Overfull \hbox (38.89119pt too wide) in paragraph at lines 349--382
  [] 
  []
@@ -1296,6 +1300,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+[53]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1305,11 +1310,7 @@ File: figs/pr/physics-cs-scala.pdf Graphic file (type pdf)
 <use figs/pr/physics-cs-scala.pdf>
 Package pdftex.def Info: figs/pr/physics-cs-scala.pdf used on input line 490.
 (pdftex.def)             Requested size: 341.43437pt x 279.36185pt.
- [54]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
+ [54] [55 <./figs/pr/reuter-cs-scala.pdf>]
 Overfull \hbox (39.56206pt too wide) in paragraph at lines 537--570
  [] 
  []
@@ -1320,38 +1321,23 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-Underfull \vbox (badness 1038) has occurred while \output is active []
-
- [55 <./figs/pr/reuter-cs-scala.pdf>]
+[56 <./figs/pr/physics-cs-scala.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figs/pr/biology-cs-scala.pdf, id=1214, 397.485pt x 325.215pt>
+<figs/pr/biology-cs-scala.pdf, id=1226, 397.485pt x 325.215pt>
 File: figs/pr/biology-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/biology-cs-scala.pdf>
 Package pdftex.def Info: figs/pr/biology-cs-scala.pdf used on input line 679.
 (pdftex.def)             Requested size: 341.43437pt x 279.36185pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [56]
-[57 <./figs/pr/physics-cs-scala.pdf>]
+ [57]
 Overfull \hbox (66.63963pt too wide) in paragraph at lines 727--760
  [] 
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[58] <figs/pr/mathematics-cs-scala.pdf, id=1244, 397.485pt x 325.215pt>
+[58 <./figs/pr/biology-cs-scala.pdf>] [59]
+<figs/pr/mathematics-cs-scala.pdf, id=1257, 397.485pt x 325.215pt>
 File: figs/pr/mathematics-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/mathematics-cs-scala.pdf>
@@ -1359,9 +1345,10 @@ Package pdftex.def Info: figs/pr/mathematics-cs-scala.pdf used on input line 86
 9.
 (pdftex.def)             Requested size: 341.43437pt x 279.36185pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [59 <./figs/pr/biology-cs-scala.pdf>]
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
 Overfull \hbox (34.10513pt too wide) in paragraph at lines 917--950
  [] 
  []
@@ -1372,30 +1359,30 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[60]
-Underfull \vbox (badness 1648) has occurred while \output is active []
-
- [61 <./figs/pr/mathematics-cs-scala.pdf>]
+[60 <./figs/pr/mathematics-cs-scala.pdf>] [61]
 <figs/pr/sports-cs-scala.pdf, id=1283, 397.485pt x 325.215pt>
 File: figs/pr/sports-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/sports-cs-scala.pdf>
 Package pdftex.def Info: figs/pr/sports-cs-scala.pdf used on input line 1058.
 (pdftex.def)             Requested size: 341.43437pt x 279.36185pt.
- [62]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [63 <./figs/pr/sports-cs-scala.pdf>]
+ [62 <./figs/pr/sports-cs-scala.pdf>]
 Overfull \hbox (32.91609pt too wide) in paragraph at lines 1087--1153
  [] 
  []
 
-[64]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [63]
 Overfull \hbox (37.5921pt too wide) in paragraph at lines 1177--1197
 [][] 
  []
 
-) [65] (./Conclusion.tex [66
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) [64] [65] (./Conclusion.tex [66
 
 
 ]
@@ -1421,7 +1408,11 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 214.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 214.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 214.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: DB898A5FA7C9E5719B90E10CA19837EB;5032.
+(rerunfilecheck)             Checksum: 46E448B6F35840A11EEEE139A68EB058;5030.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  )
 (\end occurred inside a group at level 1)
 
@@ -1430,7 +1421,7 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 Here is how much of TeX's memory you used:
  21378 strings out of 493304
  358888 string characters out of 6139871
- 490548 words of memory out of 5000000
+ 487546 words of memory out of 5000000
  23964 multiletter control sequences out of 15000+600000
  19784 words of font info for 71 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -1460,7 +1451,7 @@ sfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
 i12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb>
-Output written on thesis.pdf (94 pages, 1245601 bytes).
+Output written on thesis.pdf (94 pages, 1243948 bytes).
 PDF statistics:
  1515 PDF objects out of 1728 (max. 8388607)
  1350 compressed objects within 14 object streams
