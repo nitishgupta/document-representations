@@ -1,10 +1,10 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Neural Network Architecture for Neural Probabilistic Language Model\relax }}{20}{figure.caption.38}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Continuous Bag-of-Words Model (CBOW)\relax }}{21}{figure.caption.44}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Continuous Skip-gram Model\relax }}{22}{figure.caption.49}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Example for Dependency-based context extraction\relax }}{23}{figure.caption.52}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Neural Network Architecture for Neural Probabilistic Language Model (NPLM). \cite {bengio2003neural}\relax }}{20}{figure.caption.38}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Continuous Bag-of-Words Model (CBOW). Ref. \cite {mikolov2013efficient} \relax }}{21}{figure.caption.44}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Continuous Skip-gram Model. Ref. \cite {mikolov2013efficient}\relax }}{22}{figure.caption.49}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Example for Dependency-based context extraction from \cite {levy2014dependencybased}\relax }}{23}{figure.caption.52}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Neural network Architecture for our model\relax }}{27}{figure.caption.61}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -39,7 +39,7 @@ Their model maps each word to a $m$-dimensional vector in a matrix $C \in \mathb
 \begin{figure}[t!]
     \centering
         \includegraphics[width=0.8\textwidth]{figs/bengio_nn.png}
-    \caption{Neural Network Architecture for Neural Probabilistic Language Model}
+    \caption{Neural Network Architecture for Neural Probabilistic Language Model (NPLM). \cite{bengio2003neural}}
     \label{fig:nn:bengio}
 \end{figure}
 For each input sequence, the neural network outputs a vector $y \in \mathbb{R}^{|V|}$, where $y_{i}$ is the unnormalized log-probability that the $t^{th}$ word in the sequence is $w_{i}$. 
@@ -67,7 +67,7 @@ The Continuous Bag-of-Words (CBOW) model is different from the NPLM in that the 
 \begin{figure}[h!]
     \centering
         \includegraphics[width=0.5\textwidth]{figs/mikolov_cbow.png}
-    \caption{Continuous Bag-of-Words Model (CBOW)}
+    \caption{Continuous Bag-of-Words Model (CBOW). Ref. \cite{mikolov2013efficient} }
     \label{fig:nn:cbow}
 \end{figure}
 The model first computes the hidden layer vector $h$, 
@@ -90,7 +90,7 @@ This model is similar to the CBOW model, but instead of predicting the middle wo
 \begin{figure}[h!]
     \centering
         \includegraphics[width=0.4\textwidth]{figs/mikolov_skip.png}
-    \caption{Continuous Skip-gram Model}
+    \caption{Continuous Skip-gram Model. Ref. \cite{mikolov2013efficient}}
     \label{fig:nn:skip}
 \end{figure}
 Formally, given a sequence of words in a context $w_{t-k}, \ldots, w_{t+k}$, the skip-gram model defines $P(w_{t+j}|w_{t})$ using the \emph{softmax}-classifier in the following manner,
@@ -109,7 +109,7 @@ Instead of using bag-of-words based context as used in \emph{NPLM} and \emph{wor
 \begin{figure}[h!]
     \centering
         \includegraphics[width=0.7\textwidth]{figs/dependency_context.png}
-    \caption{Example for Dependency-based context extraction}
+    \caption{Example for Dependency-based context extraction from \cite{levy2014dependencybased}}
     \label{fig:dep:context}
 \end{figure}
 After context extraction, their model uses the neural network architecture and the learning objective of the skip-gram model to learn word vectors. On comparison to the vectors learned from the skip-gram model on the tasks of \emph{topical similarity} and \emph{functional similarity} estimation, it is found that the vectors learned from this model perform better on the \emph{functional similarity} task that expects word vectors to encode syntactic relationships better. The task of \emph{topical similarity} estimation showed that vectors from the skip-gram model encode semantic content better because of the bag-of-words context used during training.
