@@ -1,7 +1,7 @@
-\contentsline {chapter}{Abstract}{i}{Doc-Start}
-\contentsline {chapter}{List of Tables}{xi}{chapter*.4}
-\contentsline {chapter}{List of Figures}{xiii}{chapter*.5}
-\contentsline {chapter}{List of Algorithms}{xv}{chapter*.6}
+\contentsline {chapter}{Abstract}{v}{Doc-Start}
+\contentsline {chapter}{List of Tables}{xv}{chapter*.4}
+\contentsline {chapter}{List of Figures}{xvii}{chapter*.5}
+\contentsline {chapter}{List of Algorithms}{xix}{chapter*.6}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.7}
 \contentsline {section}{\numberline {1.1}Motivation}{3}{section.9}
 \contentsline {subsection}{\numberline {1.1.1}Inability to preserve word ordering}{3}{subsection.10}

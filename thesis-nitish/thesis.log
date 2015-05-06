@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  6 MAY 2015 11:02
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  6 MAY 2015 14:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -792,7 +792,13 @@ File: pgfmodulematrix.code.tex 2010/08/24  (rcs-revision 1.4)
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
 hs.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v2.10 (rcs-revision 1.2)
-))) (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+))) (/usr/share/texlive/texmf-dist/tex/latex/tools/afterpage.sty
+Package: afterpage 1995/10/27 v1.08 After-Page Package (DPC)
+\AP@output=\toks46
+\AP@partial=\box47
+\AP@footins=\box48
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 \fancy@headwidth=\skip69
 \f@ncyO@elh=\skip70
 \f@ncyO@erh=\skip71
@@ -809,33 +815,33 @@ File: tikzlibrarytopaths.code.tex 2008/06/17 v2.10 (rcs-revision 1.2)
 
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 107.
+(hyperref)                setting the option has no effect on input line 114.
 
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 107.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 107.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 114.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 114.
 
-Package hyperref Info: Option `hypertexnames' set `false' on input line 107.
-Package hyperref Info: Option `colorlinks' set `true' on input line 107.
-Package hyperref Info: Option `breaklinks' set `true' on input line 107.
+Package hyperref Info: Option `hypertexnames' set `false' on input line 114.
+Package hyperref Info: Option `colorlinks' set `true' on input line 114.
+Package hyperref Info: Option `breaklinks' set `true' on input line 114.
 (./thesis.aux (./abstract.aux) (./Dedication.aux) (./acknowledgement.aux)
 (./Introduction.aux) (./RelatedWork.aux) (./DistributedEmbeddings.aux)
 (./TextCategorization.aux) (./Evaluation.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -875,15 +881,15 @@ LaTeX Font Info:    ... okay on input line 110.
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count204
 \scratchdimen=\dimen203
-\scratchbox=\box47
+\scratchbox=\box49
 \nofMPsegments=\count205
 \nofMParguments=\count206
-\everyMPshowfont=\toks46
+\everyMPshowfont=\toks47
 \MPscratchCnt=\count207
 \MPscratchDim=\dimen204
 \MPnumerator=\count208
 \makeMPintoPDFobject=\count209
-\everyMPtoPDFconversion=\toks47
+\everyMPtoPDFconversion=\toks48
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -900,8 +906,8 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \c@lstlisting=\count210
-\AtBeginShipoutBox=\box48
-Package hyperref Info: Link coloring ON on input line 110.
+\AtBeginShipoutBox=\box50
+Package hyperref Info: Link coloring ON on input line 117.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -911,9 +917,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count211
 )
-LaTeX Info: Redefining \ref on input line 110.
-LaTeX Info: Redefining \pageref on input line 110.
-LaTeX Info: Redefining \nameref on input line 110.
+LaTeX Info: Redefining \ref on input line 117.
+LaTeX Info: Redefining \pageref on input line 117.
+LaTeX Info: Redefining \nameref on input line 117.
 
 (./thesis.out) (./thesis.out)
 \@outlinefile=\write4
@@ -922,44 +928,45 @@ LaTeX Info: Redefining \nameref on input line 110.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
  ABD: EveryShipout initializing macros
-<title.pdf, id=267, 597.50786pt x 845.04686pt>
+<title.pdf, id=115, 597.50786pt x 845.04686pt>
 File: title.pdf Graphic file (type pdf)
  <use title.pdf>
-Package pdftex.def Info: title.pdf used on input line 114.
+Package pdftex.def Info: title.pdf used on input line 119.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
 File: title.pdf Graphic file (type pdf)
  <use title.pdf>
-Package pdftex.def Info: title.pdf used on input line 114.
+Package pdftex.def Info: title.pdf used on input line 119.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
 
-<title.pdf, id=270, page=1, 597.50786pt x 845.04686pt>
+<title.pdf, id=118, page=1, 597.50786pt x 845.04686pt>
 File: title.pdf Graphic file (type pdf)
  <use title.pdf, page 1>
-Package pdftex.def Info: title.pdf, page1 used on input line 114.
+Package pdftex.def Info: title.pdf, page1 used on input line 119.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
 File: title.pdf Graphic file (type pdf)
 
 <use title.pdf, page 1>
-Package pdftex.def Info: title.pdf, page1 used on input line 114.
+Package pdftex.def Info: title.pdf, page1 used on input line 119.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: title.pdf Graphic file (type pdf)
  <use title.pdf, page 1>
-Package pdftex.def Info: title.pdf, page1 used on input line 114.
+Package pdftex.def Info: title.pdf, page1 used on input line 119.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: title.pdf Graphic file (type pdf)
  <use title.pdf, page 1>
-Package pdftex.def Info: title.pdf, page1 used on input line 114.
+Package pdftex.def Info: title.pdf, page1 used on input line 119.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: title.pdf Graphic file (type pdf)
 
 <use title.pdf, page 1>
-Package pdftex.def Info: title.pdf, page1 used on input line 114.
+Package pdftex.def Info: title.pdf, page1 used on input line 119.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [1
 
 
- <./title.pdf{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}>] <certificate
-.pdf, id=319, 597.50786pt x 845.04686pt>
+ <./title.pdf{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}>] [2
+
+] <certificate.pdf, id=171, 597.50786pt x 845.04686pt>
 File: certificate.pdf Graphic file (type pdf)
 
 <use certificate.pdf>
@@ -969,8 +976,8 @@ File: certificate.pdf Graphic file (type pdf)
  <use certificate.pdf>
 Package pdftex.def Info: certificate.pdf used on input line 124.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
- [2]
-<certificate.pdf, id=326, page=1, 597.50786pt x 845.04686pt>
+
+<certificate.pdf, id=174, page=1, 597.50786pt x 845.04686pt>
 File: certificate.pdf Graphic file (type pdf)
 
 <use certificate.pdf, page 1>
@@ -994,7 +1001,7 @@ File: certificate.pdf Graphic file (type pdf)
 <use certificate.pdf, page 1>
 Package pdftex.def Info: certificate.pdf, page1 used on input line 124.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
- [3 <./certificate.pdf>] [1]
+ [3 <./certificate.pdf>] [4]
 \openout2 = `abstract.aux'.
 
  (./abstract.tex
@@ -1010,32 +1017,33 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 17.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)) [2
+)) [5
+
+] [6
 
 ]
 \openout2 = `Dedication.aux'.
 
 
-(./Dedication.tex) [2
+(./Dedication.tex) [7
 
+] [8
 
 ]
 \openout2 = `acknowledgement.aux'.
 
- (./acknowledgement.tex) [3
+ (./acknowledgement.tex) [9
 
+] [10
 
-] [4
+] (./thesis.toc
+[11
 
-
-] (./thesis.toc [5]
-[6])
+])
 \tf@toc=\write5
 \openout5 = `thesis.toc'.
 
- [7] [8
-
-] (./thesis.lot
+ [12] (./thesis.lot
 Overfull \hbox (18.28607pt too wide) in paragraph at lines 18--18
  [][] [][][]\OT1/cmr/m/n/12 Precision/Recall/F1 for Doc-u-ment Cat-e-go-riza-ti
 on on Physics(Wikipedia) 
@@ -1044,7 +1052,9 @@ on on Physics(Wikipedia)
 
 Underfull \vbox (badness 1406) has occurred while \output is active []
 
- [9]
+ [13
+
+]
 Overfull \hbox (18.80829pt too wide) in paragraph at lines 23--23
  [][] [][][]\OT1/cmr/m/n/12 Precision/Recall/F1 for Doc-u-ment Cat-e-go-riza-ti
 on on Bi-ol-ogy(Wikipedia) 
@@ -1059,7 +1069,7 @@ on on Math-e-mat-ics(Wikipedia)
 
 Underfull \vbox (badness 2065) has occurred while \output is active []
 
- [10]
+ [14]
 Overfull \hbox (13.1639pt too wide) in paragraph at lines 33--33
  [][] [][][]\OT1/cmr/m/n/12 Precision/Recall/F1 for Doc-u-ment Cat-e-go-riza-ti
 on on Sports(Wikipedia) 
@@ -1075,7 +1085,7 @@ ories in the Wikipedia
 \tf@lot=\write6
 \openout6 = `thesis.lot'.
 
- [11] [12
+ [15] [16
 
 ] (./thesis.lof
 Overfull \hbox (1.66261pt too wide) in paragraph at lines 4--4
@@ -1099,13 +1109,13 @@ on Math-e-mat-ics(Wikipedia)
 \tf@lof=\write7
 \openout7 = `thesis.lof'.
 
- [13] [14
+ [17] [18
 
 ] (./thesis.loa)
 \tf@loa=\write8
 \openout8 = `thesis.loa'.
 
- [15] [16
+ [19] [20
 
 ]
 \openout2 = `Introduction.aux'.
@@ -1184,7 +1194,7 @@ Overfull \hbox (13.72908pt too wide) in paragraph at lines 16--17
 Underfull \vbox (badness 1748) has occurred while \output is active []
 
  [18]
-<figs/bengio_nn.png, id=828, 1062.97125pt x 901.3675pt>
+<figs/bengio_nn.png, id=644, 1062.97125pt x 901.3675pt>
 File: figs/bengio_nn.png Graphic file (type png)
 
 <use figs/bengio_nn.png>
@@ -1194,7 +1204,7 @@ Package pdftex.def Info: figs/bengio_nn.png used on input line 41.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [19]
-<figs/mikolov_cbow.png, id=843, 626.34pt x 694.595pt>
+<figs/mikolov_cbow.png, id=660, 626.34pt x 694.595pt>
 File: figs/mikolov_cbow.png Graphic file (type png)
 
 <use figs/mikolov_cbow.png>
@@ -1204,14 +1214,14 @@ Package pdftex.def Info: figs/mikolov_cbow.png used on input line 69.
 Underfull \vbox (badness 3148) has occurred while \output is active []
 
  [20 <./figs/bengio_nn.png>] [21 <./figs/mikolov_cbow.png>]
-<figs/mikolov_skip.png, id=862, 596.2275pt x 693.59125pt>
+<figs/mikolov_skip.png, id=681, 596.2275pt x 693.59125pt>
 File: figs/mikolov_skip.png Graphic file (type png)
 
 <use figs/mikolov_skip.png>
 Package pdftex.def Info: figs/mikolov_skip.png used on input line 92.
 (pdftex.def)             Requested size: 170.71393pt x 198.58572pt.
  [22 <./figs/mikolov_skip.png>]
-<figs/dependency_context.png, id=878, 1179.40625pt x 781.92125pt>
+<figs/dependency_context.png, id=698, 1179.40625pt x 781.92125pt>
 File: figs/dependency_context.png Graphic file (type png)
 
 <use figs/dependency_context.png>
@@ -1343,7 +1353,7 @@ Overfull \hbox (40.81345pt too wide) in paragraph at lines 148--181
  [] 
  []
 
-[52] <figs/pr/reuter-cs-scala.pdf, id=1166, 397.485pt x 325.215pt>
+[52] <figs/pr/reuter-cs-scala.pdf, id=1004, 397.485pt x 325.215pt>
 File: figs/pr/reuter-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/reuter-cs-scala.pdf>
@@ -1375,7 +1385,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 484--484
 go-riza-tion on
  []
 
-<figs/pr/physics-cs-scala.pdf, id=1193, 397.485pt x 325.215pt>
+<figs/pr/physics-cs-scala.pdf, id=1032, 397.485pt x 325.215pt>
 File: figs/pr/physics-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/physics-cs-scala.pdf>
@@ -1398,7 +1408,7 @@ Underfull \hbox (badness 3815) in paragraph at lines 673--673
 go-riza-tion on Bi-ol-
  []
 
-<figs/pr/biology-cs-scala.pdf, id=1220, 397.485pt x 325.215pt>
+<figs/pr/biology-cs-scala.pdf, id=1060, 397.485pt x 325.215pt>
 File: figs/pr/biology-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/biology-cs-scala.pdf>
@@ -1419,7 +1429,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [58 <./figs/pr/biology-cs-scala.pdf>]
-<figs/pr/mathematics-cs-scala.pdf, id=1244, 397.485pt x 325.215pt>
+<figs/pr/mathematics-cs-scala.pdf, id=1085, 397.485pt x 325.215pt>
 File: figs/pr/mathematics-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/mathematics-cs-scala.pdf>
@@ -1452,7 +1462,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1051--1051
 go-riza-tion on
  []
 
-<figs/pr/sports-cs-scala.pdf, id=1271, 397.485pt x 325.215pt>
+<figs/pr/sports-cs-scala.pdf, id=1113, 397.485pt x 325.215pt>
 File: figs/pr/sports-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/sports-cs-scala.pdf>
@@ -1498,27 +1508,27 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ] (./thesis.bbl [71
 
 ] [72] [73])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 219.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 172.
  [74]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 219.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 172.
  (./thesis.aux (./abstract.aux)
 (./Dedication.aux) (./acknowledgement.aux) (./Introduction.aux)
 (./RelatedWork.aux) (./DistributedEmbeddings.aux) (./TextCategorization.aux)
 (./Evaluation.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 219.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 219.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 172.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 172.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 401B32463C67C9005D7B38109DC80BD5;5224.
+(rerunfilecheck)             Checksum: E4B276AD6B58F4CAFB1B30A67EB018AD;1875.
  )
 (\end occurred inside a group at level 1)
 
-### semi simple group (level 1) entered at line 138 (\begingroup)
+### semi simple group (level 1) entered at line 133 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 21376 strings out of 493304
- 358859 string characters out of 6139871
- 475912 words of memory out of 5000000
- 23967 multiletter control sequences out of 15000+600000
+ 21358 strings out of 493304
+ 358528 string characters out of 6139871
+ 475415 words of memory out of 5000000
+ 23946 multiletter control sequences out of 15000+600000
  18385 words of font info for 67 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  56i,18n,70p,1188b,1110s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1548,10 +1558,10 @@ nts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (94 pages, 1061825 bytes).
+Output written on thesis.pdf (94 pages, 1056743 bytes).
 PDF statistics:
- 1503 PDF objects out of 1728 (max. 8388607)
- 1318 compressed objects within 14 object streams
+ 1348 PDF objects out of 1440 (max. 8388607)
+ 1165 compressed objects within 12 object streams
  351 named destinations out of 1000 (max. 500000)
- 618 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 314 words of extra memory for PDF output out of 10000 (max. 10000000)
 
