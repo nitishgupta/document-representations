@@ -76,9 +76,15 @@ $d_{5}$ & x & x & x & x & x & x\\
 
 For example, in Table~\ref{traindata:example:table} we see that the document set $D$ contains $5$ documents and the category set $C$ contains $6$ categories. The first $3$ documents $d_{1}$, $d_{2}$ and $d_{3}$ contain their label vectors and the rest of the documents $d_{4}$ and $d_{5}$ are test instances whose category assignments are to be made using the learned classifier $\mathcal{H}$.
 
+\section{Contributions of the Thesis}
+In this thesis, we present a novel document representation learning algorithm and a modified logisitic regression learning algorithm for multi-label document categorization using the learned representations.
+We develop an unsupervised neural network model to learn continuous low-dimensional distributed vector representations for documents and words jointly, that encode their semantic content. 
+Our proposed model overcomes certain drawbacks, posed by the bag-of-words model such as high-dimensionality, sparsity, lack of similarity measures and the inability to incorporate contextual information surrounding the words in the documents. 
+For categorization, our model embeds the categories in the same semantic space as the documents and words by learning distributed representations for them and hence also gives us the ability to estimate similarities between entities, not directly related, such as categories and words.
+
 %\section{Contributions of Thesis}
-\section{Organization of Thesis}
-In this chapter we introduced the problem of multi-class document categorization and showed why better document representation models are needed to substitute the bag-of-words representation model. The rest of this thesis is organized as follows. Chapter~\ref{chapter:relatedwork} reviews the different text representation models, dimensionality reduction techniques employed on the bag-of-words representation and various learning algorithms developed for multi-label document categorization. Chapter~\ref{chapter:distembed} presents our model for learning distributed document representation vectors along with the details of the model. Chapter~\ref{chapter:mltextcat} presents our approach to multi-label document categorization using a modified logistic regression algorithm. Chapter~\ref{chapter:evaluations} discusses details about the datasets we use, experimental setup and presents performance evaluation for the document categorization task. The conclusions and future work are a part of Chapter~\ref{chapter:conclusion}.
+\section{Organization of the Thesis}
+In this chapter we introduced the problem of multi-label document categorization and described why better document representation models are needed to substitute the bag-of-words model. The rest of this thesis is organized as follows. Chapter~\ref{chapter:relatedwork} reviews the various text representation models and learning algorithms developed for multi-label document categorization. Chapter~\ref{chapter:distembed} presents our model for learning distributed document representation vectors in detail. Chapter~\ref{chapter:mltextcat} presents our approach to multi-label document categorization using a modified logistic regression algorithm. Chapter~\ref{chapter:evaluations} describes details about the datasets we use, experimental setup and presents the performance evaluation for the document categorization task. The conclusions and possible future work are a part of Chapter~\ref{chapter:conclusion}.
 
 
 
