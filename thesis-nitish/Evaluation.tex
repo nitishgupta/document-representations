@@ -251,7 +251,7 @@ The performance of our model on the development data for different values of dif
 
 Table~\ref{reuter:cs} compares our model's accuracy against different document representations and other learning algorithms that use bag-of-words representations. 
 We find that document representations learned using our model performs the best and improves the previous state-of-the-art result, achieving a F1 score of $91.7\%$. Our representations improves the F1 score of $84.1\%$, achieved using bag-of-words representation, by $9\%$. 
-Improvements of $1\%$-$6.6\%$ on the F1 score are found against models such as SVM, CRF, LSI, MFoM. 
+Improvements of $1\%$-$6.6\%$ on the F1 score are found against models such as SVM \cite{joachims1998text}, CRF \cite{ghamrawi2005collective}, LSI, MFoM \cite{gao2004mfom}. 
 We also see that simple summing of word vectors to compute the projection layer reduces the performance of our model and hence leads to poor quality document representations. This corroborates with our hypothesis that weighted average of surrounding words is necessary to capture syntactic qualities and learn better quality representations.
 Similar observations are seen in the Precision/Recall curves in Fig.~\ref{fig:pr:reuter:cs}.
 
@@ -259,7 +259,7 @@ Similar observations are seen in the Precision/Recall curves in Fig.~\ref{fig:pr
 \tabcolsep=0.1cm
 \footnotesize
 \begin{center}
-\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c}
+\begin{tabular}{l@{\hskip8mm} c c@{\hskip4mm} c}
 \toprule
 % & \multicolumn{3}{c}{Reuters-21578}         \\
 % \cmidrule(lr){2-4}
@@ -272,15 +272,15 @@ Similar observations are seen in the Precision/Recall curves in Fig.~\ref{fig:pr
 \textbf{WordVecAvg}
 & 94.1   & 88.1  & 91.0 \\ \addlinespace[1mm]
 
-\textbf{CMLF (CRF)}
-& -   & -  & 87.0 \\
-\textbf{SVM (poly)}
+\textbf{SVM (poly)} \cite{joachims1998text}
 & -   & -  & 86.0 \\
-\textbf{SVM (rbf)}
+\textbf{SVM (rbf)} \cite{joachims1998text}
 & -   & -  & 86.4 \\ 
-\textbf{Binary-MFoM}
+\textbf{CMLF (CRF)} \cite{ghamrawi2005collective}
+& -   & -  & 87.0 \\
+\textbf{Binary-MFoM} \cite{gao2004mfom}
 & -   & -  & 88.4 \\ 
-\textbf{MC-MFoM}
+\textbf{MC-MFoM} \cite{gao2004mfom}
 & -   & -  & 88.8 \\ 
 
 \addlinespace[1mm]

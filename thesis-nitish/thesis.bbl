@@ -1,4 +1,4 @@
-\begin{thebibliography}{54}
+\begin{thebibliography}{55}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -74,6 +74,13 @@ N.~Fuhr, S.~Hartmann, G.~Lustig, M.~Schwantner, K.~Tzeras, and G.~Knorz.
 \newblock \emph{AIR, X: a rule based multistage indexing system for large
   subject fields}.
 \newblock Citeseer, 1991.
+
+\bibitem[Gao et~al.(2004)Gao, Wu, Lee, and Chua]{gao2004mfom}
+S.~Gao, W.~Wu, C.-H. Lee, and T.-S. Chua.
+\newblock A mfom learning approach to robust multiclass multi-label text
+  categorization.
+\newblock In \emph{Proceedings of the twenty-first international conference on
+  Machine learning}, page~42. ACM, 2004.
 
 \bibitem[Ghamrawi and McCallum(2005)]{ghamrawi2005collective}
 N.~Ghamrawi and A.~McCallum.

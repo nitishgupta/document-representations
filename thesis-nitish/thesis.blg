@@ -3,6 +3,7 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis.aux
 A level-1 auxiliary file: abstract.aux
 A level-1 auxiliary file: Dedication.aux
+A level-1 auxiliary file: acknowledgement.aux
 A level-1 auxiliary file: Introduction.aux
 A level-1 auxiliary file: RelatedWork.aux
 A level-1 auxiliary file: DistributedEmbeddings.aux
@@ -11,45 +12,45 @@ A level-1 auxiliary file: Evaluation.aux
 The style file: abbrvnat.bst
 Database file #1: references.bib
 Warning--empty booktitle in mccallum1999multi
-You've used 54 entries,
+You've used 55 entries,
             2773 wiz_defined-function locations,
-            908 strings with 14582 characters,
-and the built_in function-call counts, 28614 in all, are:
-= -- 2686
-> -- 1447
-< -- 66
-+ -- 493
-- -- 435
-* -- 2125
-:= -- 4106
-add.period$ -- 178
-call.type$ -- 54
-change.case$ -- 301
-chr.to.int$ -- 50
-cite$ -- 109
-duplicate$ -- 1420
-empty$ -- 2410
-format.name$ -- 535
-if$ -- 6288
+            915 strings with 14830 characters,
+and the built_in function-call counts, 29181 in all, are:
+= -- 2735
+> -- 1486
+< -- 67
++ -- 506
+- -- 447
+* -- 2170
+:= -- 4190
+add.period$ -- 182
+call.type$ -- 55
+change.case$ -- 308
+chr.to.int$ -- 51
+cite$ -- 111
+duplicate$ -- 1449
+empty$ -- 2454
+format.name$ -- 548
+if$ -- 6414
 int.to.chr$ -- 5
 int.to.str$ -- 1
-missing$ -- 56
-newline$ -- 278
-num.names$ -- 216
-pop$ -- 675
+missing$ -- 57
+newline$ -- 283
+num.names$ -- 220
+pop$ -- 693
 preamble$ -- 1
-purify$ -- 251
+purify$ -- 257
 quote$ -- 0
-skip$ -- 1150
+skip$ -- 1170
 stack$ -- 0
-substring$ -- 1334
-swap$ -- 338
-text.length$ -- 34
+substring$ -- 1340
+swap$ -- 345
+text.length$ -- 35
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 579
+type$ -- 590
 warning$ -- 1
-while$ -- 272
+while$ -- 276
 width$ -- 0
-write$ -- 720
+write$ -- 734
 (There was 1 warning)
