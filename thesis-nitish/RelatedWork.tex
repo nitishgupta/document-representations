@@ -2,19 +2,25 @@
 \label{chapter:relatedwork}
 The task of document categorization, i.e. classification of documents into a fixed number of predefined categories has been long studied in-depth for many years now. This multi-class classification problem has further evolved into a multi-label document categorization task where each document can belong to multiple, exactly one or no category at all. 
 
-Supervised machine learning techniques that learn classifiers to perform this category assignment task can be broken down into two main components, namely, text representation and learning algorithm. 
-Text representation involves converting the documents, that are usually strings of characters, into numerical vectors that are suitable inputs to the learning algorithm while the learning algorithm uses pairs of labeled input text representations and the categories it is belongs in, to learn a model so as to classify new documents into categories.
+Supervised machine learning techniques that learn classifiers to perform this category assignment task can be broken down into two main components, namely, text representation and the algorithm that learns the classifier. 
+Text representation involves converting the documents, that are usually strings of characters, into numerical vectors that are suitable inputs to the learning algorithm while the learning algorithm uses pairs of labeled input text representations and category labels to learn a model that can classify new documents.
 
 \section{Text Representation}
 \label{sec:textrepr}
-Any text-based classification system requires the documents to be represented in an appropriate manner dictated by the task being performed \citep{lewis1992text}. Moreover, \citet{quinlan1983learning} showed that the accuracy of the classification task depends as much on the document representation as on the learning algorithm being employed. Different from the data mining task, which deals with structured documents, text classification deals with unstructured documents that need to be appropriately transformed into numerical vectors, i.e. the need for text representation. In this section we introduce the most effective and widely-used techniques to represent documents as vectors for document categorization.
+Any text-based classification system requires the documents to be 
+represented in an appropriate manner dictated by the task being 
+performed \citep{lewis1992text}. Moreover, \citet{quinlan1983learning} 
+showed that the accuracy of the classification task depends as much on 
+the document representation as on the learning algorithm being employed. 
+The text in a document can be viewed as a string of characters or more 
+commonly as a sequence of words that must be converted into feature vectors in a vector space. In this section we introduce the most effective and widely-used techniques to represent documents as vectors for document categorization.
 
 \subsection{Bag of Words}
-It is found in information retrieval research that word stems work well as representations units for documents and that their ordering in a document is of minor importance for many tasks. This is attributed by the fact that the most widely-used used model to represent documents for the classification task is the \emph{Vector Space Model (VSM)} \citep{salton1973specification}. 
+Information retrieval research has found that word stems work well as representations units for documents and that their ordering in a document is of minor importance for many tasks. This is supported by the fact that the most widely-used used model to represent documents for classification is the \emph{Vector Space Model (VSM)} \citep{salton1973specification}. 
 
-In the Vector Space Model, a document $d$ is represented as a vector in the term/word space, $d$ $=$ $(w_{1}, w_{2}, \ldots, w_{|V|})$ where $|V|$ is the size of the vocabulary. Each of the $w_{i} \in \left[0,1\right]$, represents the weightage of the term $i$ in the document $d$. This is called the \emph{bag-of-words} model as it ignores word ordering and each document is reduced to a bag of words that it contains or not. 
+In the Vector Space Model, a document $d$ is represented as a vector in the term/word space, $d$ $=$ $(w_{1}, w_{2}, \ldots, w_{|V|})$ where $|V|$ is the size of the vocabulary. In the simplest version each $w_{i} \in \left[0,1\right]$ is a binary variable and indicates whether word $w_i$ is present in the document (value $1$) or not (value $0$). In more complex models $w_i$ is a real number and codes, using some weighting scheme, for the frequency of the word or word stem in the document $d$. \emph{Bag-of-words} is a generic term for all such models that ignore word order and where each document is represented by a multiset of words that occur in the document. 
 
-An important requirement of such a representation is that, the terms that help in defining the semantic content of the document and play an important role in classification be given higher weightage than the others. Over the years, there has been much research in the information retrieval field on term weighting schemes. The most important term-weighting techniques are as follows.
+An important requirement of such a representation is that the terms that help to define the semantic content of a document and are expected to play an important role in classification be given higher weightage than others. Over the years, many term weighting schemes have been proposed for this purpose. The most important of these are:
 % \begin{enumerate}
 % \item{\textbf{One Hot Representation} : }This is the most trivial representation, where each document is represented by a vector that is size of the vocabulary. Each element in the vector is either a $0$ or a $1$ to denote the absence or presence of a specific term in the document.
 
@@ -30,7 +36,7 @@ An important requirement of such a representation is that, the terms that help i
 % \item{\textbf{Term Frequency Inverse Document Frequency} : }Given the above two term weighing schemes, it is clear that an important term in a document should have high \emph{tf} but a low overall collection frequency (\emph{idf}). This suggests that a reasonable measure for term importance may be then obtained by the \emph{tf} and the \emph{idf} (\emph{tf}$\times$\emph{idf}). As we will see in the results section, the term frequency - inverse document frequency (\emph{tf-idf}) weighed bag-of-words document representation gives one of the best accuracies in the multi-label text classification task.
 % \end{enumerate}
 
-\para{Uniform Weighting} : This is the most trivial representation, where each document is represented by a binary vector that is size of the vocabulary. Each element in the vector belongs to $\{0, 1\}$ denoting the absence or presence of a specific term in the document.
+\para{Uniform Weighting} : This is the most trivial representation, where each document is represented by a binary vector that is the size of the vocabulary. Each element in the vector is either $0$ or $1$ denoting the absence or presence respectively of a specific term in the document.
 
 \para{Term Frequency} : The term frequency representation (\emph{tf}) weighs the terms present in the document relative to their occurrence frequency in the document. Hence a document $d$ is represented as, $d$ $=$ $(w_{1}, w_{2}, \ldots, w_{|V|})$, where, $w_{k}$ is the number of times the term $k$ appears in the document $d$. 
 % \begin{equation}
@@ -38,12 +44,15 @@ An important requirement of such a representation is that, the terms that help i
 % \end{equation}
 % where, $N_{i,d}$ is the number of times, term $i$ occurs in document $d$ and $N_{d}$ is the total number of terms in the document. The document can also be represented only by the counts of terms, but normalization is done to reduce the effect of document length.
 
-\para{Inverse Document Frequency} : Though using \emph{tf} as a term weighting scheme is a good starting point, it faces a challenge when high frequency terms are not concentrated in a few particular documents but are prevalent in the whole collection. Those terms then stop being characteristic of the semantic content of a few documents and need not be given high weightage. To overcome this problem, \citet{salton1988term} suggested a new term weighting called the inverse document frequency (\emph{idf}). The \emph{idf} weight of a term varies inversely with the number of documents $n$ it belongs to in a collection of total $N$ documents. A typical \emph{idf} vector can be computed as 
+\para{Inverse Document Frequency} : Though using \emph{tf} as a term weighting scheme is a good starting point, it faces a challenge when high frequency terms are not concentrated in a few documents but are prevalent in the whole collection. Those terms then stop being characteristic of the semantic content of the documents in which they occur and need not be given high weightage. To overcome this problem, \citet{salton1988term} suggested a new term weighting called the inverse
+document frequency (\emph{idf}). The \emph{idf} weight of a term varies inversely with the number of documents $n$ it belongs to in a collection of  $N$ documents. A typical \emph{idf} vector is computed as 
 \begin{equation}
-w_{k} = \log \frac{N}{n}
+w_{k} = \log \frac{N+1}{n_k}
 \end{equation}
+where $n_k$ is the number of documents in which the $k^{th}$ term occurs.
 
-\para{Term Frequency Inverse Document Frequency} : Given the above two term weighing schemes, it is clear that an important term in a document should have high \emph{tf} but a low overall collection frequency (\emph{idf}). This suggests that a reasonable measure for term importance may be then obtained by product of \emph{tf} and \emph{idf} (\emph{tf}$\times$\emph{idf}). The bag-of-words representation model using the term frequency - inverse document frequency (\emph{tf-idf}) weighing scheme is the most widely used document representation model. It has shown to give state-of-the-art results with various learning algorithms in the multi-label document categorization task.
+\para{Term Frequency Inverse Document Frequency} : Given the above two term weighing schemes, it is clear that an important term in a document should have high \emph{tf} and a high {\em idf} that is a low spread over the entire collection. This suggests that a reasonable measure for term importance can be obtained by the product (\emph{tf}$\times$\emph{idf}). The bag-of-words document representation using the term frequency - inverse document frequency (\emph{tf-idf})
+weighing scheme is the most widely used document representation model. It has given the best results with various learning algorithms in the multi-label document categorization task.
 
 % \subsubsection{One Hot Representation}
 % This is the most trivial representation, where each document is represented by a vector that is size of the vocabulary. Each element in the vector is either a $0$ or a $1$ to denote the absence or presence of a specific term in the document.
@@ -67,8 +76,8 @@ w_{k} = \log \frac{N}{n}
 
 \subsection{Dimensionality Reduction and Feature Selection}
 \label{sec:rw_dr}
-The bag-of-words representation scheme has several drawbacks but the most important drawback it suffers from is that document vectors are very sparse and high dimensional. Typical vocabulary sizes of a moderate-sized document collection ranges from tens to hundreds of thousands of terms which is prohibitively high for many learning algorithms. 
-To overcome this issue of high-dimensional bag-of-words document representations, automatic feature selection is performed that removes uninformative terms according to corpus statistics and constructs new orthogonal features by combining several lower level features (terms/words). Several techniques used in practice are discussed below.
+The bag-of-words representation scheme has several drawbacks but the most important one is that document vectors are very sparse and high dimensional. Typical vocabulary sizes for a moderate-sized document collection range from tens to hundreds of thousands of terms which is prohibitively high for many learning algorithms. 
+To overcome this high-dimensionality, automatic feature selection is performed that removes uninformative terms according to corpus statistics and constructs new orthogonal features by combining several lower level features (terms/words). Several techniques used in practice are discussed below.
 % \begin{enumerate}
 % \item{\textbf{Information Gain} : }Information Gain is widely used as a term-goodness criterion in the field of machine learning, mainly in decision trees \citep{quinlan1986induction} and also in text classification \citep{lewis1994comparison}, \citep{moulinier1996text}. It is a feature space pruning technique that measures the number of bits of information obtained(entropy) for category prediction by knowing the presence or absence of a term in a document. For terms where the information gain was below some predefined threshold are not considered in the document vector representation.  The information gain of a term $t$ is defined as
 % \begin{equation}
@@ -93,89 +102,231 @@ To overcome this issue of high-dimensional bag-of-words document representations
 % where, $T \in \mathbb{R}^{|V| \times k}$ and $D \in \mathbb{R}^{|D| \times k}$ are orthonormal matrices called the left and right singular vectors respectively. The matrix $S \in \mathbb{R}^{k \times k}$ is a diagonal matrix of singular values arranged in descending order. The $k$-dimensional rows of the matrix $D$ contain the dimensionality reduced representations of the $|D|$ documents in the collection. The representations obtained using LSI alleviate the issue of data sparsity and high-dimensionality in bag-of-words representations and also helps unfold the latent semantic structure of the documents.
 % \end{enumerate}
 
-\para{Information Gain} : Information Gain is widely used as a term-goodness criterion in the field of machine learning, mainly in decision trees \citep{quinlan1986induction} and also in text classification \citep{lewis1994comparison}, \citep{moulinier1996text}. It is a feature space pruning technique that measures the number of bits of information obtained(entropy) for category prediction by knowing the presence or absence of a term in a document. For terms where the information gain was below some predefined threshold are not considered in the document vector representation.  The information gain of a term $t$ is defined as
+\para{Information Gain} : Information Gain is widely used as a 
+term-goodness criterion in the field of machine learning, mainly in 
+decision trees \citep{quinlan1986induction} and also in text 
+classification \citep{lewis1994comparison}, \citep{moulinier1996text}. 
+It is a feature space pruning technique that measures the number of 
+bits of information obtained (entropy) for category prediction by 
+knowing the presence or absence of a term in a document. Terms 
+where the information gain is below a predefined threshold are not 
+considered in the document vector representation. The information 
+gain of a term $t$ is defined as
 \begin{equation}
-G(t) = -\sum_{i=1}^{|C|} P(c_{i})\log P(c_{i}) + P(t)\sum_{i=1}^{|C|} P(c_{i}|t)\log P(c_{i}|t) + P(\sim t)\sum_{i=1}^{|C|} P(c_{i}|~t)\log P(c_{i}|~t)
+\label{eq:ig}
+G(t) = -\sum_{i=1}^{|C|} P(c_{i})\log P(c_{i}) + P(t)\sum_{i=1}^{|C|} P(c_{i}|t)\log P(c_{i}|t) + P(\sim t)\sum_{i=1}^{|C|} P(c_{i}|\sim t)\log P(c_{i}|\sim t)
 \end{equation}
+where $P(c_{i})$ is the probability that a document randomly chosen from the training set will belong to $c_{i}$, $P(c_{i}|t)$ is the probability that a document belongs to $c_{i}$, given that it contains the term $t$ and $P(c_{i}|\sim t)$ is the probability that a document belongs to $c_{i}$ given that it does not contain the term $t$. The probabilities are estimated by counting the relevant number of documents that satisfy the condition. Equation~\ref{eq:ig} computes the loss in entropy when the term $t$ is removed from the feature-space. Hence, terms with high information gain are preserved as they are the most informative features.
 
-\para{Mutual Information} : Similar to the Information Gain scheme, Mutual Information estimates the information shared between a term and a category and prunes terms that are below a specific threshold. The mutual information between a term $t$ and a category $c$ is estimated in the following fashion, 
+\para{Mutual Information} : Similar to the Information Gain scheme, Mutual Information estimates the information shared between a term and a category and prunes terms that are below a specific threshold. The mutual information between a term $t$ and a category $c$ is estimated in the following fashion. Firstly, for each term a mutual information term for each category is calculated using,
 \begin{equation}
 I(t,c) = \log \frac{P(t \wedge c)}{P(t) \times P(c)}
 \end{equation}
-To measure the goodness of a term in global feature selection, the category specific scores of a term are combined using, 
+The above is estimated using,
+\begin{equation}
+I(t,c) \approx \log \frac{A \times N}{(A + B) \times (A + C)}
+\end{equation}
+where, $A$ is the number of documents belonging to $c$ and containing the term $t$, $B$ the number of documents containing $t$ and not belonging to $c$ and $C$ is the number of documents belonging to $c$ but not containing the term $t$. $N$ is the total number of documents in the training data.
+To measure the goodness of a term in global feature selection, the category specific scores of a term, $I(t,c)$ are combined using, 
 \begin{equation}
 \label{eq:ig:avg}
 I_{avg}(t) = \sum_{i=1}^{|C|} P(c_{i})I(t,c_{i})
 \end{equation}
+where $I_{avg}(t)$ is the weighted average of the category specific term-goodness score for $t$, weighing being the probability of the occurrence of category $c$ in a document.
 
-\para{$\chi^{2}$ Statistic} : The $\chi^{2}$ statistic measures the lack of independence a term $t$ and a category $c$ and can be compared to the $\chi^{2}$ distribution with one degree of freedom. The term-goodness factor is calculated for each term-category pair and is averaged as in Eq.~\ref{eq:ig:avg}. The major difference between Mutual Information and $\chi^{2}$ statistic is that the later is a normalized value and the goodness factors across terms are comparable for the same category.
+\para{$\chi^{2}$ Statistic} : The $\chi^{2}$ statistic measures the lack of independence between a term $t$ and a category $c$ and can be compared to the $\chi^{2}$ distribution with one degree of freedom. The term-goodness factor is calculated for each term-category pair and is averaged as in Eq.~\ref{eq:ig:avg}. The major difference between Mutual Information and $\chi^{2}$ statistic is that the latter is a normalized value and the goodness factors across terms are comparable for the same category.
 
-\para{Latent Semantic Indexing (LSI)} : LSI first introduced by \citet{deerwester1990indexing}, is a popular linear algebraic dimensionality reduction technique that uses the term co-occurrence statistics to capture the latent semantic structure of the documents and represent them using low-dimensional vectors. It is an efficient technique to deal with synonymy and polysemy. LSI aims to find the best subspace approximation to the original document bag-of-word vector space using Singular Value Decomposition. Given a term-document matrix $X = \left[ x_{1}, x_{2}, \ldots, x_{|D|} \right] \in \mathbb{R}^{|V| \times |D|}$, its k-rank approximation as found using SVD, can be expressed as, 
+\para{Latent Semantic Indexing (LSI)} : LSI first introduced by \citet{deerwester1990indexing}, is a popular linear algebra based dimensionality reduction technique that uses the term co-occurrence statistics to capture the latent semantic structure of the documents and represent them using low-dimensional vectors. It is an efficient technique to deal with synonymy and polysemy. LSI aims to find the best subspace approximation to the original document bag-of-word vector space using Singular Value Decomposition. Given a term-document matrix $X = \left[ x_{1}, x_{2}, \ldots, x_{|D|} \right] \in \mathbb{R}^{|V| \times |D|}$, its k-rank approximation as found using SVD, can be expressed as, 
 \begin{equation}
 X = T S D^{T}
 \end{equation}
-where, $T \in \mathbb{R}^{|V| \times k}$ and $D \in \mathbb{R}^{|D| \times k}$ are orthonormal matrices called the left and right singular vectors respectively. The matrix $S \in \mathbb{R}^{k \times k}$ is a diagonal matrix of singular values arranged in descending order. The $k$-dimensional rows of the matrix $D$ contain the dimensionality reduced representations of the $|D|$ documents in the collection. The representations obtained using LSI alleviate the issue of data sparsity and high-dimensionality in bag-of-words representations and also helps unfold the latent semantic structure of the documents.
+$|V|$ is the vocabulary size, $|D|$ the number of documents 
+in the collection and $T \in \mathbb{R}^{|V| \times k}$ and $D \in \mathbb{R}^{|D| \times k}$ are orthonormal matrices where the columns are called the left and right singular vectors respectively. The matrix $S \in \mathbb{R}^{k \times k}$ is a diagonal matrix of singular values arranged in descending order. The $k$-dimensional rows of the matrix $D$ contain the dimension reduced representations of the $|D|$ documents in the collection. The representations obtained using LSI alleviate the problem of data sparsity and high-dimensionality in the bag-of-words representations and also helps unfold the latent semantic structure of the documents.
 
 % %%%%%%%%%%%%%%%%%%%%%%%       LEARNING algorithms           %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Learning Algorithms}
 \label{sec:lalgos}
-Multi-label document categorization has seen growing number of statistical learning methods being applied to it. Over the years, various learning algorithms like, Regression models \citep{cooper1994full, fuhr1991air}, Conditional Random Field \citep{ghamrawi2005collective}, Nearest Neighbor techniques \citep{yang1994expert, zhang2005k, zhang2007ml}, Bayesian classifier and topic modeling \citep{lewis1994comparison, mccallum1999multi, nigam2000text, rubin2012statistical, nigam1999using, ueda2002parametric}, SVM \citep{joachims1998text, elisseeff2001kernel}, Neural Networks \citep{wiener1995neural, ng1997feature}, Decision Trees \citep{tong1994machine}, Online learning algorithms \citep{lewis1996training, crammer2002new}, Non-negative Matrix Factorization \citep{liu2006semi} etc. have been used and developed for Multi-label document categorization.
+Multi-label document categorization has seen a growing number of 
+statistical learning methods being applied to it. Over the years, 
+various learning algorithms like, Regression models 
+\citep{cooper1994full, fuhr1991air}, Conditional Random Fields 
+\citep{ghamrawi2005collective}, Nearest Neighbor techniques \citep{
+yang1994expert, zhang2005k, zhang2007ml}, Bayesian classifier and topic modeling \citep{lewis1994comparison, mccallum1999multi, nigam2000text, rubin2012statistical, nigam1999using, ueda2002parametric}, 
+SVM \citep{joachims1998text, elisseeff2001kernel}, Neural Networks \
+citep{wiener1995neural, ng1997feature}, Decision Trees 
+\citep{tong1994machine}, Online learning algorithms 
+\citep{lewis1996training, crammer2002new}, Non-negative Matrix 
+Factorization \citep{liu2006semi} etc. have been used and developed 
+for Multi-label document categorization.
 
-Earlier learning algorithms reduced the problem of multi-label classification into multiple binary classification problems and independently learned binary classifiers for each category. While these algorithms performed well, their drawback of considering correlation among categories led to the development of algorithms that learn a single classifier and jointly classify each document. 
+Earlier learning algorithms reduced the problem of multi-label 
+classification into multiple binary classification problems and 
+independently learned binary classifiers for each category. While 
+such algorithms performed well, their inability to exploit category 
+correlations due to independence among classifiers, led to the 
+development of algorithms that learn a single classifier and jointly classify each document. 
 
-The other supervised learning task that has the most similarity with multi-label classification is \emph{ranking}. While the former assigns each test instance a $|L|$-sized binary label vector indicating the presence and absence of labels, the ranking algorithm outputs the list of labels arranged in the increasing order of a ranking score which can then be thresholded at an optimum to consider the top labels as appropriate label assignments for test instances.
+The other supervised learning task that is most similar to
+multi-label classification is \emph{ranking}. While the former assigns 
+each test instance a $|L|$-sized binary label vector indicating the 
+presence and absence of labels, the ranking algorithm outputs the list 
+of labels arranged in increasing order of rank score which 
+can then be thresholded to yield the top labels as 
+appropriate label assignments for test instances.
 
-Below we describe some of the widely learning algorithms for multi-label document categorization. 
+Below we describe some of the widely used learning algorithms for multi-label document categorization. 
 
 \subsection{Document Categorization using Binary Classifiers}
 \label{sec:rw_multiple_classifiers}
-The most common approach of multi-label document categorization treats each label independently and learns multiple binary classifiers, one for each category and then assigns to a test document all the categories for which the corresponding classifier says \emph{`yes'}. Algorithms that learn multiple independent binary classifiers for multi-label classification are explained below in the context of document categorization.
+The most common approach for multi-label document categorization treats 
+each label independently and learns multiple binary classifiers, one 
+for each category and then assigns to a test document all the 
+categories for which the corresponding classifier says \emph{`yes'}. 
+Algorithms that learn multiple independent binary classifiers for 
+multi-label classification are explained below in the context of document 
+categorization.
 
-\para{Logistic Regression} : Introduced by \citet{hosmer1989applied}, Logistic Regression (LR) is a probabilistic binary classification regression model, that, for binary text classification learns a category weight vector and estimates the probability of a document belonging to the category using dot-product and the logistic link function. LR can be extended for multi-label document categorization by learning multiple category vectors, specifically, one for each category. At test time, one would need to query all category vectors for each document to make the category assignments. In our work, we use logistic regression for multi-label document categorization, the details for which are given in Sec~\ref{sec:lrtc}.
+\para{Logistic Regression} : Introduced by \citet{hosmer1989applied}, 
+Logistic Regression (LR) is a probabilistic binary classification 
+regression model, that, for binary text classification learns a 
+category weight vector and estimates the probability of a document 
+belonging to the category using a dot-product and the logistic link 
+function. LR can be extended to multi-label document categorization 
+by learning multiple category vectors, specifically, one for each 
+category. At test time, one would need to query all category vectors 
+for each document to make the category assignments. In our work, we 
+use logistic regression for multi-label document categorization, the 
+details are given in Sec~\ref{sec:lrtc}.
 
-\para{Support Vector Machines} : Support Vector Machines (SVM) (\citep{cortes1995support}, \citep{vapnik2000nature}) based on the \emph{Structural Risk Minimization} principle, are universal learners. In their basic form, SVMs learn linear threshold functions to find linear hyperplanes in the input data space to separate data of the two different classes. In the case, where data is not linearly separable, SVMs can be plugged-in with appropriate kernel functions to learn polynomial classifiers, radial basic functions etc. For multi-label document categorization, training data is treated separately for each category and maximum margin separating hyperplanes are found for each category independently \citep{joachims1998text}.
+\para{Support Vector Machines} : Support Vector Machines (SVM) are
+binary classifiers (\citep{cortes1995support}, \citep{vapnik2000nature}), 
+based on the \emph{Structural Risk Minimization} principle, are universal learners. In their basic form, SVMs learn linear threshold functions to find 
+linear hyperplanes in the input data space to separate data of the two 
+classes. In case data is not linearly separable, 
+SVMs can be plugged-in with appropriate kernel functions like polynomials,
+radial basis functions etc. to learn linear classifiers in the kernel space
+which correspond to non-linear classifiers in the input space.
+For multi-label document categorization, training data is treated 
+separately for each category and maximum margin separating hyperplanes 
+are found for each category independently \citep{joachims1998text}.
 
 \citet{elisseeff2001kernel} study a ranking based variant of SVM, where the positive/negative distance from the separating hyperplane of a specific category is the score assigned to the particular instance for that category. Their formulation then aims to maximize the margin between the score of a category that belongs to the document and a category that does not belong to do the document. This is also called the Rank-SVM.
 
-\para{Neural Networks} : Classification-based, Neural Network approaches to multi-label document categorization were mainly studied by \citet{wiener1995neural}, developed at Xerox PARC and called NNet.PARC and \citet{ng1997feature}, called CLASSI. Both neural networks are examples of multiple-classifier based approaches where a separate neural network was trained for each category to make binary classifications. While CLASSI used a linear perceptron approach to classify text into categories, NNet.PARC built a three-layered nonlinear neural network that extends logistic regression by modeling higher order term interactions and hence finding non-linear decision boundaries. 
+\para{Neural Networks} : Classification-based, neural network 
+approaches to multi-label document categorization were mainly studied 
+by \citet{wiener1995neural}, developed at Xerox PARC and called NNet.PARC
+and \citet{ng1997feature}, called CLASSI. Both neural networks are 
+examples of multiple-classifier based approaches where a separate 
+neural network was trained for each category to make binary 
+classifications. While CLASSI used a linear perceptron approach to 
+classify text into categories, NNet.PARC built a three-layered 
+nonlinear neural network that extends logistic regression by modeling 
+higher order term interactions and hence finding non-linear decision 
+boundaries. 
 
-\para{Naive Bayes} : Naive-Bayes (NB) as studied in \citet{lewis1992representation} and \citet{lewis1994comparison}, is one of the most effective and simple statistical model for text classification. For multi-label classification, classifiers are learned so as to estimate $P(C_{j}=1|D)$, i.e., the probability that the document, $D$ belongs to the category $C_{j}$, for each category. This probability is estimated by estimating the probability $P(W_{i}=1|C_{j}=1)$, i.e. probability that a particular word appears in the document when it belongs to a particular category. Though this approach makes the assumption of word independence, experiments show that this fast-learning algorithm can yield excellent results. 
+\para{Naive Bayes} : Naive-Bayes (NB) as studied in 
+\citet{lewis1992representation} and \citet{lewis1994comparison}, is 
+one of the most effective and simple statistical models for text 
+classification. For multi-label classification, classifiers are 
+learned so as to estimate $P(C_{j}=1|D)$, i.e., the probability that 
+the document, $D$ belongs to the category $C_{j}$, for each category. 
+This probability is estimated by estimating the probability $P(W_{i}=1|
+C_{j}=1)$, i.e. probability that a particular word appears in the 
+document when it belongs to a particular category. Though this 
+approach makes the assumption of word independence, experiments show 
+that this fast algorithm can yield excellent results. 
 
 \hfill 
 \break
-Although, approaches to multi-label classification discussed above give competitive accuracies in the task, they suffer from inefficiencies due to the following reasons.
+Although, approaches to multi-label classification discussed above 
+give competitive accuracies in the task, they suffer from 
+inefficiencies due to the following reasons.
 
 %\begin{itemize}
 %\item 
-Such algorithms make assumptions of category independence and learn 1-vs-All binary classifiers. It is realized that such assumption would not hold true in most real-life situations. Fine-grained categorization of texts usually involve strongly correlated category classes and information about the presence of one gives information about the presence/absence of many others. For eg.  
+Such algorithms make assumptions of category independence and learn 
+1-vs-All binary classifiers. It is known that such assumptions are unlikely 
+to hold in most real-life situations. Fine-grained 
+categorization of texts usually involve strongly correlated category 
+classes and information about the presence of one gives information 
+about the presence/absence of many others. For eg.  
 \begin{quote} 
-\centering 
 \emph{Chicago Board of trade grain traders and analysts voiced a lot of interest in how farmers planned to handle their upcoming spring plantings prompting sales of new crop months of corn and oats and purchases in new crop soybeans in the futures markets}
 \end{quote}
 In the sentence above, information from words about the presence of categories like \emph{oats}, \emph{corn} etc. can also aid the prediction of the \emph{agriculture} category which can be boosted using joint classification.
 %\item 
 
-In the case of millions of labels in the dataset, learning millions of high-dimensional classifiers is computationally expensive. Also, the cost of prediction for each test instance would be high as all the classifiers need to be evaluated to make a prediction for a single data-point (document). 
+In the case of millions of labels in the dataset, learning millions of high-dimensional classifiers is computationally prohibitive. Also, the cost of prediction for each test instance would be high as all the classifiers need to be used to make a prediction for a single data-point (document). 
 %\end{itemize}
 
-
 \subsection{Document Categorization with Single Joint Classifier}
-To overcome the drawbacks in learning multiple binary classifiers, learning algorithms that jointly assign all the categories each document belongs to, have been developed. Outputs of such algorithms are $|L|$-dimensional binary label vectors $\boldsymbol{y} \in \{0, 1\}^{L}$, with $\boldsymbol{y}_{l} = 1$ if label $l$ is relevant for the particular document. Below we describe algorithms of such kind.
+To overcome the drawbacks in learning multiple binary classifiers, 
+learning algorithms that jointly assign all the categories pertinent to
+a document have been deve belongs to,loped. Outputs of such algorithms are 
+$|L|$-dimensional binary label vectors $\boldsymbol{y} \in \{0, 1\}^{L}$, 
+with $\boldsymbol{y}_{l} = 1$ if label $l$ is relevant for the 
+particular document. Below we describe algorithms of such kind.
 %for multi-label document categorization that learn a single classifier for assigning all relevant categories to a document jointly.
 
-\para{k-Nearest Neighbor} : k-nearest neighbor (kNN) classification is one of the most effective lazy learning approaches to classification. Given an arbitrary text document as input, the algorithm first ranks the nearest neighbors among the training documents using some similarity measure. It then uses the category information of the top-k ranked nearest neighbors to predict the categories of the input test document. One simple approach is to take a weighted average of the label vector of the k-nearest neighbors, weights being the similarity score computed while estimating document distances. This yields a category ranking for the test input which can be thresholded to yield binary classifications.
+\para{k-Nearest Neighbor} : k-nearest neighbor (kNN) classification is 
+one of the most effective lazy learning approaches to classification. 
+Given an arbitrary text document as input, the algorithm first ranks 
+the nearest neighbors among the training documents using some 
+similarity measure. It then uses the category information of the top-k 
+ranked nearest neighbors to predict the categories of the input test 
+document. One simple approach is to take a weighted average of the 
+label vector of the k-nearest neighbors, the weights being the similarity 
+scores computed while estimating document distances. This yields a 
+category ranking for the test input which can be thresholded to yield 
+binary classifications.
 
-Other approach as devised by \citet{zhang2007ml} is based on the k-NN and the maximum a posteriori(MAP) principle. Given a test instance, their model first identifies its k-nearest neighbors and then based on the statistical information gained from the label sets of the neighboring instances, uses the MAP principle to determine the label set of the given input. The prior probability of label occurrences and the posterior probability, $P(C_{l}=n | l=1)$ i.e. given a document belongs to label $l$, exactly $n$ of its $k$ neighbors also belong to the label $l$ is determined from the training instances to utilize the MAP principle.
+Another approach devised by \citet{zhang2007ml} is based on the k-NN and the maximum a posteriori(MAP) principle. Given a test instance $t$, their model first identifies its k-nearest neighbors and then computes $C_{t}(l)$, the number of its NNs belonging to $C_{t}(l)$, for each label $l$. If $H^{l}_{1}$($H^{l}_{0}$) denotes $t$ belongs(does not belong) to $l$, the membership of $t$ in label $l$, $y_{t}(l)$ can be determined using the MAP principle:
+\begin{equation}
+\label{eq:knnprob}
+y_{t}(l) = \argmax_{b \in \{0, 1\}} P(H^{l}_{b}|E^{l}_{C_{t}(l)})
+\end{equation}
+where $E^{l}_{x}$ denotes exactly $x$ of the $t$'s k-NN belong to $l$. Using the Bayesian rule, Eq~\ref{eq:knnprob} can be rewritten as,
+\begin{align}
+y_{t}(l) &= \argmax_{b \in \{0, 1\}} \frac{ P(H^{l}_{b}) P(E^{l}_{C_{t}(l)} | H^{l}_{b}) } {E^{l}_{C_{t}(l)}} \\
+&= \argmax_{b \in \{0, 1\}} P(H^{l}_{b}) P(E^{l}_{C_{t}(l)} | H^{l}_{b})
+\end{align}
+The prior probabilities $P(H^{l}_{b})$ and the posterior probabilities $P(E^{l}_{C_{t}(l)} | H^{l}_{b})$ can easily estimated from the training data based on frequency counting for each label $l$.
 
-\para{Linear Least Squares Fit} : Linear Least Squares Fit (LLSF) \citep{yang1992linear} learns a multivariate regression model automatically from a training set of documents and their categories. Documents are input as vectors in the desired representation and the corresponding output is a $|L|$-dimensional binary label vector. By solving a linear least squares fit on the training pairs of vectors a matrix of word-category regression coefficients is learned, which defines the mapping from an arbitrary document to a weighted category label vector. This weighted vector can be sorted to yield a ranked list of categories for the input document.
 
-\para{Probabilistic Models} : Generative probabilistic models described in \citet{mccallum1999multi}, \citet{nigam1999using}, \citet{ueda2002parametric} etc. argue that the words in a document that belongs to multiple categories can be regarded as a mixture of characteristic words related to each of the categories. Therefore, they represent the multi-label nature of the document by specifying each document with a set of mixture weights, one for each class and also indicate that each document is generated by a mixture of word distributions, one distribution for each label. Once the word distributions are learned using the training data, classification is performed using the Bayes Rule which selects the labels that are most likely to generate the given test document. Hence, along with giving the information on the labels responsible for generating the document, such models also fill the missing information of which labels were responsible for generating each word.
 
-\citet{mccallum1999multi} and \citet{ueda2002parametric} define a multinomial distribution $\boldsymbol{\theta}_{l} = \{\theta_{l1}, \theta_{l2}, \ldots, \theta_{l|V|}\}$ over the vocabulary for each label $l$. The word distribution for a document for a given label vector $\boldsymbol{y}$, is computed by taking a weighted average of the word distributions of the labels that are present in the document. Therefore, if $\boldsymbol{\phi}(\boldsymbol{y}) = \{\phi_{1}(\boldsymbol{y}), \phi_{2}(\boldsymbol{y}), \ldots, \phi_{|V|}(\boldsymbol{y})\}$ is the required word distribution, it can be represented by, 
+\para{Linear Least Squares Fit} : Linear Least Squares Fit (LLSF) \citep{yang1992linear} learns a multivariate regression model automatically from a training set of documents and their categories. Documents are input as vectors in the desired representation and the corresponding output is an $|L|$-dimensional binary label vector. By solving a linear least squares fit on the training pairs of vectors a matrix of word-category regression coefficients is learned, which defines the mapping from an arbitrary document to a weighted category label vector. This weighted vector can be sorted to yield a ranked list of categories for the input document.
+
+\para{Probabilistic Models} : Generative probabilistic models 
+described in \citet{mccallum1999multi}, \citet{nigam1999using}, 
+\citet{ueda2002parametric} etc. argue that the words in a document 
+that belongs to multiple categories can be regarded as a mixture of 
+characteristic words related to each of the categories. Therefore, 
+they represent the multi-label nature of the document by specifying 
+each document with a set of mixture weights, one for each class and 
+also indicate that each document is generated by a mixture of word 
+distributions, one distribution for each label. Once the word 
+distributions are learned using the training data, classification is 
+performed using the Bayes Rule which selects the labels that are most 
+likely to generate the given test document. Hence, along with giving 
+the information on the labels responsible for generating the document, 
+such models also fill missing information about which labels were 
+responsible for generating each word.
+
+\citet{mccallum1999multi} and \citet{ueda2002parametric} define a multinomial 
+distribution $\boldsymbol{\theta}_{l} = \{\theta_{l1}, \theta_{l2}, \ldots, 
+\theta_{l|V|}\}$ over the vocabulary for each label $l$. The word 
+distribution for a document for a given label vector $\boldsymbol{y}$, 
+is computed by taking a weighted average of the word distributions of 
+the labels that are present in the document. Therefore, if $\boldsymbol
+{\phi}(\boldsymbol{y}) = \{\phi_{1}(\boldsymbol{y}), \phi_{2}(\boldsymbol{y}), 
+\ldots, \phi_{|V|}(\boldsymbol{y})\}$ is the required word distribution, it can be represented by, 
 \begin{equation}
 \boldsymbol{\phi}(\boldsymbol{y}) = \sum_{l=1}^{|L|} h_{l}(\boldsymbol{y})\boldsymbol{\theta}_{l}
 \end{equation}
-where $h_{l}(\boldsymbol{y})$'s are the mixing proportion that add to $1$. The word distributions for each label are found by maximizing the posterior \citep{ueda2002parametric} and employing the Expectation-Maximization algorithm \citep{mccallum1999multi}.
+where $h_{l}(\boldsymbol{y})$'s are the mixing proportion that add to $1$. 
+The word distributions for each label are found by maximizing the 
+posterior \citep{ueda2002parametric} and employing the 
+Expectation-Maximization algorithm \citep{mccallum1999multi}.
 
 % \section{Learning Algorithms}
 % \label{sec:lalgos}

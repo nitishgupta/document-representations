@@ -9,19 +9,19 @@
 \BOOKMARK [1][-]{section.16}{1.4 Organization of the Thesis}{chapter.7}% 9
 \BOOKMARK [0][-]{chapter.17}{2 Background on Document Categorization}{}% 10
 \BOOKMARK [1][-]{section.18}{2.1 Text Representation}{chapter.17}% 11
-\BOOKMARK [1][-]{section.26}{2.2 Learning Algorithms}{chapter.17}% 12
-\BOOKMARK [0][-]{chapter.30}{3 Distributed Document Representations}{}% 13
-\BOOKMARK [1][-]{section.31}{3.1 Need for Distributed Word Representations}{chapter.30}% 14
-\BOOKMARK [1][-]{section.34}{3.2 Background on Word Embeddings}{chapter.30}% 15
-\BOOKMARK [1][-]{section.53}{3.3 Document Representation}{chapter.30}% 16
-\BOOKMARK [0][-]{chapter.115}{4 Multi-Label Document Categorization}{}% 17
-\BOOKMARK [1][-]{section.116}{4.1 Logistic Regression for Multi-label Document Categorization}{chapter.115}% 18
-\BOOKMARK [1][-]{section.135}{4.2 Similarity to Relational Learning}{chapter.115}% 19
-\BOOKMARK [1][-]{section.139}{4.3 Advantages of Logistic Regression Learning Algorithm}{chapter.115}% 20
-\BOOKMARK [0][-]{chapter.144}{5 Performance Evaluation}{}% 21
-\BOOKMARK [1][-]{section.145}{5.1 Datasets}{chapter.144}% 22
-\BOOKMARK [1][-]{section.151}{5.2 Experimental Setup}{chapter.144}% 23
-\BOOKMARK [1][-]{section.156}{5.3 Results}{chapter.144}% 24
-\BOOKMARK [0][-]{chapter.197}{6 Conclusions and Future Work}{}% 25
-\BOOKMARK [1][-]{section.198}{6.1 Future Work}{chapter.197}% 26
-\BOOKMARK [0][-]{subsection.201}{Bibliography}{}% 27
+\BOOKMARK [1][-]{section.27}{2.2 Learning Algorithms}{chapter.17}% 12
+\BOOKMARK [0][-]{chapter.34}{3 Distributed Document Representations}{}% 13
+\BOOKMARK [1][-]{section.35}{3.1 Need for Distributed Word Representations}{chapter.34}% 14
+\BOOKMARK [1][-]{section.38}{3.2 Background on Word Embeddings}{chapter.34}% 15
+\BOOKMARK [1][-]{section.57}{3.3 Document Representation}{chapter.34}% 16
+\BOOKMARK [0][-]{chapter.119}{4 Multi-Label Document Categorization}{}% 17
+\BOOKMARK [1][-]{section.120}{4.1 Logistic Regression for Multi-label Document Categorization}{chapter.119}% 18
+\BOOKMARK [1][-]{section.139}{4.2 Similarity to Relational Learning}{chapter.119}% 19
+\BOOKMARK [1][-]{section.143}{4.3 Advantages of Logistic Regression Learning Algorithm}{chapter.119}% 20
+\BOOKMARK [0][-]{chapter.148}{5 Performance Evaluation}{}% 21
+\BOOKMARK [1][-]{section.149}{5.1 Datasets}{chapter.148}% 22
+\BOOKMARK [1][-]{section.155}{5.2 Experimental Setup}{chapter.148}% 23
+\BOOKMARK [1][-]{section.160}{5.3 Results}{chapter.148}% 24
+\BOOKMARK [0][-]{chapter.201}{6 Conclusions and Future Work}{}% 25
+\BOOKMARK [1][-]{section.202}{6.1 Future Work}{chapter.201}% 26
+\BOOKMARK [0][-]{subsection.205}{Bibliography}{}% 27

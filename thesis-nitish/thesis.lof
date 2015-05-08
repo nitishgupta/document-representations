@@ -1,16 +1,16 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Neural Network Architecture for Neural Probabilistic Language Model (NPLM). \cite {bengio2003neural}\relax }}{20}{figure.caption.38}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Continuous Bag-of-Words Model (CBOW). Ref. \cite {mikolov2013efficient} \relax }}{21}{figure.caption.44}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Continuous Skip-gram Model. Ref. \cite {mikolov2013efficient}\relax }}{22}{figure.caption.49}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Example for Dependency-based context extraction from \cite {levy2014dependencybased}\relax }}{23}{figure.caption.52}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Neural network Architecture for our model\relax }}{27}{figure.caption.61}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Neural Network Architecture for Neural Probabilistic Language Model (NPLM). \cite {bengio2003neural}\relax }}{22}{figure.caption.42}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Continuous Bag-of-Words Model (CBOW). Ref. \cite {mikolov2013efficient} \relax }}{23}{figure.caption.48}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Continuous Skip-gram Model. Ref. \cite {mikolov2013efficient}\relax }}{24}{figure.caption.53}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Example for Dependency-based context extraction from \cite {levy2014dependencybased}\relax }}{25}{figure.caption.56}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Neural network Architecture for our model\relax }}{29}{figure.caption.65}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Precision/Recall for Document Categorization on Reuters-21578 (\emph {ModApte}) dataset\relax }}{54}{figure.caption.164}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Precision/Recall for Document Categorization on Physics(Wikipedia) dataset\relax }}{56}{figure.caption.171}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Precision/Recall for Document Categorization on Biology(Wikipedia) dataset\relax }}{58}{figure.caption.178}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Precision/Recall for Document Categorization on Mathematics(Wikipedia) dataset\relax }}{60}{figure.caption.185}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Precision/Recall for Document Categorization on Sports(Wikipedia) dataset\relax }}{62}{figure.caption.192}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Precision/Recall for Document Categorization on Reuters-21578 (\emph {ModApte}) dataset\relax }}{56}{figure.caption.168}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Precision/Recall for Document Categorization on Physics(Wikipedia) dataset\relax }}{58}{figure.caption.175}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Precision/Recall for Document Categorization on Biology(Wikipedia) dataset\relax }}{60}{figure.caption.182}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Precision/Recall for Document Categorization on Mathematics(Wikipedia) dataset\relax }}{62}{figure.caption.189}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Precision/Recall for Document Categorization on Sports(Wikipedia) dataset\relax }}{64}{figure.caption.196}
 \addvspace {10\p@ }
