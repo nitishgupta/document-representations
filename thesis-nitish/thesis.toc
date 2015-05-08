@@ -16,7 +16,7 @@
 \contentsline {subsection}{\numberline {2.1.2}Dimensionality Reduction and Feature Selection}{9}{subsection.21}
 \contentsline {section}{\numberline {2.2}Learning Algorithms}{11}{section.26}
 \contentsline {subsection}{\numberline {2.2.1}Document Categorization using Binary Classifiers}{12}{subsection.27}
-\contentsline {subsection}{\numberline {2.2.2}Document Categorization with Single Joint Classifier}{14}{subsection.28}
+\contentsline {subsection}{\numberline {2.2.2}Document Categorization with Single Joint Classifier}{15}{subsection.28}
 \contentsline {chapter}{\numberline {3}Distributed Document Representations}{17}{chapter.30}
 \contentsline {section}{\numberline {3.1}Need for Distributed Word Representations}{17}{section.31}
 \contentsline {section}{\numberline {3.2}Background on Word Embeddings}{18}{section.34}

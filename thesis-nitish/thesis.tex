@@ -33,6 +33,7 @@
 \usepackage{tikz}
 \usepackage{afterpage}
 
+
 %\usepackage{subcaption}
 %\usepackage{hyperref}
 %\usepackage{afterpage}
@@ -131,6 +132,7 @@
 	\addcontentsline{toc}{chapter}{Abstract}
 	
 	\onehalfspace
+	%\pagenumbering{gobble}
 	\include{abstract}
 	\blankpage
 	\include{Dedication}
@@ -156,6 +158,11 @@
 	\pagenumbering{arabic}
 	\pagestyle{myheadings}
 	
+	%\pagestyle{fancy}
+	%\fancyhf{}
+	%\fancyhead[LE,RO]{\thepage}
+	%\fancyhead[RE,LO]{\leftmark}
+
 	\include{Introduction}
 	\include{RelatedWork}
 	\include{DistributedEmbeddings}
