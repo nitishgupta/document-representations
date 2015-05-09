@@ -280,7 +280,7 @@ scores computed while estimating document distances. This yields a
 category ranking for the test input which can be thresholded to yield 
 binary classifications.
 
-Another approach devised by \citet{zhang2007ml} is based on the k-NN and the maximum a posteriori(MAP) principle. Given a test instance $t$, their model first identifies its k-nearest neighbors and then computes $C_{t}(l)$, the number of its NNs belonging to $C_{t}(l)$, for each label $l$. If $H^{l}_{1}$($H^{l}_{0}$) denotes $t$ belongs(does not belong) to $l$, the membership of $t$ in label $l$, $y_{t}(l)$ can be determined using the MAP principle:
+Another approach devised by \citet{zhang2007ml} is based on the k-NN and the maximum a posteriori(MAP) principle. Given a test instance $t$, their model first identifies its k-nearest neighbors and then computes $C_{t}(l)$, the number of its NNs belonging to $l$, for each label $l$. If $H^{l}_{1}$($H^{l}_{0}$) denotes $t$ belongs(does not belong) to $l$, the membership of $t$ in label $l$, $y_{t}(l)$ can be determined using the MAP principle:
 \begin{equation}
 \label{eq:knnprob}
 y_{t}(l) = \argmax_{b \in \{0, 1\}} P(H^{l}_{b}|E^{l}_{C_{t}(l)})

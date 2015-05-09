@@ -1,6 +1,6 @@
 \chapter{Distributed Document Representations}
 \label{chapter:distembed}
-In this chapter we describe the concept of distributed word and document representations and why distributed representations of words and documents are better than one-hot or bag-of-words representations as described in \ref{sec:textrepr}. We then give a background on different models for learning distributed word representations in a fully unsupervised manner. We then finally describe in detail our proposed model for learning distributed document representations that can be used for multi-label document categorization.
+In this chapter we describe the concept of distributed word and document representations and why distributed representations of words and documents are better than one-hot or bag-of-words representations as described in \ref{sec:textrepr}. We then discuss the different models for learning distributed word representations in a fully unsupervised manner. Finally, we describe in detail our proposed model for learning distributed document representations.
 
 \section{Need for Distributed Word Representations}
 \label{sec:motivation_distributed}
@@ -8,24 +8,47 @@ Words are regarded as atomic symbols in most rule-based and statistical natural 
 Words are traditionally expressed as one-hot vectors, i.e. as vectors of the size of the vocabulary where exactly one element is $1$ and the rest all are zero.
 Though these representations have been widely used, one-hot representations have a plethora of drawbacks that pose problems and limit the ability of systems to perform better. 
 \begin{enumerate}
-\item \textbf{Curse of Dimensionality} : One-hot representations lead word vectors to be the size of the vocabulary which often consists of tens to hundreds of thousands of words. Due to this curse of dimensionality, language modeling becomes almost impossible where the number of parameters would grow exponentially with the size of the vocabulary if the words are represented as one-hot vectors.
+\item \textbf{Curse of Dimensionality} : One-hot representations have word vectors that are the size of the vocabulary which often consists of tens to hundreds of thousands of words. Due to this curse of dimensionality, language modeling becomes almost impossible where the number of parameters can grow exponentially with the size of the vocabulary.
 
-\item \textbf{No Word Similarity} : As words are represented by sparse orthogonal vectors, there is no notion of word similarity that can be introduced. In one-hot representation, the word ``symphony'' is equally close to the words ``bark'' and ``guitar''. We would want word representations such that they capture the semantic or topical similarity between words.
+\item \textbf{No Word Similarity} : As words are represented by sparse 
+orthogonal vectors, there is no notion of word similarity that can be 
+introduced. In one-hot representation, the word ``symphony'' is 
+equally close to the words ``bark'' and ``guitar''. We would want word 
+representations such that they capture the semantic or topical 
+similarity between words.
 \end{enumerate}
 
-Due to the problems discussed above there is a need for continuous, low-dimensional, non-sparse vector representations for words that capture their semantic content and can be used to model language with continuous distributions and can be used as inputs for various other NLP tasks. 
+Due to the problems discussed above there is a need for continuous, 
+low-dimensional, non-sparse vector representations for words that capture 
+their semantic content and can be used to model language with 
+continuous distributions and can be used as inputs for various other 
+NLP tasks. 
 
 \section{Background on Word Embeddings}
 \label{sec:background_distributed}
-Distributed word representations are dense fixed-sized feature vectors learned for words in an unsupervised manner from large text corpus that capture the semantic content of words. Each word $w_{i}$ in the corpus is represented by a vector, $v_{w_{i}} \in \mathbb{R}^{m}$, where $m$ usually ranges from $50-300$ dimensions. These dense representations help deal with sparsity and high-dimensionality issues in one-hot representations and also provide provision for estimating similarities between words; which is as simple as taking the dot-product or calculating the cosine-distance between the vectors. 
+Distributed word representations are dense, fixed-sized feature vectors 
+learned for words in an unsupervised manner from a large text corpus 
+that capture the semantic content of words. Each word $w_{i}$ in the 
+corpus is represented by a vector, $v_{w_{i}} \in \mathbb{R}^{m}$, 
+where $m$ usually ranges from $50-300$ dimensions. These dense 
+representations help address sparsity and high-dimensionality problems 
+of one-hot representations and also allow estimation of
+similarities between words; which is as simple as taking the dot-product 
+or calculating the cosine-distance between the vectors. 
 
-All of the word vector learning models make use of neural networks \citep{bengio2003neural, mnih2013learning, mikolov2013distributed, collobert2011natural, bottou2014machine, turian2010word, levy2014dependencybased} but differ in their learning objectives. 
+All of the word vector learning models make use of neural networks 
+\citep{bengio2003neural, mnih2013learning, mikolov2013distributed, collobert2011natural, bottou2014machine, turian2010word, levy2014dependencybased} but differ in their learning objectives. 
 
-Below we describe few models to show how different learning objectives and architecture can lead to learning high-quality word vectors with different properties.
+Below we describe a few models to show how different learning objectives and architecture can lead to learning high-quality word vectors with different properties.
 
 \subsection{Neural Probabilistic Language Model}
 \label{sec:bengio}
-Neural Probabilistic Language Model (NPLM), introduced by \citet{bengio2003neural}, aims to learn distributed word vectors and a probability function that uses these vectors to learn a statistical model of language. In their model, the probability of a word sequence is expressed as the product of conditional probabilities of the next word given the previous ones. 
+Neural Probabilistic Language Model (NPLM), introduced by 
+\citet{bengio2003neural}, aims to learn distributed word vectors and a 
+probability function that uses these vectors to learn a statistical 
+model of language. In their model, the probability of a word sequence 
+is expressed as the product of conditional probabilities of the next 
+word given the previous ones. 
 \begin{equation}
 P(w_{1}^{T}) =  \prod_{t=1}^{T} P(w_{t}| w_{1}^{t-1})
 \end{equation}
@@ -35,7 +58,7 @@ P(w_{t} | w_{1}^{t-1}) \approx P(w_{t} | w_{t-n+1}^{t-1})
 \end{equation}
 i.e. the probability of the next word in the sequence is mostly affected by the local context, in this the previous $n$-words and not the whole past sequence.
 
-Their model maps each word to a $m$-dimensional vector in a matrix $C \in \mathbb{R}^{|V|\times m}$ and estimates the probability $P(w_{t} = i|w_{t-n+1}^{t-1})$ i.e. the probability that the $t^{th}$ word in the sequence is $w_{i}$. The neural network that is used to estimate this probability using the word vectors is shown in Figure~\ref{fig:nn:bengio}.
+Their model maps each word to an $m$-dimensional vector in a matrix $C \in \mathbb{R}^{|V|\times m}$ and estimates the probability $P(w_{t} = i|w_{t-n+1}^{t-1})$ i.e. the probability that the $t^{th}$ word in the sequence is $w_{i}$. The neural network that is used to estimate this probability using the word vectors is shown in Figure~\ref{fig:nn:bengio}.
 \begin{figure}[t!]
     \centering
         \includegraphics[width=0.8\textwidth]{figs/bengio_nn.png}
@@ -59,11 +82,11 @@ The parameters of the model $(b, d, W, U, H)$ and the word vectors $C$ are estim
 
 \subsection{Log-Linear Models}
 \label{sec:word2vec}
-Simple log-linear models are proposed in \citet{mikolov2013efficient} as opposed to the non-linear NPLM model to bring down the training time complexity without sacrificing with the quality of the word vectors. It achieves so by not having a non-linear layer and matrix weighting of the input vectors, that are the costliest operations in NPLM. The two models proposed in \citet{mikolov2013efficient} (word2vec) are Continuous Bag-of-Words model and Continuous Skip-Gram model, described below.
+Simple log-linear models are proposed in \citet{mikolov2013efficient} as opposed to the non-linear NPLM model to bring down the training time complexity without sacrificing the quality of the word vectors. It achieves this by not having a non-linear layer and matrix weighting of the input vectors, that are the costliest operations in NPLM. The two models proposed in \citet{mikolov2013efficient} (word2vec) are Continuous Bag-of-Words model and Continuous Skip-Gram model, described below.
 
 \subsubsection{Continuous Bag-of-Words Model}
 \label{sec:cbow}
-The Continuous Bag-of-Words (CBOW) model is different from the NPLM in that the projection layer is shared for all words; i.e. all words get projected into the same hidden layer vector (their vectors are averaged). This architecture hence neglects the ordering of the words as opposed to NPLM that uses the concatenation of input vectors for the projection layer. The training criteria in this model is to predict the current (middle) word given its context. It also uses word sequence from the future to aid this task with the relaxation that the aim is not to learn a language model. The model architecture is given in Figure~\ref{fig:nn:cbow}.
+The Continuous Bag-of-Words (CBOW) model is different from the NPLM in that the projection layer is shared for all words; i.e. all words get projected into the same hidden layer vector (their vectors are averaged). This architecture neglects the ordering of the words as opposed to NPLM that uses the concatenation of input vectors for the projection layer. The training criteria in this model is to predict the current (middle) word given its context. It also uses word sequences from the future to aid this task with the relaxation that the aim is not to learn a language model. The model architecture is given in Figure~\ref{fig:nn:cbow}.
 \begin{figure}[h!]
     \centering
         \includegraphics[width=0.5\textwidth]{figs/mikolov_cbow.png}
@@ -75,7 +98,7 @@ The model first computes the hidden layer vector $h$,
 h(w_{t-k}, \ldots, w_{t+k}) = \frac{w_{t-k} + \ldots + w_{t-1} + w_{t+1} + \dots + w_{t+k}}{2k}
 \end{equation}
 where, $w_{t-i}$ is the $i$-th previous word in the context of the middle word $w_{t}$ and $k$ is the window length.
-The neural network then computes a unnormalized log-probability vector $y$ similar to Sec.\ref{sec:bengio}, and uses the \emph{softmax}-classifier to estimate $P(w_{t}|w_{t-k}, \ldots, w_{t+k})$,
+The neural network then computes an unnormalized log-probability vector $y$ similar to Sec.\ref{sec:bengio}, and uses the \emph{softmax}-classifier to estimate $P(w_{t}|w_{t-k}, \ldots, w_{t+k})$,
 \begin{equation}
 y = b + Uh(w_{t-k}, \ldots, w_{t+k})\\
 \end{equation}
@@ -102,10 +125,20 @@ The only parameters of the Skip-gram model are the word vectors ($v_{w_{i}}$) th
 
 The CBOW and the Skip-gram models use the \emph{hierarchical softmax} \citep{morin2005hierarchical} instead of the full softmax to speed-up the learning process.
 
-The quality of the word vectors is tested using the \emph{Semantic-Syntactic Word Relationship test} that evaluates the model performance on retrieving semantically and syntactically similar words to the given test words. The word vectors learned using the skip-gram model are also shown to encode many linear linguistic regularities and pattern \citep{mikolov2013linguistic} and show additive compositionality using simple vector arithmetics. For example, the result of the vector calculation $vec(Madrid) - vec(Spain) + vec(France)$ is closest to $vec(Paris)$ than any other word vectors.
+The quality of the word vectors is tested using the \emph{Semantic-Syntactic Word Relationship test} that evaluates the model performance on retrieving semantically and syntactically similar words to the given test words. The word vectors learned using the skip-gram model are also shown to encode many linear linguistic regularities and patterns \citep{mikolov2013linguistic} and show additive compositionality using simple vector arithmetic. For example, the result of the vector calculation $vec(Madrid) - vec(Spain) + vec(France)$ is closest to $vec(Paris)$ than any other word vectors.
 
 \subsubsection{Dependency-based Word Embeddings}
-Instead of using bag-of-words based context as used in \emph{NPLM} and \emph{word2vec}, \citet{levy2014dependencybased} use arbitrary contexts to investigate its effects on the word vectors and the properties they encode. The most important of their techniques is to derive the contexts based on the syntactic relations that the word participates in. For each word $w$ and its modifiers $m_1, \ldots, m_k$ found using the parse tree of the sentence, contexts $(m_{1}, lbl_{1}, \ldots, m_{k}, lbl_{k})$ are extracted, where $lbl$ is the type of the dependency relation between word and the modifier and $lbl^{-1}$ is used to mark the inverse-relation. An example of the contexts extracted for a sentence is given in Figure~\ref{fig:dep:context}.
+Instead of using a bag-of-words based context as used in \emph{NPLM} 
+and \emph{word2vec}, \citet{levy2014dependencybased} use arbitrary 
+contexts to investigate its effects on the word vectors and the 
+properties they encode. The most important of their techniques is to 
+derive the contexts based on the syntactic relations that the word 
+participates in. For each word $w$ and its modifiers $m_1, \ldots, m_k$ 
+found using the parse tree of the sentence, contexts 
+$(m_{1}, lbl_{1}, \ldots, m_{k}, lbl_{k})$ are extracted, where $lbl$ 
+is the type of the dependency relation between word and the modifier 
+and $lbl^{-1}$ is used to mark the inverse-relation. An example of the 
+contexts extracted for a sentence is given in Figure~\ref{fig:dep:context}.
 \begin{figure}[h!]
     \centering
         \includegraphics[width=0.7\textwidth]{figs/dependency_context.png}
@@ -166,8 +199,8 @@ Also note that the word vector representations learned and stored in the matrix 
 %\para{Projection Layer (Context Representation)} : 
 \subsubsection{Context Representation}
 We represent the context(words surrounding the middle word to be predicted) and the document together in the same projection layer, denoted by $h_{c} \in \mathbb{R}^{k}$, by taking a weighted sum of the corresponding vector representations. 
-The weights for the context words $\Lambda = \{\wgt{i} | i=\{t-c, \ldots, t-1, t+1, \ldots, t+c\}\}$ are kept universal for different sequences across the corpus as we expect the weights to learn some kind of syntactic quality of the language to better represent the context. Also the weight corresponding to the document vector is kept constant at $1$. 
-We also (unsuccessfully) experimented by taking matrix weights instead of scalar weights($\wgt{i}$) to learn better syntactic qualities of the language. 
+The weights for the context words $\Lambda = \{\wgt{i} | i=\{t-c, \ldots, t-1, t+1, \ldots, t+c\}\}$ are kept universal for different sequences across the corpus as we expect the weights to learn some kind of syntactic aspect of the language to better represent the context. Also the weight corresponding to the document vector is kept constant at $1$. 
+We also (unsuccessfully) experimented by taking matrix weights instead of scalar weights($\wgt{i}$) to learn better syntactic aspects of the language. 
 The projection layer representation is computed using,
 \begin{equation}
 \label{eq:hidden_vec}
@@ -176,7 +209,7 @@ h_{c} = \vecdi{i} + \wgt{t-c}\vecwi{t-c} + \ldots + \wgt{t-1}\vecwi{t-1} + \wgt{
 
 %\textbf{Probability Prediction} : 
 \subsubsection{Estimating Prediction Probability}
-We expect in absence of any non-linearity that the projection layer vector should be aligned to the correct middle word of the sequence. Hence we estimate the probability of predicting the word $w_{t}$ as the middle word in the following manner. 
+In absence of any non-linearity we expect that the projection layer vector should be aligned to the correct middle word of the sequence. Hence we estimate the probability of predicting the word $w_{t}$ as the middle word in the following manner. 
 \begin{enumerate}
 \item An output score $s_{w_{i}} \in \mathbb{R}$ for every $w_{i}$ in the vocabulary is estimated by,
 \begin{equation}
@@ -184,7 +217,7 @@ We expect in absence of any non-linearity that the projection layer vector shoul
 s_{w_{i}} = \sigma(\vecwi{w_{i}}\cdot h_{c})
 \end{equation}
 where $\sigma(z) = \frac{1}{1+e^{-z}}$ is the standard sigmoid function. 
-\item After calculating the score for each of the word in the vocabulary, we use the \emph{softmax} classifier to estimate the probability of predicting the actual correct word $w_{t}$ as the middle word in the sequence,
+\item After calculating the score for each word in the vocabulary, we use the \emph{softmax} classifier to estimate the probability of predicting the actual correct word $w_{t}$ as the middle word in the sequence,
 \begin{equation}
 \label{eq:soft_prob}
 p(w_{t} | d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c}) = \frac{e^{s_{w_{t}}}}{\sum_{i \in \setW} e^{s_{i}}}
@@ -193,7 +226,7 @@ p(w_{t} | d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c}) = \frac{e^{
 
 %\textbf{Training Objective} : 
 \subsubsection{Learning Objective}
-The training data $\traindata$, is composed of $M$ training sequences each of which consists a $2c+1$ length sequence of words and the document index it belongs to. For example, $t = \{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}\}$ represents the $m^{th}$ training sequence in $\traindata$.  
+The training data $\traindata$, is composed of $M$ training sequences each of which is a $2c+1$ length sequence of words and the document index it belongs to. For example, $t = \{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}\}$ represents the $m^{th}$ training sequence in $\traindata$.  
 
 Given the training data $\traindata$, our objective is to learn an optimum parameter set $\Theta = (\matD, \matW, \Lambda)$ consisting of the document and word vector matrices and the projection layer weights for the context words, by maximizing the average log probability of estimating the middle word correctly in all the training word sequences where the probability of estimating the middle word as $w_{i}$ is given by Eq.~\ref{eq:soft_prob}. Therefore, 
 \begin{equation}
@@ -204,7 +237,7 @@ Given the training data $\traindata$, our objective is to learn an optimum param
 \label{eq:training_objective}
 l(\traindata, \Theta) = \frac{1}{M}\sum_{m=1}^{M} \log \left[p(w^{(m)}_{t} | d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t-1}, w^{(m)}_{t+1}, \ldots, w^{(m)}_{t+c})\right]
 \end{equation}
-To optimize the training objective in Eq.~\ref{eq:training_objective}, we can use the Stochastic Gradient Descent(SGD) algorithm to find gradient of the objective function (Eq.~\ref{eq:training_objective}) w.r.t. to the individual parameters $\theta_{i}$ and apply the update rule as follows,
+To optimize the training objective in Eq.~\ref{eq:training_objective}, we can use the Stochastic Gradient Descent(SGD) algorithm to find the gradient of the objective function (Eq.~\ref{eq:training_objective}) w.r.t. to the individual parameters $\theta_{i}$ and apply the update rule as follows,
 \begin{equation}
 \label{eq:update_theta}
 \theta^{(x)}_{i} = \theta^{(x-1)}_{i} + \gamma\frac{\partial l(\traindata, \Theta)}{\partial \theta_{i}}
@@ -216,9 +249,9 @@ Updating the parameters for sufficient number of iterations would yield the opti
 As we see in Eq~\ref{eq:soft_prob}, estimating the probability for each training word sequence requires a sweep through the whole vocabulary of size $|\setW|$ which can be a very expensive computation given that typical vocabulary sizes range from a few tens to a few hundreds of thousand words for large datasets. Approaches to reduce this training time, such as, use of hierarchical soft-max \citep{morin2005hierarchical} and use of importance sampling to approximate the likelihood gradient \citep{bengio2003quick, bengio2008adaptive} have been proposed. 
 Hierarchical softmax reduces the training time from linear to logarithmic in vocabulary size but is considerably more involved and finding well-performing trees is not trivial. Also, though importance sampling provides substantial speedups, it suffers from stability problems.
 
-Noise Contrastive Estimation (NCE) \citep{gutmann2012noise} is method for fitting unnormalized probabilities by reducing the problem of \emph{probability density estimation} to \emph{probabilistic binary classification}. It has also been adapted to NPLM (Sec.~\ref{sec:bengio}) \citep{mnih2012fast} and learning word embeddings. \citet{mnih2013learning} and shows significant improvements in training time with no considerable degradation in the quality of word vectors learned.
+Noise Contrastive Estimation (NCE) \citep{gutmann2012noise} is a method for fitting unnormalized probabilities by reducing the problem of \emph{probability density estimation} to \emph{probabilistic binary classification}. It has also been adapted to NPLM (Sec.~\ref{sec:bengio}) \citep{mnih2012fast} and learning word embeddings. \citet{mnih2013learning} shows significant improvements in training time without too much degradation in the quality of word vectors learnt.
 
-The basic idea of NCE as incorporated to our model is to learn a logistic classifier to distinguish between the correct middle word in the given word sequence and corrupt samples from some ``noise'' distribution. Therefore, given a training sequence of the form $t = \{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}\}$, our training objective now is to train a classifier such that it can distinguish between positive training sample $w^{(m)}_{t}$ as positive example and negative training samples $w_{x}$ drawn from a noise distribution $P_{n}(w)$ as negative examples for the middle word given the surrounding words (context) and the document the sequence belongs to.
+The basic idea of NCE as incorporated in our model is to learn a logistic classifier to distinguish between the correct middle word in the given word sequence and corrupt samples from some ``noise'' distribution. Therefore, given a training sequence of the form $t = \{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}\}$, our training objective now is to train a classifier such that it can distinguish between a positive training sample $w^{(m)}_{t}$ as a positive example and negative training samples $w_{x}$ drawn from a noise distribution $P_{n}(w)$ as negative examples for the middle word given the surrounding words (context) and the document the sequence belongs to.
 
 Our training data $\traindata$ is now converted to a set of labeled sequences of the form 
 %$$t = \left[ \{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}\}, Y^{(m)}=1 \right]^{m=M}_{m=1}$ 
@@ -269,7 +302,7 @@ To learn the optimum parameters $\Theta = (\matD, \matW, \Lambda)$, we maximize 
 Firstly, for the SGD algorithm we need to calculate the gradient of the log probability estimate (Eq~\ref{eq:log_P}) with respect to individual parameters $\theta \in \Theta$. The derivative of the log probability estimate w.r.t. to a parameter $\theta \in \Theta$ is given by,
 \begin{align}
 \frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \theta} &= \left[ Y^{(m)}\frac{1}{\sigma(d^{(m)})} - (1-Y^{(m)})\frac{1}{(1 - \sigma(d^{(m)}))}\right] \frac{\partial \sigma(d^{(m)})}{\partial \theta} \\
-&= \left[ Y^{(m)}\frac{1}{ \sigma(d^{(m)})} - (1 - Y^{(m)})\frac{1}{(1 - \sigma(d^{(m)}))}\right] \left[\sigma(d^{(m)})(1-\sigma(d^{(m)}))\right]\frac{\partial d^{(m)}}{\partial \theta} \\
+&= \left[ Y^{(m)}\frac{1}{ \sigma(d^{(m)})} - (1 - Y^{(m)})\frac{1}{(1 - \sigma(d^{(m)}))}\right]\times\notag\\ &\qquad\left[\sigma(d^{(m)})(1-\sigma(d^{(m)}))\right]\frac{\partial d^{(m)}}{\partial \theta} \\
 \frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \theta} &= \left[ Y^{(m)} - \sigma(d^{(m)})\right] \frac{\partial d^{(m)}}{\partial \theta}
 \end{align}
 where $d^{(m)} = (\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})$ is the dot-product of the projection layer vector with the word vector for the middle word. Therefore,
@@ -326,7 +359,7 @@ Neural Network weights is given by
 \frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \wgt{t+j}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right] (\vecwi{w^{(m)}_{t}} \cdot \vecwi{w^{(m)}_{t+j}})
 \end{equation}
 \end{enumerate}
-According to the SGD algorithm, the update to be made to a parameter $\theta \in \Theta$ on observing a training sequence $m$ is therefore given in Eq.~\ref{eq:update_reg}. We also include $L_{2}$ regularization for the parameters as it helps in avoiding overfitting and restricts the  parameters to  blow up in value.
+According to the SGD algorithm, the update to be made to a parameter $\theta \in \Theta$ on observing a training sequence $m$ is therefore given in Eq.~\ref{eq:update_reg}. We also include $L_{2}$ regularization for the parameters as it helps in avoiding overfitting and restricts the  parameters from attaining very large values.
 \begin{equation}
 \label{eq:update_reg}
 \theta^{(i+1)} \leftarrow \theta^{(i)} + \gamma \left[\frac{\partial \log P_{\Theta}(Y_{m} = Y^{(m)})}{\partial \theta^{(i)}} - \beta \theta^{(i)} \right]
@@ -398,20 +431,20 @@ To learn the vectors $\matD$, $\matW$ and weights $\Lambda$ we initialize vector
 \label{sec:hp_doc}
 Our model has various hyper-parameters that need to be tuned for optimum model performance and learning high quality document and word vectors. Below we describe the hyper-parameters in our model and the effect they have on learning document representations.
 \begin{enumerate}
-\item \textbf{Embedding Dimensionality ($k$)} : The most important hyper-parameter in our model is the size of the document and word embedding vectors, $k$. The embedding dimensionality needs to be large enough such that the document vectors can encode the different semantic topics across the corpus but shouldn't be very large so that it introduces noise in the vectors.
+\item \textbf{Embedding Dimensionality ($k$)} : The most important hyper-parameter in our model is the size of the document and word embedding vectors, $k$. The embedding dimensionality needs to be large enough such that the document vectors can encode the different semantic topics across the corpus but should not be so large that it introduces noise in the vectors.
 
-\item \textbf{Window  Size ($c$)} : The length of the sequence or the window size $c$, that we consider as context surrounding a word is crucial for the quality of representations learned. While a smaller window could result in the negligence of important words that surround the middle word, a large window could introduce noise in the context that can deteriorate the performance of the model.
+\item \textbf{Window  Size ($c$)} : The length of the sequence or the window size $c$, that we consider as context surrounding a word is crucial for the quality of representations learned. While a smaller window could result in the neglect of important words that surround the middle word, a large window could introduce noise in the context that can deteriorate the performance of the model.
 
 \item \textbf{Number of Negative Samples ($n$)} : In NCE, tuning the number of negative samples introduced in the training data per positive example is important for deciding the trade-off between learning better word density distribution, with larger $n$ and lower training complexity, with smaller $n$. 
 
-\item \textbf{Number of Epochs ($epochs$))} : The number of times we loop through the training data to learn the representations needs to be optimum to prevent overfitting, that would occur with large epochs, while at the same time learn high quality representations.
+\item \textbf{Number of Epochs ($epochs$))} : The number of times we loop through the training data needs to be controlled. We would like to learn high quality representations without overfitting and thereby learning the noise in the data.
 
-\item \textbf{Learning Rate ($\gamma$)} : The convergence of a non-convex objective being optimized using the SGD algorithm depends largely on the learning rate. 
-While a smaller learning rate could harm the training time and convergence, a larger learning rate may lead to the case of non-convergence and poor parameters.
+\item \textbf{Learning Rate ($\gamma$)} : The convergence of a non-convex objective being optimized using the SGD algorithm is very sensitive to
+the learning rate. While a small learning rate could harm training time and convergence, a large learning rate can lead to divergence and poor parameter values.
 
-\item \textbf{Regularization Constant ($\beta$)} : Regularization is introduced in the training objective to avoid overfitting of parameters by reducing model complexity. While a small $\beta$ may not penalize complexity enough, larger constants may inhibit the growing of parameters with a negative effect which requires careful selection of the regularization constant dependent on the dataset.
+\item \textbf{Regularization Constant ($\beta$)} : Regularization is introduced in the training objective to avoid overfitting of parameters by reducing model complexity. While a small $\beta$ may not penalize complexity enough, larger constants may inhibit the growth of parameters to their optimum values. So, this requires careful selection of the regularization constant and depends on the dataset.
 \end{enumerate}
-We explain the technique in which we tune these hyper-parameters later in Sec.~\ref{sec:exp_setup}.
+We explain the technique by which we tune these hyper-parameters later in Sec.~\ref{sec:exp_setup}.
 
 
 
