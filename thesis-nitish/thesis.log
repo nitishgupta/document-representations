@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  9 MAY 2015 13:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  9 MAY 2015 14:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1316,11 +1316,6 @@ Underfull \vbox (badness 2671) has occurred while \output is active []
 
  [40]
 [41]
-Overfull \hbox (54.87115pt too wide) in paragraph at lines 81--81
-[] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [42]
@@ -1331,7 +1326,10 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [43]
-[44] [45]) [46]
+Underfull \vbox (badness 2293) has occurred while \output is active []
+
+ [44]
+[45]) [46]
 \openout2 = `Evaluation.aux'.
 
  (./Evaluation.tex
@@ -1568,7 +1566,7 @@ nts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (97 pages, 1061809 bytes).
+Output written on thesis.pdf (97 pages, 1061907 bytes).
 PDF statistics:
  1375 PDF objects out of 1440 (max. 8388607)
  1189 compressed objects within 12 object streams

@@ -5,9 +5,10 @@ In this chapter, we present the multinomial logistic regression algorithm in the
 \section{Logistic Regression for Multi-label Document Categorization}
 \label{sec:lrtc}
 Introduced by \citet{hosmer1989applied}, Logistic Regression (LR) is a probabilistic binary classification regression model that, given binary labeled data, performs regression over the data and learns weight vectors to predict whether a given data point belongs to the positive or the negative class. 
-The probability of the data point to belong in a class is estimated using the \emph{logistic (sigmoid) function}, hence the name logistic regression.
+The probability of the data phave a very strong culture of conference 
+publications with a very low emphasis on journal publications.oint to belong in a class is estimated using the \emph{logistic (sigmoid) function}, hence the name logistic regression.
 
-Logistic Regression, though is a technique to discriminate between two categories, can be easily extended to classification between multiple categories which is then referred to as Multinomial Logistic Regression. 
+Logistic Regression, though a technique to discriminate between two categories, can be easily extended to classify in multiple categories in which case it is referred to as Multinomial Logistic Regression. 
 Though we use use multinomial logistic regression for our task of multi-label text classification, for the sake of brevity we refer to our algorithm as logistic regression.
 
 In the sections below we describe the logistic regression model as modified for the task of multi-label document categorization.
@@ -17,32 +18,32 @@ In the sections below we describe the logistic regression model as modified for 
 The training data $\traindata$ is composed of a set of documents $\setD$, set of categories $\setC$, data about which documents belong to each of the categories and the document representation vectors.
 
 \textbf{Document-Category Data} : 
-Each document $d_{i}$ in $\setD$ belongs to atleast one category from $\setC$. To store this relational data between the documents and the categories, we create a database $\db$ in which for the $m$-th training instance we store a tuple of the form $\{ d^{(m)}_{i}, c^{(m)}_{j}, y^{(m)}\}^{m=T}_{m=1}$ where $y^{(m)} \in \{0, 1\}$ denotes whether the document $d^{(m)}_{i}$ belongs the category $c^{(m)}_{j}$ or not. 
+Each document $d_{i}$ in $\setD$ belongs to at least one category from $\setC$. To store this relational data between the documents and the categories, we create a database $\db$ in which for the $m$-th training instance we store a tuple of the form $\{ d^{(m)}_{i}, c^{(m)}_{j}, y^{(m)}\}^{m=T}_{m=1}$ where $y^{(m)} \in \{1, 0\}$ denotes whether the document $d^{(m)}_{i}$ belongs to ($1$) category $c^{(m)}_{j}$ or not ($0$). 
 
-Mostly the data about document categories is given such that it is known what categories do the documents belong to, without conclusive information about whether the document necessarily does not belong to the rest of the categories. In such cases, if we assume the given data to be complete, then along with positive data examples of the form, $\{ d_{i}, c_{j}, 1\}$, we introduce negative samples, $\{ d_{i}, c_{k}, 0\}$ for every category $c_{k}$ each document $d_{i}$ does not belong to. 
-If the document-category data is viewed as a matrix with documents as rows and categories as columns, then in such case, we would only observe positive examples ($1$) in matrix but at sparse locations. To make the training data complete in such cases, we would fill the matrix with negative examples ($0$) at every empty location.
+Mostly category data about documents is given such that it is known what categories a document belongs to, without conclusive information about whether the document necessarily does not belong to the remaining categories. So, if we assume the given data to be complete, then along with positive data examples of the form, $\{ d_{i}, c_{j}, 1\}$, we introduce negative samples, $\{ d_{i}, c_{k}, 0\}$ for every category $c_{k}$ where document $d_{i}$ does not belong to $c_k$. 
+If the document-category data is viewed as a matrix with documents as rows and categories as columns then we observe $1$s in the matrix at only a few locations - that is it is sparse. To make the training data complete in such cases, we fill the matrix with $0$s at all empty locations.
 
 \textbf{Document Representations} : 
-Along with the document-category data, the training data also composes of the contents of the documents in terms of the appropriate document representation vectors. For every document $d_{i} \in \setD$ indexed by $i$, the training data comprises of a vector representation  $v_{d_{i}}$ for the document.
+Along with the document-category data, the training data also comprises the contents of the documents in terms of the appropriate document representation vectors. For every document $d_{i} \in \setD$ indexed by $i$, the training data comprises of a vector representation  $v_{d_{i}}$ for the document.
 
 %\subsection{Multi-label Document Categorization using LR}
 \subsection{Logistic Regression Model}
 For multi-label document categorization, we extend the standard binary classification logistic regression model to, learn a probabilistic function from the given multi-labeled document category data such that for any given test document-category pair $\{d_{i}, c_{j}\}$, our function can estimate the probability of the document $d_{i}$ belonging to the category $c_{j}$, $p(c_{j}=1|d_{i})$.
 
-As we explained in Sec.~\ref{sec:document_embeddings}, we learn low-rank distributed vector representation for every document in the corpus. Similarly, for multi-label logistic regression, we represent each category $c_{i} \in \setC$ using a low-rank embedding $\vecci{c_{i}} \in \mathbb{R}^{k}$ of the same dimensionality as the document embeddings, $k$. Similar to $\matD$, we stack these category embeddings as columns in the matrix $\matC \in \mathbb{R}^{k \times |\setC|}$.
+As discussed in Sec.~\ref{sec:document_embeddings}, we learn a low-rank distributed vector representation for every document in the corpus. Similarly, for multi-label logistic regression, we represent each category $c_{i} \in \setC$ using a low-rank embedding $\vecci{c_{i}} \in \mathbb{R}^{k}$ of the same dimensionality as the document embeddings, $k$. Similar to $\matD$, we stack these category embeddings as columns in the matrix $\matC \in \mathbb{R}^{k \times |\setC|}$.
 
 Given a document-category tuple of the form $\{d_{i}, c_{j}\}$, we estimate the probability of the document belonging to the category ($y = 1$) using the logistic function as,
 \begin{equation}
 \label{eq:prob_dc}
 P(y=1|d_{i}, c_{j}, \matD, \matC) = \sigma(\vecdi{d_{i}}\cdot \vecci{c_{j}})
 \end{equation}
-This model is similar to the standard logistic regression (LR) as in standard LR for binary classification, we learn a universal weight vector $\mathbf{w}$ that is used to estimate the probability in Eq.~\ref{eq:prob_dc} instead of $\vecci{c_{j}}$. Here, because we have multiple categories, we learn multiple weight vectors (category embeddings) for each category separately and hence perform multiple binary classifications.
+This model is similar to standard logistic regression (LR) where for binary classification we learn a universal weight vector $\mathbf{w}$ that is used to estimate the probability in Eq.~\ref{eq:prob_dc} instead of $\vecci{c_{j}}$. Here, because we have multiple categories, we learn multiple weight vectors (category embeddings) for each category separately and hence perform multiple binary classifications.
 
 \subsubsection{Learning Objective}
 \label{sec:tro_lr}
 As explained in Sec.~\ref{sec:trdata_lr}, the training data $\traindata$, is composed of $T$ tuples of the form $\{ d^{(m)}_{i}, c^{(m)}_{j}, y^{(m)}\}$. Our training objective involves learning optimum category embeddings such that for any unobserved document $d_{x} \notin \setD$, we should be able to predict the categories it belongs to.
 
-For the $m$-th training instance $\{ d^{(m)}_{i}, c^{(m)}_{j}, y^{(m)}\}$, we denote the prediction that whether the document $d^{(m)}_{i}$ belongs the category $c^{(m)}_{j}$ by $y_{m}$. Therefore, if we predict $d^{(m)}_{i}$ belongs $c^{(m)}_{j}$ i.e. $y_{m} = 1$ using Eq.~\ref{eq:prob_dc},
+For the $m$-th training instance $\{ d^{(m)}_{i}, c^{(m)}_{j}, y^{(m)}\}$, we denote the prediction about document $d^{(m)}_{i}$ belonging to category $c^{(m)}_{j}$ by $y_{m}$. Therefore, we predict the probability that $d^{(m)}_{i}$ belongs to $c^{(m)}_{j}$ i.e. $y_{m} = 1$ using Eq.~\ref{eq:prob_dc},
 \begin{equation}
 \label{eq:prob_trm}
 P(y_{m}=1|d^{(m)}_{i}, c^{(m)}_{j}, \matD, \matC) = \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})
@@ -56,7 +57,7 @@ P_{\matD, \matC}(y_{m} = 0) = 1 - \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}
 \label{eq:prob_bernouli}
 P_{\matD, \matC}(y_{m}) = \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})^{y_{m}}(1 - \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}}))^{1-y_{m}}
 \end{equation}
-To learn the optimum parameter set $\Theta = (\matC)$ consisting of the set of category embeddings, we would maximize the log-likelihood of observing the training data,
+To learn the optimum parameter set $\Theta = (\matC)$ consisting of the set of category embeddings we maximize the log-likelihood of observing the training data,
 \begin{equation}
 \label{eq:cembed_argmax}
 \hat{\Theta} =  \argmax_{\Theta}~l(\traindata, \Theta)
@@ -72,13 +73,14 @@ where,
 \end{equation}
 
 \subsubsection{Parameter Estimation}
-To learn the optimum parameters $\Theta=(\matC)$ we would maximize the log-likelihood of observing the training data given in Eq~\ref{eq:new_to_lr} using the Stochastic Gradient Descent(SGD) algorithm as described earlier in Sec~\ref{sec:para_esti_doc}. We first need to calculate the gradient of the log probability estimate (Eq.~\ref{eq:log_P_lr}) with respect to the category embeddings which is given by,
 
+To learn the optimum parameters $\Theta=(\matC)$ we maximize the log-likelihood of observing the training data given in Eq~\ref{eq:new_to_lr} using the Stochastic Gradient Descent(SGD) algorithm as described earlier in Sec~\ref{sec:para_esti_doc}. We first need to calculate the gradient of the log probability estimate (Eq.~\ref{eq:log_P_lr}) with respect to the category embeddings which is given by:
 \begin{align}
 \frac{\partial \log P_{\matD, \matC}(y_{m}=y^{(m)})} {\partial \vecci{c^{(m)}_{j}}} &= \left[ y^{(m)}\frac{1}{\sigma(s^{(m)})} - (1-y^{(m)})\frac{1}{(1 - \sigma(s^{(m)}))}\right] \frac{\partial \sigma(s^{(m)})}{\partial \vecci{c^{(m)}_{j}}} \\
-&= \left[ y^{(m)}\frac{1}{\sigma(s^{(m)})} - (1-y^{(m)})\frac{1}{(1 - \sigma(s^{(m)}))}\right] \left[\sigma(s^{(m)})(1-\sigma(s^{(m)}))\right]\frac{\partial s^{(m)}}{\partial \vecci{c^{(m)}_{j}}} \\
+&= \left[ y^{(m)}\frac{1}{\sigma(s^{(m)})} - (1-y^{(m)})\frac{1}{(1 - \sigma(s^{(m)}))}\right] \times\notag\\&\qquad\left[\sigma(s^{(m)})(1-\sigma(s^{(m)}))\right]\frac{\partial s^{(m)}}{\partial \vecci{c^{(m)}_{j}}} \\
 \frac{\partial \log P_{\matD, \matC}(y_{m}=y^{(m)})} {\partial \vecci{c^{(m)}_{j}}} &= \left[ y^{(m)} - \sigma(s^{(m)})\right] \frac{\partial s^{(m)}}{\partial \vecci{c^{(m)}_{j}}}
 \end{align}
+
 where, $s^{(m)} = (\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})$ is the \emph{pre-sigmoid activation}. Therefore,
 \begin{equation}
 \frac{\partial \log P_{\matD, \matC}(y_{m}=y^{(m)})} {\partial \vecci{c^{(m)}_{j}}} = \left[ y^{(m)} - \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})\right] \frac{\partial (\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})}{\partial \vecci{c^{(m)}_{j}}}
@@ -88,14 +90,14 @@ where, $s^{(m)} = (\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})$ is the \emph{p
 \frac{\partial \log P_{\matD, \matC}(y_{m}=y^{(m)})} {\partial \vecci{c^{(m)}_{j}}} = \left[ y^{(m)} - \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})\right] \vecdi{d^{(m)}_{i}}
 \end{equation}
 According to the SGD algorithm and Eq.~\ref{eq:update_reg}, the update to be made to the category embedding on observing the $m$-th training instance is given by Eq.~\ref{eq:update_cat}. We also include $L_{2}$
-regularization for the category embeddings as it helps in avoiding overfitting and restricts the embeddings to blow up in value.
+regularization for the category embeddings as it helps in avoiding overfitting and restricts the embeddings from attaining very large values.
 \begin{equation}
 \label{eq:update_cat}
 (\vecci{c^{(m)}_{j}})^{(i+1)} = (\vecci{c^{(m)}_{j}})^{(i)} + \gamma \left[ ( y^{(m)} - \sigma(\vecdi{d^{(m)}_{i}}\cdot (\vecci{c^{(m)}_{j}})^{(i)}) \vecdi{d^{(m)}_{i}} -\beta(\vecci{c^{(m)}_{j}})^{(i)} \right]
 \end{equation}
 Here $(\vecci{c^{(m)}_{j}})^{(i)}$ and $(\vecci{c^{(m)}_{j}})^{(i+1)}$ are the category embeddings before and after the update, respectively, $\gamma$ is the learning rate of the algorithm and $\beta$ is the regularization constant used for the $L_{2}$ regularization. 
 
-Similar to Sec.~\ref{sec:para_esti_doc}, we initialize the category embeddings $\matC$ to small random vectors and loop through the training data $\traindata$ until we reach convergence based on the development data. The complete algorithm for employing the logistic regression model for multi-label document categorization is given in Algorithm~\ref{alg:cat_embeddings}
+Similar to Sec.~\ref{sec:para_esti_doc}, we initialize the category embeddings $\matC$ to small random vectors and loop through the training data $\traindata$ until we reach convergence based on the development data. The complete algorithm using logistic regression model for multi-label document categorization is given in Algorithm~\ref{alg:cat_embeddings}
 
 \begin{algorithm}[h]
 \begin{algorithmic}[1]
@@ -110,15 +112,16 @@ Similar to Sec.~\ref{sec:para_esti_doc}, we initialize the category embeddings $
  \\
  \Return $\matC$
 \end{algorithmic}
+\todo{What is the convergence criterion?}
 \caption{Learning Category Vector Representations}
 \label{alg:cat_embeddings}
 \end{algorithm}
 
 \section{Similarity to Relational Learning}
 \label{sec:lr_similar_rl}
-Multi-label document categorization can be viewed as a relational learning problem where the task is to find missing links between documents and categories or for new documents find what categories does it link to. Relational learning has a novel solution in Matrix Factorization which assumes that the relational data matrix between entities has a low-rank structure and tries to factorize it as a product of two matrices representing the row and column entity factors. 
+Multi-label document categorization can be viewed as a relational learning problem where the task is to find missing links between documents and categories, or for new documents find the categories to which it links. Relational learning has a novel solution using Matrix Factorization which assumes that the relational data matrix between entities is low-rank and tries to factorize it as a product of two matrices representing the row and column entity factors. 
 
-Therefore, if $R$ denotes the binary relational matrix, where rows and columns correspond to the entities of two different type and the entries of the matrix, $r(i, j) \in \{0,1\}$ denotes the presence/absence of link between the $i$-th row and the $j$-th column entity. Matrix factorization would try to decompose the matrix $R$ into row and column factors, say $U$ and $V$ such that,
+Therefore, if $R$ denotes the binary relational matrix, where rows and columns correspond to the entities of two different types and the entries of the matrix, $r(i, j) \in \{0,1\}$ denotes the presence/absence of a link between the $i$-th row and the $j$-th column entity. Matrix factorization would try to decompose the matrix $R$ into row and column factors, say $U$ and $V$ such that,
 \begin{equation}
 \label{eq:mf_decompose}
 R = UV^{T}
@@ -127,9 +130,10 @@ where, if $R \in \mathbb{R}^{m \times n}$ then $U \in \mathbb{R}^{m \times k}$ a
 
 In our model of logistic regression for multi-label document classification, though we take a similar approach and learn category embeddings to project the categories along with the documents to the same $k$-dimensional space, our method has the following differences,
 \begin{enumerate}
-\item Instead of factorizing the document-category data matrix, $R$ using a linear matrix factorization approach as in Eq.~\ref{eq:mf_decompose}, we take a probabilistic approach and think of $R$ has a probabilistic database and estimate the probability of a document belonging to a particular category.
+\item Instead of factorizing the document-category data matrix $R$ using a linear matrix factorization approach as in Eq.~\ref{eq:mf_decompose}, we take a probabilistic approach and think of $R$ has a probabilistic database and estimate the probability of a document belonging to a particular category.
 
-\item As we already learn document representations, $\matD$ using our model described in Sec.~\ref{sec:docem_ourmodel}, we only learn category factors, $\matC$ instead of learning factors for both kind of entities as done in Eq.~\ref{eq:mf_decompose} by learning both $U$ and $V$.
+\item As we have already learnt document representations $\matD$ using our model described in Sec.~\ref{sec:docem_ourmodel}, we only learn category factors $\matC$ instead of learning factors $U$ and $V$ for both kinds of entities, as done in Eq.~\ref{eq:mf_decompose} .
+% by learning both $U$ and $V$.
 \end{enumerate}
 
 \section{Advantages of Logistic Regression Learning Algorithm}
@@ -137,15 +141,15 @@ In our model of logistic regression for multi-label document classification, tho
 As shown above, we use a modified version of the Logistic Regression for multi-label document categorization that learns multiple classifiers (in terms of the category embeddings) for multi-labeling task. Even though learning algorithms that learn multiple independent classifiers have drawbacks as elucidated in Sec~\ref{sec:rw_multiple_classifiers}, our logistic regression style algorithm has a lot of advantages that make it a good choice for the document categorization task. Below we list some of its major advantages.
 \begin{enumerate}
 \item 
-Since we learn distributed representations for the categories in the same $k$-dimensional space as the documents and words it enables us to estimate the similarity between unrelated entities. Similarity estimation is as simple as taking the dot-product of the corresponding representation vectors. For example, similarity between two categories or between categories and words can be estimated, would not be possible if some other learning technique was used. 
+Since we learn distributed representations for the categories in the same $k$-dimensional space as the documents and words it enables us to estimate the similarity between unrelated entities. Similarity estimation is as simple as taking the dot-product of the corresponding representation vectors. For example, similarity between two categories or between categories and words can be estimated. This would not be possible if some other learning technique was used. 
 
 \item 
 The major drawback of algorithms that learn multiple independent classifiers is their inability to capture and exploit the correlations among categories from the training data. As we exploit the low-rank structure of the document-category relational matrix by learning factors for categories we are able to learn correlations among categories in a way similar to collaborative filtering.
 
 \item 
 Generally, document-category data is accompanied by additional relational data about documents and/or categories which is often incomplete. As has been shown in \citet{gupta2015collectively}, joint modeling of relations and entities using collective matrix factorization of multiple relational matrices can provide signification improvements in the relation prediction task. 
-Our model, based on matrix factorization as shown in Sec~\ref{sec:lr_similar_rl}, can easily be extended to incorporate additional relational data and aid in improved database completion. 
+Our model, based on matrix factorization as shown in Sec~\ref{sec:lr_similar_rl}, can easily be extended to incorporate additional relational data that can help in improved database completion. 
 
 \item 
-The fact that we use Stochastic Gradient Descent to find the optimum parameters (category representations), in which the training examples are presented to the system one at a time makes our document categorization algorithm completely online. It enables us to incorporate streaming data and additional training data at any stage of the learning without any effort.  
+The fact that we use Stochastic Gradient Descent to find the optimum parameters (category representations), in which the training examples are presented to the system one at a time makes our document categorization algorithm completely online. It enables us to incorporate streaming data and additional training data at any stage of learning without extra effort.  
 \end{enumerate}
