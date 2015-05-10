@@ -1,31 +1,31 @@
 \chapter{Conclusions and Future Work}
 \label{chapter:conclusion}
-We presented an unsupervised neural network model that jointly learns fixed-length low-dimensional distributed vector representations for documents and words that encode the semantic content of the documents and words.
+We presented an unsupervised neural network model that jointly learns fixed-length low-dimensional distributed vector representations for documents and words that encode the semantic content of words and documents.
 % for multi-label document categorization. 
-We overcome some of the issues in the bag-of-words representations by encoding the contextual information surrounding the words in the documents in our representations to improve their quality and performance on the multi-label document categorization task.
+We overcome some of the problems with the bag-of-words representations by encoding the contextual information surrounding words in documents. Our representations improve quality and performance on the multi-label document categorization task.
 Our neural network architecture is a log-linear model that uses Noise Contrastive Estimation (NCE) to approximate the word probability distribution making parameter learning computationally inexpensive. We use the Stochastic Gradient Descent (SGD) to minimize the training objective that allows parallelization of the learning task further decreasing training time many folds.
 
 We use a modified version of the logistic regression algorithm that learns distributed category representations by embedding categories in the same low-dimensional space as the documents and words for the multi-label document categorization task. 
-On the standard \emph{Reuters-21578} dataset we show that using representations learned using model we achieve a F1 score of $91.7\%$ improving the bag-of-words representation accuracy by $9.03\%$ and the previous state-of-the-art, Multi-Class Maximum Figure-of-Merit (MC-MFoM) by $3.26\%$ in terms of the F1 score. 
-We also present evaluations on the Wikipedia datasets showing that our representations perform better than the bag-of-words representations. We show our model performs better than the bag-of-words representation in the task of imputing missing categories for existing articles on Wikipedia also.
-Using continuous vector representations we embed documents, words and categories in the same semantic space allowing us to estimate similarities between indirectly related entities such as words and categories. We qualitatively show that representations learned using our model capture the semantic similarity between categories and words effectively.
+On the standard \emph{Reuters-21578} dataset we show that representations learned using our model achieved an F1 score of $91.7\%$ improving the bag-of-words representation accuracy by $9.03\%$ and the previous state-of-the-art, Multi-Class Maximum Figure-of-Merit (MC-MFoM) by $3.26\%$ in terms of the F1 score. 
+We also present evaluations on the Wikipedia datasets showing that our representations perform better than the bag-of-words representations. We also show that our model performs better than the bag-of-words representation in the task of imputing missing categories for existing articles on Wikipedia.
+Using continuous vector representations we embed documents, words and categories in the same semantic space allowing us to estimate similarities between indirectly related entities such as words and categories. We qualitatively show that representations learned using our model capture the semantic similarity between categories and words reasonably effectively.
 
 \section{Future Work}
-A plethora of future work is possible to improve the quality of learned representions and extend the model to incorporate additional data and relations for joint relation modeling and prediction. Below we elucidate some of the possible future directions we would like to pursue.  
+Much more work is possible to improve the quality of learned representions and extend the model to incorporate additional data and relations for joint relation modeling and prediction. Below, we outline some possible future directions we would like to pursue.  
 
 \subsection{Improving Compositionality of Word Vectors}
 Human language is complex and change in word ordering and syntax can completely change the semantic meaning of a sentence and hence longer pieces of text. 
-As we see in our performance evaluation, encoding syntactic nature of the language in terms of weighting the context words leads to better document representations than weighing all context words equally. 
+As we see in our performance evaluation, encoding the syntactic nature of language in terms of weighting the context words leads to better document representations than weighing all context words equally. 
 In our model, we do not preserve word ordering and do not consider the parse tree of the sentences in documents. 
-Recursive Neural Tensor Networks \citep{socher2013recursive} have shown to be effective in composing word vectors to learn sentence level representations for sentiment analysis. 
+Recursive Neural Tensor Networks \citep{socher2013recursive} have been shown to be effective in composing word vectors to learn sentence level representations for sentiment analysis. 
 We would like to extend our model to incorporate syntactic dependencies in sentences for more effective compositionality of word vectors to learn better document level representations.
 
 \subsection{Joint Document Representation Learning and Document Categorization}
 In our model, we learn universal document representations in an unsupervised manner and then use these representations for the task of multi-label document categorization. 
-Though such document representations are general purpose and can be used as inputs for any document level tasks, such as sentiment analysis, better performance accuracies on the required task can be achieved by making the document representation learning model supervised with the help of training data for document categorization. 
+Though such document representations are general purpose and can be used as inputs for any document level task, such as sentiment analysis, better performance on the required task can be achieved by making the document representation learning model supervised with the help of training data for document categorization. 
 This would enable the model to jointly learn better document and category vectors by exploiting both the document content and category correlations simultaneously.
-One drawback of such an approach would be the lose of generality in the learned document representations.
+One drawback of such an approach would be the loss of generality in the learned document representations.
 
 \subsection{Supervised Multi-view Relational Learning}
-As discussed in Sec.~\ref{sec:adv:lr}, one of the advantages of using the logisitic regression algorithm for document categorization and learning distributed category representations is that additional incomplete-relational data about documents can be easily incorporated to the task of document categorization. Such multi-relational data about documents can be jointly modeled using collective matrix factorization \cite{singh2008relational}. 
+As discussed in Sec.~\ref{sec:adv:lr}, one of the advantages of using the logisitic regression algorithm for document categorization and learning distributed category representations is that additional incomplete-relational data about documents can be easily incorporated in the task of document categorization. Such multi-relational data about documents can be jointly modeled using collective matrix factorization \cite{singh2008relational}. 
 As shown in \citet{gupta2015collectively}, joint modeling of multi-relational data about an entity can boost the performance of predicting all relations by learning high quality distributed representations that encode dependencies between unrelated entities. 

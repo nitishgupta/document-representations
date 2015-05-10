@@ -97,7 +97,7 @@ regularization for the category embeddings as it helps in avoiding overfitting a
 \end{equation}
 Here $(\vecci{c^{(m)}_{j}})^{(i)}$ and $(\vecci{c^{(m)}_{j}})^{(i+1)}$ are the category embeddings before and after the update, respectively, $\gamma$ is the learning rate of the algorithm and $\beta$ is the regularization constant used for the $L_{2}$ regularization. 
 
-Similar to Sec.~\ref{sec:para_esti_doc}, we initialize the category embeddings $\matC$ to small random vectors and loop through the training data $\traindata$ until we reach convergence based on the development data. The complete algorithm using logistic regression model for multi-label document categorization is given in Algorithm~\ref{alg:cat_embeddings}
+Similar to Sec.~\ref{sec:para_esti_doc}, we initialize the category embeddings $\matC$ to small random vectors and loop through the training data $\traindata$ until we reach convergence based on the development data. As the training objective is non-convex, we stop training when the F1 score on the development set starts decreasing after attaining a maximum. The complete algorithm for multi-label document categorization is given in Algorithm~\ref{alg:cat_embeddings}.
 
 \begin{algorithm}[h]
 \begin{algorithmic}[1]
@@ -112,7 +112,6 @@ Similar to Sec.~\ref{sec:para_esti_doc}, we initialize the category embeddings $
  \\
  \Return $\matC$
 \end{algorithmic}
-\todo{What is the convergence criterion?}
 \caption{Learning Category Vector Representations}
 \label{alg:cat_embeddings}
 \end{algorithm}

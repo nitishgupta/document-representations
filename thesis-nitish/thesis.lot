@@ -8,7 +8,7 @@
 \contentsline {table}{\numberline {5.2}{\ignorespaces Statistics of the Wikipedia Datasets\relax }}{50}{table.caption.154}
 \contentsline {table}{\numberline {5.3}{\ignorespaces {Model performance on Reuters development data for different embedding dimensionality}\relax }}{54}{table.caption.163}
 \contentsline {table}{\numberline {5.4}{\ignorespaces Model performance on Reuters development data for different number of epochs\relax }}{54}{table.caption.164}
-\contentsline {table}{\numberline {5.5}{\ignorespaces Model performance on Reuters development data for different window sizes\relax }}{55}{table.caption.165}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Model performance on Reuters development data for different window sizes\relax }}{54}{table.caption.165}
 \contentsline {table}{\numberline {5.6}{\ignorespaces Model performance on Reuters development data for different number of negative samples\relax }}{55}{table.caption.166}
 \contentsline {table}{\numberline {5.7}{\ignorespaces Precision/Recall/F1 for Document Categorization on Reuters-21578 (\emph {ModApte}) dataset\relax }}{55}{table.caption.167}
 \contentsline {table}{\numberline {5.8}{\ignorespaces Model performance on Physics(Wikipedia) development data for different embedding dimensionality\relax }}{56}{table.caption.170}

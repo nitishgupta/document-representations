@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  9 MAY 2015 14:48
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  10 MAY 2015 12:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1319,17 +1319,7 @@ Underfull \vbox (badness 2671) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [42]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [43]
-Underfull \vbox (badness 2293) has occurred while \output is active []
-
- [44]
-[45]) [46]
+[43] [44] [45]) [46]
 \openout2 = `Evaluation.aux'.
 
  (./Evaluation.tex
@@ -1357,7 +1347,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [51]
 [52] [53]
-Overfull \hbox (40.81345pt too wide) in paragraph at lines 148--181
+Overfull \hbox (40.81345pt too wide) in paragraph at lines 150--183
  [] 
  []
 
@@ -1365,16 +1355,16 @@ Overfull \hbox (40.81345pt too wide) in paragraph at lines 148--181
 File: figs/pr/reuter-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/reuter-cs-scala.pdf>
-Package pdftex.def Info: figs/pr/reuter-cs-scala.pdf used on input line 302.
+Package pdftex.def Info: figs/pr/reuter-cs-scala.pdf used on input line 304.
 (pdftex.def)             Requested size: 298.75264pt x 244.44162pt.
 
-Underfull \hbox (badness 1194) in paragraph at lines 304--304
+Underfull \hbox (badness 1194) in paragraph at lines 306--306
 []\OT1/cmr/m/n/12 Figure 5.1: |Pre-ci-sion/Re-call for Doc-u-ment Cat-e-go-riza
 -tion on Reuters-21578
  []
 
 [55]
-Overfull \hbox (38.89119pt too wide) in paragraph at lines 349--382
+Overfull \hbox (38.89119pt too wide) in paragraph at lines 351--384
  [] 
  []
 
@@ -1388,7 +1378,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [56 <./figs/pr/reuter-cs-scala.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 484--484
+Underfull \hbox (badness 10000) in paragraph at lines 486--486
 []\OT1/cmr/m/n/12 Table 5.12: |[] Pre-ci-sion/Re-cal-l/F1 for Doc-u-ment Cat-e-
 go-riza-tion on
  []
@@ -1397,10 +1387,10 @@ go-riza-tion on
 File: figs/pr/physics-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/physics-cs-scala.pdf>
-Package pdftex.def Info: figs/pr/physics-cs-scala.pdf used on input line 490.
+Package pdftex.def Info: figs/pr/physics-cs-scala.pdf used on input line 492.
 (pdftex.def)             Requested size: 298.75264pt x 244.44162pt.
  [57]
-Overfull \hbox (39.56206pt too wide) in paragraph at lines 537--570
+Overfull \hbox (39.56206pt too wide) in paragraph at lines 539--572
  [] 
  []
 
@@ -1411,7 +1401,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [58 <./figs/pr/physics-cs-scala.pdf>]
-Underfull \hbox (badness 3815) in paragraph at lines 673--673
+Underfull \hbox (badness 3815) in paragraph at lines 675--675
 []\OT1/cmr/m/n/12 Table 5.17: |[] Pre-ci-sion/Re-cal-l/F1 for Doc-u-ment Cat-e-
 go-riza-tion on Bi-ol-
  []
@@ -1420,10 +1410,10 @@ go-riza-tion on Bi-ol-
 File: figs/pr/biology-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/biology-cs-scala.pdf>
-Package pdftex.def Info: figs/pr/biology-cs-scala.pdf used on input line 679.
+Package pdftex.def Info: figs/pr/biology-cs-scala.pdf used on input line 681.
 (pdftex.def)             Requested size: 298.75264pt x 244.44162pt.
  [59]
-Overfull \hbox (66.63963pt too wide) in paragraph at lines 726--759
+Overfull \hbox (66.63963pt too wide) in paragraph at lines 728--761
  [] 
  []
 
@@ -1441,11 +1431,11 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: figs/pr/mathematics-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/mathematics-cs-scala.pdf>
-Package pdftex.def Info: figs/pr/mathematics-cs-scala.pdf used on input line 86
-8.
+Package pdftex.def Info: figs/pr/mathematics-cs-scala.pdf used on input line 87
+0.
 (pdftex.def)             Requested size: 298.75264pt x 244.44162pt.
 
-Underfull \hbox (badness 3525) in paragraph at lines 870--870
+Underfull \hbox (badness 3525) in paragraph at lines 872--872
 []\OT1/cmr/m/n/12 Figure 5.4: |Pre-ci-sion/Re-call for Doc-u-ment Cat-e-go-riza
 -tion on Math-e-mat-
  []
@@ -1454,7 +1444,7 @@ Underfull \hbox (badness 3525) in paragraph at lines 870--870
 Underfull \vbox (badness 6708) has occurred while \output is active []
 
  [61]
-Overfull \hbox (34.10513pt too wide) in paragraph at lines 916--949
+Overfull \hbox (34.10513pt too wide) in paragraph at lines 918--951
  [] 
  []
 
@@ -1465,7 +1455,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [62 <./figs/pr/mathematics-cs-scala.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 1051--1051
+Underfull \hbox (badness 10000) in paragraph at lines 1053--1053
 []\OT1/cmr/m/n/12 Table 5.27: |[] Pre-ci-sion/Re-cal-l/F1 for Doc-u-ment Cat-e-
 go-riza-tion on
  []
@@ -1474,14 +1464,14 @@ go-riza-tion on
 File: figs/pr/sports-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/sports-cs-scala.pdf>
-Package pdftex.def Info: figs/pr/sports-cs-scala.pdf used on input line 1057.
+Package pdftex.def Info: figs/pr/sports-cs-scala.pdf used on input line 1059.
 (pdftex.def)             Requested size: 298.75264pt x 244.44162pt.
 
-Underfull \vbox (badness 1092) has occurred while \output is active []
+Underfull \vbox (badness 6708) has occurred while \output is active []
 
  [63]
 [64 <./figs/pr/sports-cs-scala.pdf>]
-Overfull \hbox (32.91609pt too wide) in paragraph at lines 1086--1152
+Overfull \hbox (32.91609pt too wide) in paragraph at lines 1088--1154
  [] 
  []
 
@@ -1489,7 +1479,7 @@ Overfull \hbox (32.91609pt too wide) in paragraph at lines 1086--1152
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [65]
-Overfull \hbox (37.5921pt too wide) in paragraph at lines 1180--1200
+Overfull \hbox (37.5921pt too wide) in paragraph at lines 1182--1202
 [][] 
  []
 
@@ -1566,7 +1556,7 @@ nts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (97 pages, 1061907 bytes).
+Output written on thesis.pdf (97 pages, 1061926 bytes).
 PDF statistics:
  1375 PDF objects out of 1440 (max. 8388607)
  1189 compressed objects within 12 object streams

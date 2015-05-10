@@ -1,15 +1,16 @@
 \chapter{Performance Evaluation}
 \label{chapter:evaluations}
-In this chapter we first introduce the datasets that we use for evaluating the efficacy of our document representations for the document categorization task. We then explain the details of our experimentation setup and the different document representation techniques that form strong baselines that we compare our model to. In the sections following that we present the results for assigning categories to new documents and also imputing missing categories for documents for which we already have prior category information. 
+In this chapter we first introduce the datasets that we use for evaluating the efficacy of our document representations for the document categorization task. We then explain the details of our experimentatal setup and the different document representation techniques that form strong reference baselines for comparison. Then in the following sections we present the categorization results for  new documents and also results for imputing missing categories for documents that already have prior category information. 
 
 \section{Datasets}
-We perform our experimentation on 5 datasets that contain rich data about documents belonging to multiple categories simultaneously. One of the 5 datasets we use is the famous Reuters-21578 collection, which is considered the benchmark for text classification evaluation. Along with the being richly multi-label and large-sized, Reuters-21578 has been used for many years for evaluation which gives us the opportunity to compare our accuracy with the previous state-of-the-art results. The other 4 datasets that we evaluate on are, exclusive subsets of documents, extracted from Wikipedia.
+We perform our experimentation on 5 datasets that contain rich data about documents belonging to multiple categories simultaneously. One of the 5 datasets we use is the widely used Reuters-21578 collection, which is often considered a benchmark for evaluating text classification. The Reuters data set is richly multi-label and moderately-sized and has been used as a benchmark for many years which gives us the opportunity to compare our accuracy with previous state-of-art results. The other 4 datasets that we use for evaluation are, exclusive subsets of documents extracted from Wikipedia.
 
 
 \subsection{Reuters-21578}
-Reuters-21578 collection consists of documents published on the Reuters newswire in 1987. As the name suggests it has a total of 21758 documents assigned categories from a set of 135 categories. Though most of the documents in the collection are multi-labeled, many documents are assigned only a single category. The Reuters-21578 dataset has over the years become a standard dataset for evaluating many information retrieval algorithms due to the the multi-label nature of the collection and the large number of categories present in the collection that are overlapping and non-exhaustive. Relationships between the categories also makes it an interesting dataset to evaluate on, as the algorithms that capture the correlations between the categories are bound to perform better. Even though the dataset contains large number of documents and categories, it is very sparse making the learning difficult.
+Reuters-21578 collection consists of documents published on the Reuters newswire in 1987. As the name suggests it has a total of 21758 documents assigned category labels from a set of 135 categories. Though most of the documents in the collection are multi-labeled, many documents are assigned only a single category. The Reuters-21578 dataset has over the years become a standard dataset for evaluating many information retrieval algorithms due to the the multi-label
+nature of the collection and the large number of categories present in the collection that are overlapping and non-exhaustive. Relationships between the categories also makes it an interesting dataset to evaluate on, as the algorithms that capture the correlations between the categories are bound to perform better. Even though the dataset contains a reasonable number of documents and categories, it is very sparse making learning difficult.
 
-Though there exist many processed versions of the collection, the \emph{ModApte} (Modified Apte) version is the most widely used version of the Reuters-21578 for evaluating multi-label classification algorithms. The \emph{ModApte} version predefines a train/test split by considering all documents published after a specific date for testing purposes and the rest for training. After the split, only categories considered are the ones that have atleast one document in the training and the test set. The number of documents, categories, words and other statistics of the Reuters(\emph{ModApte}) dataset are given in Table~\ref{reuter:data:stat}.
+Though there exist many processed versions of the collection, the \emph{ModApte} (Modified Apte) version is the most widely used version of the Reuters-21578 for evaluating multi-label classification algorithms. The \emph{ModApte} version predefines a train/test split by considering all documents published after a specific date for testing purposes and the rest for training. After the split the only categories considered are the ones that have at least one document in the training and test set. The number of documents, categories, words and other statistics of the Reuters(\emph{ModApte}) dataset are given in Table~\ref{reuter:data:stat}.
 
 \begin{table}[h!]
 %\tabcolsep=0.05cm
@@ -28,12 +29,12 @@ Though there exist many processed versions of the collection, the \emph{ModApte}
 \end{table}
 
 \subsection{Wikipedia Datasets}
-Wikipedia\footnote{www.wikipedia.org} is a free-access free content Internet encyclopedia that contains articles about virtually anything possible. Along with the humongous amounts of articles, Wikipedia also has a hierarchical cyclic \emph{Wikipedia Category Graph} that is used to label articles with the categories they belong in. 
-Though the category graph is completely connected, it has few major top-level categories within which all subsequent categories fall. For eg. some of the top-level categories are \emph{Culture and Arts}, \emph{Geography}, \emph{Health}, \emph{History}, \emph{Mathematics}, \emph{Natural and Physical Sciences}, \emph{Philosophy} etc. Each of the top-level categories are further divided into deep trees of fine-grained categories that are assigned to the articles. 
+Wikipedia\footnote{www.wikipedia.org} is an open-access, free content Internet encyclopedia that contains articles about virtually everything. Along with the very large number of articles, Wikipedia also has a hierarchical cyclic \emph{Wikipedia Category Graph} that is used to label articles with the category labels relevant to them. 
+Though the category graph is connected, it has a few major top-level categories within which all subsequent categories fall. For e.g. some of the top-level categories are \emph{Culture and Arts}, \emph{Geography}, \emph{Health}, \emph{History}, \emph{Mathematics}, \emph{Natural and Physical Sciences}, \emph{Philosophy} etc. Each of the top-level categories are further divided into deep trees of fine-grained categories that are assigned to the articles. 
 
-The categories that are assigned to an article thus ranges from broader categories to much fine-grained that are very difficult to assign via an automated system. For eg. some of the categories assigned to an article on the musician \emph{Jimi Hendrix} are \emph{1942 Births}, \emph{1970 deaths}, \emph{American Rock Guitarists}, \emph{Musicians from Seattle}, \emph{Military Brats}, \emph{Alcohol-related deaths in England}. Automatic categorization of such granularity requires the document representation to capture the different semantic topics in the document with great accuracy.
+The categories that are assigned to an article thus range from broader categories to fine-grained ones that are very difficult to assign via an automated system. For e.g. some of the categories assigned to an article on the musician \emph{Jimi Hendrix} are \emph{1942 Births}, \emph{1970 deaths}, \emph{American Rock Guitarists}, \emph{Musicians from Seattle}, \emph{Military Brats}, \emph{Alcohol-related deaths in England}. Automatic categorization of such granularity requires the document representation to capture the different semantic topics in the document with great accuracy.
 
-To test the efficacy of our model on such a diverse, recent and real-life dataset, we extracted documents from 4 top-level categories in Wikipedia, namely \emph{Physics}, \emph{Biology}, \emph{Mathematics} and \emph{Sports}, in the following manner. For each of the top-level category we compiled a list of all its child categories till a 3-level depth. To create the document-category dataset, we considered all the documents and the assigned categories, that belonged to the compiled category list. The number of documents, categories, words and other statistics of the extracted datasets are given in Table~\ref{wiki:data:stat}.
+To test the efficacy of our model on such a diverse, recent and real-life dataset, we extracted documents from 4 top-level categories in Wikipedia, namely \emph{Physics}, \emph{Biology}, \emph{Mathematics} and \emph{Sports}, in the following manner. For each of top-level category we compiled a list of all its child categories till a 3-level depth. To create the document-category dataset, we considered all the documents and the assigned categories that belonged to the compiled category list. The number of documents, categories, words and other statistics of the extracted datasets are given in Table~\ref{wiki:data:stat}.
 
 \begin{table}[h!]
 %\tabcolsep=0.05cm
@@ -55,9 +56,9 @@ To test the efficacy of our model on such a diverse, recent and real-life datase
 
 \section{Experimental Setup}
 \label{sec:exp_setup}
-In this section we describe in detail the data preprocessing steps, how we tune the hyper-parameters for both the document representation learning and the categorization algorithm, our evaluation techniques and the baselines we compare to.
+In this section we describe in detail a) the data preprocessing steps, b) how we tune the hyper-parameters for both document representation learning and the categorization algorithm, c) our evaluation techniques and the comparison baselines.
 
-\para{Data Preprocessing} : To curate the documents for learning their distributed representations we first split each document at sentence boundaries. We consider different sentences separately because we expect our system to learn syntactic qualities of the language which would not be possible if the sentence boundaries are ignored.
+\para{Data Preprocessing} : To curate the documents for learning their distributed representations we first split each document at sentence boundaries. We consider different sentences separately because we expect our system to learn syntactic aspects of the language which will not be possible if the sentence boundaries are ignored.
 All independent numbers in the documents are converted to `$\backslash num$' and numbers that are a part of a word are left as it is. Eg. \emph{TH1RT3EN}, \emph{Se7en}. 
 To remove noise in the documents we only consider those words that occur atleast $5$ times in the corpus.
 We preserve the capitalization of the words as, capitalization sometimes encodes a lot of semantic content that we do not wish to lose. Eg. \emph{Apple} in most cases is used to refer to \emph{Apple Inc.} (Company) rather than the fruit, \emph{apple}. Models that distinguish between the two forms should learn better embeddings.
@@ -69,12 +70,13 @@ To choose the hyper-parameters we first use the default values as $k = 100$, $c 
 We found that the learning rate $\gamma$ and the regularization constant $\beta$ give best performance across datasets at their default value. To choose the value of the other parameters, we first tune the embedding dimensions $k$ then the \emph{number of epochs} after which we consider different window sizes ($c$) and finally the number of negative samples $n$ for noise contrastive estimation. The values of the different hyper-parameters depend on the dataset. 
 The noise distribution, $P_{n}(w)$ for NCE is chosen to be unigram distribution $U(w)$ raised to the $3/4rd$ power (i.e. $U(w)^{\frac{3}{4}}/Z$) where $Z$ is the normalization factor. Other common choices for noise distribution are uniform distribution and unigram distribution but as found in previous works, $P_{n}(w) \sim U(w)^{\frac{3}{4}}$ works best.
 
-\para{Document Categorization} : For the task of document categorization, we split the document category data into training, development and test data by keeping $10\%$ documents for test purposes and $10\%$ for development. The rest $80\%$ are used for training purposes, i.e. learning category representations. We stop the training based on the convergence reached on the development data. The value of the learning rate $\gamma = 0.01$ and regularization constant $\beta = 0.01$ is chosen based on the performance on development data across different datasets. To make final binary predictions from the estimated probability we need to threshold it, value for which was chosen based on the development data across datasets. It was found that the default logistic threshold of $0.5$ gave the best performance.
+\para{Document Categorization} : For the task of document categorization, we split the document category data into training, development and test data by keeping $10\%$ documents for test purposes and $10\%$ for development. The rest $80\%$ are used for training purposes, i.e. learning category representations. We stop the training based on the convergence reached on the development data. The value of the learning rate $\gamma = 0.01$ and regularization constant $\beta = 0.01$ is
+chosen based on the performance on development data across different datasets. To make final binary predictions from the estimated probability we need to threshold it, this value was chosen based on the development data across datasets. It was found that the default logistic threshold of $0.5$ gave the best performance.
 
 \para{Evaluation Criteria} : To evaluate the task of multi-label classification many evaluation criteria such as \emph{Hamming Loss}, \emph{Accuracy} and \emph{F1 score} have been used. We use the \emph{F1} score i.e. the harmonic mean of the precision and recall values to evaluate our model as the F1 score is a much more preferred measure compared to hamming loss or accuracy in the presence of imbalanced label distribution. We compute the F1 score in the micro-averaged fashion by combining prediction values for all the categories together for a particular dataset and then computing the precision and recall values. 
 Such averaging ensures equal weightage to all test instances.
 
-\para{Baselines} : To test the efficiency of our document representation learning algorithm, we compare our model's performance to some of the baseline methods that are explained below.
+\para{Baselines} : To test the performance of our document representation learning algorithm, we compare our model's performance to some of the baseline methods that are explained below.
 \begin{enumerate}
 \item \textbf{Bag-of-Words} : 
 The most widely used document representation is the bag-of-words representation with tf-idf weighting. It has been used to produce state-of-the-art results with various learning algorithms. We call this model the \textbf{BOW} model.
@@ -88,25 +90,25 @@ With the availability of word vectors learned using the NPLM or the word2vec mod
 \item \textbf{Probabilistic Matrix Factorization (PMF)} : 
 The most simple technique for document categorization is the probabilistic matrix factorization of the document-category data matrix as explained in Sec.~\ref{sec:lr_similar_rl}. In this model, instead of learning only category embeddings, we also learn document representations simultaneously. This model does not require any information about the document contents and also uses the document-category co-occurrence data. We call this the \textbf{PMF} model.
 
-Employing \textbf{PMF} for predicting categories from new documents is useless as they do not contain any prior information in the training data needed to learn document representations. \textbf{PMF} in such case would act as a trivial strawman. It can be used to predict categories for documents that already have category history in training data. Eg. For imputing missing categories in the database. 
+Employing \textbf{PMF} for predicting categories from new documents is useless as they do not contain any prior information in the training data needed to learn document representations. \textbf{PMF} in such case would act as a trivial strawman. It can be used to predict categories for documents that already have category history in training data. E.g. For imputing missing categories in the database. 
 
 \end{enumerate}
 Apart from the above baselines, many more baselines for the \emph{Reuters-21578} dataset exist in literature that primarily use bag-of-words representation but use different learning algorithms. We also compare our model against them.
 
 \section{Results}
 \label{sec:results}
-In this section we present our model's performance in categorizing new documents by learning distributed representations for the documents in the corpus and using training document-category data to learn category representations to predict categories for new documents. We compare our model's accuracy with baselines explained in the above section and also explain the process to choose hyper-parameters dependent on the dataset. 
-We also present our model's performance in imputing missing categories for the Wikipedia articles and also present qualitative evaluation in estimating the similarities between categories and words. 
+In this section we present our model's performance in categorizing new documents by learning distributed representations for the documents in the corpus and using training document-category data to learn category representations to predict categories for new documents. We compare our model's accuracy with baselines explained in the previous section and also explain the process to choose hyper-parameters dependent on the dataset. 
+We also present our model's performance in imputing missing categories for the Wikipedia articles and also qualitatively evaluate  estimation of similarities between categories and words. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			DOCUMENT CATEGORIZATION 				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Document Categorization}
 \label{sec:results:categorization}
-In this section we present our model's efficacy in assigning categories to documents with no prior category information. 
+This section presents our model's performance in assigning categories to documents with no prior category information. 
 
-For evaluation of a particular dataset, we first divide it into training, development and test sets by keeping $80\%$ of the documents for training purposes and then dividing rest of the documents equally for development and testing. For each of the different hyper-parameter settings for the representation learning phase, we first learn document representations for all the documents. We then use the training document-category data to learn category representations and evaluate our model based on the development data. Using the accuracies obtained on the development data for different hyper-parameter settings we select the ``\emph{best}'' model (hyper-parameters, document and category representations) which is then used to report results on the test data.
+For evaluation of a particular dataset, we first divide it into training, development and test sets by keeping $80\%$ of the documents for training purposes and then dividing the rest equally for development and testing. For each different hyper-parameter setting for the representation learning phase, we first learn document representations for all the documents. We then use the training document-category data to learn category representations and evaluate our model based on the development data. Using the accuracies obtained on the development data for different hyper-parameter settings we select the ``\emph{best}'' model (hyper-parameters, document and category representations) which is then used to report results on the test data.
 
 \subsubsection{Reuters - 21578}
-The performance of our model on the development data for different values of different hyper-parameters is given in Table~\ref{reuter:hp:k}, ~\ref{reuter:hp:epoch}, ~\ref{reuter:hp:c} and ~\ref{reuter:hp:n}. Table~\ref{reuter:hp:k} and ~\ref{reuter:hp:epoch} show that with increasing embedding dimensionality and the number of training epochs the accuracy of category prediction improves in terms of the F1 score. To avoid overfitting we use $k = 100$ and $epoch = 200$. In Table~\ref{reuter:hp:c} we see that the default window size of $c=2$ performs best and Table~\ref{reuter:hp:n} shows that $10$ - $15$ negative samples per positive sample should be used for NCE.
+The performance of our model on the development data for different values of different hyper-parameters is given in Tables~\ref{reuter:hp:k}, ~\ref{reuter:hp:epoch}, ~\ref{reuter:hp:c} and ~\ref{reuter:hp:n}. Tables~\ref{reuter:hp:k} and ~\ref{reuter:hp:epoch} show that with increasing embedding dimensionality and the number of training epochs the accuracy of category prediction improves in terms of the F1 score. To avoid overfitting we use $k = 100$ and $epoch = 200$. In Table~\ref{reuter:hp:c} we see that the default window size of $c=2$ performs best and Table~\ref{reuter:hp:n} shows that $10$ - $15$ negative samples per positive sample should be used for NCE.
 
 \begin{table}[hb]
 \tabcolsep=0.1cm
@@ -252,7 +254,7 @@ The performance of our model on the development data for different values of dif
 Table~\ref{reuter:cs} compares our model's accuracy against different document representations and other learning algorithms that use bag-of-words representations. 
 We find that document representations learned using our model performs the best and improves the previous state-of-the-art result, achieving a F1 score of $91.7\%$. Our representations improves the F1 score of $84.1\%$, achieved using bag-of-words representation, by $9\%$. 
 Improvements of $1\%$-$6.6\%$ on the F1 score are found against models such as SVM \cite{joachims1998text}, CRF \cite{ghamrawi2005collective}, LSI, MFoM \cite{gao2004mfom}. 
-We also see that simple summing of word vectors to compute the projection layer reduces the performance of our model and hence leads to poor quality document representations. This corroborates with our hypothesis that weighted average of surrounding words is necessary to capture syntactic qualities and learn better quality representations.
+We also see that simple summing of word vectors to compute the projection layer reduces the performance of our model and hence leads to poor quality document representations. This corroborates our hypothesis that the weighted average of surrounding words is necessary to represent the context in a better manner dependent on the domain of the documents and possibly capture syntactic aspects of the language.
 Similar observations are seen in the Precision/Recall curves in Fig.~\ref{fig:pr:reuter:cs}.
 
 \begin{table}[h!]
@@ -307,7 +309,7 @@ Similar observations are seen in the Precision/Recall curves in Fig.~\ref{fig:pr
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  		Physics 		  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Physics - Wikipedia}
-Performance of our model on the development data for different hyper-parameters is given in Table~\ref{physics:hp:k}, ~\ref{physics:hp:epoch}, ~\ref{physics:hp:c} and ~\ref{physics:hp:n}. We find that our model gives the best performance for $k=100$ (Table~\ref{physics:hp:k}) when trained for $150$ epochs (Table~\ref{physics:hp:epoch}). Table~\ref{physics:hp:c} shows that larger context window ($c = 3$) and default number of negative samples ($n = 10$) per positive sample gives the best performance. 
+Performance of our model on the development data for different hyper-parameters is given in Tables~\ref{physics:hp:k}, ~\ref{physics:hp:epoch}, ~\ref{physics:hp:c} and ~\ref{physics:hp:n}. We find that our model gives the best performance for $k=100$ (Table~\ref{physics:hp:k}) when trained for $150$ epochs (Table~\ref{physics:hp:epoch}). Table~\ref{physics:hp:c} shows that larger context window ($c = 3$) and default number of negative samples ($n = 10$) per positive sample gives the best performance. 
 
 \begin{table}[h!]
 \tabcolsep=0.1cm
@@ -452,7 +454,7 @@ Performance of our model on the development data for different hyper-parameters 
 
 Table~\ref{physics:cs} shows that our model outperforms other baseline models with a huge margin. 
 Our model achieves a F1 score of $79.7\%$ while the second best model, \textbf{BOW} trails ours by $2.31\%$.
-As observed in the evaluation of Reuters-21578, syntactic features are necessary to learn high quality document representations. This is shown by the fact that when we simply sum the word vectors to represent the context, our model only achieves an accuracy of $73.8\%$ in terms of the F1 score.
+As observed in the evaluation of Reuters-21578, context weighing is necessary to learn high quality document representations. This is shown by the fact that when we simply sum the word vectors to represent the context, our model only achieves an accuracy of $73.8\%$ in terms of the F1 score.
 Fig.~\ref{fig:pr:physics:cs} also shows that our model performs the best while \textbf{BOW} model is the second best performing model.
 
 \begin{table}[h!]
@@ -495,7 +497,7 @@ Fig.~\ref{fig:pr:physics:cs} also shows that our model performs the best while \
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  		Biology 		  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Biology - Wikipedia}
-The performance of our model on the development data for different values of hyper-parameters is shown in Table~\ref{biology:hp:k}, ~\ref{biology:hp:epoch}, ~\ref{biology:hp:c} and ~\ref{biology:hp:n}. Table~\ref{biology:hp:k} shows that default embedding size of $k = 100$ performs best and relatively low training epochs ($epochs = 50$) gives the best results (Table~\ref{biology:hp:epoch}). Larger context window ($c = 3$) (Table~\ref{biology:hp:c}) and default number of negative samples ($n = 10$) per positive sample (Table~\ref{biology:hp:n}) gives the best model performance. 
+The performance of our model on the development data for different values of hyper-parameters is shown in Tables~\ref{biology:hp:k}, ~\ref{biology:hp:epoch}, ~\ref{biology:hp:c} and ~\ref{biology:hp:n}. Table~\ref{biology:hp:k} shows that default embedding size of $k = 100$ performs best and relatively low training epochs ($epochs = 50$) gives the best results (Table~\ref{biology:hp:epoch}). Larger context window ($c = 3$) (Table~\ref{biology:hp:c}) and default number of negative samples ($n = 10$) per positive sample (Table~\ref{biology:hp:n}) gives the best model performance. 
 
 \begin{table}[h!]
 \tabcolsep=0.1cm
@@ -640,7 +642,7 @@ The performance of our model on the development data for different values of hyp
 
 Table~\ref{biology:cs} shows that the distributed representations learned by our model outperform some baseline representations but the bag-of-words representation works the best.
 Our model achieves a F1 score of $67.8\%$ while the \textbf{BOW} improves our model by $1.7\%$.
-We also find that document representations learned by averaging word vectors performs the worst. The model accuracy suffers by $4.95\%$ when context word weighting is ignored during training.
+The model accuracy suffers by $4.95\%$ when context word weighting is ignored during training. We also find that document representations learned by averaging word vectors performs the worst.
 Fig.~\ref{fig:pr:biology:cs} shows the precision/recall curves for our model and other baseline methods. It also shows that the \textbf{BOW} representations perform the closest to representations learned using our model.
 
 \begin{table}[h!]
@@ -684,7 +686,7 @@ Fig.~\ref{fig:pr:biology:cs} shows the precision/recall curves for our model and
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  		Mathematics 		  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Mathematics - Wikipedia}
-Table~\ref{mathematics:hp:k}, ~\ref{mathematics:hp:epoch}, ~\ref{mathematics:hp:c} and ~\ref{mathematics:hp:n} show that low embedding size of $k = 50$ and moderate training epochs ($epochs = 100$) give the best model performance. We also find that relatively larger context window ($c = 3$) and number of negative samples ($n = 15$) per positive sample are required for optimal model performance.
+Tables~\ref{mathematics:hp:k}, ~\ref{mathematics:hp:epoch}, ~\ref{mathematics:hp:c} and ~\ref{mathematics:hp:n} show that low embedding size of $k = 50$ and moderate training epochs ($epochs = 100$) give the best model performance. We also find that relatively larger context window ($c = 3$) and number of negative samples ($n = 15$) per positive sample are required for optimal model performance.
 
 \begin{table}[h!]
 \tabcolsep=0.1cm
@@ -830,7 +832,7 @@ Table~\ref{mathematics:hp:k}, ~\ref{mathematics:hp:epoch}, ~\ref{mathematics:hp:
 Table~\ref{mathematics:cs} shows that the distributed representations learned by our model outperform other baseline representations.
 Our model achieves a F1 score of $68.2\%$ while the second best model, \textbf{BOW} trails ours by $4.41\%$.
 Word vectors averaged by tf-idf weighing scheme to represent document in the Mathematics (Wikipedia) dataset give the worst accuracy with an F1 score of $55.7\%$.
-We again find that modeling syntactic qualities of the language is important as weighting word vectors to represent the context gives the best performance.
+We again find that context word weighing when computing the project layer is important and gives the best performance.
 Fig.~\ref{fig:pr:mathematics:cs} shows the precision/recall curves for our model and other baseline methods. 
 
 \begin{table}[h!]
@@ -873,7 +875,7 @@ Fig.~\ref{fig:pr:mathematics:cs} shows the precision/recall curves for our model
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  		Sports 		  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Sports - Wikipedia}
-The performance of our model on the development data for different values of different hyper-parameters is shown in Table~\ref{sports:hp:k}, ~\ref{sports:hp:epoch}, ~\ref{sports:hp:c} and ~\ref{sports:hp:n}. Table~\ref{sports:hp:k} shows that low vector size of $k = 50$ and Table~\ref{sports:hp:epoch} shows moderate training epochs ($epochs = 100$) gives the best model performance. 
+The performance of our model on the development data for different values of different hyper-parameters is shown in Tables~\ref{sports:hp:k}, ~\ref{sports:hp:epoch}, ~\ref{sports:hp:c} and ~\ref{sports:hp:n}. Table~\ref{sports:hp:k} shows that low vector size of $k = 50$ and Table~\ref{sports:hp:epoch} shows moderate training epochs ($epochs = 100$) gives the best model performance. 
 Table~\ref{sports:hp:c} shows that context window size of $c = 3$ and relatively larger number of negative samples ($n = 15$) per positive sample achieves the best performance.
 
 \begin{table}[h!]
@@ -1019,7 +1021,7 @@ Table~\ref{sports:hp:c} shows that context window size of $c = 3$ and relatively
 
 Table~\ref{sports:cs} shows that the distributed representations learned by our model outperform other baseline representations.
 Our model achieves a F1 score of $57.3\%$ while again the \textbf{BOW} model is second best performing.
-As found in previous evaluations, document representations using bag-of-words style word vector averaging perform the worst and modeling syntactic features is important for learning the best quality document representations.
+As found in previous evaluations, document representations using bag-of-words style word vector averaging perform the worst. 
 Fig.~\ref{fig:pr:sports:cs} shows the precision/recall curves for our model and other baseline methods. 
 
 \begin{table}[h!]
@@ -1070,7 +1072,7 @@ The task is similar to Relational Learning where the task is to complete the spa
 In our case, we estimate the probability of every unobserved document-category pair $(d_{i}, c_{k})$ to be true to complete the sparse document-category matrix in which only positive document-category pairs are observed.
 For training and testing purposes, we first introduce corrupt document-category pairs as negative samples in the training data $\traindata$ in the following manner. For every positive $\{ d_{i}, c_{j}, 1\}$ observed in the training data, we introduce two negative samples $\{ d_{i}, c_{k}, 0\}$ where the negative sampled category $c'_{k}$ is chosen uniformly for the category set. This increases the tuples in the training data by three times. From the modified training data we randomly choose $80\%$ document-category pairs for training purposes and divide the rest equally for development and test purposes. The document representations are learned in the same manner as in the previous evaluation.
 
-Table~\ref{wikipedia:ho} shows our model's efficacy in imputing missing categories in the different Wikipedia datasets. We also compute a combined F1 score for all the datasets in the micro-averaged fashion, i.e. by combining all the prediction for all the datasets and then computing the precision and the recall. 
+Table~\ref{wikipedia:ho} shows our model's efficacy in imputing missing categories in the different Wikipedia datasets. We also compute a combined F1 score for all the datasets in the micro-averaged fashion, i.e. by combining all the predictions for all the datasets and then computing the precision and recall. 
 As expected our model of learning distributed document representations outperforms all other baselines by a large margin. 
 Our model achieves an overall F1 score of $74.3\%$ which improves upon the bag-of-words (\textbf{BOW}) model by $4.78\%$. 
 Representing documents by averaging the word vectors using \emph{tf-idf} weighing scheme achieves a F1 score of $65.4\%$. 
