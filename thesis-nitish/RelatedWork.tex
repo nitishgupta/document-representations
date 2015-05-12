@@ -141,7 +141,7 @@ where $I_{avg}(t)$ is the weighted average of the category specific term-goodnes
 X = T S D^{T}
 \end{equation}
 $|V|$ is the vocabulary size, $|D|$ the number of documents 
-in the collection and $T \in \mathbb{R}^{|V| \times k}$ and $D \in \mathbb{R}^{|D| \times k}$ are orthonormal matrices where the columns are called the left and right singular vectors respectively. The matrix $S \in \mathbb{R}^{k \times k}$ is a diagonal matrix of singular values arranged in descending order. The $k$-dimensional rows of the matrix $D$ contain the dimension reduced representations of the $|D|$ documents in the collection. The representations obtained using LSI alleviate the problem of data sparsity and high-dimensionality in the bag-of-words representations and also helps unfold the latent semantic structure of the documents.
+in the collection and $T \in \mathbb{R}^{|V| \times k}$ and $D \in \mathbb{R}^{|D| \times k}$ are orthonormal matrices where their columns are called the left and right singular vectors respectively. The matrix $S \in \mathbb{R}^{k \times k}$ is a diagonal matrix of singular values arranged in descending order. The $k$-dimensional rows of the matrix $D$ contain the dimension reduced representations of the $|D|$ documents in the collection. The representations obtained using LSI alleviate the problem of data sparsity and high-dimensionality in the bag-of-words representations and also helps unfold the latent semantic structure of the documents.
 
 % %%%%%%%%%%%%%%%%%%%%%%%       LEARNING algorithms           %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Learning Algorithms}
@@ -152,10 +152,7 @@ various learning algorithms like, Regression models
 \citep{cooper1994full, fuhr1991air}, Conditional Random Fields 
 \citep{ghamrawi2005collective}, Nearest Neighbor techniques \citep{
 yang1994expert, zhang2005k, zhang2007ml}, Bayesian classifier and topic modeling \citep{lewis1994comparison, mccallum1999multi, nigam2000text, rubin2012statistical, nigam1999using, ueda2002parametric}, 
-SVM \citep{joachims1998text, elisseeff2001kernel}, Neural Networks \
-citep{wiener1995neural, ng1997feature}, Decision Trees 
-\citep{tong1994machine}, Online learning algorithms 
-\citep{lewis1996training, crammer2002new}, Non-negative Matrix 
+SVM \citep{joachims1998text, elisseeff2001kernel}, Neural Networks \citep{wiener1995neural, ng1997feature}, Decision Trees \citep{tong1994machine}, Online learning algorithms \citep{lewis1996training, crammer2002new}, Non-negative Matrix 
 Factorization \citep{liu2006semi} etc. have been used and developed 
 for Multi-label document categorization.
 
@@ -200,7 +197,7 @@ details are given in Sec~\ref{sec:lrtc}.
 
 \para{Support Vector Machines} : Support Vector Machines (SVM) are
 binary classifiers (\citep{cortes1995support}, \citep{vapnik2000nature}), 
-based on the \emph{Structural Risk Minimization} principle, are universal learners. In their basic form, SVMs learn linear threshold functions to find 
+based on the \emph{Structural Risk Minimization} principle. SVMs are universal learners and in their basic form, they learn linear threshold functions to find 
 linear hyperplanes in the input data space to separate data of the two 
 classes. In case data is not linearly separable, 
 SVMs can be plugged-in with appropriate kernel functions like polynomials,
@@ -262,7 +259,7 @@ In the case of millions of labels in the dataset, learning millions of high-dime
 \subsection{Document Categorization with Single Joint Classifier}
 To overcome the drawbacks in learning multiple binary classifiers, 
 learning algorithms that jointly assign all the categories pertinent to
-a document have been deve belongs to,loped. Outputs of such algorithms are 
+a document have been developed. Outputs of such algorithms are 
 $|L|$-dimensional binary label vectors $\boldsymbol{y} \in \{0, 1\}^{L}$, 
 with $\boldsymbol{y}_{l} = 1$ if label $l$ is relevant for the 
 particular document. Below we describe algorithms of such kind.
@@ -290,7 +287,7 @@ where $E^{l}_{x}$ denotes exactly $x$ of the $t$'s k-NN belong to $l$. Using the
 y_{t}(l) &= \argmax_{b \in \{0, 1\}} \frac{ P(H^{l}_{b}) P(E^{l}_{C_{t}(l)} | H^{l}_{b}) } {E^{l}_{C_{t}(l)}} \\
 &= \argmax_{b \in \{0, 1\}} P(H^{l}_{b}) P(E^{l}_{C_{t}(l)} | H^{l}_{b})
 \end{align}
-The prior probabilities $P(H^{l}_{b})$ and the posterior probabilities $P(E^{l}_{C_{t}(l)} | H^{l}_{b})$ can easily estimated from the training data based on frequency counting for each label $l$.
+The prior probabilities $P(H^{l}_{b})$ and the posterior probabilities $P(E^{l}_{C_{t}(l)} | H^{l}_{b})$ can be easily estimated from the training data based on frequency counting for each $l$.
 
 
 

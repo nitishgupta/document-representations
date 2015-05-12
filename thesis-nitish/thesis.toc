@@ -8,7 +8,7 @@
 \contentsline {subsection}{\numberline {1.1.2}Lack of similarity measures}{4}{subsection.11}
 \contentsline {subsection}{\numberline {1.1.3}Compositionality of distributed word vectors}{4}{subsection.12}
 \contentsline {section}{\numberline {1.2}Problem Statement}{5}{section.13}
-\contentsline {section}{\numberline {1.3}Contributions of the Thesis}{6}{section.15}
+\contentsline {section}{\numberline {1.3}Contributions of the Thesis}{5}{section.15}
 \contentsline {section}{\numberline {1.4}Organization of the Thesis}{6}{section.16}
 \contentsline {chapter}{\numberline {2}Background on Document Categorization}{7}{chapter.17}
 \contentsline {section}{\numberline {2.1}Text Representation}{7}{section.18}
