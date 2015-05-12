@@ -1,0 +1,14 @@
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Salton and Yang(1973)]{salton1973specification}
+G.~Salton and C.-S. Yang.
+\newblock On the specification of term values in automatic indexing.
+\newblock \emph{Journal of documentation}, 29\penalty0 (4):\penalty0 351--372,
+  1973.
+
+\end{thebibliography}

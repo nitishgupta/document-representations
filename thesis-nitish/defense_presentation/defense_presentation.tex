@@ -1,0 +1,1134 @@
+\documentclass[10pt]{beamer}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{fancyhdr}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{subfigure}
+\usepackage{color}
+\usepackage[numbers]{natbib}
+\usepackage{framed}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{chngpage}
+\usepackage{tikz}
+\usepackage{mdwlist}
+\usepackage{algorithm,algorithmic,amsmath}
+
+
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:} #1}}
+\newcommand{\setD}{\ensuremath{\mathbf{D}} }
+\newcommand{\setW}{\ensuremath{\mathbf{V}} }
+\newcommand{\setC}{\ensuremath{\mathbf{C}} }
+\newcommand{\matD}{\ensuremath{\mathrm{D}} }
+\newcommand{\matW}{\ensuremath{\mathrm{W}} }
+\newcommand{\matC}{\ensuremath{\mathrm{C}} }
+\newcommand{\vecdi}[1]{\ensuremath{\mathrm{v}^{D}_{#1}}}
+\newcommand{\vecwi}[1]{\ensuremath{\mathrm{v}^{W}_{#1}}}
+\newcommand{\vecci}[1]{\ensuremath{\mathrm{v}^{C}_{#1}}}
+\newcommand{\con}{$(w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c})$}
+\newcommand{\wgt}[1]{\ensuremath{\lambda_{#1}}}
+\newcommand{\traindata}{\ensuremath{\mathcal{T}}}
+\newcommand{\db}{\ensuremath{\mathcal{D}} }
+\newcommand{\para}[1]{\noindent\textbf{%\fontsize{14}{15}\selectfont 
+#1}} %{\paragraph{#1}}
+\newcommand{\highest}[1]{\textbf{#1}}
+
+\usetheme{Madrid}
+%\usetheme{umbc1}
+\title[{Distributed Document Representations for Multi-Label Document Categorization}]{Learning Distributed Document Representations for Multi-Label Document Categorization}
+\author{\textbf{Nitish Gupta}}
+\date{May 16, 2015}
+\institute[IITK]{B.Tech - M.Tech Dual Degree\\
+\vspace{.2cm}Thesis Defense\\ 
+\vspace{.2cm}Electrical Engineering\\
+\vspace{.2cm}IIT Kanpur }
+\begin{document}
+\setbeamercovered{clear}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}
+\titlepage
+%\begin{figure}[ht]
+%\begin{center}
+%\includegraphics[width=1.75cm]{mips}
+%\epsfig{file=iitk_logo.eps,width=1.5cm}
+%\end{center}
+%\end{figure}
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=1.75cm]{iitk_logo-eps-converted-to.pdf}
+%\epsfig{file=iitk_logo.eps,width=1.5in}
+\end{center}
+\end{figure}
+%\begin{figure}
+%\begin{center}
+%\hspace{-.0cm}
+%\vspace{2cm}\includegraphics[width=1.25cm]{mips-eps-converted-to.pdf}
+%\end{center}
+%\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Outline}
+\begin{enumerate}
+	\vfill\item Multi-Label Document Categorization
+	\vfill\item Related Work
+	\begin{itemize}
+	  \vfill\item Text Representations
+	  \vfill\item Learning Algorithms
+	\end{itemize}  
+	\vfill\item Distributed Word Representations
+	\vfill\item Learning Distributed Document Represenations
+	\vfill\item Document Cateogorization Algorithm
+	\vfill\item Results
+	\vfill\item Conclusion and Future Work
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Multi-Label Document Categorization}
+\begin{itemize}
+	\vfill\item DC introduction. Applications
+	\vfill\item learning algorithm to learn classifer H from previous data to assign categories. Table example.
+	\vfill\item Needs document represenation. Background on that.
+	\vfill\item background on learning algos
+	\vfill\item Motivation for distributed embeddings.
+	\vfill\item background on distributed word represenations
+	\vfill\item our model
+	\vfill\item our dc lr model
+	\vfill\item datasets
+	\vfill\item results
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Intoduction to Multi-Label Document Categorization}
+\begin{itemize}
+	\vfill\item<1-> Text Documents usually belong to more than one conceptual class. \\For E.g. an article on Music Piracy 
+	\vfill\item<2-> Task of assigning documents to one or more predefined categories is called \emph{Multi-Label Document Categorization}
+	\vfill\item<3-> Wide range real-world applications :
+	\begin{itemize} 
+	  \vfill\item<3-> Web-page tagging
+	  \vfill\item<3-> Medical Patient Record Management
+	  \vfill\item<3-> Wikipedia Article Management
+	  \vfill\item<3-> Document Recommendation etc.
+	\end{itemize} 
+	\vfill\item<4-> Multi-label classification belongs to a general class of supervised learning algorithms where : 
+	\begin{itemize}
+	  \vfill\item<5-> Training instances in the form of document-category pairs are used to learn a classifier $\mathcal{H}$ 
+	  \vfill\item<6-> Learned classifier $\mathcal{H}$ is used to assign categories to new test documents
+	\end{itemize}
+\end{itemize}
+\vfill
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Introduction to Multi-Label Document Categorization}
+%\onslide<1->{ \textbf{Problem Statement}, } \\
+\vfill\onslide<1->{ Given, }
+\begin{itemize} 
+	\vfill\item<1-> A set of documents $D = \{d_{1}, \ldots, d_{|D|}\}$
+	\vfill\item<2-> A set of categories $C = \{c_{1}, \ldots, c_{|C|}\}$
+	\vfill\item<3-> Training data for $n$ {\small ($n < |D|$)} documents, $\traindata = \{l_{d_{1}}, \ldots, l_{d_{n}}\}$ 
+\onslide<4->{   \\ Each label vector $l_{d_{i}} \in \{0,1\}^{|C|}$ denotes relevance of categories to the document $d_{i}$ }
+\end{itemize} 
+\vfill
+\onslide<5->{
+	Example :
+	\begin{table}[h!]
+	\tabcolsep=0.1cm
+	\tiny
+	\begin{center}
+	\begin{tabular}{c@{\hskip5mm} c c c c c c}
+	\toprule
+	\textbf{Documents}	&	\textbf{Sports} & \textbf{Music} & \textbf{Arts} & \textbf{Technology}  & \textbf{Literature} & \textbf{Politics}\\
+	\cmidrule{1-1}
+	\cmidrule{2-7}
+	$d_{1}$ & 0 & 0 & 1 & 0 & 1 & 0\\
+	$d_{2}$ & 0 & 1 & 1 & 0 & 0 & 1\\
+	$d_{3}$ & 1 & 0 & 0 & 1 & 0 & 1\\
+	$d_{4}$ & x & x & x & x & x & x\\
+	$d_{5}$ & x & x & x & x & x & x\\
+	\bottomrule         
+	\end{tabular}
+	\end{center}
+	\end{table}
+}
+\vfill
+\onslide<6->{
+Using $\traindata$, $D$ and $C$ the learning algorithm learns a multi-label classifier $\mathcal{H}$ to estimate category label vectors, $l_{d_{j}}$ {\small $(j>n)$} for the test documents. 
+}
+\vfill
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Introduction to Multi-Label Document Categorization}
+\vfill\onslide<1->{ Document Categorization task has the following two components : }
+\begin{enumerate}
+	\vfill\item<2-> \emph{Learning Document Representations} : Representing text documents using numerical vectors that are inputs to the multi-label classifier $\mathcal{H}$
+	\begin{itemize}
+	 	\vfill\item<3-> Each document $d_{i} \in D$ is represented using a vector $v_{d_{i}} \in \mathbb{R}^{k}$ \\
+	 	\vfill\item<4->	Vectors ($v_{d_{i}}$) should encode the semantic content of the documents 
+	 	\vfill\item<5-> Encoding documents in a $k$-dimensional space using such represenation is called the \emph{Vector Space Model}
+	 	\vfill\item<6-> The complete document set $D$ can be represented by a document representation matrix $\matD \in \mathbb{R}^{k \times |D|}$
+	\end{itemize}
+\suspend{enumerate} \vfill
+\onslide<7->{	
+\emph{ In this thesis, we focus on learning efficient document representations, $\matD$}	}
+\vfill
+	\resume{enumerate}
+	\vfill\item<8-> \emph{Learning Algorithm} : Algorithm to learn the multi-label classifier $\mathcal{H}$
+\end{enumerate}\vfill 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Background on Learning Algorithms}
+\vfill
+%\onslide<1->{ Learning algorithms can be classified into two classes :  }
+\begin{enumerate}
+	\vfill\item<2-> \emph{Learning Multiple Binary Classifiers} : \\
+	\onslide<3->{ {\footnotesize	Algorithms that treat each category assignment independently and learn multiple binary classifiers, one for each category, to make the category assignments} 	} 
+	\begin{itemize}
+		\vfill\item<4-> Logistic Regression
+		\vfill\item<5-> Support Vector Machines (SVM)
+		\vfill\item<6-> Neural Networks
+		\vfill\item<7-> Naive Bayes
+	\end{itemize}
+
+	\vfill\item<8-> \emph{Learning Single Joint Classifier} : \\
+	\onslide<9->{ {\footnotesize	Algorithms that jointly assign all the categories to a document $d_{i}$, i.e. estimate the complete label vector $l_{d_{i}}$ using a single classifier} 	}
+	\begin{itemize}
+		\vfill\item<10-> k-Nearest Neighbor (k-NN)
+		\vfill\item<11-> Linear Least Square Fit
+		\vfill\item<12-> Decision Trees
+		\vfill\item<13-> Generative Probabilistic Models
+	\end{itemize}
+	\onslide<14->{ Learning a single joint classifier is usually better as it is able to exploit the category correlations }
+\end{enumerate}
+\vfill
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Background on Text Representation}
+\vfill
+\onslide<1->{
+Most common method to learn vector representations for a set of documents is the \emph{Bag of Words (BOW)} model 	}
+\begin{itemize}
+	\vfill\item<2-> r to the i size vectors
+	\vfill\item<3-> each element indicates presence or absence
+	\vfill\item<4-> weighing techniques such as 
+	\begin{itemize}
+		\vfill\item<5-> tf
+		\vfill\item<6-> idf
+		\vfill\item<7-> tf-idf
+	\end{itemize}
+\end{itemize}
+\vfill
+\onslide<8->{
+Drawbacks with the Bag-of-Words model }
+\begin{itemize}
+	\vfill\item<9-> r to the i size vectors
+	\vfill\item<10-> each element indicates presence or absence
+	\vfill\item<11-> weighing techniques such as 
+\end{itemize}
+\todo{feature selection. Word Embeddings. Our document embedding. Our docu cate. Datasets. Results End}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Spatial Audio Rendering}
+% \begin{itemize}
+% \vfill\item In binaural synthesis, sound is rendered from any point of space by filtering the sound spectrum with corresponding HRTF.
+% \begin{align}
+% x_L(t,r,\theta,\phi)=x(t)*h_L(t,r,\theta,\phi) \\
+% x_R(t,r,\theta,\phi)=x(t)*h_R(t,r,\theta,\phi) 
+% \end{align}
+% \begin{figure}[!h]
+% \begin{center}
+% 	\centerline{\includegraphics[width=12cm, height=8cm]{binaural_synthesis}}
+% \end{center}
+% \end{figure}
+% \end{itemize}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% \begin{frame}{Source Localization Cues}
+% \begin{itemize}
+% \vfill\item \textbf{Interaural Time Difference (ITD)} : It is time difference between the signals reaching at both the ears. It is dominant in the lower frequency region (f $<$ 1500 Hz) where the wavelength of sound waves is comparable to the head dimensions for diffraction around the head. 
+% \begin{figure}[h]
+% \begin{center}
+% 	\includegraphics[width=6cm,height=6cm]{itd}
+% \end{center}
+% \vspace{-1cm}
+% \caption{Woodworth's formulae for ITD calculation}
+% \end{figure} 
+% \end{itemize}
+% \end{frame}
+% %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{Source Localization Cues}
+% \begin{itemize}
+% \vfill\item \textbf{Interaural Level Difference (ILD)} : It is difference in pressure levels between the signals reaching at both the ears. It is dominant in the higher frequency region (f $>$ 1500 Hz) where head shadow causes the higher frequency waves to attenuate.
+% \vfill\item \textbf{Spectral Cues} : ITD and ILD both are zero in the median plane or constant at the cone of confusions. Localization in these planes rely on the spectral cues provided by HRTF. It is monaural in nature.
+% \begin{figure}[h]
+% \begin{center}
+% 	\includegraphics[width=6cm,height=6cm]{cone_confusion}
+% \end{center}
+% \end{figure} 
+% \end{itemize}
+% \end{frame}
+% %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{Source Localization Cues}
+% \begin{itemize}
+% \vfill\item \textbf{Dynamic Cues} : It often creates confusion whether the sound is coming from front or rear. The front back ambiguity can be mitigated by head or source movement in the real world.
+% \vfill\item \textbf{Distance Cues} : When spatial audio is rendered over horizontal plane. It gives the feeling of source-internalization. The location of source is created inside the head and source moves around the head. Artificial room reverberations aid to make the source externalized in the virtual space. The perception of distance is provided by Direct to Reverberation ratio (DRR).
+% \end{itemize}
+% \vspace{-0.2cm}
+% \begin{figure}[h]
+% \begin{center}
+% 	\includegraphics[width=9cm,height=7cm]{externalized}
+% \end{center}
+% \end{figure} 
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% \begin{frame}{Significance of Pinna Spectral Notches in rendering 3D audio}
+% \begin{itemize}
+% \vfill\item HRTF over the horizontal plane is highly dependent on head. Head diffraction provide the localization cues in this plane.
+% \vfill\item Rendering 3D audio in the horizontal plane requires incorporation of the binaural cues (ITD and ILD) for source lateralization.
+% \vfill\item However, in the median plane or at the cone of confusions, HRTF is invariant from head and highly dependent on the individual ear shape.
+% \vfill\item According to Batteau, multiple reflections of sound waves from pinna provide the spectral cues for the localization in the median plane. 
+% \vfill\item The destructive interference between direct and reflected waves introduces sharp and deep spectral notches in HRTF which is highly variant according to individual ear shapes. 
+% \vfill\item This pinna spectral notch frequencies must be incorporated according to individual ear shape in rendering 3D audio for the perception of source elevation angle in the median plane.
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Pinna Reflection Model}
+% \begin{figure}[!h]
+% \begin{center}
+%    \centering
+%    \centerline{\includegraphics[width=8cm, height=7cm]{pinna}}
+% \end{center}
+% \end{figure}
+% \vspace{-4cm}
+% \begin{itemize}
+% \vfill\item According to two ray reflection model, the resultant signal $y(t)$ due to interference between direct wave $x(t)$ and reflected wave $x(t-t_{d}(\phi))$ is given by
+% \begin{align}
+% y(t)=x(t)+\rho(\phi)x(t-t_{d}(\phi))
+% \end{align}
+% where $\rho(\phi)$ is the reflection coefficient and $t_{d}(\phi)$ is the time delay between direct and reflected wave.
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Pinna Reflection Model}
+% \begin{itemize}
+% \vfill\item This elevation dependent temporal delay $t_{d}(\phi)$ put the point of reflection in the pinna image at a distance given by
+% \begin{align}
+% d(\phi)=\frac{ct_{d}(\phi)}{2}
+% \end{align}
+% \vfill\item The destructive interference introduces periodic spectral nulls in $Y(e^{j\omega})$ and whose frequencies are given by
+% \begin{align}
+% f_{n}(\phi)=\frac{(2n+1)}{2t_{d}(\phi)}=\frac{c(2n+1)}{4d(\phi)} \hspace{10mm} \forall n=0,1,\cdots
+% \end{align}
+% \vfill\item The first spectral notch frequency is given by
+% \begin{align}
+% f_{0}(\phi)=\frac{c}{4d(\phi)}
+% \end{align}
+% \vfill\item Following the Satarzadeh hypothesis of negative reflection coefficient ($\rho(\phi)<0$), the notch frequency gets doubled as
+% \begin{align}
+% f_{0}(\phi)=\frac{c}{2d(\phi)}
+% \end{align}
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Structural Composition of measured HRIR}
+% \begin{itemize}
+% \vfill\item HRIR captures the effect of interaction of sound with different parts of human body such as head, torso, shoulder and pinna.
+% \vfill\item Measured HRIR is composed of head diffraction, torso reflections, pinna reflections and as an artifact knee reflections.
+% \begin{figure}[h]
+% \begin{center}
+% 	\includegraphics[width=8 cm,height=5 cm]{hrir_plot_sub10}
+% \end{center}
+% \end{figure} 
+% \end{itemize}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% \begin{frame}{Structural Composition of measured HRIR}
+ 
+% \begin{figure}[h]
+% \begin{center}
+% 	\includegraphics[width=10 cm,height=9 cm]{hrir_img_sub10}
+% \end{center}
+% \end{figure} 
+
+% \end{frame}
+% %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Algorithm for the extraction of Pinna Spectral notches}
+% \begin{itemize}
+% \vfill\item For the analysis of HRIR, it is necessary to remove the faint initial pulses arising before the direct wave from the measured HRIR. 
+% \vfill\item The initial onset time is determined from the phase spectrum of the HRIR.
+% \begin{figure}[h]
+% \begin{minipage}{0.4\linewidth}
+%   \centering
+%   \includegraphics[width=4 cm,height=4 cm]{hrir_onset}
+% \end{minipage}%
+% \begin{minipage}{0.4\linewidth}
+%   \centering
+%   \includegraphics[width=4 cm,height=4 cm]{hrir}
+% \end{minipage}
+% \end{figure} 
+
+% \end{itemize}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Algorithm for the extraction of Pinna Spectral notches}
+% \begin{itemize}
+% \vfill\item In order to separate other structural features from pinna features, it is necessary to window the HRIR with 1 ms hanning window.
+% \vfill\item However, windowing decreases the frequency domain resolution and it may also mask or alter the notch frequencies.
+% \vfill\item In order to get rid of this problem, LP residual of HRIR is windowed with 1 ms hanning window.
+% \vfill\item LP analysis of HRIR fits an all pole model of HRIR. It models the resonances due to pinna effect.
+% \vfill\item Autocorrelation of windowed LP residual gives peak at index n=0 and faint pulses on either side.
+% \vfill\item Due to high frequency resolution of group delay, pinna spectral notch frequencies are extracted from the group delay function of windowed autocorrelation.
+% \end{itemize}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Algorithm for the extraction of Pinna Spectral notches}
+
+% \begin{figure}[!htb]
+% \vspace{-3 cm}
+% \begin{minipage}[h]{.24\linewidth}
+%   \centering
+% %  \vspace{-3cm}
+%   \centerline{\includegraphics[width=6.0cm,height=8.0cm]{win_hrir_sub134}}
+%   \vspace{-2.5cm}
+%   \centerline{HRIR}\medskip
+% \end{minipage}
+% \hfill
+% \begin{minipage}[!h]{0.24\linewidth}
+%   \centering
+%   \centerline{\includegraphics[width=6.0cm,height=8.0cm]{win_hrir_spectrum_sub134}}
+%   \vspace{-2.5cm}
+%   \centerline{Magnitude Spectrum }\medskip
+%   %\vspace{-3cm}
+% \end{minipage}
+% \hfill
+% \begin{minipage}[h]{0.24\linewidth}
+%   \centering
+%   %\vspace{-3cm}
+%   \centerline{\includegraphics[width=6.0cm,height=8.0cm]{win_hrir_grd_sub134}}
+%   \vspace{-2.5cm}
+%   \centerline{Group Delay}\medskip
+% \end{minipage}
+% \hfill
+% %\caption{Effect of windowing the HRIR, (a) Preprocessed HRIR (solid line) and Hann window (dotted line) of 1 ms, (b) Corresponding windowed HRTF, (c) Group delay of windowed HRIR.}
+% \label{fig:win_hrir}
+% \end{figure}
+
+% \begin{figure}[!htb]
+% \vspace{-3 cm}
+% \begin{minipage}[h]{.24\linewidth}
+%   \centering
+% %  \vspace{-3cm}
+%   \centerline{\includegraphics[width=6.0cm,height=8.0cm]{win_residue_sub134}}
+%   \vspace{-2.5cm}
+%   \centerline{LP Residual}\medskip
+% \end{minipage}
+% \hfill
+% \begin{minipage}[!h]{0.24\linewidth}
+%   \centering
+%   \centerline{\includegraphics[width=6.0cm,height=8.0cm]{win_residue_spectrum_sub134}}
+%   \vspace{-2.5cm}
+%   \centerline{Magnitude Spectrum}\medskip
+%   %\vspace{-3cm}
+% \end{minipage}
+% \hfill
+% \begin{minipage}[h]{0.24\linewidth}
+%   \centering
+%   %\vspace{-3cm}
+%   \centerline{\includegraphics[width=6.0cm,height=8.0cm]{win_residue_grd_sub134}}
+%   \vspace{-2.5cm}
+%   \centerline{Group Delay}\medskip
+% \end{minipage}
+% \hfill
+% %\caption{Effect of windowing the LP residual of HRIR, (a) $12^{th}$ order LP residual of preprocessed HRIR (solid line) and Hann window (dotted line) of 1 ms, (b) Corresponding magnitude spectrum (in dB), (c) Group delay of windowed LP residual.}
+% \label{fig:win_residue}
+% \end{figure}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Algorithm for the extraction of Pinna Spectral notches}
+% \vspace{-1cm}
+% \begin{figure}[h]
+% \begin{center}
+%      \centering
+%      \centerline{\includegraphics[width=8.0cm,height=9.0cm]{algorithm}}
+% \end{center}
+% \vspace{-3cm}
+% %\caption{Algorithm for extraction of pinna spectral notch frequencies.}
+% \label{fig:algo}
+% \end{figure}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Algorithm for the extraction of Pinna Spectral notches}
+% \begin{figure}[H]
+% \vspace{-5cm}
+% \begin{center}
+%      \centering
+%      \centerline{\includegraphics[width=8.0cm,height=14.0cm]{algo_steps}}
+% \end{center}
+% \vspace{-6cm}
+% %\caption{Various signal processing steps demonstrate the process of extracting the pinna spectral notch frequencies.}
+% \label{fig:algo_steps}
+% \end{figure}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{HRTF modeling using Spherical Microphone array}
+% \begin{itemize}
+% \vfill\item The scattering of sound waves off human body is captured by the microphone located at the entrance of ear canal and the source at the surface of spherical microphone array.
+% \vfill\item Due to limitation of wave equation, it is convenient to place the source at the surface of the scatterer for capturing 3D sound field.
+% \vfill\item The Helmholtz's reciprocity theorem is employed to solve this problem.
+% \vfill\item Imagine a sphere that encloses the entire human body and the source situated at the entrance of the ear canal, The recorded pressure field over the surface of imaginary sphere is given by
+% \begin{align}
+% \label{eq:3.1}
+% p(k,\mathbf{\hat{r}_{s}})=\sum\limits_{n=0}^{\infty}\sum\limits_{m=-n}^{n} \alpha_{n}^{m}(k)Y_{n}^{m}(\theta_{s},\phi_{s})
+% \end{align}
+% where $\alpha_{n}^{m}(k)$ captures scattering behavior of the human body. $\mathbf{\hat{r}_{s}}=(\theta_{s},\phi_{s})$ is unit vector defined with respect to head-center, points towards the scattering surface. 
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{HRTF modeling using Spherical Microphone array}
+% \begin{itemize}
+% \vfill\item The Spherical Fourier Transform (SFT) is given by
+% \begin{align}
+% \label{eq:3.2}
+% \alpha_{n}^{m}(k)=\int_{\mathbb{S}^{2}}p(k,\mathbf{\hat{r}_{s}})Y_{n}^{m*}(\theta_{s},\phi_{s})sin\theta_{s}d\theta_{s}d\phi_{s}
+% \end{align}
+% \vfill\item The recorded pressure field (HRTF) by the spherical microphone array located at $\mathbf{r}=(r,\theta,\phi)$ is given by
+% \begin{align}
+% \label{eq:3.3}
+% H(k,\mathbf{r})=\int_{\mathbb{S}^{2}}p(k,\mathbf{\hat{r}_{s}})\frac{e^{ik||\mathbf{r_{s}}-\mathbf{r}||}}{4\pi||\mathbf{r_{s}}-\mathbf{r}||}sin\theta_{s}d\theta_{s}d\phi_{s}
+% \end{align}
+% \vfill\item Using Jacobi-Anger expansion,
+% \begin{align}
+% \label{eq:3.4}
+% \frac{e^{ik||\mathbf{r_{s}}-\mathbf{r}||}}{4\pi||\mathbf{r_{s}}-\mathbf{r}||}=ik\sum\limits_{n=0}^{\infty}\sum\limits_{m=-n}^{n}j_{n}(kr_{s})h_{n}(kr)Y_{n}^{m*}(\theta_{s},\phi_{s})Y_{n}^{m}(\theta,\phi)
+% \end{align}
+% where $j_{n}(\cdot)$ and $h_{n}(\cdot)$ is the spherical Bessel and Hankel function of $1^{st}$ order.
+% \end{itemize}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{HRTF modeling using Spherical Microphone array}
+% \begin{itemize}
+% \vfill\item By substituting Equation \ref{eq:3.4} into Equation \ref{eq:3.3}, HRTF is represented as,
+% \begin{align}
+% \label{eq:3.5}
+% H(k,\mathbf{r})= \sum\limits_{n=0}^{\infty}\sum\limits_{m=-n}^{n} H_{n}^{m}(k)h_{n}(kr)Y_{n}^{m}(\theta,\phi)
+% \end{align}
+% \vfill\item $H_{n}^{m}(k)$ models the spectral component of HRTF and the radial dependency of HRTF is captured by $h_{n}(kr)$. 
+% \begin{align}
+% H_{n}^{m}(k)=4\pi ik\alpha_{n}^{m}(k)j_{n}(kr_{s})
+% \end{align}
+% \vfill\item The angular variation of HRTF is captured by spherical harmonics $Y_{n}^{m}(\cdot)$.
+% \begin{align}
+% \label{eq:3.6}
+% Y_{n}^{m}(\theta,\phi)=\sqrt{\frac{2n+1}{4\pi}\frac{(n-|m|)!}{(n+|m|)!}}P_{n}^{|m|}(\cos\theta)e^{jm\phi} 
+% \end{align}
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{HRTF modeling using Spherical Microphone array}
+% \begin{itemize}
+% \vfill\item Spherical Hankel function $h_{n}(kr)$ is unable to represent far-field HRTF due to the fact that it decays out fastly with radial variation.
+% \begin{align}
+% \label{eq:3.7}
+% h_{n}(kr) \sim(-i)^{n+1}\frac{e^{ikr}}{kr} \to 0; \hspace{1cm} r \to \infty
+% \end{align}
+% \vfill\item For far-field HRTF representation, it is required to normalize the Spherical Hankel function. 
+% \begin{align}
+% \label{eq:3.8}
+% R_{n}(kr)=(i)^{n+1} kr e^{-ikr}h_{n}(kr)
+% \end{align}
+% \vfill\item The modified HRTF is given by
+% \begin{align}
+% \label{eq:3.9}
+% H(k,r,\theta,\phi)= \sum\limits_{n=0}^{\infty}\sum\limits_{m=-n}^{n} H_{n}^{m}(k)R_{n}(kr)Y_{n}^{m}(\theta,\phi)
+% \end{align}
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{HRTF modeling over the median plane}
+% \begin{itemize}
+% \vfill\item The far-field HRTF is represented from Equation \ref{eq:3.9} by imposing the constraint $r \to \infty$ as
+% \begin{align}
+% \label{eq:3.10}
+% H(f,\theta,\phi)= \sum\limits_{n=0}^{\infty}\sum\limits_{m=-n}^{n} H_{n}^{m}(f)Y_{n}^{m}(\theta,\phi)
+% \end{align}
+% \vfill\item The 3D HRTF can be decomposed into associated Legendre polynomial and complex exponents as
+% \begin{align}
+% \label{eq:3.11}
+% H(f,\theta,\phi)= \sum\limits_{n=0}^{\infty}\sum\limits_{m=-n}^{n} H_{n}^{m}(f)P_{n}^{|m|}(\cos\theta)e^{jm\phi} 
+% \end{align}
+% \vfill\item Complex exponents are more efficient in terms of computational complexity and convergence as compared to associated Legendre polynomial. Therefore, $\phi$ is chosen as elevation angle.
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{HRTF modeling over the median plane}
+% \begin{itemize}
+% \vfill\item In order to consistent with spherical harmonics angular variation, vertical polar system is rotated by $90^{\circ}$ such that $\phi$ varies over the median plane ($0\leq\phi<2\pi$) and $\theta$ varies in the horizontal plane ($0\leq\theta<\pi$). 
+% \vfill\item Since $P_{n}^{|m|}(\cos\frac{\pi}{2})$ is non-zero for all odd values of $m$ when $n$ is odd. It is also non-zero for all even values of $m$ when $n$ is even. The median plane HRTF (at $\theta=\frac{\pi}{2}$) can be represented as
+% \begin{align}
+% \label{eq:28}
+%  &H(f,\phi) = \sum\limits_{m=-\infty}^{\infty}[\sum\limits_{n=0}^{\infty} H_{2n+|m|}^{m}(f)P_{2n+|m|}^{m}(\cos\frac{\pi}{2})]e^{jm\phi} \nonumber\\
+%  &H(f,\phi) = \sum\limits_{m=-\infty}^{\infty} C_{m}(f)e^{jm\phi}
+% \end{align} 
+% It can be inferred that spatial component of the median plane HRTF can be represented by Fourier series.
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Spectral Component Modeling}
+% \begin{itemize}
+% \vfill\item Using the definition of $H_{n}^{m}(f)$, The spectral component $C_{m}(f)$ can be represented as
+% \begin{align}
+% C_{m}(f)=\alpha_{m}j_{m}(\frac{2\pi fr_{s}}{c})
+% \end{align}
+% \vfill\item The orthogonal sets of Bessel family of functions are used to model the Fourier coefficients due to strong correlation between spectral component of HRTF $(C_{m}(f))$ and the family of Bessel functions of first kind.
+% \begin{align}
+% \label{eq:29}
+% C_{m}(f)=\sum\limits_{k=1}^{\infty} C_{mk}J_{|m|}(\beta_{k}^{|m|}\frac{f}{f_{max}})
+% \end{align}
+% where $J_{n}(\cdot)$ is the Bessel function (first kind) of order n. $\beta_{1}^{n},\beta_{2}^{n}\cdots,\beta_{k}^{n}$ are the positive roots of $J_{n}(x)=0$.
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Median Plane HRTF modeling}
+% \begin{itemize}
+% \vfill\item By combining Equations \ref{eq:28} and \ref{eq:29}, the median plane HRTF can be decomposed into Fourier Bessel series as
+% \begin{align}
+% \label{eq:30}
+% H(f,\phi) = \sum\limits_{m=-\infty}^{\infty}\sum\limits_{k=1}^{\infty} C_{mk}J_{|m|}(\beta_{k}^{|m|}\frac{f}{f_{max}})e^{jm\phi}
+% \end{align}
+% \vfill\item The modal parameter $C_{mk}$ can be calculated by using the orthogonality property of Bessel series as
+% \begin{align}
+% \label{eq:32}
+% C_{mk} = \frac{1}{\pi[J_{|m+1|}(\beta_{k}^{|m|})]^{2}}\int\limits_{0}^{f_{max}}\int\limits_{-\pi}^{\pi} fH(f,\phi)J_{|m|}(\beta_{k}^{|m|}\frac{f}{f_{max}})e^{-jm\phi}dfd\phi
+% \end{align}
+% \vfill\item HRTF is generally measured over discretized spherical grid.
+% \begin{align}
+% \label{eq:33}
+% C_{mk} = \frac{1}{\pi[J_{|m+1|}(\beta_{k}^{|m|})]^{2}}\sum\limits_{f_{i}=0}^{f_{max}}\sum\limits_{\phi_{i}=-\frac{\pi}{4}}^{\frac{5\pi}{4}} f_{i}H(f_{i},\phi_{i})J_{|m|}(\beta_{k}^{|m|}\frac{f_{i}}{f_{max}})e^{-jm\phi_{i}}
+% \end{align}
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Choice of Truncation Number}
+% \begin{itemize}
+% \vfill\item In practice, it is not possible to use infinite number of basis functions to represent the median plane HRTF.
+% \vfill\item The modal parameters $C_{mk}$ corresponding to first $K'$ roots of the Bessel series are not perceptually important as they preserve the faint initial pulses. 
+% \vfill\item The roots from $K'$ to $K'+K$ are very significant for spectral notches since they preserve the reflections due to shoulder, torso, and specially pinna cavities in HRIR.
+% \vfill\item Pinna spectral notches can be reconstructed only from lower order truncation number ($m\leq M_{P}$) while higher order truncation number ($M_{P}\leq m\leq M_{T}$) preserves the torso spectral notches. 
+% \vfill\item The selection of truncation number is crucial, however the main lobe can alone itself sufficiently model the pinna spectral notches over the median plane HRTF.
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Choice of Truncation Number}
+% \begin{figure}[h]
+% \vspace{-4cm}
+% \begin{center}
+% 	\centerline{\includegraphics[width=8.0cm, height=14.0cm]{c_subject_50}}
+% \end{center}
+% \vspace{-5cm}
+% \caption{Amplitude of Fourier Bessel Coefficient $|C_{mk}|$ computed from HRTF over the median plane} %using Equation \ref{eq:33} for the left pinna of subject 50 in CIPIC database.}
+% \label{fig:fourier_bessel_coeff.}
+% \end{figure}
+% %\begin{itemize}
+% %\vfill\item The HRTF that only models pinna spectral notches (PRTF) is reconstructed as
+% %\begin{align}  
+% %\label{eq:35}
+% %H_{P}(f,\phi) = \sum\limits_{m=-M_{P}}^{M_{P}}\sum\limits_{k=K'}^{K'+K} C_{mk}J_{|m|}(\beta_{k}^{|m|}\frac{f}{f_{max}})e^{jm\phi} 
+% %\end{align}
+% %\end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Feature Extraction to Capture Pinna Structure}
+% \begin{itemize}
+% \vfill\item Effect of torso reflections appear as arch shaped torso notches that periodically occur in the entire spectrum.
+% \vfill\item These torso notches interfere with pinna spectral notches in the higher frequency region.
+% \begin{figure}[!h]
+% \vspace{-0cm}
+% \begin{center}
+% 	\centerline{\includegraphics[width=12cm, height=10cm]{ch3_HAT_response}}
+% \end{center}
+% \vspace{-5.5cm}
+% \caption{Image Courtesy by CIPIC : Pinnaless HAT response.}
+% \label{fig:HAT}
+% \end{figure}
+
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Feature Extraction to Capture Pinna Structure}
+% \begin{itemize}
+% \vfill\item The HRTF that only models pinna spectral notches (PRTF) is reconstructed as
+% \begin{align}  
+% \label{eq:35}
+% H_{P}(f,\phi) = \sum\limits_{m=-M_{P}}^{M_{P}}\sum\limits_{k=K'}^{K'+K} C_{mk}J_{|m|}(\beta_{k}^{|m|}\frac{f}{f_{max}})e^{jm\phi} 
+% \end{align}
+% \begin{figure}[!h]
+% \vspace{-0cm}
+% \begin{center}
+% 	\centerline{\includegraphics[width=10cm, height=8cm]{ch3_recons_hrtf_img}}
+% \end{center}
+% \vspace{-3cm}
+% %\caption{(a) HRTF corresponding to composite HRIR where the effects of torso reflections fade the pinna spectral notches (b) Reconstructed HRTF which only highlights and preserves the pinna spectral notches in the structured way, is also known as PRTF.}
+% \label{fig:recons_hrtf}
+% \end{figure}
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Feature Extraction to Capture Pinna Structure}
+% \begin{itemize}
+% \vfill\item Reconstructed HRIR only preserves the pinna effects and removing other anatomical features.
+
+% \begin{figure}[!h]
+% %\vspace{-2cm}
+% \begin{center}
+% 	\centerline{\includegraphics[width=10cm, height=8cm]{ch3_recons_hrir_img}}
+% \end{center}
+% \vspace{-3cm}
+% %\caption{(a) measured HRIR which is the composition of different anatomical features (b) Reconstructed HRIR which is Temporal domain representation of Reconstructed HRTF (PRTF) where the other features except pinna effects are absent.}
+% \label{fig:recons_hrir}
+% \end{figure}
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Database}
+% \begin{itemize}
+% \vfill\item Publicly available CIPIC HRTF database is used in this work where 45 subjects' HRIR data-set is available.
+% \vfill\item The HRIRs are measured for 1250 different directions around the sphere (25 different azimuthal directions and 50 different elevational directions) using inter-aural head centered polar coordinate system.
+% \begin{figure}[h]
+% \vspace{-0cm}
+% \begin{center}
+%     \centerline{\includegraphics[width=12cm, height=10cm]{coordinate_system}}
+% \end{center}
+% %\vspace{-7.5cm}
+% %\caption{Image Courtesy by CIPIC : The Head centered Interaural polar coordinate system where $\theta$ and $\phi$ represent azimuth and elevation angle respectively. X is the interaural axis which passes through ears. XY is the horizontal plane, YZ is the median/vertical plane and ZX is the frontal plane.}
+% \label{fig:polar_system}
+% \end{figure} 
+% \end{itemize}
+% \end{frame}
+% %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Database}
+% \begin{itemize}
+% \vfill\item The azimuth angles are sampled on $\theta$ = [$-80^{\circ}$,$-65^{\circ}$,$-55^{\circ}$, $-45^{\circ}:5^{\circ}:45^{\circ}$,$55^{\circ}$,$65^{\circ}$,$80^{\circ}$] in horizontal plane and the elevation angles are uniformly sampled on $\phi$ = [$-45^{\circ}:5.625^{\circ}:230.625^{\circ}$].
+% \vfill\item Apart from HRIRs, several Head and Torso, and Pinnae anthropometry parameters are also available for many subjects with their pinnae images. 
+% \vfill\item HRIRs are measured in direct way with the microphone located at the entrance of the ear canal and loudspeakers mounted on the circular hoop of 1 m radius in horizontal plane in an anechoic chamber.
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Database}
+% \begin{figure}[!h]
+% \vspace{-2cm}
+% \begin{center}
+%   \centerline{\includegraphics[width=10cm, height=8cm]{pinna_anthro}}
+%   \vspace{-3cm}  
+%   \centering{$d_{1}$ : cavum concha height \\ $d_{2}$ : cymba concha height \\  $d_{3}$ : cavum concha width \\  \hspace{-1.5cm}$d_{4}$ : fossa height \\ \hspace{-1.5cm}$d_{5}$ : pinna height \\ \hspace{-1.5cm}$d_{6}$ : pinna width \\ \hspace{0.7cm}$d_{7}$ : intertragal incisure width \\ $d_{8}$ : cavum concha depth \\ $\theta_{1}$ : pinna rotation angle \\ \hspace{-0.4cm}$\theta_{2}$ : pinna flare angle }
+% \end{center}
+% %$\caption{Image Courtesy by CIPIC : Pinna Anthropometry Parameters.}
+% \label{fig:pinna_anthro}
+% \end{figure}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Pinna Spectral notches overlaid on HRTF images}
+% \begin{itemize}
+% \vfill\item The pinna spectral notches are extracted from measured and reconstructed HRIRs for different subjects in CIPIC database for elevation angles from $-45^{\circ}$ to $+90^{\circ}$ over the median plane.
+% \vfill\item Based on prior researches and hypothesis, pinna spectral notches are assumed to be appeared in frequency region of [5 18] kHz.
+% \vfill\item These pinna spectral notches are overlaid on the gray scale images of log magnitude spectrum of measured and reconstructed HRIRs.
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Pinna Spectral notches overlaid on HRTF images}
+
+% \begin{figure}[h]
+% \vspace{-2cm}
+% \centering
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \includegraphics[width=4.5cm,height=7.5cm]{hrtf_sub008}
+% \end{minipage}%
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \includegraphics[width=4.5cm,height=7.5cm]{recons_hrtf_sub008}
+% \end{minipage}
+
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \vspace{-3.5cm}
+%   \includegraphics[width=4.5cm,height=7.5cm]{hrtf_sub017}
+% \end{minipage}%
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \vspace{-3.5cm}
+%   \includegraphics[width=4.5cm,height=7.5cm]{recons_hrtf_sub017}
+% \end{minipage}
+% \end{figure}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Pinna Spectral notches overlaid on HRTF images}
+% \begin{figure}[h]
+% \vspace{-2cm}
+% \centering
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \includegraphics[width=4.5cm,height=7.5cm]{hrtf_sub058}
+% \end{minipage}%
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \includegraphics[width=4.5cm,height=7.5cm]{recons_hrtf_sub058}
+% \end{minipage}
+
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \vspace{-3.5cm}
+%   \includegraphics[width=4.5cm,height=7.5cm]{hrtf_sub061}
+% \end{minipage}%
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \vspace{-3.5cm}
+%   \includegraphics[width=4.5cm,height=7.5cm]{recons_hrtf_sub061}
+% \end{minipage}
+% \end{figure}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Pinna Spectral notches overlaid on HRTF images}
+% \begin{figure}[h]
+% \vspace{-2cm}
+% \centering
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \includegraphics[width=4.5cm,height=7.5cm]{hrtf_sub119}
+% \end{minipage}%
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \includegraphics[width=4.5cm,height=7.5cm]{recons_hrtf_sub119}
+% \end{minipage}
+
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \vspace{-3.5cm}
+%   \includegraphics[width=4.5cm,height=7.5cm]{hrtf_sub124}
+% \end{minipage}%
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \vspace{-3.5cm}
+%   \includegraphics[width=4.5cm,height=7.5cm]{recons_hrtf_sub124}
+% \end{minipage}
+% \end{figure}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{Pinna Spectral notches overlaid on HRTF images}
+% \begin{figure}[h]
+% \vspace{-2cm}
+% \centering
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \includegraphics[width=4.5cm,height=7.5cm]{hrtf_sub050}
+% \end{minipage}%
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \includegraphics[width=4.5cm,height=7.5cm]{recons_hrtf_sub050}
+% \end{minipage}
+
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \vspace{-3.5cm}
+%   \includegraphics[width=4.5cm,height=7.5cm]{hrtf_sub163}
+% \end{minipage}%
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \vspace{-3.5cm}
+%   \includegraphics[width=4.5cm,height=7.5cm]{recons_hrtf_sub163}
+% \end{minipage}
+% \end{figure}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{Pinna Spectral notches overlaid on ear contour}
+% \begin{itemize}
+% \vfill\item The dimensions corresponding to pinna spectral notch frequencies for particular elevation angle are computed by the following relation
+% \begin{align}
+% d(\phi)=\frac{c}{2f_{0}(\phi)}
+% \end{align}
+% \vfill\item Pinna image of a particular subject is taken from the database and uniformly scaled in order to match with pinna parameters $d_{5}$ (pinna height) and $d_{6}$ (pinna width) 
+% \vfill\item Each notch point is mapped to $(d(\phi),\pi+\phi)$ in the right pinna and $(d(\phi),-\phi)$ in the left pinna using 2D polar coordinate system with respect to the entrance of the ear canal.
+% \vfill\item The pinna notches provide the notch patterns which are resemblance to ear morphology. 
+
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{Pinna Spectral notches overlaid on ear contour}
+% \begin{figure}[h]
+% \vspace{0cm}
+% \begin{minipage}[h]{0.3\linewidth}
+% \begin{center}
+% %\vspace{-3cm}
+% 	\centerline{Subject 08}
+% 	\vspace{-1cm}
+% 	\centerline{\includegraphics[width=5cm, height=6cm]{notch_sub008}}
+% \end{center}
+% \end{minipage}
+% \begin{minipage}[h]{0.3\linewidth}
+% \vspace{1.2cm}
+% \begin{center}
+% 	\centerline{Subject 17}
+% 	\vspace{-1.8cm}
+% 	\centerline{\includegraphics[width=6.3cm, height=8cm]{notch_sub017}}
+% \end{center}
+% \end{minipage}
+% \begin{minipage}[h]{0.3\linewidth}
+% \begin{center}
+% %\vspace{-3cm}
+% 	\centerline{Subject 50}
+% 	\vspace{-1cm}
+% 	\centerline{\includegraphics[width=5.4cm, height=6.3cm]{notch_sub050}}
+% \end{center}
+% \end{minipage}
+
+% \begin{minipage}[h]{0.3\linewidth}
+% \vspace{-6cm}
+% \begin{center}
+% 	\centerline{\includegraphics[width=5cm, height=6cm]{recons_notch_sub008}}
+% \end{center}
+% \end{minipage}
+% \begin{minipage}[h]{0.3\linewidth}
+% \vspace{-6cm}
+% \begin{center}
+% 	\vspace{0.4cm}
+% 	\centerline{\includegraphics[width=6.3cm, height=7.8cm]{recons_notch_sub017}}
+% \end{center}
+% \end{minipage}
+% \begin{minipage}[h]{0.3\linewidth}
+% \vspace{-6cm}
+% \begin{center}
+% 	\centerline{\includegraphics[width=5.4cm, height=6.3cm]{recons_notch_sub050}}
+% \end{center}
+% \end{minipage}
+% %\caption{The dimensions corresponding to pinna spectral notch frequencies extracted from measured and reconstructed HRTFs for elevation angles from $-45^{\circ}$ to $+90^{\circ}$ in the median plane are overlaid on pinna contours of subject 8 left pinna ($a_{1}$, $b_{1}$), subject 17 right pinna ($a_{2}$,  $b_{2}$), and subject 50 left pinna ($a_{3}$, $b_{3}$) in CIPIC database.}
+% %\label{fig:pinna_img_1}
+% \end{figure}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{Pinna Spectral notches overlaid on ear contour}
+% \vspace{1.2cm}
+% \begin{figure}[h]
+% \vspace{0cm}
+% \begin{minipage}[h]{0.3\linewidth}
+% \begin{center}
+% %\vspace{-3cm}
+% 	\centerline{Subject 58}
+% 	\vspace{-2cm}
+% 	\centerline{\includegraphics[width=6cm, height=7cm]{notch_sub058}}
+% \end{center}
+% \end{minipage}
+% \begin{minipage}[h]{0.3\linewidth}
+% \begin{center}
+% 	\centerline{Subject 61}
+% 	\vspace{-2cm}
+% 	\centerline{\includegraphics[width=6cm, height=7cm]{notch_sub061}}
+% \end{center}
+% \end{minipage}
+% \begin{minipage}[h]{0.3\linewidth}
+% \begin{center}
+% %\vspace{-3cm}
+% 	\centerline{Subject 119}
+% 	\vspace{-2cm}
+% 	\centerline{\includegraphics[width=6cm, height=7cm]{notch_sub119}}
+% \end{center}
+% \end{minipage}
+
+% \begin{minipage}[h]{0.3\linewidth}
+% \vspace{-4cm}
+% \begin{center}
+% 	\centerline{\includegraphics[width=6cm, height=7cm]{recons_notch_sub058}}
+% \end{center}
+% \end{minipage}
+% \begin{minipage}[h]{0.3\linewidth}
+% \vspace{-4cm}
+% \begin{center}
+% 	\vspace{0cm}
+% 	\centerline{\includegraphics[width=6cm, height=7cm]{recons_notch_sub061}}
+% \end{center}
+% \end{minipage}
+% \begin{minipage}[h]{0.3\linewidth}
+% \vspace{-4cm}
+% \begin{center}
+% 	\centerline{\includegraphics[width=6cm, height=7cm]{recons_notch_sub119}}
+% \end{center}
+% \end{minipage}
+% %\caption{The dimensions corresponding to pinna spectral notch frequencies extracted from measured and reconstructed HRTFs for elevation angles from $-45^{\circ}$ to $+90^{\circ}$ in the median plane are overlaid on pinna contours of subject 8 left pinna ($a_{1}$, $b_{1}$), subject 17 right pinna ($a_{2}$,  $b_{2}$), and subject 50 left pinna ($a_{3}$, $b_{3}$) in CIPIC database.}
+% %\label{fig:pinna_img_1}
+% \end{figure}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{Pinna Spectral notches overlaid on ear contour}
+% \begin{figure}[h]
+% \vspace{1.2cm}
+% \begin{minipage}[h]{0.3\linewidth}
+% \begin{center}
+% %\vspace{-3cm}
+% 	\centerline{Subject 124}
+% 	\vspace{-2cm}
+% 	\centerline{\includegraphics[width=6cm, height=7cm]{notch_sub124}}
+% \end{center}
+% \end{minipage}
+% \begin{minipage}[h]{0.3\linewidth}
+% \begin{center}
+% 	\centerline{Subject 163}
+% 	\vspace{-2cm}
+% 	\centerline{\includegraphics[width=6cm, height=7cm]{notch_sub163}}
+% \end{center}
+% \end{minipage}
+% \begin{minipage}[h]{0.3\linewidth}
+% \begin{center}
+% %\vspace{-3cm}
+% 	\centerline{Subject 60}
+% 	\vspace{-2cm}
+% 	\centerline{\includegraphics[width=6.5cm, height=7cm]{notch_sub060}}
+% \end{center}
+% \end{minipage}
+
+% \begin{minipage}[h]{0.3\linewidth}
+% \vspace{-4cm}
+% \begin{center}
+% 	\centerline{\includegraphics[width=6cm, height=7cm]{recons_notch_sub124}}
+% \end{center}
+% \end{minipage}
+% \begin{minipage}[h]{0.3\linewidth}
+% \vspace{-4cm}
+% \begin{center}
+% 	\vspace{0cm}
+% 	\centerline{\includegraphics[width=6cm, height=7cm]{recons_notch_sub163}}
+% \end{center}
+% \end{minipage}
+% \begin{minipage}[h]{0.3\linewidth}
+% \vspace{-4cm}
+% \begin{center}
+% 	\centerline{\includegraphics[width=7cm, height=7cm]{recons_notch_sub060}}
+% \end{center}
+% \end{minipage}
+% %\caption{The dimensions corresponding to pinna spectral notch frequencies extracted from measured and reconstructed HRTFs for elevation angles from $-45^{\circ}$ to $+90^{\circ}$ in the median plane are overlaid on pinna contours of subject 8 left pinna ($a_{1}$, $b_{1}$), subject 17 right pinna ($a_{2}$,  $b_{2}$), and subject 50 left pinna ($a_{3}$, $b_{3}$) in CIPIC database.}
+% %\label{fig:pinna_img_1}
+% \end{figure}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{Suggestion for incorporation of pinna spectral notches for rendering 3D audio}
+% \begin{itemize}
+% \vfill\item As the shape and geometry of pinna vary among individuals, the pinna spectral notch frequencies significantly vary among individuals.
+% \vfill\item Individualized pinna spectral notch frequencies have to be incorporated for individual person for the perception of elevation angle of the source.
+% \vfill\item Pinna spectral notch frequencies are estimated from the ear contour for particular elevation angle.
+% \vfill\item A multi notch filter bank model all the relevant pinna spectral notch frequencies. This filter block is cascaded with the HAT model.
+% \vfill\item The unspatialized audio signal is filtered through these blocks in order to render the sound from given direction. 
+% \end{itemize}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Suggestion for incorporation of pinna spectral notches for rendering 3D audio}
+% \begin{figure}[!ht]
+% \begin{center}
+% 	\centerline{\includegraphics[width=9cm, height=7cm]{psn_rendering}}
+% \end{center}
+% \caption{Spatial audio rendering using Pinna Spectral Notches in the median plane.}
+% \label{psn_render}
+% \end{figure}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{Conclusions}
+% \begin{itemize}
+% \vfill\item The efficient method for modeling the pinna spectral notches over the median plane is discussed.
+% \vfill\item The HRIR over the median plane are simulated by Fourier Bessel Series and reconstructed in a way that only highlights the pinna effect.
+% \vfill\item The pinna spectral notches extracted from reconstructed HRTF are very smooth and accurate even at lower elevation angles as compared to those extracted from measured HRTF.
+% \vfill\item The dimensions corresponding to pinna spectral notch frequencies when overlaid on ear contour show the high degree of resemblance to the actual pinna walls, when reconstructed HRTF are employed for the extraction of pinna spectral notches.
+% \vfill\item Individual pinna spectral notches have been suggested for elevation angle perception to incorporate in HRTF when rendering the 3D audio. 
+% \end{itemize}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{Future Scope}
+% \begin{itemize}
+% \vfill\item Althought the relationship between ear morphology and pinna spectral notch frequencies has been established. Yet their is open issues regarding the depth and bandwidth of these notches.
+% \vfill\item A strong pshchoacoustics argument need to be developed that relates the pinna anthropometry and depth and bandwidth of notch frequencies.
+% \vfill\item The structural model of pinna has to be developed for the personalisatioon of HRTF according to individual ear shapes.
+% \vfill\item It has been found that pinna spectral notches are perceptually very important for elevation angle. However, the pinna resonances are also significant in terms of perception.
+% \end{itemize}
+% \end{frame}
+\begin{frame}{References}
+    %{\footnotesize
+    \bibliographystyle{abbrvnat}
+    \bibliography{references}
+    %}
+\end{frame}
+
+
+\end{document}
