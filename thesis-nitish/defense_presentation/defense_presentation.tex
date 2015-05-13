@@ -94,24 +94,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Multi-Label Document Categorization}
-\begin{itemize}
-	\vfill\item DC introduction. Applications
-	\vfill\item learning algorithm to learn classifer H from previous data to assign categories. Table example.
-	\vfill\item Needs document represenation. Background on that.
-	\vfill\item background on learning algos
-	\vfill\item Motivation for distributed embeddings.
-	\vfill\item background on distributed word represenations
-	\vfill\item our model
-	\vfill\item our dc lr model
-	\vfill\item datasets
-	\vfill\item results
-\end{itemize}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}{Intoduction to Multi-Label Document Categorization}
 \begin{itemize}
 	\vfill\item<1-> Text Documents usually belong to more than one conceptual class. \\For E.g. an article on Music Piracy 
@@ -216,8 +198,8 @@ Using $\traindata$, $D$ and $C$ the learning algorithm learns a multi-label clas
 		\vfill\item<12-> Decision Trees
 		\vfill\item<13-> Generative Probabilistic Models
 	\end{itemize}
-	\onslide<14->{ Learning a single joint classifier is usually better as it is able to exploit the category correlations }
 \end{enumerate}
+%\onslide<14->{ Learning a single joint classifier is usually better as it is able to exploit the category correlations }
 \vfill
 \end{frame}
 
@@ -226,26 +208,30 @@ Using $\traindata$, $D$ and $C$ the learning algorithm learns a multi-label clas
 \begin{frame}{Background on Text Representation}
 \vfill
 \onslide<1->{
-Most common method to learn vector representations for a set of documents is the \emph{Bag of Words (BOW)} model 	}
+\textbf{Bag of Words Model} }
+%Most common method to learn vector representations for a set of documents is the \emph{Bag of Words (BOW)} model 	}
 \begin{itemize}
-	\vfill\item<2-> r to the i size vectors
-	\vfill\item<3-> each element indicates presence or absence
-	\vfill\item<4-> weighing techniques such as 
+	\vfill\item<2-> Document $d_{i}$ represented by $v_{d_{i}} \in \mathbb{R}^{|V|}$
+	\vfill\item<3-> Each element in $v_{d_{i}}$ denotes presence/absence of each word
+	\vfill\item<4-> Weighing techniques employed to give importance to important terms
 	\begin{itemize}
-		\vfill\item<5-> tf
-		\vfill\item<6-> idf
-		\vfill\item<7-> tf-idf
+		\vfill\item<5-> Term Frequency (\emph{tf} )
+		\vfill\item<6-> Inverse Document Frequency (\emph{idf} )
+		\vfill\item<7-> Term Frequency - Inverse Document Frequency (\emph{tf-idf} ) : \emph{tf} $\times$\emph{idf}
 	\end{itemize}
 \end{itemize}
 \vfill
 \onslide<8->{
-Drawbacks with the Bag-of-Words model }
+\textbf{Drawbacks of the Bag-of-Words model} }
 \begin{itemize}
-	\vfill\item<9-> r to the i size vectors
-	\vfill\item<10-> each element indicates presence or absence
-	\vfill\item<11-> weighing techniques such as 
+	\vfill\item<9-> High-dimensionality
+	\vfill\item<10-> Sparsity
+	\vfill\item<11-> Inability to encode word contexts
+	\vfill\item<12-> Ignoring word wordering
 \end{itemize}
-\todo{feature selection. Word Embeddings. Our document embedding. Our docu cate. Datasets. Results End}
+\vfill
+% \todo{feature selection. Word Embeddings. Our document embedding. Our docu cate. Datasets. Results End}
+% \vfill
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

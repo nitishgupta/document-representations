@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  13 MAY 2015 00:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  13 MAY 2015 10:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1066,6 +1066,25 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [2
 
 ]
+LaTeX Font Info:    Try loading font information for U+msa on input line 115.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 115.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+wasy on input line 115.
+
+(/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
+File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
+)
+LaTeX Font Info:    Try loading font information for U+lasy on input line 115.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1073,25 +1092,6 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [3
 
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 133.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 133.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Try loading font information for U+wasy on input line 133.
-
-(/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
-File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
-)
-LaTeX Font Info:    Try loading font information for U+lasy on input line 133.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
-File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
-)
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1399,19 +1399,12 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 
 [47
 
-]
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[48
-
 ] (./defense_presentation.bbl)
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
-[49
+[48
 
 ]
 \tf@nav=\write6
@@ -1423,11 +1416,11 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 \tf@snm=\write8
 \openout8 = `defense_presentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1134.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1134.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1120.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1120.
  (./defense_presentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1134.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1134.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1120.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1120.
 
 Package rerunfilecheck Info: File `defense_presentation.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
@@ -1436,13 +1429,13 @@ Package rerunfilecheck Info: File `defense_presentation.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1134.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1120.
  ) 
 Here is how much of TeX's memory you used:
- 19360 strings out of 493304
- 358660 string characters out of 6139871
- 443478 words of memory out of 5000000
- 22202 multiletter control sequences out of 15000+600000
+ 19356 strings out of 493304
+ 358625 string characters out of 6139871
+ 443384 words of memory out of 5000000
+ 22200 multiletter control sequences out of 15000+600000
  16726 words of font info for 67 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  49i,16n,57p,438b,613s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1462,10 +1455,10 @@ ts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on defense_presentation.pdf (49 pages, 439719 bytes).
+Output written on defense_presentation.pdf (48 pages, 438795 bytes).
 PDF statistics:
- 1420 PDF objects out of 1440 (max. 8388607)
- 1324 compressed objects within 14 object streams
- 100 named destinations out of 1000 (max. 500000)
+ 1392 PDF objects out of 1440 (max. 8388607)
+ 1298 compressed objects within 13 object streams
+ 98 named destinations out of 1000 (max. 500000)
  78 words of extra memory for PDF output out of 10000 (max. 10000000)
 
