@@ -1,14 +1,65 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{8}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Salton and Yang(1973)]{salton1973specification}
-G.~Salton and C.-S. Yang.
-\newblock On the specification of term values in automatic indexing.
-\newblock \emph{Journal of documentation}, 29\penalty0 (4):\penalty0 351--372,
-  1973.
+\bibitem[Bengio et~al.(2003)Bengio, Ducharme, Vincent, and
+  Janvin]{bengio2003neural}
+Y.~Bengio, R.~Ducharme, P.~Vincent, and C.~Janvin.
+\newblock A neural probabilistic language model.
+\newblock \emph{The Journal of Machine Learning Research}, 3:\penalty0
+  1137--1155, 2003.
+
+\bibitem[Grefenstette et~al.(2013)Grefenstette, Dinu, Zhang, Sadrzadeh, and
+  Baroni]{grefenstette2013multi}
+E.~Grefenstette, G.~Dinu, Y.-Z. Zhang, M.~Sadrzadeh, and M.~Baroni.
+\newblock Multi-step regression learning for compositional distributional
+  semantics.
+\newblock \emph{arXiv preprint arXiv:1301.6939}, 2013.
+
+\bibitem[Mikolov et~al.(2013{\natexlab{a}})Mikolov, Chen, Corrado, and
+  Dean]{mikolov2013efficient}
+T.~Mikolov, K.~Chen, G.~Corrado, and J.~Dean.
+\newblock Efficient estimation of word representations in vector space.
+\newblock \emph{arXiv preprint arXiv:1301.3781}, 2013{\natexlab{a}}.
+
+\bibitem[Mikolov et~al.(2013{\natexlab{b}})Mikolov, Sutskever, Chen, Corrado,
+  and Dean]{mikolov2013distributed}
+T.~Mikolov, I.~Sutskever, K.~Chen, G.~S. Corrado, and J.~Dean.
+\newblock Distributed representations of words and phrases and their
+  compositionality.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pages
+  3111--3119, 2013{\natexlab{b}}.
+
+\bibitem[Mitchell and Lapata(2010)]{mitchell2010composition}
+J.~Mitchell and M.~Lapata.
+\newblock Composition in distributional models of semantics.
+\newblock \emph{Cognitive science}, 34\penalty0 (8):\penalty0 1388--1429, 2010.
+
+\bibitem[Socher et~al.(2013)Socher, Perelygin, Wu, Chuang, Manning, Ng, and
+  Potts]{socher2013recursive}
+R.~Socher, A.~Perelygin, J.~Y. Wu, J.~Chuang, C.~D. Manning, A.~Y. Ng, and
+  C.~Potts.
+\newblock Recursive deep models for semantic compositionality over a sentiment
+  treebank.
+\newblock In \emph{Proceedings of the conference on empirical methods in
+  natural language processing (EMNLP)}, volume 1631, page 1642. Citeseer, 2013.
+
+\bibitem[Yessenalina and Cardie(2011)]{yessenalina2011compositional}
+A.~Yessenalina and C.~Cardie.
+\newblock Compositional matrix-space models for sentiment analysis.
+\newblock In \emph{Proceedings of the Conference on Empirical Methods in
+  Natural Language Processing}, pages 172--182. Association for Computational
+  Linguistics, 2011.
+
+\bibitem[Zanzotto et~al.(2010)Zanzotto, Korkontzelos, Fallucchi, and
+  Manandhar]{zanzotto2010estimating}
+F.~M. Zanzotto, I.~Korkontzelos, F.~Fallucchi, and S.~Manandhar.
+\newblock Estimating linear models for compositional distributional semantics.
+\newblock In \emph{Proceedings of the 23rd International Conference on
+  Computational Linguistics}, pages 1263--1271. Association for Computational
+  Linguistics, 2010.
 
 \end{thebibliography}
