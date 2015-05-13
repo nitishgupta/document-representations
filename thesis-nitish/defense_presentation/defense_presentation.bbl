@@ -1,16 +1,29 @@
-\begin{thebibliography}{8}
+\begin{thebibliography}{14}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Bengio et~al.(2003)Bengio, Ducharme, Vincent, and
+\bibitem[Bengio and Senecal(2008)]{bengio2008adaptive}
+Y.~Bengio and J.-S. Senecal.
+\newblock Adaptive importance sampling to accelerate training of a neural
+  probabilistic language model.
+\newblock \emph{Neural Networks, IEEE Transactions on}, 19\penalty0
+  (4):\penalty0 713--722, 2008.
+
+\bibitem[Bengio et~al.(2003{\natexlab{a}})Bengio, Ducharme, Vincent, and
   Janvin]{bengio2003neural}
 Y.~Bengio, R.~Ducharme, P.~Vincent, and C.~Janvin.
 \newblock A neural probabilistic language model.
 \newblock \emph{The Journal of Machine Learning Research}, 3:\penalty0
-  1137--1155, 2003.
+  1137--1155, 2003{\natexlab{a}}.
+
+\bibitem[Bengio et~al.(2003{\natexlab{b}})Bengio, Sen{\'e}cal,
+  et~al.]{bengio2003quick}
+Y.~Bengio, J.-S. Sen{\'e}cal, et~al.
+\newblock Quick training of probabilistic neural nets by importance sampling.
+\newblock In \emph{AISTATS Conference}, 2003{\natexlab{b}}.
 
 \bibitem[Grefenstette et~al.(2013)Grefenstette, Dinu, Zhang, Sadrzadeh, and
   Baroni]{grefenstette2013multi}
@@ -18,6 +31,13 @@ E.~Grefenstette, G.~Dinu, Y.-Z. Zhang, M.~Sadrzadeh, and M.~Baroni.
 \newblock Multi-step regression learning for compositional distributional
   semantics.
 \newblock \emph{arXiv preprint arXiv:1301.6939}, 2013.
+
+\bibitem[Gutmann and Hyv{\"a}rinen(2012)]{gutmann2012noise}
+M.~U. Gutmann and A.~Hyv{\"a}rinen.
+\newblock Noise-contrastive estimation of unnormalized statistical models, with
+  applications to natural image statistics.
+\newblock \emph{The Journal of Machine Learning Research}, 13\penalty0
+  (1):\penalty0 307--361, 2012.
 
 \bibitem[Mikolov et~al.(2013{\natexlab{a}})Mikolov, Chen, Corrado, and
   Dean]{mikolov2013efficient}
@@ -37,6 +57,25 @@ T.~Mikolov, I.~Sutskever, K.~Chen, G.~S. Corrado, and J.~Dean.
 J.~Mitchell and M.~Lapata.
 \newblock Composition in distributional models of semantics.
 \newblock \emph{Cognitive science}, 34\penalty0 (8):\penalty0 1388--1429, 2010.
+
+\bibitem[Mnih and Kavukcuoglu(2013)]{mnih2013learning}
+A.~Mnih and K.~Kavukcuoglu.
+\newblock Learning word embeddings efficiently with noise-contrastive
+  estimation.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pages
+  2265--2273, 2013.
+
+\bibitem[Mnih and Teh(2012)]{mnih2012fast}
+A.~Mnih and Y.~W. Teh.
+\newblock A fast and simple algorithm for training neural probabilistic
+  language models.
+\newblock \emph{arXiv preprint arXiv:1206.6426}, 2012.
+
+\bibitem[Morin and Bengio(2005)]{morin2005hierarchical}
+F.~Morin and Y.~Bengio.
+\newblock Hierarchical probabilistic neural network language model.
+\newblock In \emph{Proceedings of the international workshop on artificial
+  intelligence and statistics}, pages 246--252. Citeseer, 2005.
 
 \bibitem[Socher et~al.(2013)Socher, Perelygin, Wu, Chuang, Manning, Ng, and
   Potts]{socher2013recursive}

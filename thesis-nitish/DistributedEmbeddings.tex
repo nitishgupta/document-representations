@@ -204,7 +204,7 @@ We also (unsuccessfully) experimented by taking matrix weights instead of scalar
 The projection layer representation is computed using,
 \begin{equation}
 \label{eq:hidden_vec}
-h_{c} = \vecdi{i} + \wgt{t-c}\vecwi{t-c} + \ldots + \wgt{t-1}\vecwi{t-1} + \wgt{t+1}\vecwi{t+1} + \ldots + \wgt{t+c}\vecwi{t+c}
+h_{c} = \vecdi{d_{i}} + \wgt{t-c}\vecwi{w_{t-c}} + \ldots + \wgt{t-1}\vecwi{w_{t-1}} + \wgt{t+1}\vecwi{w_{t+1}} + \ldots + \wgt{t+c}\vecwi{w_{t+c}}
 \end{equation}
 
 %\textbf{Probability Prediction} : 
@@ -220,7 +220,7 @@ where $\sigma(z) = \frac{1}{1+e^{-z}}$ is the standard sigmoid function.
 \item After calculating the score for each word in the vocabulary, we use the \emph{softmax} classifier to estimate the probability of predicting the actual correct word $w_{t}$ as the middle word in the sequence,
 \begin{equation}
 \label{eq:soft_prob}
-p(w_{t} | d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c}) = \frac{e^{s_{w_{t}}}}{\sum_{i \in \setW} e^{s_{i}}}
+p(w_{t} | d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c}) = \frac{e^{s_{w_{t}}}}{\sum_{i \in \setW} e^{s_{w_{i}}}}
 \end{equation}
 \end{enumerate}
 

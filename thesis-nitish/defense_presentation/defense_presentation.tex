@@ -25,9 +25,9 @@
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 \newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:} #1}}
-\newcommand{\setD}{\ensuremath{\mathbf{D}} }
-\newcommand{\setW}{\ensuremath{\mathbf{V}} }
-\newcommand{\setC}{\ensuremath{\mathbf{C}} }
+\newcommand{\setD}{\ensuremath{D} }
+\newcommand{\setW}{\ensuremath{V} }
+\newcommand{\setC}{\ensuremath{C} }
 \newcommand{\matD}{\ensuremath{\mathrm{D}} }
 \newcommand{\matW}{\ensuremath{\mathrm{W}} }
 \newcommand{\matC}{\ensuremath{\mathrm{C}} }
@@ -427,36 +427,109 @@ Document Representations that encode semantic content of the document should be 
 Our model, }
 \begin{enumerate}
 	\vfill\item<4-> Learns distributed representations for document (and words) that encode the different semantic content in the documents
-	\vfill\item<5-> Embeds document and words in the same $k$-dimensional space such that semantically similar entities have similar vector representations
+	\vfill\item<5-> Embeds documents and words in the same $k$-dimensional space such that semantically similar entities have similar vector representations
 \end{enumerate}
-
-%\begin{}
 
 \end{frame}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{frame}{Our Model for Learning Document Representations}
+% \vfill\onslide<1->{
+% We present an unsupervised neural network model that, }
+% \begin{enumerate}
+% 	\vfill\item<1-> Represents each document and word with a $k$-dimensional vector
+% 	\vfill\item<2-> Estimates the probability of predicting the middle word in a given word sequence
+% 	\vfill\item<3-> Learns document and word vectors and the parameters of the probability function using training corpus
+% \end{enumerate}	
+\vfill\onslide<1->{
+We present an unsupervised neural network model that, }
+\begin{enumerate}
+	\vfill\item<2-> Represents each document $d_{i} \in D$ by a vector $\vecdi{i} \in \mathbb{R}^{k}$\\
+	Vectors are stored as columns of the matrix $\matD = \left[\vecdi{1}, \ldots, \vecdi{|\setD|}\right] \in \mathbb{R}^{k \times |\setD|}$
+	\vfill\item<3-> Each word $w_{i} \in W$, is represented by a vector $\vecwi{i} \in \mathbb{R}^{k}$
+	Vectors are stored as columns of the matrix $\matW = \left[\vecwi{1}, \ldots, \vecwi{|\setW|}\right] \in \mathbb{R}^{k \times |\setW|}$
+	\vfill\item<4-> Given a sequence of words, $(w_{t-c}, \ldots, w_{t+c})$ in document $d_{i}$, estimates 
+	\begin{equation*}
+	p(w_{t} | d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c})
+	\end{equation*}
+	\vfill\item<5-> Maximizes the probability of predicting the words correctly to learn $\matD$ and $\matW$ and the parameters of the probability function
+\end{enumerate}	
+\end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Our Model for Learning Document Representations}
+\vfill
+\begingroup
+\centering
+\tikzset{every picture/.style={scale=0.4}}
+\input{../figs/nn_arch}%
+\endgroup
+\footnotesize{
+	\vfill
+	\onslide<2->{
+		\textbf{Context Representation} : 
+		\begin{equation}
+		h_{c} = \vecdi{d_{i}} + \wgt{t-c}\vecwi{w_{t-c}} + \ldots + \wgt{t-1}\vecwi{w_{t-1}} + \wgt{t+1}\vecwi{w_{t+1}} + \ldots + \wgt{t+c}\vecwi{w_{t+c}}
+		\end{equation}
+		\vfill
+	} \onslide<3->{
+		\textbf{Probability Estimation} : 
+		\begin{equation}
+		s_{w_{i}} = \sigma(\vecwi{w_{i}}\cdot h_{c}) \text{,} \quad  \sigma(x) = \frac{1}{1 + e^{-x}}
+		\end{equation}
+		\begin{equation}
+		p(w_{t} | d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c}) = \frac{e^{s_{w_{t}}}}{\sum_{i \in \setW} e^{s_{w_{i}}}}
+		\end{equation}
+	}
+\vfill
+}
+\end{frame}
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Training Objective}
+\vfill
+\begin{enumerate}
+	\vfill\item<1-> Training data $\traindata$ = $\{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}\}^{m=M}_{m=1}$
+	\vfill\item<2-> Learn optimum parameter set $\Theta = (\matD, \matW, \Lambda)$, i.e. document and word vectors and the neural network weights $\Lambda$ 
+	\vfill\item<3-> Maximize average log-probability of predicting $w_{t}$ correctly in each sequence in $\traindata$
+					\begin{equation}
+						\hat{\Theta} =  \argmax_{\Theta}~l(\traindata, \Theta)
+					\end{equation}
+					\begin{equation}
+						l(\traindata, \Theta) = \frac{1}{M}\sum_{m=1}^{M} \log \left[p(w^{(m)}_{t} | d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t-1}, w^{(m)}_{t+1}, \ldots, w^{(m)}_{t+c})\right]
+					\end{equation}
+	\vfill\item<4-> Use Stochastic Gradient Descent (SGD) to update parameters
+					\begin{equation}
+						\theta^{(x)}_{i} = \theta^{(x-1)}_{i} + \gamma\frac{\partial l(\traindata, \Theta)}{\partial \theta_{i}}
+					\end{equation}
+\end{enumerate}
+	
+
+\end{frame}
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Noise Contrastive Estimation}
+\vfill
+\begin{enumerate}
+	\vfill\item<1-> Computing soft-max for each training sequence is expensive, $\mathcal{O}$($\setW$)
+	\vfill\item<2-> Speed-ups in softmax computation can be attained using Hierarchical soft-max \citep{morin2005hierarchical} and importance sampling to approximate the likelihood gradient \citep{bengio2003quick, bengio2008adaptive}
+	\begin{itemize}
+		\vfill\item<3-> Finding well-performing trees in Hierarchical soft-max is not trivial
+		\vfill\item<4-> Importance sampling suffers from stability issues
+	\end{itemize}
+	\vfill\item<4-> \textbf{Noise Contrastive Estimation} (NCE) \citep{gutmann2012noise} fits unnormalized probabilities
+	\begin{itemize}
+		\vfill\item<5-> Reduces the problem of \emph{probability density estimation} to \emph{probabilistic binary classification}
+		\vfill\item<6-> Adaptation to NPLM \citep{mnih2012fast} and learning word embeddings \citep{mnih2013learning} show significant training time speed-ups
+	\end{itemize}
+\end{enumerate}
+\end{frame}
 
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{Conclusions}
-% \begin{itemize}
-% \vfill\item The efficient method for modeling the pinna spectral notches over the median plane is discussed.
-% \vfill\item The HRIR over the median plane are simulated by Fourier Bessel Series and reconstructed in a way that only highlights the pinna effect.
-% \vfill\item The pinna spectral notches extracted from reconstructed HRTF are very smooth and accurate even at lower elevation angles as compared to those extracted from measured HRTF.
-% \vfill\item The dimensions corresponding to pinna spectral notch frequencies when overlaid on ear contour show the high degree of resemblance to the actual pinna walls, when reconstructed HRTF are employed for the extraction of pinna spectral notches.
-% \vfill\item Individual pinna spectral notches have been suggested for elevation angle perception to incorporate in HRTF when rendering the 3D audio. 
-% \end{itemize}
-% \end{frame}
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{Future Scope}
-% \begin{itemize}
-% \vfill\item Althought the relationship between ear morphology and pinna spectral notch frequencies has been established. Yet their is open issues regarding the depth and bandwidth of these notches.
-% \vfill\item A strong pshchoacoustics argument need to be developed that relates the pinna anthropometry and depth and bandwidth of notch frequencies.
-% \vfill\item The structural model of pinna has to be developed for the personalisatioon of HRTF according to individual ear shapes.
-% \vfill\item It has been found that pinna spectral notches are perceptually very important for elevation angle. However, the pinna resonances are also significant in terms of perception.
-% \end{itemize}
-% \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{References}
     %{\footnotesize
     \bibliographystyle{abbrvnat}
