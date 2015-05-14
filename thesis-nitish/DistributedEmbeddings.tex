@@ -220,7 +220,7 @@ where $\sigma(z) = \frac{1}{1+e^{-z}}$ is the standard sigmoid function.
 \item After calculating the score for each word in the vocabulary, we use the \emph{softmax} classifier to estimate the probability of predicting the actual correct word $w_{t}$ as the middle word in the sequence,
 \begin{equation}
 \label{eq:soft_prob}
-p(w_{t} | d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c}) = \frac{e^{s_{w_{t}}}}{\sum_{i \in \setW} e^{s_{w_{i}}}}
+p(w_{t} | d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c}) = \frac{e^{s_{w_{t}}}}{\sum_{i \in \setW} e^{s_{w_{t}}}}
 \end{equation}
 \end{enumerate}
 
@@ -372,7 +372,7 @@ The update rules for the different parameters are given below.
 Update rule for the Document Vector,
 \begin{equation}
 \label{eq:update_doc}
-(\vecdi{d^{(m)}_{i}})^{(i+1)} = (\vecdi{d^{(m)}_{i}})^{(i)} + \gamma \left[ (Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c} )\vecwi{w^{(m)}_{t}} - \beta\vecdi{d^{(m)}_{i}} \right]
+(\vecdi{d^{(m)}_{i}})^{(i+1)} = (\vecdi{d^{(m)}_{i}})^{(i)} + \gamma \left[ (Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c}) )\vecwi{w^{(m)}_{t}} - \beta\vecdi{d^{(m)}_{i}} \right]
 \end{equation}
 \item 
 %\textbf{Middle Word Vector} : 

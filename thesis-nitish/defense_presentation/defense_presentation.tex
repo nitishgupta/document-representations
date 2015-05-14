@@ -19,7 +19,9 @@
 \usepackage{caption}
 \usepackage{tikz}
 \usepackage{mdwlist}
-\usepackage{algorithm,algorithmic,amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
 
 
 
@@ -41,6 +43,13 @@
 \newcommand{\para}[1]{\noindent\textbf{%\fontsize{14}{15}\selectfont 
 #1}} %{\paragraph{#1}}
 \newcommand{\highest}[1]{\textbf{#1}}
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
 
 \usetheme{Madrid}
 %\usetheme{umbc1}
@@ -514,19 +523,336 @@ We present an unsupervised neural network model that, }
 \begin{frame}{Noise Contrastive Estimation}
 \vfill
 \begin{enumerate}
-	\vfill\item<1-> Computing soft-max for each training sequence is expensive, $\mathcal{O}$($\setW$)
-	\vfill\item<2-> Speed-ups in softmax computation can be attained using Hierarchical soft-max \citep{morin2005hierarchical} and importance sampling to approximate the likelihood gradient \citep{bengio2003quick, bengio2008adaptive}
+	\vfill\item<1-> Soft-max computation is expensive, $\mathcal{O}$($\setW$)
+	\vfill\item<2-> Speed-ups using \textbf{Hierarchical soft-max} \citep{morin2005hierarchical} and \textbf{Importance sampling} to approximate the likelihood gradient \citep{bengio2003quick, bengio2008adaptive}
 	\begin{itemize}
 		\vfill\item<3-> Finding well-performing trees in Hierarchical soft-max is not trivial
 		\vfill\item<4-> Importance sampling suffers from stability issues
 	\end{itemize}
-	\vfill\item<4-> \textbf{Noise Contrastive Estimation} (NCE) \citep{gutmann2012noise} fits unnormalized probabilities
+	\vfill\item<5-> \textbf{Noise Contrastive Estimation} (NCE) \citep{gutmann2012noise} fits unnormalized probabilities
 	\begin{itemize}
-		\vfill\item<5-> Reduces the problem of \emph{probability density estimation} to \emph{probabilistic binary classification}
-		\vfill\item<6-> Adaptation to NPLM \citep{mnih2012fast} and learning word embeddings \citep{mnih2013learning} show significant training time speed-ups
+		\vfill\item<6-> Reduces the problem of \emph{probability density estimation} to \emph{probabilistic binary classification}
+		\vfill\item<7-> Adaptation to NPLM \citep{mnih2012fast} and learning word embeddings \citep{mnih2013learning} show significant training time speed-ups
 	\end{itemize}
 \end{enumerate}
 \end{frame}
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Noise Contrastive Estimation (contd.)}
+\vfill
+\begin{enumerate}
+	\vfill\item<1-> Given a sequence of words $(w_{t-c}, \ldots, w_{t+c})$ in document $d_{i}$
+	\begin{itemize}
+		\vfill\item<2-> \emph{Earlier objective} : Maximize $p(w_{t} | d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c})$	
+		\vfill\item<3-> \emph{New objective}	 : Build binary classifier to distinguish between correct middle word $w_{t}$ and random corrupt word 	
+	\end{itemize}
+\end{enumerate}
+\vfill \onslide<4->{
+\textbf{For NCE Binary Classification Objective : }
+}
+\begin{enumerate}
+	\vfill\item<5-> New labeled training data : $\traindata$ = $\{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}, Y^{(m)}=1\}^{m=M}_{m=1}$
+	\vfill\item<6-> For every positive training sequence, $n$ negative training sequences introduced where,
+	\begin{itemize}
+		\vfill\item<7-> The observed middle word $w_{t}$ is replaced by a corrupt word $w_{x}$ drawn from a noise distribution $P_{n}(w)$
+		\vfill\item<8-> The label for the negative sequence is $Y = 0$
+	\end{itemize}
+	\vfill\item<9-> Complete training data : $\traindata$ = $\{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}, Y^{(m)}\}^{m=M+nM}_{m=1}$
+\end{enumerate}
+
+\end{frame}
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Noise Contrastive Estimation (contd.)}
+\vfill
+\vfill\onslide<1-> {
+ 	Given a sequence of words $(w_{t-c}, \ldots, w_{t+c})$ in document $d_{i}$, our new objective is to predict whether the sequence is legitimate
+}
+\begin{itemize}
+	\vfill\item<2-> We build a probabilistic binary classifier to predict the label $Y$
+	\vfill\onslide<3-> { \begin{equation}
+	P(Y=1|d_{i}, w_{t-c}, \ldots, w_{t+c}, \Theta) = \sigma(\vecwi{w_{t}} \cdot h_{c})
+	\end{equation} }
+	\vfill\onslide<4-> { \begin{equation}
+	P(Y=0|d_{i}, w_{t-c}, \ldots, w_{t+c}, \Theta) = 1 - \sigma(\vecwi{w_{t}} \cdot h_{c})
+	\end{equation} }
+	\vfill\onslide<5-> { \begin{equation}
+	P(Y|d_{i}, w_{t-c}, \ldots, w_{t+c}, \Theta) = [\sigma(\vecwi{w_{t}} \cdot h_{c})]^{Y}[1 - \sigma(\vecwi{w_{t}} \cdot h_{c})]^{1-Y}
+	\end{equation} }
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Learning Objective with NCE}
+\vfill
+\vfill\onslide<1-> {
+ 	Given the training data $\traindata$ = $\{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}, Y^{(m)}\}^{m=M+nM}_{m=1}$, we maximize the log-likelihood of observing it
+}
+\vfill\onslide<2-> { \begin{equation}
+ 	\hat{\Theta} =  \argmax_{\Theta}~l(\traindata, \Theta)
+ 	\end{equation}
+ 	\begin{equation}
+ 	l(\traindata, \Theta) = \sum_{m=1}^{M + nM} \log P_{\Theta}(Y_{m} = Y^{(m)})
+ 	\end{equation}
+ 	\blfootnote{$P_{\Theta}(Y_{m})$ is a shorthand notation for $P(Y_{m}|d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}, \Theta)$ }
+ 	\blfootnote{$Y_{m}$ is the predicted label}
+}
+\vfill\onslide<3-> {
+The logarithm of the probability estimate is given by,
+\footnotesize{
+\begin{equation}
+\log P_{\Theta}(Y_{m} = Y^{(m)}) = Y^{(m)}\log \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c}) + (1 - Y^{(m)})\log (1 - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c}))
+\end{equation} } }
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Parameter Estimation}
+
+\vfill\onslide<1-> {
+ 	We use SGD to learn parameters i.e. document and word vectors and the neural network weights
+ 	\begin{equation}
+		\theta^{(x)}_{i} = \theta^{(x-1)}_{i} + \gamma\frac{\partial l(\traindata, \Theta)}{\partial \theta_{i}}
+	\end{equation}
+}
+\vfill\onslide<2-> { Gradient of $\log P_{\Theta}(Y_{m} = Y^{(m)})$ with respect to parameter $\theta$, }
+\vfill\onslide<3-> { \scriptsize{	\begin{equation}
+		\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \theta} = \left[ Y^{(m)}\frac{1}{\sigma(d^{(m)})} - (1-Y^{(m)})\frac{1}{(1 - \sigma(d^{(m)}))}\right] \frac{\partial \sigma(d^{(m)})}{\partial \theta} 
+\end{equation} } }
+\vfill\onslide<4-> { \scriptsize{	\begin{equation}
+		\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \theta} = \left[ Y^{(m)}\frac{1}{ \sigma(d^{(m)})} - (1 - Y^{(m)})\frac{1}{(1 - \sigma(d^{(m)}))}\right]
+		\left[\sigma(d^{(m)})(1-\sigma(d^{(m)}))\right]\frac{\partial d^{(m)}}{\partial \theta}
+\end{equation} } }
+\vfill\onslide<5-> { \scriptsize{	\begin{equation}
+		\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \theta} = \left[ Y^{(m)} - \sigma(d^{(m)})\right] \frac{\partial d^{(m)}}{\partial \theta}
+\end{equation} } }
+\vfill\onslide<6-> { \scriptsize{	\begin{equation}
+		\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \theta} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right] \frac{\partial (\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})}{\partial \theta}
+\end{equation} } }
+
+\blfootnote{\tiny{$d= \mathrm{v}^{W}_{w_{t}} \cdot h_{c}$, is the pre-sigmoid activation } }
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Parameter Estimation}
+
+% \vfill\onslide<1-> { Gradient of the likelihood w.r.t. various parameters, }
+
+% \begin{enumerate}
+% 	\vfill\item<2-> Document Vector : 
+% 		\scriptsize{ \begin{equation}
+% 				\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \vecdi{d^{(m)}_{i}}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right] \vecwi{w^{(m)}_{t}}
+% 		\end{equation} }
+% 	\vfill\item<3-> Middle Word Vector : 	
+% 		\scriptsize{ \begin{equation}
+% 			\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \vecwi{w^{(m)}_{t}}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right] h^{(m)}_{c}
+% 		\end{equation} }
+% 	\vfill\item<4-> Context Word Vectors : 		
+% 		\scriptsize{	\begin{equation}
+% 			\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \vecwi{w^{(m)}_{t+j}}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right] \wgt{t+j} \vecwi{w^{(m)}_{t}}
+% 		\end{equation} }
+% 	\vfill\item<5-> Neural Network Weights : 		
+% 		\scriptsize{	\begin{equation}
+% 			\frac{\partial \log P_{\Theta}(Y_{m}=Y^{(m)})} {\partial \wgt{t+j}} = \left[ Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})\right] (\vecwi{w^{(m)}_{t}} \cdot \vecwi{w^{(m)}_{t+j}})
+% 		\end{equation} }
+% \end{enumerate}
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Update rule for Parameters}
+
+\begin{enumerate}
+	\vfill\item<1-> Document Vector : 
+		\scriptsize{ \begin{equation}
+				(\vecdi{d^{(m)}_{i}})^{(i+1)} = (\vecdi{d^{(m)}_{i}})^{(i)} + \gamma \left[ (Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c}) )\vecwi{w^{(m)}_{t}} - \beta\vecdi{d^{(m)}_{i}} \right]
+		\end{equation} }
+	\vfill\item<2-> Middle Word Vector : 	
+		\scriptsize{ \begin{equation}
+			(\vecwi{w^{(m)}_{t}})^{(i+1)} = (\vecwi{w^{(m)}_{t}})^{(i)} + \gamma \left[ (Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c})) h^{(m)}_{c} - \beta\vecwi{w^{(m)}_{t}} \right]
+		\end{equation} }
+	\vfill\item<3-> Context Word Vectors : 		
+		\scriptsize{	\begin{equation}
+			(\vecwi{w^{(m)}_{t+j}})^{(i+1)} = (\vecwi{w^{(m)}_{t+j}})^{(i)} + \gamma \left[(Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c}))\wgt{t+j} \vecwi{w^{(m)}_{t}} - \beta\vecwi{w^{(m)}_{t+j}} \right]
+		\end{equation} }
+	\vfill\item<4-> Neural Network Weights : 		
+		\scriptsize{	\begin{equation}
+			\wgt{t+j}^{(i+1)} = \wgt{t+j}^{(i)} + \gamma \left[ (Y^{(m)} - \sigma(\vecwi{w^{(m)}_{t}} \cdot h^{(m)}_{c}))(\vecwi{w^{(m)}_{t}} \cdot \vecwi{w^{(m)}_{t+j}}) -\beta\wgt{t+j} \right]
+		\end{equation} }
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Algorithm for learning Document Representations}
+\begin{algorithm}[H]
+\begin{algorithmic}[1]
+\footnotesize{
+ \onslide<1->{
+ \State \textbf{Input: } $\setD$, $k$, $c$, $n$, $\beta$, $\gamma$, $epochs$
+ \State \textbf{Output: } Document Vectors $\matD$, Word Vectors $\matW$ 
+ } \onslide<2->{
+ \State $\setW \gets Extractfrom(\setD)$ 
+ \State $\matD \gets random(\mathbb{R}^{k \times |\setD|})$
+ \State $\matW \gets random(\mathbb{R}^{k \times |\setW|})$ 
+ \State $\traindata \gets Extract from (\setD, c, n)$ \Comment{$|\traindata| = M + nM$}
+ \State $\Lambda \gets \mathbf{1}^{2c}$ \Comment{$2c$-sized vector of 1s} 
+ } \onslide<3->{
+ \While{$epochs \geq 1$}
+ \ForAll{$\{d_{i}, w_{t-c}, \ldots, w_{t+c}, Y\} \in \traindata$}
+  \State $h_{c} \gets \vecdi{d_{i}} + \wgt{t-c}\vecwi{w_{t-c}} + \ldots + \wgt{t+c}\vecwi{w_{t+c}}$ 
+  } \onslide<4->{
+  \State $\vecdi{d_{i}} \gets \vecdi{d_{i}} + \gamma \left[ (Y - \sigma(\vecwi{w_{t}} \cdot h_{c}))\vecwi{w_{t}} - \beta\vecdi{d_{i}} \right]$
+  } \onslide<5->{
+  \State $\vecwi{w_{t}} \gets \vecwi{w_{t}} + \gamma \left[ (Y - \sigma(\vecwi{w_{t}} \cdot h_{c})) h_{c} - \beta\vecwi{w_{t}} \right]$
+  } \onslide<6->{
+  \ForAll{ $j$ $\in$ $\{t-c, \ldots, t-1, t+1, \ldots, t+c \}$} 
+	\State $\vecwi{w_{t+j}} \gets \vecwi{w_{t+j}} + \gamma \left[(Y - \sigma(\vecwi{w_{t}} \cdot h_{c}))\wgt{t+j} \vecwi{w_{t}} - \beta\vecwi{w_{t+j}} \right]$
+	} \onslide<7->{
+  	\State $\wgt{t+j} \gets \wgt{t+j} + \gamma \left[ (Y - \sigma(\vecwi{w_{t}} \cdot h_{c}))(\vecwi{w_{t}} \cdot \vecwi{w_{t+j}}) -\beta\wgt{t+j} \right]$
+  \EndFor 
+  } \onslide<8->{
+  \State $epochs \gets epochs - 1$
+  %compute(\vecdi{d_{i}}, \vecwi{w_{t-c}}, \ldots, \vecwi{w_{t-1}}, \vecwi{w_{t+1}}, \vecwi{w_{t+c}})$
+ \EndFor 
+ \EndWhile
+ \\
+  \Return $\matD, \matW$
+ }
+ }
+\end{algorithmic}
+\end{algorithm}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Hyper-parameters of the Model}
+
+\begin{enumerate}
+	\vfill\item<1-> Embedding Dimensionality ($k$)
+	\vfill\item<2-> Window  Size ($c$)
+	\vfill\item<3-> Number of Negative Samples ($n$)
+	\vfill\item<4-> Number of Epochs ($epochs$)
+	\vfill\item<5-> Learning Rate ($\gamma$)
+	\vfill\item<6-> Regularization Constant ($\beta$)
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Document Categorization using Logistic Regression}
+Given,
+\begin{enumerate}
+	\vfill\item<1-> Set of documents, $\setD = \{d_{1}, \ldots, d_{|\setD|}\}$
+	\vfill\item<2-> Set of categories, $\setC = \{c_{1}, \ldots, c_{|\setC|}\}$
+	\vfill\item<3-> Training Data, $\traindata = \{ d^{(m)}_{i}, c^{(m)}_{j}, y^{(m)}\}^{m=T}_{m=1}$, $y^{(m)} \in \{0,1\}$
+\end{enumerate}
+
+\vfill\onslide<4->{ 
+The task is to assign categories to a new document $d_{x}$ \\To model document category relation, we }
+
+\begin{enumerate}
+	\vfill\item<5-> Represent each $c_{i} \in \setC$ using $\vecci{c_{i}} \in \mathbb{R}^{k}$
+	\vfill\item<6-> Learn a probabilistic logistic classifier to assign categories
+	% \vfill\item<7-> Probability of  $c_{j}$ relevant to $d_{i}$ is estimated using
+	% \begin{equation}
+	% P(y=1|d_{i}, c_{j}, \matD, \matC) = \sigma(\vecdi{d_{i}}\cdot \vecci{c_{j}})
+	% \end{equation}
+\end{enumerate}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Logistic Classifier for Categorization}
+\vfill
+\vfill\onslide<1-> {
+ 	Given document category pair, $\{d_{i}, c_{j}\}$,
+}
+\begin{itemize}
+	\vfill\item<2-> We build a probabilistic logistic classifier to predict the label $y$
+	\vfill\onslide<3-> { \begin{equation}
+	P(y=1|d_{i}, c_{j}, \matD, \matC) = \sigma(\vecdi{d_{i}}\cdot \vecci{c_{j}})
+	\end{equation} }
+	\vfill\onslide<4-> { \begin{equation}
+	P(y=0|d_{i}, c_{j}, \matD, \matC) = 1 - \sigma(\vecdi{d_{i}}\cdot \vecci{c_{j}})
+	\end{equation} }
+	\vfill\onslide<5-> { \begin{equation}
+	P(y|d_{i}, c_{j}, \matD, \matC) = \sigma(\vecdi{d_{i}}\cdot \vecci{c_{j}})^{y}(1 - \sigma(\vecdi{d_{i}}\cdot \vecci{c_{j}}))^{1-y}
+	\end{equation} }
+	\vfill\onslide<6-> { \begin{equation}
+	\log P(y|d_{i}, c_{j}, \matD, \matC) = y\log \sigma(\vecdi{d_{i}}\cdot \vecci{c_{j}}) + (1 - y)\log (1 - \sigma(\vecdi{d_{i}}\cdot \vecci{c_{j}}))
+	\end{equation} }
+\end{itemize}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Learning Category Embeddings}
+\vfill
+\vfill\onslide<1-> {
+ 	Given the training data $\traindata = \{ d^{(m)}_{i}, c^{(m)}_{j}, y^{(m)}\}^{m=T}_{m=1}$, learn category embeddings ($\Theta = \setC$) by maximizing log-likelihood of training data
+}
+\vfill\onslide<2-> { \begin{equation}
+ 	\hat{\Theta} =  \argmax_{\Theta}~l(\traindata, \Theta)
+ 	\end{equation}
+ 	\begin{equation}
+ 	l(\traindata, \Theta) = \sum_{m=1}^{T} \log P_{\matD, \matC}(y_{m} = y^{(m)})
+ 	\end{equation}
+ 	\blfootnote{$P_{\matD, \matC}(y_{m} = y^{(m)})$ is a shorthand notation for $P(y_{m} = y^{(m)}|d_{i}, c_{j}, \matD, \matC)$ }
+ 	\blfootnote{$y_{m}$ is the predicted label}
+}
+\vfill\onslide<3-> {
+Similar to learning document embeddings, category embeddings updates are given by,
+\footnotesize{
+\begin{equation}
+(\vecci{c^{(m)}_{j}})^{(i+1)} = (\vecci{c^{(m)}_{j}})^{(i)} + \gamma \left[ ( y^{(m)} - \sigma(\vecdi{d^{(m)}_{i}}\cdot (\vecci{c^{(m)}_{j}})^{(i)}) \vecdi{d^{(m)}_{i}} -\beta(\vecci{c^{(m)}_{j}})^{(i)} \right]
+\end{equation} } }
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Algorithm for learning Document Representations}
+\begin{algorithm}[H]
+\begin{algorithmic}[1]
+ \State \textbf{Input: } $\matD$, $\setC$, $\traindata$, $k$, $\beta$, $\gamma$
+ \State \textbf{Output: } Category Vectors $\matC$
+ \State $\matC \gets random(\mathbb{R}^{k \times |\setC|})$
+ \While{not converged}
+ \ForAll{$\{ d_{i}, c_{j}, y\} \in \traindata$}
+  \State $\vecci{c_{j}} \gets \vecci{c_{j}} + \gamma \left[ ( y - \sigma(\vecdi{d_{i}}\cdot \vecci{c_{j}})) \vecdi{d_{i}} -\beta\vecci{c_{j}} \right]$
+ \EndFor 
+ \EndWhile
+ \\
+ \Return $\matC$
+\end{algorithmic}
+\caption{Learning Category Vector Representations}
+\label{alg:cat_embeddings}
+\end{algorithm}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Advantages of Multinomial Logistic Regression Algorithm }
+
+\begin{enumerate}
+	\vfill\item<1-> Learns embeddings for categories in the same space as words and documents
+	\vfill\item<2-> Though learns multiple category vectors, exploits the low-rank structure
+	\vfill\item<3-> Easy incorporation of additional relational data of documents for better categorization as shown in \citet{gupta2015collectively}
+	\vfill\item<4-> Usage of SGD makes algorithm completely online
+\end{enumerate}
+\end{frame}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
