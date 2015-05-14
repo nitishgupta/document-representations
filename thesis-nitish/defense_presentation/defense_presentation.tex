@@ -95,8 +95,8 @@
 	  \vfill\item Learning Algorithms
 	\end{itemize}  
 	\vfill\item Distributed Word Representations
-	\vfill\item Learning Distributed Document Represenations
-	\vfill\item Document Cateogorization Algorithm
+	\vfill\item Learning Distributed Document Representations
+	\vfill\item Document Categorization Algorithm
 	\vfill\item Results
 	\vfill\item Conclusion and Future Work
 \end{enumerate}
@@ -104,7 +104,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Intoduction to Multi-Label Document Categorization}
+\begin{frame}{Introduction to Multi-Label Document Categorization}
 \begin{itemize}
 	\vfill\item<1-> Text Documents usually belong to more than one conceptual class. \\For E.g. an article on Music Piracy 
 	\vfill\item<2-> Task of assigning documents to one or more predefined categories is called \emph{Multi-Label Document Categorization}
@@ -173,7 +173,7 @@ Using $\traindata$, $D$ and $C$ the learning algorithm learns a multi-label clas
 	\begin{itemize}
 	 	\vfill\item<3-> Each document $d_{i} \in D$ is represented using a vector $v_{d_{i}} \in \mathbb{R}^{k}$ \\
 	 	\vfill\item<4->	Vectors ($v_{d_{i}}$) should encode the semantic content of the documents 
-	 	\vfill\item<5-> Encoding documents in a $k$-dimensional space using such represenation is called the \emph{Vector Space Model}
+	 	\vfill\item<5-> Encoding documents in a $k$-dimensional space using such representation is called the \emph{Vector Space Model}
 	 	\vfill\item<6-> The complete document set $D$ can be represented by a document representation matrix $\matD \in \mathbb{R}^{k \times |D|}$
 	\end{itemize}
 \suspend{enumerate} \vfill
@@ -278,14 +278,14 @@ Techniques to deal with sparsity and high-dimensionality in BOW }
 \begin{frame}{Distributed Word Representations}
 %\vfill
 \onslide<1->{
-Representating each word $w_{i}$ using vector $v_{w_{i}} \in \mathbb{R}^{k}$ ($k \in [50, 300]$) } \\ \vspace{0.5cm}
+Representation of each word $w_{i}$ using vector $v_{w_{i}} \in \mathbb{R}^{k}$ ($k \in [50, 300]$) } \\ \vspace{0.5cm}
 \onslide<2->{
 \textbf{ Need for Distributed Word Representations} } 
 \begin{itemize}
 	\vfill\item<3-> Curse of Dimensionality
 	\begin{itemize}
 		\vfill\item<4-> One-hot representations grow with the size of vocabulary
-		\vfill\item<5-> Parameters in language modelling grow exponentially with the size of vocabulary
+		\vfill\item<5-> Parameters in language modeling grow exponentially with the size of vocabulary
 	\end{itemize}
 	\vfill\item<6-> No Word Similarity Measure
 	\begin{itemize}
@@ -815,7 +815,7 @@ The task is to assign categories to a new document $d_{x}$ \\To model document c
 Similar to learning document embeddings, category embeddings updates are given by,
 \footnotesize{
 \begin{equation}
-(\vecci{c^{(m)}_{j}})^{(i+1)} = (\vecci{c^{(m)}_{j}})^{(i)} + \gamma \left[ ( y^{(m)} - \sigma(\vecdi{d^{(m)}_{i}}\cdot (\vecci{c^{(m)}_{j}})^{(i)}) \vecdi{d^{(m)}_{i}} -\beta(\vecci{c^{(m)}_{j}})^{(i)} \right]
+(\vecci{c^{(m)}_{j}})^{(i+1)} = (\vecci{c^{(m)}_{j}})^{(i)} + \gamma \left[ ( y^{(m)} - \sigma(\vecdi{d^{(m)}_{i}}\cdot \vecci{c^{(m)}_{j}})) \vecdi{d^{(m)}_{i}} -\beta\vecci{c^{(m)}_{j}} \right]
 \end{equation} } }
 
 \end{frame}
@@ -846,18 +846,501 @@ Similar to learning document embeddings, category embeddings updates are given b
 \begin{frame}{Advantages of Multinomial Logistic Regression Algorithm }
 
 \begin{enumerate}
-	\vfill\item<1-> Learns embeddings for categories in the same space as words and documents
-	\vfill\item<2-> Though learns multiple category vectors, exploits the low-rank structure
-	\vfill\item<3-> Easy incorporation of additional relational data of documents for better categorization as shown in \citet{gupta2015collectively}
-	\vfill\item<4-> Usage of SGD makes algorithm completely online
+	\vfill\item<1-> Predicting relation between a document-category tuple is $\mathcal{O}(1)$
+	\vfill\item<2-> Learns embeddings for categories in the same space as words and documents
+	\vfill\item<3-> Though learns multiple category vectors, exploits the low-rank structure in the document-category relation
+	\vfill\item<4-> Easy incorporation of additional relational data of documents for more accurate categorization as shown in \citet{gupta2015collectively}
+	\vfill\item<5-> Usage of SGD makes algorithm completely online
 \end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Performance Evaluation : Datasets }
+
+\begin{enumerate}
+	\vfill\item<1-> \textbf{Reuters-21578} : Standard dataset for categorization evaluation
+	\vfill	\begin{table}[h!]
+	%\tabcolsep=0.05cm
+	\scriptsize
+	\begin{center}
+	\begin{tabular}{l c c c c c} % ccc ccc}
+	\toprule
+	& \textbf{$|\setD|$} & \textbf{$|\setC|$} & \textbf{$|\setW|$} & \textbf{Data Points} & \textbf{Sparsity}\\
+	\midrule
+	\textbf{Train Set}	& 7,767 & 90 & 39,853 & 9,585 & 0.0137 \\
+	\textbf{Test Set}	& 3,019 & 90 & 39,853 & 3,745 & 0.0138 \\
+	\bottomrule         
+	\end{tabular}
+	\end{center}
+	\end{table}
+	\vfill\item<2-> \textbf{Wikipedia Datasets} : Extracted for 4 top categories
+	\vfill \begin{table}[h!]
+	\scriptsize
+	\begin{center}
+	\begin{tabular}{l c c c c c} % ccc ccc}
+	\toprule
+	& \textbf{$|\setD|$} & \textbf{$|\setC|$} & \textbf{$|\setW|$} & \textbf{Data Points} & \textbf{Sparsity}\\
+	\midrule
+	\textbf{Physics}		& 4,229 & 2,999 & 81,614 & 14,070 & 0.0010 \\
+	\textbf{Biology}		& 1,604 & 2,051 & 63,767 & 5,908 & 0.0018 \\
+	\textbf{Sports}			& 1,529 & 2,829 & 59,058 & 3,745 & 0.0008 \\
+	\textbf{Mathematics}	& 1,193 & 1,519 & 43,398 & 3,916 & 0.0013 \\
+	\bottomrule         
+	\end{tabular}
+	\end{center}
+	\end{table}
+	\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Experimental Setup}
+\begin{enumerate}
+	\vfill\item<1-> \textbf{Evaluation Criteria} : Micro-averaged F1 score is used to evaluate performance. Micro-averaging considers all predictions equally across categories
+	\vfill\item<2-> Capitalization in words is preserved
+	\vfill\item<3-> Numbers are converted to `$\backslash num$'
+	\vfill\item<4-> Words occurring less than $5$ times ignored
+	\vfill\item<5-> Elements of document and word vectors are initialized by drawing uniformly from $[-\frac{1}{k}, \frac{1}{k}]$ 
+	\vfill\item<6-> Hyper-parameters are fixed using performance on the validation set
+	\vfill\item<7-> Noise Distribution for NCE is chosen as $P_{n}(w) \sim U(w)^{\frac{3}{4}}$
+\end{enumerate}
+\onslide<8->{
+	\emph{For document categorization evaluation, $80\%$ of the documents are used for training and the rest are equally divided for test and validation purposes}
+}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Baselines}
+\begin{enumerate}
+	\vfill\item<1-> \textbf{Bag-of-Words} : Most widely used representation with \emph{tf-idf} weighing
+	\vfill\item<2-> \textbf{Latent Semantic Indexing} : Most effective dimensionality reduction technique for text
+	\vfill\item<3-> \textbf{Word Vector Averaging} : Document representation by averaging word vectors with \emph{tf-idf} weighting
+	\vfill\item<4-> \textbf{Probabilistic Matrix Factorization} : Simple matrix factorization of the document-category relation matrix
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Document Categorization Performance Evaluation Reuters-21578 }
+\begin{columns}[T]
+	\hspace{5mm}
+	\begin{column}{.4\textwidth}
+		\begin{table}[h!]
+		\tabcolsep=0.1cm
+		\scriptsize
+		\begin{center}
+		\begin{tabular}{l@{\hskip8mm} c c@{\hskip4mm} c}
+		\toprule
+		% & \multicolumn{3}{c}{Reuters-21578}         \\
+		% \cmidrule(lr){2-4}
+		\textbf{Reuters-21578} & {P} & {R} & \textbf{F1} \\
+		\midrule
+		\textbf{BOW}
+		& 77.8   & 91.5  & 84.1 \\
+		\textbf{LSI-100}
+		& 84.8   & 96.7  & 90.4 \\
+		\textbf{WordVecAvg}
+		& 94.1   & 88.1  & 91.0 \\ \addlinespace[1mm]
+
+		\textbf{SVM (poly)} \cite{joachims1998text}
+		& -   & -  & 86.0 \\
+		\textbf{SVM (rbf)} \cite{joachims1998text}
+		& -   & -  & 86.4 \\ 
+		\textbf{CMLF (CRF)} \cite{ghamrawi2005collective}
+		& -   & -  & 87.0 \\
+		\textbf{Binary-MFoM} \cite{gao2004mfom}
+		& -   & -  & 88.4 \\ 
+		\textbf{MC-MFoM} \cite{gao2004mfom}
+		& -   & -  & 88.8 \\ 
+
+		\addlinespace[1mm]
+		\textbf{Our Model}
+		& \multirow{2}{*}{92.1}   & \multirow{2}{*}{86.1}  & \multirow{2}{*}{89.0} \\
+		(no weight) & & & \\ \addlinespace[1mm]
+		\textbf{Our Model}
+		& \multirow{2}{*}{94.1}   & \multirow{2}{*}{89.3}  & \multirow{2}{*}{\highest{91.7}} \\
+		(with weights) & & & \\
+		\bottomrule         
+		\end{tabular}
+		%\vskip -4mm
+		\caption*{\footnotesize Precision/Recall/F1 for Document Categorization on Reuters-21578 }
+		\end{center}
+		\end{table}
+	\end{column}
+	%\hspace{5mm}
+\onslide<2->{	
+	\begin{column}{.6\textwidth}
+	\begin{center}
+		\begin{figure}[tb]
+		\centering
+			\includegraphics[scale=0.45]{../figs/pr/reuter-cs-scala.pdf}
+		\end{figure}
+	\end{center}
+	\end{column}
+}	
+\end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Document Categorization Performance Evaluation \\ Physics - Wikipedia }
+\begin{columns}[T]
+	\hspace{5mm}
+	\begin{column}{.4\textwidth}
+		\begin{table}[h!]
+		\tabcolsep=0.1cm
+		\scriptsize
+		\begin{center}
+		\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c}
+		\toprule
+		% & \multicolumn{3}{c}{Reuters-21578}         \\
+		% \cmidrule(lr){2-4}
+		\textbf{Physics (Wikipedia)} & {P} & {R} & \textbf{F1} \\
+		\midrule
+		\textbf{BOW}
+		& 87.8   & 70.1  & 77.9 \\
+		\textbf{LSI-100}
+		& 83.4   & 69.5  & 75.8 \\
+		\textbf{WordVecAvg}
+		& 91.0   & 59.1  & 71.7 \\ \addlinespace[1mm]
+
+		\textbf{Our Model}
+		& \multirow{2}{*}{86.1}   & \multirow{2}{*}{64.6}  & \multirow{2}{*}{73.8} \\
+		(no weights) & & & \\ \addlinespace[1mm]
+		\textbf{Our Model}
+		& \multirow{2}{*}{88.6}   & \multirow{2}{*}{72.4}  & \multirow{2}{*}{\highest{79.7}} \\
+		(with weights) & & & \\
+		\bottomrule         
+		\end{tabular}
+		\caption*{\footnotesize Precision/Recall/F1 for Document Categorization on Physics dataset}
+		\end{center}
+		\end{table}
+	\end{column}
+	%\hspace{5mm}
+\onslide<2->{	
+	\begin{column}{.6\textwidth}
+	\begin{center}
+		\begin{figure}[tb]
+		\centering
+			\includegraphics[scale=0.45]{../figs/pr/physics-cs-scala.pdf}
+		\end{figure}
+	\end{center}
+	\end{column}
+}	
+\end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Document Categorization Performance Evaluation \\ Biology - Wikipedia }
+\begin{columns}[T]
+	\hspace{5mm}
+	\begin{column}{.4\textwidth}
+		\begin{table}[h!]
+		\tabcolsep=0.1cm
+		\scriptsize
+		\begin{center}
+		\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c}
+		\toprule
+		% & \multicolumn{3}{c}{Reuters-21578}         \\
+		% \cmidrule(lr){2-4}
+		\textbf{Biology (Wikipedia)} & {P} & {R} & \textbf{F1} \\
+		\midrule
+		\textbf{BOW}
+		& 90.3   & 59.5  & \highest{69.0} \\
+		\textbf{LSI-100}
+		& 82.1   & 51.6  & 63.4 \\
+		\textbf{WordVecAvg}
+		& 79.4   & 50.4  & 61.6 \\ \addlinespace[1mm]
+
+		\textbf{Our Model}
+		& \multirow{2}{*}{80.3}   & \multirow{2}{*}{53.8}  & \multirow{2}{*}{64.4} \\
+		(no weights) & & & \\ \addlinespace[1mm]
+		\textbf{Our Model}
+		& \multirow{2}{*}{79.7}   & \multirow{2}{*}{59.0}  & \multirow{2}{*}{67.8} \\
+		(with weights) & & & \\
+		\bottomrule         
+		\end{tabular}
+		\caption*{\footnotesize Precision/Recall/F1 for Document Categorization on Biology dataset}
+		\end{center}
+		\end{table}
+	\end{column}
+	%\hspace{5mm}
+\onslide<2->{	
+	\begin{column}{.6\textwidth}
+	\begin{center}
+		\begin{figure}[tb]
+		\centering
+			\includegraphics[scale=0.45]{../figs/pr/biology-cs-scala.pdf}
+		\end{figure}
+	\end{center}
+	\end{column}
+}	
+\end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Document Categorization Performance Evaluation \\ Mathematics - Wikipedia }
+\begin{columns}[T]
+	\hspace{5mm}
+	\begin{column}{.4\textwidth}
+		\begin{table}[h!]
+	\tabcolsep=0.1cm
+	\scriptsize
+	\begin{center}
+	\begin{tabular}{l@{\hskip3mm} c c@{\hskip4mm} c}
+	\toprule
+	% & \multicolumn{3}{c}{Reuters-21578}         \\
+	% \cmidrule(lr){2-4}
+	\textbf{Mathematics (Wikipedia)} & {P} & {R} & \textbf{F1} \\
+	\midrule
+	\textbf{BOW}
+	& 65.6   & 65.1  & 65.3 \\
+	\textbf{LSI-100}
+	& 89.7   & 50.3  & 64.4 \\
+	\textbf{WordVecAvg}
+	& 90.5   & 40.3  & 55.7 \\ \addlinespace[1mm]
+
+	\textbf{Our Model}
+	& \multirow{2}{*}{78.4}   & \multirow{2}{*}{57.4}  & \multirow{2}{*}{66.3} \\
+	(no weights) & & & \\ \addlinespace[1mm]
+	\textbf{Our Model}
+	& \multirow{2}{*}{85.3}   & \multirow{2}{*}{56.8}  & \multirow{2}{*}{\highest{68.2}} \\
+	(with weights) & & & \\
+	\bottomrule         
+	\end{tabular}
+	%\vskip -4mm
+	\caption*{\footnotesize Precision/Recall/F1 for Document Categorization on Mathematics dataset}
+	\end{center}
+	\end{table}
+	\end{column}
+	%\hspace{5mm}
+\onslide<2->{	
+	\begin{column}{.6\textwidth}
+	\begin{center}
+		\begin{figure}[tb]
+		\centering
+			\includegraphics[scale=0.45]{../figs/pr/mathematics-cs-scala.pdf}
+		\end{figure}
+	\end{center}
+	\end{column}
+}	
+\end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Document Categorization Performance Evaluation \\ Sports - Wikipedia }
+\begin{columns}[T]
+	\hspace{5mm}
+	\begin{column}{.4\textwidth}
+		\vfill
+		\begin{table}[h!]
+		\tabcolsep=0.1cm
+		\scriptsize
+		\begin{center}
+		\begin{tabular}{l@{\hskip5mm} c c@{\hskip4mm} c}
+		\toprule
+		% & \multicolumn{3}{c}{Reuters-21578}         \\
+		% \cmidrule(lr){2-4}
+		\textbf{Sports (Wikipedia)} & {P} & {R} & \textbf{F1} \\
+		\midrule
+		\textbf{BOW}
+		& 91.7   & 41.3  & 56.9 \\
+		\textbf{LSI-100}
+		& 91.2   & 40.1  & 55.7 \\
+		\textbf{WordVecAvg}
+		& 81.8   & 37.5  & 51.4 \\ \addlinespace[1mm]
+
+		\textbf{Our Model}
+		& \multirow{2}{*}{80.5}   & \multirow{2}{*}{40.1}  & \multirow{2}{*}{53.6} \\
+		(no weights) & & & \\ \addlinespace[1mm]
+		\textbf{Our Model}
+		& \multirow{2}{*}{82.1}   & \multirow{2}{*}{44.0}  & \multirow{2}{*}{\highest{57.3}} \\
+		(with weights) & & & \\
+		\bottomrule         
+		\end{tabular}
+		%\vskip -4mm
+		\caption*{\footnotesize Precision/Recall/F1 for Document Categorization on Sports dataset}
+		\end{center}
+		\end{table}
+	\end{column}
+	%\hspace{5mm}
+	
+\onslide<2->{	
+	\begin{column}{.6\textwidth}
+	\vfill
+	\begin{center}
+		\begin{figure}[tb]
+		\centering
+			\includegraphics[scale=0.45]{../figs/pr/sports-cs-scala.pdf}
+		\end{figure}
+	\end{center}
+	\end{column}
+}	
+\end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Imputing Missing Categories in Wikipedia }
+\begin{enumerate}
+	\vfill\item Real-life databases contain missing information
+	\vfill\item Wikipedia is a large-scale database with non-expert annotators
+\end{enumerate}
+\vfill
+We evaluate our model on imputing missing categories in the Wikipedia datasets
+\vfill
+	\begin{table}[h!]
+	\tabcolsep=1mm
+	\tiny
+	\begin{center}
+	%\begin{tabular}{l cc@{\hskip 2mm}c@{\hskip 2mm} cc@{\hskip 2mm}c@{\hskip 2mm} cc@{\hskip 2mm}c@{\hskip 2mm} cc@{\hskip 2mm}c@{\hskip 2mm} cc@{\hskip 2mm}c}
+	\begin{tabular}{l ccc@{\hskip 3mm} ccc@{\hskip 3mm} ccc@{\hskip 3mm} ccc@{\hskip 3mm} ccc}
+	\toprule
+	\multirow{2}{*}{} & 
+	\multicolumn{3}{c}{{Physics}}         & 
+	\multicolumn{3}{c}{{Biology}}        & \multicolumn{3}{c}{{Mathematics}}         & \multicolumn{3}{c}{{Sports}}        & %\multicolumn{3}{c}{\textbf{Restaurant}}       & 
+	\multicolumn{3}{c}{\textbf{Combined}}              
+	\\ 
+	\cmidrule(lr){2-4}
+	\cmidrule(lr){5-7}
+	\cmidrule(lr){8-10}
+	\cmidrule(lr){11-13}
+	\cmidrule(lr){14-16}
+	& 
+	{P} & {R} & \textbf{F1} & 
+	{P} & {R} & \textbf{F1} & 
+	{P} & {R} & \textbf{F1} & 
+	{P} & {R} & \textbf{F1} &
+	{P} & {R} & \textbf{F1} \\ 
+	\midrule
+	\textbf{PMF}
+	& 73.0   & 64.3  & 68.4
+	& 72.1   & 47.5  & 57.3
+	& 41.6   & 58.2  & 48.5
+	& 51.3   & 35.6  & 42.0
+	& 63.0   & 54.8  & 58.6 
+	\\
+	\textbf{LSI-100}
+	& 59.5   & 82.3  & 69.0
+	& 49.9   & 71.6  & 58.8
+	& 47.1   & 73.0  & 57.3
+	& 43.1   & 68.2  & 52.8
+	& 52.5   & 76.3  & 62.2
+	\\ 
+	\textbf{BOW}
+	& 76.1   & 79.4  & 77.7
+	& 69.7   & 67.7  & 68.7
+	& 70.9   & 63.5  & 67.0
+	& 64.8   & 49.3  & 56.0
+	& 72.5   & 69.4  & 70.9
+	\\
+	\textbf{WordVecAvg}
+	& 88.0   & 63.5  & 73.8
+	& 80.7   & 50.3  & 61.9
+	& 71.8   & 46.7  & 56.6
+	& 87.2   & 35.4  & 50.3
+	& 84.2   & 53.4  & 65.4
+	\\ \addlinespace[1mm]
+	\textbf{Our Model}
+	& \multirow{2}{*}{88.6}   & \multirow{2}{*}{69.1}  & \multirow{2}{*}{77.7}
+	& \multirow{2}{*}{80.5}   & \multirow{2}{*}{55.3}  & \multirow{2}{*}{65.6}
+	& \multirow{2}{*}{74.3}   & \multirow{2}{*}{53.1}  & \multirow{2}{*}{61.9}
+	& \multirow{2}{*}{84.7}   & \multirow{2}{*}{40.2}  & \multirow{2}{*}{54.5}
+	& \multirow{2}{*}{85.4}   & \multirow{2}{*}{58.5}  & \multirow{2}{*}{69.2}
+	\\ 
+	(without weights) & & & & & & & & & & & & & &  & \\
+	\addlinespace[1mm]
+	\textbf{Our Model}
+	& \multirow{2}{*}{89.9}   & \multirow{2}{*}{74.5}  & \multirow{2}{*}{\highest{81.5}}
+	& \multirow{2}{*}{84.9}   & \multirow{2}{*}{63.8} & \multirow{2}{*}{\highest{72.9}}
+	& \multirow{2}{*}{79.9}   & \multirow{2}{*}{60.7}  & \multirow{2}{*}{\highest{69.0}}
+	& \multirow{2}{*}{81.1}   & \multirow{2}{*}{45.6} & \multirow{2}{*}{\highest{58.4}}
+	& \multirow{2}{*}{86.3}   & \multirow{2}{*}{65.2}  & \multirow{2}{*}{\highest{74.3}}
+	\\ 
+	(with weights) & & & & & & & & & & & & & &  & \\
+	\bottomrule         
+	\end{tabular}
+	\end{center}
+	\end{table}
+
+
+\end{frame}
+
+\begin{frame}{Estimating Similarity between Categories and Words }
+\begin{enumerate}
+	\vfill\item We embed words, document and categories in the same $k$-dimensional space
+	\vfill\item This allows us to estimate similarity between entities non directly related
+\end{enumerate}
+\begin{table}[h!]
+\tabcolsep=1mm
+\scriptsize
+\begin{center}
+%\begin{adjustwidth}{-1.5cm}{}
+\begin{tabular}{l@{\hskip3mm} l}
+\toprule
+\multirow{2}{*}{\textbf{Category}} & \multirow{2}{*}{\textbf{Nearest Neighbors}} \\
+ & \\
+%\cmidrule{2-2}
+\textbf{Evolutionary Biology}   & gene, phylogenetics, speciation, ancestor, Darwin, lineage, evolutionary, interbreeding \\
+\textbf{Statistical Mechanics}  & ergodicity, Eigenstate, Universality, DMFT, Markovian, Parisi, Combinatorics \\
+\textbf{Thermodynamics}         & Convection, ecosystem, Enthalpy, Joule, calorimetric, compressible, Thermodynamic \\
+\textbf{Trade}                  & import, Pledges, Tariff, Trade, competitiveness, toll, billion, basket, Ditch, Worldwide \\
+\textbf{Money-FX}               & Borrowing, franc, banker, Currency, banks, nervous, sideways, Markets, FORWARD \\
+\textbf{Virology}               & nucleoside, ribozyme, adenoviruses, Virology, retroviruses, poliovirus, Viroid \\
+\textbf{Neurobiology}           & purinergic, cyclase, vertebral, Ehrlich, nexus, steroid, lean, gendered, reticular \\
+\textbf{Physical Exercise}      & Fitness, aerobics, metabolic, workout, Exercise, Stretching, pelvic, Physiology, fibers \\
+\textbf{Algebra}                & subalgebra, Algebras, nilpotent, adjoints, octonions, bicommutant, diagonalizable \\
+\textbf{Theoretical Physicists} & Dipankar, DSc, Hubert, Aneesur, Uri, Ignaz, Chia, Stig, Diderot, Dannie \\
+\textbf{Mathematical Physics}   & covectors, pseudotensor, spacelike, dyadic, Curl, torque, contractions, wavefunctions \\
+\textbf{Sports Venues}          & stadion, decoration, tracks, seating, buildings, parcourse, architectural, arenas, circular \\
+\textbf{Indian Mathematics}     & utkrama, ecliptic, Siddhanta, Hellenistic, Brahmi, sexagesimal, scribe, Islamic, Sanskrit \\
+\bottomrule         
+\end{tabular}
+ %\end{adjustwidth}
+\end{center}
+%\caption{\label{catword:sim} Estimating Similarity between Categories and Words}
+\end{table}
+\end{frame}
+
+\begin{frame}{Conclusion }
+\begin{enumerate}
+	\vfill\item<1-> We presented an unsupervised neural network model that 
+	\begin{itemize}
+		\vfill\item Jointly learns fixed-length low-dimensional distributed vector representations for documents and words
+		\vfill\item Encode semantic content of words and documents in these representations
+	\end{itemize}
+	
+	\vfill\item<2-> We overcome some of the problems with the bag-of-words representations 
+	\vfill\item<3-> Our model is a log-linear model that uses NCE
+	\vfill\item<4-> We improve state-of-the-art results on multi-label document categorization
+	\begin{itemize}
+		\vfill\item On the Reuters-21578 dataset we improve by $3.26\%$
+		\vfill\item On the Reuters-21578 dataset we improve over BOW by $9\%$
+	\end{itemize}
+	\vfill\item<5-> We show the best performance on imputing missing categories in Wikipedia
+	\vfill\item<6-> Learned distributed representations allow semantic similarity estimation
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Future Work }
+\begin{enumerate}
+	\item<1-> Improving compositionality of Word Vectors
+	\vfill\item<2-> Joint Document Representation Learning and Document Categorization
+	\vfill\item<3-> Supervised Multi-view Relational Learning
+\end{enumerate}
+
 \end{frame}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{References}
+\begin{frame}[allowframebreaks]{References}
     %{\footnotesize
+    \scriptsize
     \bibliographystyle{abbrvnat}
     \bibliography{references}
     %}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  13 MAY 2015 23:40
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  14 MAY 2015 22:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1397,7 +1397,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [58 <./figs/pr/physics-cs-scala.pdf>]
-Underfull \hbox (badness 3815) in paragraph at lines 675--675
+Underfull \hbox (badness 3815) in paragraph at lines 674--674
 []\OT1/cmr/m/n/12 Table 5.17: |[] Pre-ci-sion/Re-cal-l/F1 for Doc-u-ment Cat-e-
 go-riza-tion on Bi-ol-
  []
@@ -1406,10 +1406,10 @@ go-riza-tion on Bi-ol-
 File: figs/pr/biology-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/biology-cs-scala.pdf>
-Package pdftex.def Info: figs/pr/biology-cs-scala.pdf used on input line 681.
+Package pdftex.def Info: figs/pr/biology-cs-scala.pdf used on input line 680.
 (pdftex.def)             Requested size: 298.75264pt x 244.44162pt.
  [59]
-Overfull \hbox (66.63963pt too wide) in paragraph at lines 728--761
+Overfull \hbox (66.63963pt too wide) in paragraph at lines 727--760
  [] 
  []
 
@@ -1427,11 +1427,11 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: figs/pr/mathematics-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/mathematics-cs-scala.pdf>
-Package pdftex.def Info: figs/pr/mathematics-cs-scala.pdf used on input line 87
-0.
+Package pdftex.def Info: figs/pr/mathematics-cs-scala.pdf used on input line 86
+9.
 (pdftex.def)             Requested size: 298.75264pt x 244.44162pt.
 
-Underfull \hbox (badness 3525) in paragraph at lines 872--872
+Underfull \hbox (badness 3525) in paragraph at lines 871--871
 []\OT1/cmr/m/n/12 Figure 5.4: |Pre-ci-sion/Re-call for Doc-u-ment Cat-e-go-riza
 -tion on Math-e-mat-
  []
@@ -1440,7 +1440,7 @@ Underfull \hbox (badness 3525) in paragraph at lines 872--872
 Underfull \vbox (badness 6708) has occurred while \output is active []
 
  [61]
-Overfull \hbox (34.10513pt too wide) in paragraph at lines 918--951
+Overfull \hbox (34.10513pt too wide) in paragraph at lines 917--950
  [] 
  []
 
@@ -1451,7 +1451,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [62 <./figs/pr/mathematics-cs-scala.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 1053--1053
+Underfull \hbox (badness 10000) in paragraph at lines 1052--1052
 []\OT1/cmr/m/n/12 Table 5.27: |[] Pre-ci-sion/Re-cal-l/F1 for Doc-u-ment Cat-e-
 go-riza-tion on
  []
@@ -1460,14 +1460,14 @@ go-riza-tion on
 File: figs/pr/sports-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/sports-cs-scala.pdf>
-Package pdftex.def Info: figs/pr/sports-cs-scala.pdf used on input line 1059.
+Package pdftex.def Info: figs/pr/sports-cs-scala.pdf used on input line 1058.
 (pdftex.def)             Requested size: 298.75264pt x 244.44162pt.
 
 Underfull \vbox (badness 6708) has occurred while \output is active []
 
  [63]
 [64 <./figs/pr/sports-cs-scala.pdf>]
-Overfull \hbox (32.91609pt too wide) in paragraph at lines 1088--1154
+Overfull \hbox (32.91609pt too wide) in paragraph at lines 1087--1153
  [] 
  []
 
@@ -1475,7 +1475,7 @@ Overfull \hbox (32.91609pt too wide) in paragraph at lines 1088--1154
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [65]
-Overfull \hbox (37.5921pt too wide) in paragraph at lines 1182--1202
+Overfull \hbox (37.5921pt too wide) in paragraph at lines 1181--1201
 [][] 
  []
 
@@ -1552,7 +1552,7 @@ nts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (97 pages, 1061932 bytes).
+Output written on thesis.pdf (97 pages, 1061924 bytes).
 PDF statistics:
  1377 PDF objects out of 1440 (max. 8388607)
  1191 compressed objects within 12 object streams

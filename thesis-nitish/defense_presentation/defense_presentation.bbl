@@ -1,4 +1,4 @@
-\begin{thebibliography}{15}
+\begin{thebibliography}{18}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -25,6 +25,19 @@ Y.~Bengio, J.-S. Sen{\'e}cal, et~al.
 \newblock Quick training of probabilistic neural nets by importance sampling.
 \newblock In \emph{AISTATS Conference}, 2003{\natexlab{b}}.
 
+\bibitem[Gao et~al.(2004)Gao, Wu, Lee, and Chua]{gao2004mfom}
+S.~Gao, W.~Wu, C.-H. Lee, and T.-S. Chua.
+\newblock A mfom learning approach to robust multiclass multi-label text
+  categorization.
+\newblock In \emph{Proceedings of the twenty-first international conference on
+  Machine learning}, page~42. ACM, 2004.
+
+\bibitem[Ghamrawi and McCallum(2005)]{ghamrawi2005collective}
+N.~Ghamrawi and A.~McCallum.
+\newblock Collective multi-label classification.
+\newblock In \emph{Proceedings of the 14th ACM international conference on
+  Information and knowledge management}, pages 195--200. ACM, 2005.
+
 \bibitem[Grefenstette et~al.(2013)Grefenstette, Dinu, Zhang, Sadrzadeh, and
   Baroni]{grefenstette2013multi}
 E.~Grefenstette, G.~Dinu, Y.-Z. Zhang, M.~Sadrzadeh, and M.~Baroni.
@@ -44,6 +57,12 @@ M.~U. Gutmann and A.~Hyv{\"a}rinen.
   applications to natural image statistics.
 \newblock \emph{The Journal of Machine Learning Research}, 13\penalty0
   (1):\penalty0 307--361, 2012.
+
+\bibitem[Joachims(1998)]{joachims1998text}
+T.~Joachims.
+\newblock \emph{Text categorization with support vector machines: Learning with
+  many relevant features}.
+\newblock Springer, 1998.
 
 \bibitem[Mikolov et~al.(2013{\natexlab{a}})Mikolov, Chen, Corrado, and
   Dean]{mikolov2013efficient}
