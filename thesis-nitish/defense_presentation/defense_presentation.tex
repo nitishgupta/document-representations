@@ -135,13 +135,13 @@
 \begin{frame}{Introduction to Multi-Label Document Categorization}
 \vfill\onslide<1->{ Multi-label classification belongs to a general class of \emph{supervised learning} algorithms where, given,  } \\
 \begin{itemize} 
-	\vfill\item<2-> A set of documents $D = \{d_{1}, \ldots, d_{|D|}\}$
-	\vfill\item<2-> A set of categories $C = \{c_{1}, \ldots, c_{|C|}\}$
-	\vfill\item<2-> Training data for $n$ {\small ($n < |D|$)} documents, $\traindata = \{l_{d_{1}}, \ldots, l_{d_{n}}\}$ 
+	\vfill\item<1-> A set of documents $D = \{d_{1}, \ldots, d_{|D|}\}$
+	\vfill\item<1-> A set of categories $C = \{c_{1}, \ldots, c_{|C|}\}$
+	\vfill\item<1-> Training data for $n$ {\small ($n < |D|$)} documents, $\traindata = \{l_{d_{1}}, \ldots, l_{d_{n}}\}$ 
 %\onslide<4->{   \\ Each label vector $l_{d_{i}} \in \{0,1\}^{|C|}$ denotes relevance of categories to the document $d_{i}$ }
 \end{itemize} 
 \vfill
-\onslide<2->{
+\onslide<1->{
 	Example :
 	\begin{table}[h!]
 	\tabcolsep=0.1cm
@@ -163,7 +163,7 @@
 	\end{table}
 }
 \vfill
-\onslide<3->{
+\onslide<2->{
 Using $\traindata$, $D$ and $C$ the learning algorithm learns a multi-label classifier $\mathcal{H}$ to estimate category label vectors, $l_{d_{j}}$ {\small $(j>n)$} for the test documents. 
 }
 \vfill
@@ -176,15 +176,15 @@ Using $\traindata$, $D$ and $C$ the learning algorithm learns a multi-label clas
 \begin{enumerate}
 	\vfill\item<2-> \emph{Learning Document Representations} %: Representing text documents using numerical vectors that are inputs to the multi-label classifier $\mathcal{H}$
 	\begin{itemize}
-	 	\vfill\item<3-> Each document $d_{i} \in D$ is represented using a vector $v_{d_{i}} \in \mathbb{R}^{k}$
-	 	\vfill\item<4-> Embedding documents in a $k$-dimensional space is called the \emph{Vector Space Model}
-	 	\vfill\item<5-> The set $D$ can be represented by a matrix $\matD \in \mathbb{R}^{k \times |D|}$
-	 	\vfill\item<6->	Vectors ($v_{d_{i}}$) should encode the semantic content of the documents 
+	 	\vfill\item<2-> Each document $d_{i} \in D$ is represented using a vector $v_{d_{i}} \in \mathbb{R}^{k}$
+	 	\vfill\item<2-> Embedding documents in a $k$-dimensional space is called the \emph{Vector Space Model}
+	 	\vfill\item<2-> The set $D$ can be represented by a matrix $\matD \in \mathbb{R}^{k \times |D|}$
+	 	\vfill\item<2->	Vectors ($v_{d_{i}}$) should encode the semantic content of the documents 
 	\end{itemize}
 
-	\vfill\item<7-> \emph{Learning Algorithm}
+	\vfill\item<3-> \emph{Learning Algorithm}
 	\begin{itemize}
-	 	\vfill\item<7-> Algorithm to learn the multi-label classifier $\mathcal{H}$
+	 	\vfill\item<3-> Algorithm to learn the multi-label classifier $\mathcal{H}$
 	 \end{itemize}		
 \end{enumerate}\vfill 
 \end{frame}
@@ -199,18 +199,18 @@ Using $\traindata$, $D$ and $C$ the learning algorithm learns a multi-label clas
 	\onslide<2->{ {\footnotesize	Algorithms that treat each category assignment independently and learn multiple binary classifiers, one for each category, to make the category assignments} 	} 
 	\begin{itemize}
 		\vfill\item<3-> Logistic Regression
-		\vfill\item<4-> Support Vector Machines (SVM)
-		\vfill\item<5-> Neural Networks, E.g. CLASSI, NNet.PARC
-		\vfill\item<6-> Naive Bayes
+		\vfill\item<3-> Support Vector Machines (SVM)
+		\vfill\item<3-> Neural Networks, E.g. CLASSI, NNet.PARC
+		\vfill\item<3-> Naive Bayes
 	\end{itemize}
 
-	\vfill\item<7-> \emph{Learning Single Joint Classifier} \\
-	\onslide<7->{ {\footnotesize	Algorithms that jointly assign all the categories to a document $d_{i}$, i.e. estimate the complete label vector $l_{d_{i}}$ using a single classifier} 	}
+	\vfill\item<4-> \emph{Learning Single Joint Classifier} \\
+	\onslide<4->{ {\footnotesize	Algorithms that jointly assign all the categories to a document $d_{i}$, i.e. estimate the complete label vector $l_{d_{i}}$ using a single classifier} 	}
 	\begin{itemize}
-		\vfill\item<8-> k-Nearest Neighbor (k-NN)
-		\vfill\item<9-> Linear Least Square Fit
-		\vfill\item<10-> Decision Trees
-		\vfill\item<11-> Generative Probabilistic Models
+		\vfill\item<5-> k-Nearest Neighbor (k-NN)
+		\vfill\item<5-> Linear Least Square Fit
+		\vfill\item<5-> Decision Trees
+		\vfill\item<5-> Generative Probabilistic Models
 	\end{itemize}
 \end{enumerate}
 %\onslide<14->{ Learning a single joint classifier is usually better as it is able to exploit the category correlations }
@@ -225,24 +225,24 @@ Using $\traindata$, $D$ and $C$ the learning algorithm learns a multi-label clas
 \textbf{Bag of Words Model} }
 %Most common method to learn vector representations for a set of documents is the \emph{Bag of Words (BOW)} model 	}
 \begin{itemize}
-	\vfill\item<2-> Document $d_{i}$ represented by $v_{d_{i}} \in \mathbb{R}^{|V|}$
-	\vfill\item<3-> Each element in $v_{d_{i}}$ denotes presence/absence of each word
-	\vfill\item<4-> Weighing techniques employed to give importance to important terms
+	\vfill\item<1-> Document $d_{i}$ represented by $v_{d_{i}} \in \mathbb{R}^{|V|}$
+	\vfill\item<1-> Each element in $v_{d_{i}}$ denotes presence/absence of each word
+	\vfill\item<1-> Weighing techniques employed to give importance to important terms
 	\begin{itemize}
-		\vfill\item<4-> Term Frequency (\emph{tf} )
-		\vfill\item<4-> Inverse Document Frequency (\emph{idf} )
-		\vfill\item<4-> Term Frequency - Inverse Document Frequency (\emph{tf-idf} ) : \emph{tf} $\times$\emph{idf}
+		\vfill\item<1-> Term Frequency (\emph{tf} )
+		\vfill\item<1-> Inverse Document Frequency (\emph{idf} )
+		\vfill\item<1-> Term Frequency - Inverse Document Frequency (\emph{tf-idf} ) : \emph{tf} $\times$\emph{idf}
 	\end{itemize}
 \end{itemize}
 \vfill
-\onslide<5->{
+\onslide<2->{
 \textbf{Drawbacks of the Bag-of-Words model} }
 \begin{itemize}
-	\vfill\item<6-> High-dimensionality
-	\vfill\item<7-> Sparsity
-	\vfill\item<8-> Inability to encode word contexts
-	\vfill\item<9-> Ignores word order
-	\vfill\item<10-> Lack of similarity measures
+	\vfill\item<2-> High-dimensionality
+	\vfill\item<2-> Sparsity
+	\vfill\item<2-> Inability to encode word contexts
+	\vfill\item<2-> Ignores word order
+	\vfill\item<2-> Lack of similarity measures
 \end{itemize}
 \vfill
 % \todo{feature selection. Word Embeddings. Our document embedding. Our docu cate. Datasets. Results End}
@@ -331,7 +331,7 @@ Representation of each word $w_{i}$ using vector $v_{w_{i}} \in \mathbb{R}^{k}$ 
 	\end{equation} }
 	\vfill \onslide<5->{
 	\begin{equation}
-	P(w_{t} = i | w_{t-1}, \ldots, w_{t-n+1}) = \frac{e^{y_{w_t}}}{\sum_{i}e^{y_{i}}}
+	P(w_{t} | w_{t-1}, \ldots, w_{t-n+1}) = \frac{e^{y_{w_t}}}{\sum_{i}e^{y_{i}}}
 	\end{equation} }
 	}
  \end{column}
@@ -530,13 +530,13 @@ We present an unsupervised neural network model that, }
 	\vfill\item<1-> Soft-max computation is expensive, $\mathcal{O}$($\setW$)
 	\vfill\item<2-> Speed-ups using \textbf{Hierarchical soft-max} \citep{morin2005hierarchical} and \textbf{Importance sampling} to approximate the likelihood gradient \citep{bengio2003quick, bengio2008adaptive}
 	\begin{itemize}
-		\vfill\item<3-> Finding well-performing trees in Hierarchical soft-max is not trivial
-		\vfill\item<4-> Importance sampling suffers from stability issues
+		\vfill\item<2-> Finding well-performing trees in Hierarchical soft-max is not trivial
+		\vfill\item<2-> Importance sampling suffers from stability issues
 	\end{itemize}
-	\vfill\item<5-> \textbf{Noise Contrastive Estimation} (NCE) \citep{gutmann2012noise} fits unnormalized probabilities
+	\vfill\item<3-> \textbf{Noise Contrastive Estimation} (NCE) \citep{gutmann2012noise} fits unnormalized probabilities
 	\begin{itemize}
-		\vfill\item<6-> Reduces the problem of \emph{probability density estimation} to \emph{probabilistic binary classification}
-		\vfill\item<7-> Adaptation to NPLM \citep{mnih2012fast} and learning word embeddings \citep{mnih2013learning} show significant training time speed-ups
+		\vfill\item<3-> Reduces the problem of \emph{probability density estimation} to \emph{probabilistic binary classification}
+		\vfill\item<3-> Adaptation to NPLM \citep{mnih2012fast} and learning word embeddings \citep{mnih2013learning} show significant training time speed-ups
 	\end{itemize}
 \end{enumerate}
 \end{frame}
@@ -559,10 +559,10 @@ We present an unsupervised neural network model that, }
 	\vfill\item<5-> New labeled training data : $\traindata$ = $\{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}, Y^{(m)}=1\}^{m=M}_{m=1}$
 	\vfill\item<6-> For every positive training sequence, $n$ negative training sequences introduced where,
 	\begin{itemize}
-		\vfill\item<7-> The observed middle word $w_{t}$ is replaced by a corrupt word $w_{x}$ drawn from a noise distribution $P_{n}(w)$
-		\vfill\item<8-> E.g. $\{d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{x}, w_{t+1}, \ldots, w_{t+c}, Y=0\}$ %The label for the negative sequence is $Y = 0$
+		\vfill\item<6-> The observed middle word $w_{t}$ is replaced by a corrupt word $w_{x}$ drawn from a noise distribution $P_{n}(w)$
+		\vfill\item<6-> E.g. $\{d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{x}, w_{t+1}, \ldots, w_{t+c}, Y=0\}$ %The label for the negative sequence is $Y = 0$
 	\end{itemize}
-	\vfill\item<9-> Complete training data : $\traindata$ = $\{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}, Y^{(m)}\}^{m=M+nM}_{m=1}$
+	\vfill\item<7-> Complete training data : $\traindata$ = $\{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}, Y^{(m)}\}^{m=M+nM}_{m=1}$
 \end{enumerate}
 
 \end{frame}
@@ -576,13 +576,13 @@ We present an unsupervised neural network model that, }
 }
 \begin{itemize}
 	\vfill\item<2-> We build a probabilistic binary classifier to predict the label $Y$
-	\vfill\onslide<3-> { \begin{equation}
+	\vfill\onslide<2-> { \begin{equation}
 	P(Y=1|d_{i}, w_{t-c}, \ldots, w_{t+c}, \Theta) = \sigma(\vecwi{w_{t}} \cdot h_{c})
 	\end{equation} }
-	\vfill\onslide<4-> { \begin{equation}
+	\vfill\onslide<3-> { \begin{equation}
 	P(Y=0|d_{i}, w_{t-c}, \ldots, w_{t+c}, \Theta) = 1 - \sigma(\vecwi{w_{t}} \cdot h_{c})
 	\end{equation} }
-	\vfill\onslide<5-> { \begin{equation}
+	\vfill\onslide<4-> { \begin{equation}
 	P(Y|d_{i}, w_{t-c}, \ldots, w_{t+c}, \Theta) = [\sigma(\vecwi{w_{t}} \cdot h_{c})]^{Y}[1 - \sigma(\vecwi{w_{t}} \cdot h_{c})]^{1-Y}
 	\end{equation} }
 \end{itemize}
@@ -1357,7 +1357,7 @@ We evaluate our model on imputing missing categories in the Wikipedia datasets
 \\
 \large Questions?
 \end{center}
-%\blfootnote{Snacks outside}
+\blfootnote{Snacks outside}
 \end{frame}
 
 
