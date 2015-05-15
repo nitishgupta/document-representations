@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  14 MAY 2015 23:28
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  15 MAY 2015 14:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1099,25 +1099,6 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [2
 
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 125.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 125.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Try loading font information for U+wasy on input line 125.
-
-(/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
-File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
-)
-LaTeX Font Info:    Try loading font information for U+lasy on input line 125.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
-File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
-)
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1146,6 +1127,25 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [6
 
 ]
+LaTeX Font Info:    Try loading font information for U+msa on input line 170.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 170.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+wasy on input line 170.
+
+(/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
+File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
+)
+LaTeX Font Info:    Try loading font information for U+lasy on input line 170.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1418,14 +1418,25 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 
 [45
 
-]
+] <../figs/bengio_nn.png, id=1238, 1062.97125pt x 901.3675pt>
+File: ../figs/bengio_nn.png Graphic file (type png)
+
+<use ../figs/bengio_nn.png>
+Package pdftex.def Info: ../figs/bengio_nn.png used on input line 341.
+(pdftex.def)             Requested size: 159.43881pt x 135.19928pt.
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [46
 
-]
+ <../figs/bengio_nn.png>]
+File: ../figs/bengio_nn.png Graphic file (type png)
+ <use ../figs/bengio_nn.png>
+Package pdftex.def Info: ../figs/bengio_nn.png used on input line 341.
+(pdftex.def)             Requested size: 159.43881pt x 135.19928pt.
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1433,6 +1444,11 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [47
 
 ]
+File: ../figs/bengio_nn.png Graphic file (type png)
+ <use ../figs/bengio_nn.png>
+Package pdftex.def Info: ../figs/bengio_nn.png used on input line 341.
+(pdftex.def)             Requested size: 159.43881pt x 135.19928pt.
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1440,6 +1456,11 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [48
 
 ]
+File: ../figs/bengio_nn.png Graphic file (type png)
+ <use ../figs/bengio_nn.png>
+Package pdftex.def Info: ../figs/bengio_nn.png used on input line 341.
+(pdftex.def)             Requested size: 159.43881pt x 135.19928pt.
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1447,20 +1468,48 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [49
 
 ]
+File: ../figs/bengio_nn.png Graphic file (type png)
+ <use ../figs/bengio_nn.png>
+Package pdftex.def Info: ../figs/bengio_nn.png used on input line 341.
+(pdftex.def)             Requested size: 159.43881pt x 135.19928pt.
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [50
 
-]
+] <../figs/mikolov_cbow.png, id=1376, 626.34pt x 694.595pt>
+File: ../figs/mikolov_cbow.png Graphic file (type png)
+
+<use ../figs/mikolov_cbow.png>
+Package pdftex.def Info: ../figs/mikolov_cbow.png used on input line 404.
+(pdftex.def)             Requested size: 75.15755pt x 83.3478pt.
+
+<../figs/mikolov_skip.png, id=1377, 596.2275pt x 693.59125pt>
+File: ../figs/mikolov_skip.png Graphic file (type png)
+
+<use ../figs/mikolov_skip.png>
+Package pdftex.def Info: ../figs/mikolov_skip.png used on input line 404.
+(pdftex.def)             Requested size: 71.5442pt x 83.22736pt.
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [51
 
-]
+ <../figs/mikolov_cbow.png> <../figs/mikolov_skip.png>]
+File: ../figs/mikolov_cbow.png Graphic file (type png)
+
+<use ../figs/mikolov_cbow.png>
+Package pdftex.def Info: ../figs/mikolov_cbow.png used on input line 404.
+(pdftex.def)             Requested size: 75.15755pt x 83.3478pt.
+File: ../figs/mikolov_skip.png Graphic file (type png)
+ <use ../figs/mikolov_skip.png>
+Package pdftex.def Info: ../figs/mikolov_skip.png used on input line 404.
+(pdftex.def)             Requested size: 71.5442pt x 83.22736pt.
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1468,6 +1517,15 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [52
 
 ]
+File: ../figs/mikolov_cbow.png Graphic file (type png)
+ <use ../figs/mikolov_cbow.png>
+Package pdftex.def Info: ../figs/mikolov_cbow.png used on input line 404.
+(pdftex.def)             Requested size: 75.15755pt x 83.3478pt.
+File: ../figs/mikolov_skip.png Graphic file (type png)
+ <use ../figs/mikolov_skip.png>
+Package pdftex.def Info: ../figs/mikolov_skip.png used on input line 404.
+(pdftex.def)             Requested size: 71.5442pt x 83.22736pt.
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1475,6 +1533,15 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [53
 
 ]
+File: ../figs/mikolov_cbow.png Graphic file (type png)
+ <use ../figs/mikolov_cbow.png>
+Package pdftex.def Info: ../figs/mikolov_cbow.png used on input line 404.
+(pdftex.def)             Requested size: 75.15755pt x 83.3478pt.
+File: ../figs/mikolov_skip.png Graphic file (type png)
+ <use ../figs/mikolov_skip.png>
+Package pdftex.def Info: ../figs/mikolov_skip.png used on input line 404.
+(pdftex.def)             Requested size: 71.5442pt x 83.22736pt.
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1482,6 +1549,15 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [54
 
 ]
+File: ../figs/mikolov_cbow.png Graphic file (type png)
+ <use ../figs/mikolov_cbow.png>
+Package pdftex.def Info: ../figs/mikolov_cbow.png used on input line 404.
+(pdftex.def)             Requested size: 75.15755pt x 83.3478pt.
+File: ../figs/mikolov_skip.png Graphic file (type png)
+ <use ../figs/mikolov_skip.png>
+Package pdftex.def Info: ../figs/mikolov_skip.png used on input line 404.
+(pdftex.def)             Requested size: 71.5442pt x 83.22736pt.
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1489,6 +1565,15 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [55
 
 ]
+File: ../figs/mikolov_cbow.png Graphic file (type png)
+ <use ../figs/mikolov_cbow.png>
+Package pdftex.def Info: ../figs/mikolov_cbow.png used on input line 404.
+(pdftex.def)             Requested size: 75.15755pt x 83.3478pt.
+File: ../figs/mikolov_skip.png Graphic file (type png)
+ <use ../figs/mikolov_skip.png>
+Package pdftex.def Info: ../figs/mikolov_skip.png used on input line 404.
+(pdftex.def)             Requested size: 71.5442pt x 83.22736pt.
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1496,31 +1581,29 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [56
 
 ]
+File: ../figs/mikolov_cbow.png Graphic file (type png)
+ <use ../figs/mikolov_cbow.png>
+Package pdftex.def Info: ../figs/mikolov_cbow.png used on input line 404.
+(pdftex.def)             Requested size: 75.15755pt x 83.3478pt.
+File: ../figs/mikolov_skip.png Graphic file (type png)
+ <use ../figs/mikolov_skip.png>
+Package pdftex.def Info: ../figs/mikolov_skip.png used on input line 404.
+(pdftex.def)             Requested size: 71.5442pt x 83.22736pt.
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [57
 
-] <../figs/bengio_nn.png, id=1556, 1062.97125pt x 901.3675pt>
-File: ../figs/bengio_nn.png Graphic file (type png)
-
-<use ../figs/bengio_nn.png>
-Package pdftex.def Info: ../figs/bengio_nn.png used on input line 337.
-(pdftex.def)             Requested size: 159.43881pt x 135.19928pt.
-
+]
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [58
 
- <../figs/bengio_nn.png>]
-File: ../figs/bengio_nn.png Graphic file (type png)
- <use ../figs/bengio_nn.png>
-Package pdftex.def Info: ../figs/bengio_nn.png used on input line 337.
-(pdftex.def)             Requested size: 159.43881pt x 135.19928pt.
-
+]
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1528,11 +1611,6 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [59
 
 ]
-File: ../figs/bengio_nn.png Graphic file (type png)
- <use ../figs/bengio_nn.png>
-Package pdftex.def Info: ../figs/bengio_nn.png used on input line 337.
-(pdftex.def)             Requested size: 159.43881pt x 135.19928pt.
-
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1540,11 +1618,6 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [60
 
 ]
-File: ../figs/bengio_nn.png Graphic file (type png)
- <use ../figs/bengio_nn.png>
-Package pdftex.def Info: ../figs/bengio_nn.png used on input line 337.
-(pdftex.def)             Requested size: 159.43881pt x 135.19928pt.
-
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1552,11 +1625,6 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [61
 
 ]
-File: ../figs/bengio_nn.png Graphic file (type png)
- <use ../figs/bengio_nn.png>
-Package pdftex.def Info: ../figs/bengio_nn.png used on input line 337.
-(pdftex.def)             Requested size: 159.43881pt x 135.19928pt.
-
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1564,11 +1632,6 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [62
 
 ]
-File: ../figs/bengio_nn.png Graphic file (type png)
- <use ../figs/bengio_nn.png>
-Package pdftex.def Info: ../figs/bengio_nn.png used on input line 337.
-(pdftex.def)             Requested size: 159.43881pt x 135.19928pt.
-
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1576,48 +1639,20 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [63
 
 ]
-File: ../figs/bengio_nn.png Graphic file (type png)
- <use ../figs/bengio_nn.png>
-Package pdftex.def Info: ../figs/bengio_nn.png used on input line 337.
-(pdftex.def)             Requested size: 159.43881pt x 135.19928pt.
-
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [64
 
-] <../figs/mikolov_cbow.png, id=1747, 626.34pt x 694.595pt>
-File: ../figs/mikolov_cbow.png Graphic file (type png)
-
-<use ../figs/mikolov_cbow.png>
-Package pdftex.def Info: ../figs/mikolov_cbow.png used on input line 400.
-(pdftex.def)             Requested size: 75.15755pt x 83.3478pt.
-
-<../figs/mikolov_skip.png, id=1748, 596.2275pt x 693.59125pt>
-File: ../figs/mikolov_skip.png Graphic file (type png)
-
-<use ../figs/mikolov_skip.png>
-Package pdftex.def Info: ../figs/mikolov_skip.png used on input line 400.
-(pdftex.def)             Requested size: 71.5442pt x 83.22736pt.
-
+]
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [65
 
- <../figs/mikolov_cbow.png> <../figs/mikolov_skip.png>]
-File: ../figs/mikolov_cbow.png Graphic file (type png)
-
-<use ../figs/mikolov_cbow.png>
-Package pdftex.def Info: ../figs/mikolov_cbow.png used on input line 400.
-(pdftex.def)             Requested size: 75.15755pt x 83.3478pt.
-File: ../figs/mikolov_skip.png Graphic file (type png)
- <use ../figs/mikolov_skip.png>
-Package pdftex.def Info: ../figs/mikolov_skip.png used on input line 400.
-(pdftex.def)             Requested size: 71.5442pt x 83.22736pt.
-
+]
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1625,15 +1660,6 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [66
 
 ]
-File: ../figs/mikolov_cbow.png Graphic file (type png)
- <use ../figs/mikolov_cbow.png>
-Package pdftex.def Info: ../figs/mikolov_cbow.png used on input line 400.
-(pdftex.def)             Requested size: 75.15755pt x 83.3478pt.
-File: ../figs/mikolov_skip.png Graphic file (type png)
- <use ../figs/mikolov_skip.png>
-Package pdftex.def Info: ../figs/mikolov_skip.png used on input line 400.
-(pdftex.def)             Requested size: 71.5442pt x 83.22736pt.
-
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1641,15 +1667,6 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [67
 
 ]
-File: ../figs/mikolov_cbow.png Graphic file (type png)
- <use ../figs/mikolov_cbow.png>
-Package pdftex.def Info: ../figs/mikolov_cbow.png used on input line 400.
-(pdftex.def)             Requested size: 75.15755pt x 83.3478pt.
-File: ../figs/mikolov_skip.png Graphic file (type png)
- <use ../figs/mikolov_skip.png>
-Package pdftex.def Info: ../figs/mikolov_skip.png used on input line 400.
-(pdftex.def)             Requested size: 71.5442pt x 83.22736pt.
-
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1657,15 +1674,6 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [68
 
 ]
-File: ../figs/mikolov_cbow.png Graphic file (type png)
- <use ../figs/mikolov_cbow.png>
-Package pdftex.def Info: ../figs/mikolov_cbow.png used on input line 400.
-(pdftex.def)             Requested size: 75.15755pt x 83.3478pt.
-File: ../figs/mikolov_skip.png Graphic file (type png)
- <use ../figs/mikolov_skip.png>
-Package pdftex.def Info: ../figs/mikolov_skip.png used on input line 400.
-(pdftex.def)             Requested size: 71.5442pt x 83.22736pt.
-
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1673,45 +1681,106 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [69
 
 ]
-File: ../figs/mikolov_cbow.png Graphic file (type png)
- <use ../figs/mikolov_cbow.png>
-Package pdftex.def Info: ../figs/mikolov_cbow.png used on input line 400.
-(pdftex.def)             Requested size: 75.15755pt x 83.3478pt.
-File: ../figs/mikolov_skip.png Graphic file (type png)
- <use ../figs/mikolov_skip.png>
-Package pdftex.def Info: ../figs/mikolov_skip.png used on input line 400.
-(pdftex.def)             Requested size: 71.5442pt x 83.22736pt.
-
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [70
 
-]
-File: ../figs/mikolov_cbow.png Graphic file (type png)
- <use ../figs/mikolov_cbow.png>
-Package pdftex.def Info: ../figs/mikolov_cbow.png used on input line 400.
-(pdftex.def)             Requested size: 75.15755pt x 83.3478pt.
-File: ../figs/mikolov_skip.png Graphic file (type png)
- <use ../figs/mikolov_skip.png>
-Package pdftex.def Info: ../figs/mikolov_skip.png used on input line 400.
-(pdftex.def)             Requested size: 71.5442pt x 83.22736pt.
+] (../figs/nn_arch.tex
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.
+code.tex
+File: tikzlibrarycalc.code.tex 2009/09/04 v2.10 (rcs-revision 1.6)
+)
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
 
+Overfull \hbox (9.5299pt too wide) in paragraph at lines 41--41
+ []\OT1/cmss/m/n/8 Metallica 
+ []
+
+
+Overfull \hbox (1.71036pt too wide) in paragraph at lines 48--48
+ []\OT1/cmss/m/n/8 Rolling  
+ []
+
+
+Overfull \hbox (0.7048pt too wide) in paragraph at lines 48--48
+ \OT1/cmss/m/n/8 Stones 
+ []
+
+
+Overfull \hbox (2.52776pt too wide) in paragraph at lines 72--72
+ []$\OT1/cmss/m/it/8 h[]$ 
+ []
+
+)
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [71
 
-]
+] (../figs/nn_arch.tex
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
+Overfull \hbox (9.5299pt too wide) in paragraph at lines 41--41
+ []\OT1/cmss/m/n/8 Metallica 
+ []
+
+
+Overfull \hbox (1.71036pt too wide) in paragraph at lines 48--48
+ []\OT1/cmss/m/n/8 Rolling  
+ []
+
+
+Overfull \hbox (0.7048pt too wide) in paragraph at lines 48--48
+ \OT1/cmss/m/n/8 Stones 
+ []
+
+
+Overfull \hbox (2.52776pt too wide) in paragraph at lines 72--72
+ []$\OT1/cmss/m/it/8 h[]$ 
+ []
+
+)
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [72
 
-]
+] (../figs/nn_arch.tex
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
+Overfull \hbox (9.5299pt too wide) in paragraph at lines 41--41
+ []\OT1/cmss/m/n/8 Metallica 
+ []
+
+
+Overfull \hbox (1.71036pt too wide) in paragraph at lines 48--48
+ []\OT1/cmss/m/n/8 Rolling  
+ []
+
+
+Overfull \hbox (0.7048pt too wide) in paragraph at lines 48--48
+ \OT1/cmss/m/n/8 Stones 
+ []
+
+
+Overfull \hbox (2.52776pt too wide) in paragraph at lines 72--72
+ []$\OT1/cmss/m/it/8 h[]$ 
+ []
+
+)
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1823,100 +1892,21 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 
 [88
 
-] (../figs/nn_arch.tex
-(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.
-code.tex
-File: tikzlibrarycalc.code.tex 2009/09/04 v2.10 (rcs-revision 1.6)
-)
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
-Overfull \hbox (9.5299pt too wide) in paragraph at lines 41--41
- []\OT1/cmss/m/n/8 Metallica 
- []
-
-
-Overfull \hbox (1.71036pt too wide) in paragraph at lines 48--48
- []\OT1/cmss/m/n/8 Rolling  
- []
-
-
-Overfull \hbox (0.7048pt too wide) in paragraph at lines 48--48
- \OT1/cmss/m/n/8 Stones 
- []
-
-
-Overfull \hbox (2.52776pt too wide) in paragraph at lines 72--72
- []$\OT1/cmss/m/it/8 h[]$ 
- []
-
-)
+]
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [89
 
-] (../figs/nn_arch.tex
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
-Overfull \hbox (9.5299pt too wide) in paragraph at lines 41--41
- []\OT1/cmss/m/n/8 Metallica 
- []
-
-
-Overfull \hbox (1.71036pt too wide) in paragraph at lines 48--48
- []\OT1/cmss/m/n/8 Rolling  
- []
-
-
-Overfull \hbox (0.7048pt too wide) in paragraph at lines 48--48
- \OT1/cmss/m/n/8 Stones 
- []
-
-
-Overfull \hbox (2.52776pt too wide) in paragraph at lines 72--72
- []$\OT1/cmss/m/it/8 h[]$ 
- []
-
-)
+]
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [90
 
-] (../figs/nn_arch.tex
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-
-Overfull \hbox (9.5299pt too wide) in paragraph at lines 41--41
- []\OT1/cmss/m/n/8 Metallica 
- []
-
-
-Overfull \hbox (1.71036pt too wide) in paragraph at lines 48--48
- []\OT1/cmss/m/n/8 Rolling  
- []
-
-
-Overfull \hbox (0.7048pt too wide) in paragraph at lines 48--48
- \OT1/cmss/m/n/8 Stones 
- []
-
-
-Overfull \hbox (2.52776pt too wide) in paragraph at lines 72--72
- []$\OT1/cmss/m/it/8 h[]$ 
- []
-
-)
+]
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2414,13 +2404,45 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [161
 
 ]
+Overfull \hbox (3.09354pt too wide) in paragraph at lines 988--988
+ [] 
+ []
+
+<../figs/pr/reuter-cs-scala.pdf, id=4321, 397.485pt x 325.215pt>
+File: ../figs/pr/reuter-cs-scala.pdf Graphic file (type pdf)
+
+<use ../figs/pr/reuter-cs-scala.pdf>
+Package pdftex.def Info: ../figs/pr/reuter-cs-scala.pdf used on input line 988.
+
+(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
+
+Overfull \hbox (0.89296pt too wide) detected at line 988
+[]  [][] [][][][][][][][] [][] [][][][][][][][]  
+ []
+
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [162
 
-]
+ <../figs/pr/reuter-cs-scala.pdf>]
+Overfull \hbox (3.09354pt too wide) in paragraph at lines 988--988
+ [] 
+ []
+
+File: ../figs/pr/reuter-cs-scala.pdf Graphic file (type pdf)
+<use ../figs/pr/reuter-cs-scala.pdf>
+Package pdftex.def Info: ../figs/pr/reuter-cs-scala.pdf used on input line 988.
+
+(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
+
+Overfull \hbox (0.89296pt too wide) detected at line 988
+[]  [][] [][][][][][][][][] [][] [][][][][][][][][]  
+ []
+
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2428,13 +2450,45 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [163
 
 ]
+Overfull \hbox (3.13943pt too wide) in paragraph at lines 1037--1037
+ [] 
+ []
+
+<../figs/pr/physics-cs-scala.pdf, id=4383, 397.485pt x 325.215pt>
+File: ../figs/pr/physics-cs-scala.pdf Graphic file (type pdf)
+
+<use ../figs/pr/physics-cs-scala.pdf>
+Package pdftex.def Info: ../figs/pr/physics-cs-scala.pdf used on input line 103
+7.
+(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
+
+Overfull \hbox (0.89296pt too wide) detected at line 1037
+[]  [][] [][][][][][][][] [][] [][][][][][][][]  
+ []
+
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [164
 
-]
+ <../figs/pr/physics-cs-scala.pdf>]
+Overfull \hbox (3.13943pt too wide) in paragraph at lines 1037--1037
+ [] 
+ []
+
+File: ../figs/pr/physics-cs-scala.pdf Graphic file (type pdf)
+<use ../figs/pr/physics-cs-scala.pdf>
+Package pdftex.def Info: ../figs/pr/physics-cs-scala.pdf used on input line 103
+7.
+(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
+
+Overfull \hbox (0.89296pt too wide) detected at line 1037
+[]  [][] [][][][][][][][][] [][] [][][][][][][][][]  
+ []
+
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2442,13 +2496,45 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [165
 
 ]
+Overfull \hbox (3.4389pt too wide) in paragraph at lines 1086--1086
+ [] 
+ []
+
+<../figs/pr/biology-cs-scala.pdf, id=4445, 397.485pt x 325.215pt>
+File: ../figs/pr/biology-cs-scala.pdf Graphic file (type pdf)
+
+<use ../figs/pr/biology-cs-scala.pdf>
+Package pdftex.def Info: ../figs/pr/biology-cs-scala.pdf used on input line 108
+6.
+(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
+
+Overfull \hbox (0.89296pt too wide) detected at line 1086
+[]  [][] [][][][][][][][] [][] [][][][][][][][]  
+ []
+
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [166
 
-]
+ <../figs/pr/biology-cs-scala.pdf>]
+Overfull \hbox (3.4389pt too wide) in paragraph at lines 1086--1086
+ [] 
+ []
+
+File: ../figs/pr/biology-cs-scala.pdf Graphic file (type pdf)
+<use ../figs/pr/biology-cs-scala.pdf>
+Package pdftex.def Info: ../figs/pr/biology-cs-scala.pdf used on input line 108
+6.
+(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
+
+Overfull \hbox (0.89296pt too wide) detected at line 1086
+[]  [][] [][][][][][][][][] [][] [][][][][][][][][]  
+ []
+
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2456,27 +2542,82 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [167
 
 ]
+Overfull \hbox (15.57509pt too wide) in paragraph at lines 1136--1136
+ [] 
+ []
+
+<../figs/pr/mathematics-cs-scala.pdf, id=4507, 397.485pt x 325.215pt>
+File: ../figs/pr/mathematics-cs-scala.pdf Graphic file (type pdf)
+
+<use ../figs/pr/mathematics-cs-scala.pdf>
+Package pdftex.def Info: ../figs/pr/mathematics-cs-scala.pdf used on input line
+ 1136.
+(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
+
+Overfull \hbox (0.89296pt too wide) detected at line 1136
+[]  [][] [][][][][][][][] [][] [][][][][][][][]  
+ []
+
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [168
 
-]
+ <../figs/pr/mathematics-cs-scala.pdf>]
+Overfull \hbox (15.57509pt too wide) in paragraph at lines 1136--1136
+ [] 
+ []
+
+File: ../figs/pr/mathematics-cs-scala.pdf Graphic file (type pdf)
+<use ../figs/pr/mathematics-cs-scala.pdf>
+Package pdftex.def Info: ../figs/pr/mathematics-cs-scala.pdf used on input line
+ 1136.
+(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
+
+Overfull \hbox (0.89296pt too wide) detected at line 1136
+[]  [][] [][][][][][][][][] [][] [][][][][][][][][]  
+ []
+
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [169
 
-]
+] <../figs/pr/sports-cs-scala.pdf, id=4569, 397.485pt x 325.215pt>
+File: ../figs/pr/sports-cs-scala.pdf Graphic file (type pdf)
+
+<use ../figs/pr/sports-cs-scala.pdf>
+Package pdftex.def Info: ../figs/pr/sports-cs-scala.pdf used on input line 1190
+.
+(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
+
+Overfull \hbox (0.89296pt too wide) detected at line 1190
+[]  [][] [][][][][][][][] [][] [][][][][][][][]  
+ []
+
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [170
 
-]
+ <../figs/pr/sports-cs-scala.pdf>]
+File: ../figs/pr/sports-cs-scala.pdf Graphic file (type pdf)
+ <use ../figs/pr/sports-cs-scala.pdf>
+Package pdftex.def Info: ../figs/pr/sports-cs-scala.pdf used on input line 1190
+.
+(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
+
+Overfull \hbox (0.89296pt too wide) detected at line 1190
+[]  [][] [][][][][][][][][] [][] [][][][][][][][][]  
+ []
+
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2491,6 +2632,11 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [172
 
 ]
+Overfull \hbox (9.53645pt too wide) in paragraph at lines 1313--1313
+ [] 
+ []
+
+
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2533,45 +2679,13 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [178
 
 ]
-Overfull \hbox (3.09354pt too wide) in paragraph at lines 982--982
- [] 
- []
-
-<../figs/pr/reuter-cs-scala.pdf, id=4770, 397.485pt x 325.215pt>
-File: ../figs/pr/reuter-cs-scala.pdf Graphic file (type pdf)
-
-<use ../figs/pr/reuter-cs-scala.pdf>
-Package pdftex.def Info: ../figs/pr/reuter-cs-scala.pdf used on input line 982.
-
-(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
-
-Overfull \hbox (0.89296pt too wide) detected at line 982
-[]  [][] [][][][][][][][] [][] [][][][][][][][]  
- []
-
-
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [179
 
- <../figs/pr/reuter-cs-scala.pdf>]
-Overfull \hbox (3.09354pt too wide) in paragraph at lines 982--982
- [] 
- []
-
-File: ../figs/pr/reuter-cs-scala.pdf Graphic file (type pdf)
-<use ../figs/pr/reuter-cs-scala.pdf>
-Package pdftex.def Info: ../figs/pr/reuter-cs-scala.pdf used on input line 982.
-
-(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
-
-Overfull \hbox (0.89296pt too wide) detected at line 982
-[]  [][] [][][][][][][][][] [][] [][][][][][][][][]  
- []
-
-
+]
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2579,276 +2693,40 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 [180
 
 ]
-Overfull \hbox (3.13943pt too wide) in paragraph at lines 1031--1031
- [] 
- []
-
-<../figs/pr/physics-cs-scala.pdf, id=4832, 397.485pt x 325.215pt>
-File: ../figs/pr/physics-cs-scala.pdf Graphic file (type pdf)
-
-<use ../figs/pr/physics-cs-scala.pdf>
-Package pdftex.def Info: ../figs/pr/physics-cs-scala.pdf used on input line 103
-1.
-(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
-
-Overfull \hbox (0.89296pt too wide) detected at line 1031
-[]  [][] [][][][][][][][] [][] [][][][][][][][]  
- []
-
-
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [181
 
- <../figs/pr/physics-cs-scala.pdf>]
-Overfull \hbox (3.13943pt too wide) in paragraph at lines 1031--1031
- [] 
- []
-
-File: ../figs/pr/physics-cs-scala.pdf Graphic file (type pdf)
-<use ../figs/pr/physics-cs-scala.pdf>
-Package pdftex.def Info: ../figs/pr/physics-cs-scala.pdf used on input line 103
-1.
-(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
-
-Overfull \hbox (0.89296pt too wide) detected at line 1031
-[]  [][] [][][][][][][][][] [][] [][][][][][][][][]  
- []
-
-
+]
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [182
 
-]
-Overfull \hbox (3.4389pt too wide) in paragraph at lines 1080--1080
- [] 
- []
-
-<../figs/pr/biology-cs-scala.pdf, id=4894, 397.485pt x 325.215pt>
-File: ../figs/pr/biology-cs-scala.pdf Graphic file (type pdf)
-
-<use ../figs/pr/biology-cs-scala.pdf>
-Package pdftex.def Info: ../figs/pr/biology-cs-scala.pdf used on input line 108
-0.
-(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
-
-Overfull \hbox (0.89296pt too wide) detected at line 1080
-[]  [][] [][][][][][][][] [][] [][][][][][][][]  
- []
-
-
+] (./defense_presentation.bbl)
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [183
 
- <../figs/pr/biology-cs-scala.pdf>]
-Overfull \hbox (3.4389pt too wide) in paragraph at lines 1080--1080
- [] 
- []
-
-File: ../figs/pr/biology-cs-scala.pdf Graphic file (type pdf)
-<use ../figs/pr/biology-cs-scala.pdf>
-Package pdftex.def Info: ../figs/pr/biology-cs-scala.pdf used on input line 108
-0.
-(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
-
-Overfull \hbox (0.89296pt too wide) detected at line 1080
-[]  [][] [][][][][][][][][] [][] [][][][][][][][][]  
- []
-
-
+]
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [184
 
+
 ]
-Overfull \hbox (15.57509pt too wide) in paragraph at lines 1130--1130
- [] 
- []
-
-<../figs/pr/mathematics-cs-scala.pdf, id=4956, 397.485pt x 325.215pt>
-File: ../figs/pr/mathematics-cs-scala.pdf Graphic file (type pdf)
-
-<use ../figs/pr/mathematics-cs-scala.pdf>
-Package pdftex.def Info: ../figs/pr/mathematics-cs-scala.pdf used on input line
- 1130.
-(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
-
-Overfull \hbox (0.89296pt too wide) detected at line 1130
-[]  [][] [][][][][][][][] [][] [][][][][][][][]  
- []
-
-
 Overfull \hbox (58.08289pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [185
-
- <../figs/pr/mathematics-cs-scala.pdf>]
-Overfull \hbox (15.57509pt too wide) in paragraph at lines 1130--1130
- [] 
- []
-
-File: ../figs/pr/mathematics-cs-scala.pdf Graphic file (type pdf)
-<use ../figs/pr/mathematics-cs-scala.pdf>
-Package pdftex.def Info: ../figs/pr/mathematics-cs-scala.pdf used on input line
- 1130.
-(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
-
-Overfull \hbox (0.89296pt too wide) detected at line 1130
-[]  [][] [][][][][][][][][] [][] [][][][][][][][][]  
- []
-
-
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[186
-
-] <../figs/pr/sports-cs-scala.pdf, id=5017, 397.485pt x 325.215pt>
-File: ../figs/pr/sports-cs-scala.pdf Graphic file (type pdf)
-
-<use ../figs/pr/sports-cs-scala.pdf>
-Package pdftex.def Info: ../figs/pr/sports-cs-scala.pdf used on input line 1184
-.
-(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
-
-Overfull \hbox (0.89296pt too wide) detected at line 1184
-[]  [][] [][][][][][][][] [][] [][][][][][][][]  
- []
-
-
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[187
-
- <../figs/pr/sports-cs-scala.pdf>]
-File: ../figs/pr/sports-cs-scala.pdf Graphic file (type pdf)
- <use ../figs/pr/sports-cs-scala.pdf>
-Package pdftex.def Info: ../figs/pr/sports-cs-scala.pdf used on input line 1184
-.
-(pdftex.def)             Requested size: 178.8666pt x 146.3454pt.
-
-Overfull \hbox (0.89296pt too wide) detected at line 1184
-[]  [][] [][][][][][][][][] [][] [][][][][][][][][]  
- []
-
-
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[188
-
-]
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[189
-
-]
-Overfull \hbox (9.53645pt too wide) in paragraph at lines 1307--1307
- [] 
- []
-
-
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[190
-
-]
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[191
-
-]
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[192
-
-]
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[193
-
-]
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[194
-
-]
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[195
-
-]
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[196
-
-]
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[197
-
-]
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[198
-
-]
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[199
-
-] (./defense_presentation.bbl)
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[200
-
-]
-Overfull \hbox (58.08289pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[201
-
 
 ]
 \tf@nav=\write6
@@ -2860,11 +2738,11 @@ Overfull \hbox (58.08289pt too wide) has occurred while \output is active
 \tf@snm=\write8
 \openout8 = `defense_presentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1350.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1350.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1364.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1364.
  (./defense_presentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1350.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1350.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1364.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1364.
 
 Package rerunfilecheck Info: File `defense_presentation.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
@@ -2873,14 +2751,14 @@ Package rerunfilecheck Info: File `defense_presentation.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1350.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1364.
  ) 
 Here is how much of TeX's memory you used:
- 21743 strings out of 493304
- 399572 string characters out of 6139871
- 491322 words of memory out of 5000000
- 24249 multiletter control sequences out of 15000+600000
- 17902 words of font info for 71 fonts, out of 8000000 for 9000
+ 21715 strings out of 493304
+ 399267 string characters out of 6139871
+ 491387 words of memory out of 5000000
+ 24253 multiletter control sequences out of 15000+600000
+ 18209 words of font info for 72 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  49i,16n,70p,438b,965s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
@@ -2911,10 +2789,10 @@ b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on defense_presentation.pdf (201 pages, 1228285 bytes).
+Output written on defense_presentation.pdf (185 pages, 1183348 bytes).
 PDF statistics:
- 5607 PDF objects out of 6186 (max. 8388607)
- 5286 compressed objects within 53 object streams
- 405 named destinations out of 1000 (max. 500000)
+ 5178 PDF objects out of 6186 (max. 8388607)
+ 4877 compressed objects within 49 object streams
+ 373 named destinations out of 1000 (max. 500000)
  118 words of extra memory for PDF output out of 10000 (max. 10000000)
 

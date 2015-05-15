@@ -105,21 +105,27 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Introduction to Multi-Label Document Categorization}
+\vfill\onslide<1->{\begin{center}
+	\emph{Document Categorization} is the task of assigning categories to documents \end{center}
+}
+\vfill
+\onslide<2->{
+	\textbf{Why need Multi-Label Document Categorization?}
+}
 \begin{itemize}
-	\vfill\item<1-> Text Documents usually belong to more than one conceptual class. \\For E.g. an article on Music Piracy 
-	\vfill\item<2-> Task of assigning documents to one or more predefined categories is called \emph{Multi-Label Document Categorization}
-	\vfill\item<3-> Wide range real-world applications :
+	\vfill\item<3-> Text Documents usually belong to more than one conceptual class. \\For E.g. an article on Music Piracy 
+	\vfill\item<4-> Wide range real-world applications :
 	\begin{itemize} 
-	  \vfill\item<3-> Web-page tagging
-	  \vfill\item<3-> Medical Patient Record Management
-	  \vfill\item<3-> Wikipedia Article Management
-	  \vfill\item<3-> Document Recommendation etc.
+	  \vfill\item<4-> Web-page tagging
+	  \vfill\item<4-> Medical Patient Record Management
+	  \vfill\item<4-> Wikipedia Article Management
+	  \vfill\item<4-> Document Recommendation etc.
 	\end{itemize} 
-	\vfill\item<4-> Multi-label classification belongs to a general class of supervised learning algorithms where : 
-	\begin{itemize}
-	  \vfill\item<5-> Training instances in the form of document-category pairs are used to learn a classifier $\mathcal{H}$ 
-	  \vfill\item<6-> Learned classifier $\mathcal{H}$ is used to assign categories to new test documents
-	\end{itemize}
+	%\vfill\item<5-> Multi-label classification belongs to a general class of supervised learning algorithms where : 
+	% \begin{itemize}
+	%   \vfill\item<6-> Training instances in the form of document-category pairs are used to learn a classifier $\mathcal{H}$ 
+	%   \vfill\item<7-> Learned classifier $\mathcal{H}$ is used to assign categories to new test documents
+	% \end{itemize}
 \end{itemize}
 \vfill
 \end{frame}
@@ -127,16 +133,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Introduction to Multi-Label Document Categorization}
-%\onslide<1->{ \textbf{Problem Statement}, } \\
-\vfill\onslide<1->{ Given, }
+\vfill\onslide<1->{ Multi-label classification belongs to a general class of \emph{supervised learning} algorithms where, given,  } \\
 \begin{itemize} 
-	\vfill\item<1-> A set of documents $D = \{d_{1}, \ldots, d_{|D|}\}$
+	\vfill\item<2-> A set of documents $D = \{d_{1}, \ldots, d_{|D|}\}$
 	\vfill\item<2-> A set of categories $C = \{c_{1}, \ldots, c_{|C|}\}$
-	\vfill\item<3-> Training data for $n$ {\small ($n < |D|$)} documents, $\traindata = \{l_{d_{1}}, \ldots, l_{d_{n}}\}$ 
-\onslide<4->{   \\ Each label vector $l_{d_{i}} \in \{0,1\}^{|C|}$ denotes relevance of categories to the document $d_{i}$ }
+	\vfill\item<2-> Training data for $n$ {\small ($n < |D|$)} documents, $\traindata = \{l_{d_{1}}, \ldots, l_{d_{n}}\}$ 
+%\onslide<4->{   \\ Each label vector $l_{d_{i}} \in \{0,1\}^{|C|}$ denotes relevance of categories to the document $d_{i}$ }
 \end{itemize} 
 \vfill
-\onslide<5->{
+\onslide<2->{
 	Example :
 	\begin{table}[h!]
 	\tabcolsep=0.1cm
@@ -158,7 +163,7 @@
 	\end{table}
 }
 \vfill
-\onslide<6->{
+\onslide<3->{
 Using $\traindata$, $D$ and $C$ the learning algorithm learns a multi-label classifier $\mathcal{H}$ to estimate category label vectors, $l_{d_{j}}$ {\small $(j>n)$} for the test documents. 
 }
 \vfill
@@ -169,19 +174,18 @@ Using $\traindata$, $D$ and $C$ the learning algorithm learns a multi-label clas
 \begin{frame}{Introduction to Multi-Label Document Categorization}
 \vfill\onslide<1->{ Document Categorization task has the following two components : }
 \begin{enumerate}
-	\vfill\item<2-> \emph{Learning Document Representations} : Representing text documents using numerical vectors that are inputs to the multi-label classifier $\mathcal{H}$
+	\vfill\item<2-> \emph{Learning Document Representations} %: Representing text documents using numerical vectors that are inputs to the multi-label classifier $\mathcal{H}$
 	\begin{itemize}
-	 	\vfill\item<3-> Each document $d_{i} \in D$ is represented using a vector $v_{d_{i}} \in \mathbb{R}^{k}$ \\
-	 	\vfill\item<4->	Vectors ($v_{d_{i}}$) should encode the semantic content of the documents 
-	 	\vfill\item<5-> Encoding documents in a $k$-dimensional space using such representation is called the \emph{Vector Space Model}
-	 	\vfill\item<6-> The complete document set $D$ can be represented by a document representation matrix $\matD \in \mathbb{R}^{k \times |D|}$
+	 	\vfill\item<3-> Each document $d_{i} \in D$ is represented using a vector $v_{d_{i}} \in \mathbb{R}^{k}$
+	 	\vfill\item<4-> Embedding documents in a $k$-dimensional space is called the \emph{Vector Space Model}
+	 	\vfill\item<5-> The set $D$ can be represented by a matrix $\matD \in \mathbb{R}^{k \times |D|}$
+	 	\vfill\item<6->	Vectors ($v_{d_{i}}$) should encode the semantic content of the documents 
 	\end{itemize}
-\suspend{enumerate} \vfill
-\onslide<7->{	
-\emph{ In this thesis, we focus on learning efficient document representations, $\matD$}	}
-\vfill
-	\resume{enumerate}
-	\vfill\item<8-> \emph{Learning Algorithm} : Algorithm to learn the multi-label classifier $\mathcal{H}$
+
+	\vfill\item<7-> \emph{Learning Algorithm}
+	\begin{itemize}
+	 	\vfill\item<7-> Algorithm to learn the multi-label classifier $\mathcal{H}$
+	 \end{itemize}		
 \end{enumerate}\vfill 
 \end{frame}
 
@@ -191,22 +195,22 @@ Using $\traindata$, $D$ and $C$ the learning algorithm learns a multi-label clas
 \vfill
 %\onslide<1->{ Learning algorithms can be classified into two classes :  }
 \begin{enumerate}
-	\vfill\item<2-> \emph{Learning Multiple Binary Classifiers} : \\
-	\onslide<3->{ {\footnotesize	Algorithms that treat each category assignment independently and learn multiple binary classifiers, one for each category, to make the category assignments} 	} 
+	\vfill\item<2-> \emph{Learning Multiple Binary Classifiers} \\
+	\onslide<2->{ {\footnotesize	Algorithms that treat each category assignment independently and learn multiple binary classifiers, one for each category, to make the category assignments} 	} 
 	\begin{itemize}
-		\vfill\item<4-> Logistic Regression
-		\vfill\item<5-> Support Vector Machines (SVM)
-		\vfill\item<6-> Neural Networks
-		\vfill\item<7-> Naive Bayes
+		\vfill\item<3-> Logistic Regression
+		\vfill\item<4-> Support Vector Machines (SVM)
+		\vfill\item<5-> Neural Networks, E.g. CLASSI, NNet.PARC
+		\vfill\item<6-> Naive Bayes
 	\end{itemize}
 
-	\vfill\item<8-> \emph{Learning Single Joint Classifier} : \\
-	\onslide<9->{ {\footnotesize	Algorithms that jointly assign all the categories to a document $d_{i}$, i.e. estimate the complete label vector $l_{d_{i}}$ using a single classifier} 	}
+	\vfill\item<7-> \emph{Learning Single Joint Classifier} \\
+	\onslide<7->{ {\footnotesize	Algorithms that jointly assign all the categories to a document $d_{i}$, i.e. estimate the complete label vector $l_{d_{i}}$ using a single classifier} 	}
 	\begin{itemize}
-		\vfill\item<10-> k-Nearest Neighbor (k-NN)
-		\vfill\item<11-> Linear Least Square Fit
-		\vfill\item<12-> Decision Trees
-		\vfill\item<13-> Generative Probabilistic Models
+		\vfill\item<8-> k-Nearest Neighbor (k-NN)
+		\vfill\item<9-> Linear Least Square Fit
+		\vfill\item<10-> Decision Trees
+		\vfill\item<11-> Generative Probabilistic Models
 	\end{itemize}
 \end{enumerate}
 %\onslide<14->{ Learning a single joint classifier is usually better as it is able to exploit the category correlations }
@@ -225,19 +229,20 @@ Using $\traindata$, $D$ and $C$ the learning algorithm learns a multi-label clas
 	\vfill\item<3-> Each element in $v_{d_{i}}$ denotes presence/absence of each word
 	\vfill\item<4-> Weighing techniques employed to give importance to important terms
 	\begin{itemize}
-		\vfill\item<5-> Term Frequency (\emph{tf} )
-		\vfill\item<5-> Inverse Document Frequency (\emph{idf} )
-		\vfill\item<5-> Term Frequency - Inverse Document Frequency (\emph{tf-idf} ) : \emph{tf} $\times$\emph{idf}
+		\vfill\item<4-> Term Frequency (\emph{tf} )
+		\vfill\item<4-> Inverse Document Frequency (\emph{idf} )
+		\vfill\item<4-> Term Frequency - Inverse Document Frequency (\emph{tf-idf} ) : \emph{tf} $\times$\emph{idf}
 	\end{itemize}
 \end{itemize}
 \vfill
-\onslide<6->{
+\onslide<5->{
 \textbf{Drawbacks of the Bag-of-Words model} }
 \begin{itemize}
-	\vfill\item<7-> High-dimensionality
-	\vfill\item<8-> Sparsity
-	\vfill\item<9-> Inability to encode word contexts
-	\vfill\item<10-> Ignores word order
+	\vfill\item<6-> High-dimensionality
+	\vfill\item<7-> Sparsity
+	\vfill\item<8-> Inability to encode word contexts
+	\vfill\item<9-> Ignores word order
+	\vfill\item<10-> Lack of similarity measures
 \end{itemize}
 \vfill
 % \todo{feature selection. Word Embeddings. Our document embedding. Our docu cate. Datasets. Results End}
@@ -246,7 +251,7 @@ Using $\traindata$, $D$ and $C$ the learning algorithm learns a multi-label clas
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Background on Feature Selection / Dimensionality Reduction}
+\begin{frame}{\large Background on Feature Selection / Dimensionality Reduction}
 \vfill
 \onslide<1-> {
 Techniques to deal with sparsity and high-dimensionality in BOW }
@@ -264,11 +269,10 @@ Techniques to deal with sparsity and high-dimensionality in BOW }
 	\end{equation}
 	} }
 	\vfill\item<4-> Latent Semantic Indexing (LSI) \\
-	\onslide<4->{ { \scriptsize
-	\begin{equation}
-	X = T S D^{T}
-	\end{equation}
-	} }
+					\scriptsize	\begin{equation}
+						X = T S D^{T}
+					\end{equation}
+					$X$ is the Term-Document Matrix
 \end{itemize}
 \vfill
 \end{frame}
@@ -284,13 +288,13 @@ Representation of each word $w_{i}$ using vector $v_{w_{i}} \in \mathbb{R}^{k}$ 
 \begin{itemize}
 	\vfill\item<3-> Curse of Dimensionality
 	\begin{itemize}
-		\vfill\item<4-> One-hot representations grow with the size of vocabulary
-		\vfill\item<5-> Parameters in language modeling grow exponentially with the size of vocabulary
+		\vfill\item<3-> One-hot representations grow with the size of vocabulary
+		\vfill\item<3-> Parameters in language modeling grow exponentially with the size of vocabulary
 	\end{itemize}
-	\vfill\item<6-> No Word Similarity Measure
+	\vfill\item<4-> No Word Similarity Measure
 	\begin{itemize}
-		\vfill\item<7-> One-hot representations are orthogonal representations
-		\vfill\item<8-> Cannot capture semantic similarity between words
+		\vfill\item<4-> One-hot representations are orthogonal representations
+		\vfill\item<4-> Cannot capture semantic similarity between words
 	\end{itemize}
 \end{itemize}
 \vfill
@@ -302,14 +306,14 @@ Representation of each word $w_{i}$ using vector $v_{w_{i}} \in \mathbb{R}^{k}$ 
 \onslide<1->{
 \citet{bengio2003neural} developed \emph{Neural Probabilistic Language Model (NPLM)} to learn}%learn distributed word vectors and a probability function that uses these vectors to learn a statistical model of language	}
 \begin{enumerate}
-\vfill\item<2-> Distributed word vectors
-\vfill\item<3-> A probability function that, using these word vectors, learns a statistical model of language 
+\vfill\item<1-> Distributed word vectors
+\vfill\item<1-> Probability function to learn a statistical model of language 
 \end{enumerate}
 
 \begin{columns}[T]
  \begin{column}{.5\textwidth}
  	\centering
- 	\onslide<4->{
+ 	\onslide<2->{
  	\includegraphics[scale=0.15]{../figs/bengio_nn.png} }
 
  \end{column}
@@ -317,15 +321,15 @@ Representation of each word $w_{i}$ using vector $v_{w_{i}} \in \mathbb{R}^{k}$ 
  \begin{column}{.5\textwidth}
  	\centering
  	{\footnotesize
- 	\vfill \onslide<5->{
+ 	\vfill \onslide<3->{
  	\begin{equation}
     P(w_{t} | w_{1}^{t-1}) \approx P(w_{t} | w_{t-n+1}^{t-1})
     \end{equation} }
-    \vfill \onslide<6->{
+    \vfill \onslide<4->{
     \begin{equation}
 	y = b + U tanh(d + Hx) \text{,} \quad y \in \mathbb{R}^{|V|}
 	\end{equation} }
-	\vfill \onslide<7->{
+	\vfill \onslide<5->{
 	\begin{equation}
 	P(w_{t} = i | w_{t-1}, \ldots, w_{t-n+1}) = \frac{e^{y_{w_t}}}{\sum_{i}e^{y_{i}}}
 	\end{equation} }
@@ -341,7 +345,7 @@ Representation of each word $w_{i}$ using vector $v_{w_{i}} \in \mathbb{R}^{k}$ 
 \begin{frame}{Log-Linear Models}
 \vfill
 \onslide<1->{
-\emph{Log-Linear Models} for learning distributed word vectors are proposed in \citet{mikolov2013efficient}. These models use word vectors to predict other words in the context.	 }
+Proposed by \citet{mikolov2013efficient} to predict words in the context using word vectors}
 % \begin{itemize}
 % \vfill\item<2-> do not build a language model hence also consider future words in contexts
 % \vfill\item<3-> show that the word vectors capture the semantic similarity between words
@@ -405,13 +409,13 @@ Representation of each word $w_{i}$ using vector $v_{w_{i}} \in \mathbb{R}^{k}$ 
 \vfill \onslide<1->{
 \textbf{Motivation for learning distributed document representations} }
 \begin{enumerate}
-	\vfill\item<2-> Traditional representations do not encode semantic similarity between documents. Therefore, cannot handle synonyms
+	\vfill\item<2-> Lack of semantic similarity measures. Therefore, cannot handle synonyms
 	\vfill\item<3-> Drawbacks in BOW like sparsity, high-dimensionality, inability to encode context information and consider word ordering
-	\vfill\item<4-> Compositionality of word vectors beyond weighted average \cite{mitchell2010composition, zanzotto2010estimating, yessenalina2011compositional, grefenstette2013multi, mikolov2013distributed} is not simple
-	\vfill\item<5-> \citet{socher2013recursive} propose a Recursive Tensor Neural Network (RTNN) to compose word vectors for learning sentence representations using the parse-tree of the sentence in a bottom-up fashion
+	\vfill\item<4-> Compositionality of word vectors beyond weighted average \cite{mitchell2010composition, zanzotto2010estimating, yessenalina2011compositional, grefenstette2013multi, mikolov2013distributed} 
+	\vfill\item<5-> Recursive Tensor Neural Network (RTNN) \cite{socher2013recursive} for learning sentence representations using the syntactic dependency has issues
 	\begin{itemize}
-		\vfill\item<6-> Parsing, a computationally expensive step required for each sentence
-		\vfill\item<7-> Composing sentence vectors to represent documents is not straight-forward
+		\vfill\item<5-> Parsing, a computationally expensive step required for each sentence
+		\vfill\item<5-> Composing sentence vectors to represent documents is not straight-forward
 	\end{itemize}
 \end{enumerate}
 \end{frame}
@@ -435,8 +439,8 @@ Document Representations that encode semantic content of the document should be 
 \vfill \onslide<3->{
 Our model, }
 \begin{enumerate}
-	\vfill\item<4-> Learns distributed representations for document (and words) that encode the different semantic content in the documents
-	\vfill\item<5-> Embeds documents and words in the same $k$-dimensional space such that semantically similar entities have similar vector representations
+	\vfill\item<3-> Learns distributed representations for document (and words) that encode the different semantic content in the documents
+	\vfill\item<3-> Embeds documents and words in the same $k$-dimensional space such that semantically similar entities have similar vector representations
 \end{enumerate}
 
 \end{frame}
@@ -454,14 +458,14 @@ Our model, }
 We present an unsupervised neural network model that, }
 \begin{enumerate}
 	\vfill\item<2-> Represents each document $d_{i} \in D$ by a vector $\vecdi{i} \in \mathbb{R}^{k}$\\
-	Vectors are stored as columns of the matrix $\matD = \left[\vecdi{1}, \ldots, \vecdi{|\setD|}\right] \in \mathbb{R}^{k \times |\setD|}$
+	%Vectors are stored as columns of the matrix $\matD = \left[\vecdi{1}, \ldots, \vecdi{|\setD|}\right] \in \mathbb{R}^{k \times |\setD|}$
 	\vfill\item<3-> Each word $w_{i} \in W$, is represented by a vector $\vecwi{i} \in \mathbb{R}^{k}$
-	Vectors are stored as columns of the matrix $\matW = \left[\vecwi{1}, \ldots, \vecwi{|\setW|}\right] \in \mathbb{R}^{k \times |\setW|}$
+	%Vectors are stored as columns of the matrix $\matW = \left[\vecwi{1}, \ldots, \vecwi{|\setW|}\right] \in \mathbb{R}^{k \times |\setW|}$
 	\vfill\item<4-> Given a sequence of words, $(w_{t-c}, \ldots, w_{t+c})$ in document $d_{i}$, estimates 
 	\begin{equation*}
 	p(w_{t} | d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{t+1}, \ldots, w_{t+c})
 	\end{equation*}
-	\vfill\item<5-> Maximizes the probability of predicting the words correctly to learn $\matD$ and $\matW$ and the parameters of the probability function
+	\vfill\item<5-> Maximizes probability of predicting the middle word correctly to learn vectors
 \end{enumerate}	
 \end{frame}
 
@@ -556,7 +560,7 @@ We present an unsupervised neural network model that, }
 	\vfill\item<6-> For every positive training sequence, $n$ negative training sequences introduced where,
 	\begin{itemize}
 		\vfill\item<7-> The observed middle word $w_{t}$ is replaced by a corrupt word $w_{x}$ drawn from a noise distribution $P_{n}(w)$
-		\vfill\item<8-> The label for the negative sequence is $Y = 0$
+		\vfill\item<8-> E.g. $\{d_{i}, w_{t-c}, \ldots, w_{t-1}, w_{x}, w_{t+1}, \ldots, w_{t+c}, Y=0\}$ %The label for the negative sequence is $Y = 0$
 	\end{itemize}
 	\vfill\item<9-> Complete training data : $\traindata$ = $\{d^{(m)}_{i}, w^{(m)}_{t-c}, \ldots, w^{(m)}_{t+c}, Y^{(m)}\}^{m=M+nM}_{m=1}$
 \end{enumerate}
@@ -756,11 +760,12 @@ Given,
 \end{enumerate}
 
 \vfill\onslide<4->{ 
-The task is to assign categories to a new document $d_{x}$ \\To model document category relation, we }
+The task is to assign categories to a new document $d_{x}$ \\To model document category relation}
 
 \begin{enumerate}
-	\vfill\item<5-> Represent each $c_{i} \in \setC$ using $\vecci{c_{i}} \in \mathbb{R}^{k}$
-	\vfill\item<6-> Learn a probabilistic logistic classifier to assign categories
+	\vfill\item<5-> Each $d_{i} \in \setD$ is represented using $\vecdi{d_{i}} \in \mathbb{R}^{k}$
+	\vfill\item<6-> Represent each $c_{i} \in \setC$ using $\vecci{c_{i}} \in \mathbb{R}^{k}$
+	\vfill\item<7-> Learn a probabilistic logistic classifier to assign categories
 	% \vfill\item<7-> Probability of  $c_{j}$ relevant to $d_{i}$ is estimated using
 	% \begin{equation}
 	% P(y=1|d_{i}, c_{j}, \matD, \matC) = \sigma(\vecdi{d_{i}}\cdot \vecci{c_{j}})
@@ -847,7 +852,7 @@ Similar to learning document embeddings, category embeddings updates are given b
 
 \begin{enumerate}
 	\vfill\item<1-> Predicting relation between a document-category tuple is $\mathcal{O}(1)$
-	\vfill\item<2-> Learns embeddings for categories in the same space as words and documents
+	\vfill\item<2-> Categories are embedded in the same space as words and documents
 	\vfill\item<3-> Though learns multiple category vectors, exploits the low-rank structure in the document-category relation
 	\vfill\item<4-> Easy incorporation of additional relational data of documents for more accurate categorization as shown in \citet{gupta2015collectively}
 	\vfill\item<5-> Usage of SGD makes algorithm completely online
@@ -874,7 +879,7 @@ Similar to learning document embeddings, category embeddings updates are given b
 	\end{tabular}
 	\end{center}
 	\end{table}
-	\vfill\item<2-> \textbf{Wikipedia Datasets} : Extracted for 4 top categories
+	\vfill\item<1-> \textbf{Wikipedia Datasets} : Extracted for 4 top categories
 	\vfill \begin{table}[h!]
 	\scriptsize
 	\begin{center}
@@ -903,8 +908,9 @@ Similar to learning document embeddings, category embeddings updates are given b
 	\vfill\item<5-> Elements of document and word vectors are initialized by drawing uniformly from $[-\frac{1}{k}, \frac{1}{k}]$ 
 	\vfill\item<6-> Hyper-parameters are fixed using performance on the validation set
 	\vfill\item<7-> Noise Distribution for NCE is chosen as $P_{n}(w) \sim U(w)^{\frac{3}{4}}$
+	\vfill\item<8-> Typically $k=100$, $c=2$, $n=10$, $epochs=100$ is used
 \end{enumerate}
-\onslide<8->{
+\onslide<9->{
 	\emph{For document categorization evaluation, $80\%$ of the documents are used for training and the rest are equally divided for test and validation purposes}
 }
 \end{frame}
@@ -1335,8 +1341,6 @@ We evaluate our model on imputing missing categories in the Wikipedia datasets
 
 \end{frame}
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[allowframebreaks]{References}
     %{\footnotesize
@@ -1344,6 +1348,16 @@ We evaluate our model on imputing missing categories in the Wikipedia datasets
     \bibliographystyle{abbrvnat}
     \bibliography{references}
     %}
+\end{frame}
+
+\begin{frame}
+\vfill
+\begin{center}
+\Large Thank You! 
+\\
+\large Questions?
+\end{center}
+%\blfootnote{Snacks outside}
 \end{frame}
 
 
