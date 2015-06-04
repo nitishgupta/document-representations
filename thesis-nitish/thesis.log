@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  14 MAY 2015 22:26
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.25)  16 MAY 2015 17:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -966,42 +966,50 @@ Package pdftex.def Info: title.pdf, page1 used on input line 120.
 
  <./title.pdf{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}>] [2
 
-] <certificate.pdf, id=171, 597.50786pt x 845.04686pt>
-File: certificate.pdf Graphic file (type pdf)
+] <Certificate_NitishGupta.pdf, id=171, 620.3175pt x 891.33pt>
+File: Certificate_NitishGupta.pdf Graphic file (type pdf)
 
-<use certificate.pdf>
-Package pdftex.def Info: certificate.pdf used on input line 125.
-(pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
-File: certificate.pdf Graphic file (type pdf)
- <use certificate.pdf>
-Package pdftex.def Info: certificate.pdf used on input line 125.
-(pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
+<use Certificate_NitishGupta.pdf>
+Package pdftex.def Info: Certificate_NitishGupta.pdf used on input line 125.
+(pdftex.def)             Requested size: 620.316pt x 891.32784pt.
+File: Certificate_NitishGupta.pdf Graphic file (type pdf)
+ <use Certificate_NitishGupta.pdf>
+Package pdftex.def Info: Certificate_NitishGupta.pdf used on input line 125.
+(pdftex.def)             Requested size: 620.316pt x 891.32784pt.
 
-<certificate.pdf, id=174, page=1, 597.50786pt x 845.04686pt>
-File: certificate.pdf Graphic file (type pdf)
+<Certificate_NitishGupta.pdf, id=174, page=1, 620.3175pt x 891.33pt>
+File: Certificate_NitishGupta.pdf Graphic file (type pdf)
 
-<use certificate.pdf, page 1>
-Package pdftex.def Info: certificate.pdf, page1 used on input line 125.
-(pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
-File: certificate.pdf Graphic file (type pdf)
- <use certificate.pdf, page 1>
-Package pdftex.def Info: certificate.pdf, page1 used on input line 125.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: certificate.pdf Graphic file (type pdf)
+<use Certificate_NitishGupta.pdf, page 1>
+Package pdftex.def Info: Certificate_NitishGupta.pdf, page1 used on input line 
+125.
+(pdftex.def)             Requested size: 620.316pt x 891.32784pt.
+File: Certificate_NitishGupta.pdf Graphic file (type pdf)
 
-<use certificate.pdf, page 1>
-Package pdftex.def Info: certificate.pdf, page1 used on input line 125.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: certificate.pdf Graphic file (type pdf)
- <use certificate.pdf, page 1>
-Package pdftex.def Info: certificate.pdf, page1 used on input line 125.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: certificate.pdf Graphic file (type pdf)
+<use Certificate_NitishGupta.pdf, page 1>
+Package pdftex.def Info: Certificate_NitishGupta.pdf, page1 used on input line 
+125.
+(pdftex.def)             Requested size: 588.3139pt x 845.34425pt.
+File: Certificate_NitishGupta.pdf Graphic file (type pdf)
 
-<use certificate.pdf, page 1>
-Package pdftex.def Info: certificate.pdf, page1 used on input line 125.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
- [3 <./certificate.pdf>] [4]
+<use Certificate_NitishGupta.pdf, page 1>
+Package pdftex.def Info: Certificate_NitishGupta.pdf, page1 used on input line 
+125.
+(pdftex.def)             Requested size: 588.3139pt x 845.34425pt.
+File: Certificate_NitishGupta.pdf Graphic file (type pdf)
+
+<use Certificate_NitishGupta.pdf, page 1>
+Package pdftex.def Info: Certificate_NitishGupta.pdf, page1 used on input line 
+125.
+(pdftex.def)             Requested size: 588.3139pt x 845.34425pt.
+File: Certificate_NitishGupta.pdf Graphic file (type pdf)
+
+<use Certificate_NitishGupta.pdf, page 1>
+Package pdftex.def Info: Certificate_NitishGupta.pdf, page1 used on input line 
+125.
+(pdftex.def)             Requested size: 588.3139pt x 845.34425pt.
+ [3 <./Certificate_NitishGupta.pdf>]
+[4]
 \openout2 = `abstract.aux'.
 
  (./abstract.tex
@@ -1205,7 +1213,7 @@ Overfull \hbox (13.72908pt too wide) in paragraph at lines 21--26
 Underfull \vbox (badness 5417) has occurred while \output is active []
 
  [20]
-<figs/bengio_nn.png, id=658, 1062.97125pt x 901.3675pt>
+<figs/bengio_nn.png, id=641, 1062.97125pt x 901.3675pt>
 File: figs/bengio_nn.png Graphic file (type png)
 
 <use figs/bengio_nn.png>
@@ -1215,7 +1223,7 @@ Package pdftex.def Info: figs/bengio_nn.png used on input line 64.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [21]
-<figs/mikolov_cbow.png, id=674, 626.34pt x 694.595pt>
+<figs/mikolov_cbow.png, id=657, 626.34pt x 694.595pt>
 File: figs/mikolov_cbow.png Graphic file (type png)
 
 <use figs/mikolov_cbow.png>
@@ -1225,14 +1233,14 @@ Package pdftex.def Info: figs/mikolov_cbow.png used on input line 92.
 Underfull \vbox (badness 3148) has occurred while \output is active []
 
  [22 <./figs/bengio_nn.png>] [23 <./figs/mikolov_cbow.png>]
-<figs/mikolov_skip.png, id=696, 596.2275pt x 693.59125pt>
+<figs/mikolov_skip.png, id=679, 596.2275pt x 693.59125pt>
 File: figs/mikolov_skip.png Graphic file (type png)
 
 <use figs/mikolov_skip.png>
 Package pdftex.def Info: figs/mikolov_skip.png used on input line 115.
 (pdftex.def)             Requested size: 170.71393pt x 198.58572pt.
  [24 <./figs/mikolov_skip.png>]
-<figs/dependency_context.png, id=713, 1179.40625pt x 781.92125pt>
+<figs/dependency_context.png, id=696, 1179.40625pt x 781.92125pt>
 File: figs/dependency_context.png Graphic file (type png)
 
 <use figs/dependency_context.png>
@@ -1347,7 +1355,7 @@ Overfull \hbox (40.81345pt too wide) in paragraph at lines 150--183
  [] 
  []
 
-[54] <figs/pr/reuter-cs-scala.pdf, id=1027, 397.485pt x 325.215pt>
+[54] <figs/pr/reuter-cs-scala.pdf, id=1010, 397.485pt x 325.215pt>
 File: figs/pr/reuter-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/reuter-cs-scala.pdf>
@@ -1379,7 +1387,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 486--486
 go-riza-tion on
  []
 
-<figs/pr/physics-cs-scala.pdf, id=1055, 397.485pt x 325.215pt>
+<figs/pr/physics-cs-scala.pdf, id=1038, 397.485pt x 325.215pt>
 File: figs/pr/physics-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/physics-cs-scala.pdf>
@@ -1402,7 +1410,7 @@ Underfull \hbox (badness 3815) in paragraph at lines 674--674
 go-riza-tion on Bi-ol-
  []
 
-<figs/pr/biology-cs-scala.pdf, id=1083, 397.485pt x 325.215pt>
+<figs/pr/biology-cs-scala.pdf, id=1066, 397.485pt x 325.215pt>
 File: figs/pr/biology-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/biology-cs-scala.pdf>
@@ -1423,7 +1431,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [60 <./figs/pr/biology-cs-scala.pdf>]
-<figs/pr/mathematics-cs-scala.pdf, id=1109, 397.485pt x 325.215pt>
+<figs/pr/mathematics-cs-scala.pdf, id=1092, 397.485pt x 325.215pt>
 File: figs/pr/mathematics-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/mathematics-cs-scala.pdf>
@@ -1456,7 +1464,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1052--1052
 go-riza-tion on
  []
 
-<figs/pr/sports-cs-scala.pdf, id=1136, 397.485pt x 325.215pt>
+<figs/pr/sports-cs-scala.pdf, id=1119, 397.485pt x 325.215pt>
 File: figs/pr/sports-cs-scala.pdf Graphic file (type pdf)
 
 <use figs/pr/sports-cs-scala.pdf>
@@ -1520,7 +1528,7 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 ### bottom level 
 Here is how much of TeX's memory you used:
  21371 strings out of 493304
- 358689 string characters out of 6139871
+ 358797 string characters out of 6139871
  476624 words of memory out of 5000000
  23951 multiletter control sequences out of 15000+600000
  18385 words of font info for 67 fonts, out of 8000000 for 9000
@@ -1549,13 +1557,13 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist
 /public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (97 pages, 1061924 bytes).
+cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.p
+fb>
+Output written on thesis.pdf (97 pages, 1401320 bytes).
 PDF statistics:
- 1377 PDF objects out of 1440 (max. 8388607)
- 1191 compressed objects within 12 object streams
+ 1359 PDF objects out of 1440 (max. 8388607)
+ 1177 compressed objects within 12 object streams
  359 named destinations out of 1000 (max. 500000)
  314 words of extra memory for PDF output out of 10000 (max. 10000000)
 
